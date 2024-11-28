@@ -1,0 +1,1 @@
+print("Nhom 1 Lam du an Game Hub Platform")
