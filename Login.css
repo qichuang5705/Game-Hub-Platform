@@ -1,0 +1,14 @@
+/*reset css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Home{
+    padding-left: 5px;
+}
+
+body{
+    background-image: linear-gradient(90deg, #7CFAEC,#B5B8FA);
+}
