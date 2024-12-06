@@ -4,13 +4,27 @@
         <title>GameHUB</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="Login.css">
+        <script src="Login.js"></script>
     </head>
 
     <body>
         <div class="Home"><h1>GameHUB</h1></div>
         <hr style="border: 1px solid black; margin-bottom: 10px;">
-        Username: <input type="text">  <button>Xác nhận</button>
+        <label for="Username">Username:</label>
+        <input type="text" id = "Username">
         <br>
-        Password: <input type="text">  <button>Xác nhận</button>
+        <label for="Password">Password:</label>
+        <input type="text" id ="Password"> 
+        <br>
+        <button>Đăng nhập</button>
+        <p id = "demo">Before</p>
+        <button onclick="ChangeBackA()">Change Background Color to after</button>
+        <button onclick="ChangeBackB()">Change Background Color to before</button>
+        <button onclick="ChangeBackB()">test</button>
+        <button type="button" onclick="document.write(5 + 6)">Try it</button>
+        <script>
+            console.log(5 + 6);
+            </script>
+            <button onclick="window.print()">Print this page</button>
     </body>
 </html>
