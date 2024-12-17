@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input {
+    display: block; /* Đảm bảo mỗi input chiếm một dòng */
+    margin-bottom: 10px; /* Khoảng cách giữa các ô input */
+    padding: 10px; /* Thêm khoảng đệm trong ô input */
+    width: 100%; /* Chiều rộng của input */
+
+}
+
+body{
+    background-color: darkblue;
+}

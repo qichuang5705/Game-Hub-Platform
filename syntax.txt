@@ -1,6 +1,8 @@
--Virtual envoriment:
-tạo file
+@Virtual envoriment:
+-tạo file
     py -m venv <name>
+-activate Virtual:
+    <name>\Scripts\activate
 
 @Django
 -tạo project django
