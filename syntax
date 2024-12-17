@@ -1,0 +1,9 @@
+-Virtual envoriment:
+tạo file
+    py -m venv <name>
+
+@Django
+-tạo project django
+    +django-admin startproject <name>
+-tạo 1 app
+    py manage.py startapp <name>
