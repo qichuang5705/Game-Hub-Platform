@@ -1,3 +1,4 @@
+Nơi chứa các cú pháp cmn, powershell
 @Virtual envoriment:
 -tạo file
     py -m venv <name>
