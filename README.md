@@ -15,3 +15,13 @@ Giao diện từng vai trò kế thừa A (Giao diện trang chủ game: @Guest:
 @Designer -Có nút chuyển qua gaio diện đăng tải các tài nguyên
 
 @System Admin -Có nút chuyển qua giao duyệt nâng cấp tài khoản -Có nút chuyển qua giao diện thống kê lượt chơi, rate of game của từng development để trả công cho họ
+
+#GameHUb/
+    ├── GameHUb         #App gốc(root)
+    ├── accounts      # App quản lý tài khoản 
+    ├── games          # App quản lý trò chơi
+    ├── assets         # App quản lý tài sản  
+    ├── reviews        # App cho Player review
+    ├── rewards         # App quản lý hệ thống tích điểm thưởng
+    ├── payments        # App quản lý thanh toán và giao dịch
+    ├── administrator  # App dành cho System admin
