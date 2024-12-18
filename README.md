@@ -1,6 +1,6 @@
-IDEA OF PROJECT: Game Hub Platform gồm: *Chu y: Mỗi giao diện có logi game hub bên trái trên cùng để người nhập vào và quay lại trang chủ game. *Kéo xuống dưới cùng luôn có các thông tin nhóm như tên nhóm thành viên, fb, ins, git, ytb...
+#IDEA OF PROJECT: Game Hub Platform gồm: *Chu y: Mỗi giao diện có logi game hub bên trái trên cùng để người nhập vào và quay lại trang chủ game. *Kéo xuống dưới cùng luôn có các thông tin nhóm như tên nhóm thành viên, fb, ins, git, ytb...
 
-Giao diện đăng nhập, đăng kí, quên mật khẩu, nút xác nhận Guest (ấn vô để vô trang chủ game không cần tài khoản)
+#Giao diện đăng nhập, đăng kí, quên mật khẩu, nút xác nhận Guest (ấn vô để vô trang chủ game không cần tài khoản)
 -Giao diện trang chủ game: A
 
 nơi chứa các hình ảnh trò chơi, có nút play hay cái đó để người các user nhấp vào chơi. Mỗi thao tác nhấn chơi sẽ chuyển một frontend cho các developer tạo ra
