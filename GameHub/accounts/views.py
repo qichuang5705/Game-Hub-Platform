@@ -7,3 +7,4 @@ def login(request):
 
 def huy(request):
     return HttpResponse("Hello HUy")
+ 
