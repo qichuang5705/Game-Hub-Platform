@@ -4,6 +4,7 @@ Nơi chứa các cú pháp cmd, powershell
     py -m venv <name>
 -activate Virtual:
     <name>\Scripts\activate
+virtual\Scripts\activate
 
 @Django
 -tạo project django

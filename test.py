@@ -22,4 +22,12 @@ def connect_to_database():
         print("Error:", e)
         return None
 
-
+#ctrl + f để tìm kiếm nhanh
+print("ss")
+print("ss")
+print("ss")
+print("ss")
+print("ss")
+print("ss")
+print("ss")
+print("ss")
