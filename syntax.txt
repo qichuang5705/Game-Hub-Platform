@@ -11,3 +11,5 @@ virtual\Scripts\activate
     +django-admin startproject <name>
 -tạo 1 app
     py manage.py startapp <name>
+-Xác nhận các module tại app <name>
+    py manage.py makemigrations <name>
