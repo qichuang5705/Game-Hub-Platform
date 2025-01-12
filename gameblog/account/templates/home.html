@@ -1,12 +1,16 @@
-<h1>its home</h1>
+<!DOCTYPE html>
+<html>
+    <head></head>
 
-{% if user %}
-    <h1>Welcome, MR.{{user.usermame}}</h1>
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Đăng xuất</button>
-    </form>
-    <a href="{% url 'password_change' %}">Change Password</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
+    <body>
+        {% extends 'navbar.html' %}
+        
+        {% block body %}
+        <h1>Welcome to the Games Section!</h1>
+        <p>Explore the latest games available on GameHub.</p>
+        {% if user.is_authenticated %}
+            <h1>Welcome, MR.{{user.username}}</h1>
+        {% endif %}
+        {% endblock %}
+    </body>
+</html>

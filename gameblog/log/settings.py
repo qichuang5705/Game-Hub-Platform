@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates",
+           BASE_DIR / "templates"
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -79,13 +79,15 @@ WSGI_APPLICATION = 'log.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
-        'NAME': 'login',          # Tên cơ sở dữ liệu
+        'NAME': 'api',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
         'PASSWORD': 'sayonara',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
     }
 }
 
+
+AUTH_USER_MODEL = 'account.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -127,7 +129,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 LOGIN_REDIRECT_URL = '/'  # URL sau khi đăng nhập thành công
 LOGOUT_REDIRECT_URL = '/'  # URL sau khi đăng xuất

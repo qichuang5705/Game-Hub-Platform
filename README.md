@@ -19,7 +19,7 @@ file in4api kế thừa login và cần phát triển chức năng hiện thị 
 
 #shopasset
 -Hiện thị asset
--API đăng tải asset
+-Dăng tải asset
 
 #Quản lý duyệt vai trò
 hi
