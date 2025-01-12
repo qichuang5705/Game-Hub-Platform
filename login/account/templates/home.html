@@ -1,0 +1,12 @@
+<h1>its home</h1>
+
+{% if user %}
+    <h1>Welcome, MR.{{user.usermame}}</h1>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Đăng xuất</button>
+    </form>
+    <a href="{% url 'password_change' %}">Change Password</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
