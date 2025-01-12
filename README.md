@@ -23,10 +23,4 @@ file in4api kế thừa login và cần phát triển chức năng hiện thị 
 
 #Quản lý duyệt vai trò
 hi
-<<<<<<< HEAD
-
-
-hahaa
-=======
 haha
->>>>>>> 21a2db2ab89535089e1792df5ea434b001def60b
