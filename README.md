@@ -4,7 +4,7 @@ file chức năng khó sẽ kế thừa các chức năng con
 file login có chức năng đăng nhập/ký/xuất, đỏi pass
 file in4api kế thừa login và cần phát triển chức năng hiện thị thông tin user, api chỉnh sửa thông tin user
 --------------------------------
-#Login
+#Login  (chỉ chạy khi database có uth_user)
 -Đăng nhập/ký/xuất
 -Đổi mật khẩu
 
