@@ -8,7 +8,7 @@ file in4api kế thừa login và cần phát triển chức năng hiện thị 
 -Đăng nhập/ký/xuất
 -Đổi mật khẩu
 
-#in4api
+#in4user
 -Hiện thị/chỉnh sửa thông tin user
 
 
