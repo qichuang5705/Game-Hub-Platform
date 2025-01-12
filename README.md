@@ -15,3 +15,10 @@ file in4api kế thừa login và cần phát triển chức năng hiện thị 
 #gameblog
 -Hiển thị danh sách game
 -Đánh giá game
+
+
+#shopasset
+-Hiện thị asset
+-API đăng tải asset
+
+#Quản lý duyệt vai trò
