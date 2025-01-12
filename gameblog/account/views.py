@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
-
+from game.models import Game
 def home(request):
-    return render(request, 'home.html', {'user': request.user})
+    game = Game.objects.all().values()
+    return render(request, 'home.html', {'user': request.user, 'game': game})
 
 
 def login(request):
