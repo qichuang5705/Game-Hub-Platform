@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
-    return render(request, 'home.html', {'user': request.user.is_authenticated})
+    return render(request, 'home.html', {'user': request.user})
 
 
 def login(request):
@@ -19,5 +19,8 @@ def signup(request):
             form.save()
     else:
         form = UserCreationForm()
-    return render(request, "registration/signup.html", {"form": form})
+    return render(request, "signup.html", {"form": form})
+
+def in4(request):
+    return render(request, "in4user.html")
 
