@@ -15,6 +15,11 @@
                 <p>{{ x.words }}</p> <br>
             {% endfor%}
         </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Bình luận</button>
+        </form>
         {% endblock %}
     </body>
 </html>
