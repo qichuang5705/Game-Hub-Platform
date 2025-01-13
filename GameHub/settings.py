@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-        'PASSWORD': 'sayonara',           # Mật khẩu MySQL
+        'PASSWORD': 'root',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
@@ -128,3 +128,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'accounts.CustomUser'
