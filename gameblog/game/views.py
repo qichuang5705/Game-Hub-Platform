@@ -12,6 +12,7 @@ def game(request, id):
             comment.games = game
             comment.users = request.user
             comment.save()
+            return redirect('game', id=game.id)
     else:
         form = CommentForm()
     return render(request,"game.html", {'game':game,'comment':com, 'form':form})
