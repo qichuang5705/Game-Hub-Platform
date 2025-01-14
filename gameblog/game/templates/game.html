@@ -13,14 +13,17 @@
         <p>Thể loại: {{ game.genre }}</p>
         <p>Ngày xuất bản: {{ game.datecreate }}</p>
         <b>Nhận xét</b>
-        {% for x in comment %}
-        <div style=" border: 1px solid #000; ">
+        {% for x in game.comment_set.all %}
+        <div style="border: 1px solid #000;">
             <p style="margin: 0px;">{{ x.words|linebreaksbr }}</p>
-            {% if x.users.id == user.id%}
-            <button type="submit">Xóa</button>
-            {% endif %} 
+            {% if x.users.id == user.id %}
+                <!-- Nút xóa sẽ gửi request tới URL delete_comment -->
+                <a href="{% url 'DeleteComment' x.id %}">
+                    <button type="button">Xóa</button>
+                </a>
+            {% endif %}
         </div>
-        {% endfor%}
+        {% endfor %}
         <!-- </div> -->
         {% if user.is_authenticated %}
         <form method="POST">
