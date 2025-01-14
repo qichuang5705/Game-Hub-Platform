@@ -5,4 +5,4 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     role = models.CharField(null=True, max_length=255)
-
+    avatar = models.ImageField(upload_to='image/', null=True, blank=True)

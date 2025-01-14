@@ -7,19 +7,28 @@
         
         {% block body %}
         <h2>Tên game: {{ game.name }}</h2>
-        <p>Thể loại: {{ game.genre }}</p>
-        <p>Ngày sản xuất: {{ game.datecreate }}</p>
-        <hr>
-        <div style="width: 100%; margin: 0px;background-color:aliceblue; color: black; height: 200px;" class="boxa">
-            {% for x in comment %}
-                <p>{{ x.words }}</p> <br>
-            {% endfor%}
+        <div style="border: 2px black solid; display: inline-block;">
+            <img style="display: block; width: 120px;" src="/{{ game.image }}" alt="hình trò chơi">
         </div>
+        <p>Thể loại: {{ game.genre }}</p>
+        <p>Ngày xuất bản: {{ game.datecreate }}</p>
+        <b>Nhận xét</b>
+        {% for x in comment %}
+        <div style=" border: 1px solid #000; ">
+            <p style="margin: 0px;">{{ x.words|linebreaksbr }}</p>
+            {% if x.users.id == user.id%}
+            <button type="submit">Xóa</button>
+            {% endif %} 
+        </div>
+        {% endfor%}
+        <!-- </div> -->
+        {% if user.is_authenticated %}
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Bình luận</button>
         </form>
+        {% endif %} 
         {% endblock %}
     </body>
 </html>

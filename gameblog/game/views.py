@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Game, Comment
 from .form import *
+
 # Create your views here.
 def game(request, id):
     game = Game.objects.get(id=id)
@@ -15,4 +16,4 @@ def game(request, id):
             return redirect('game', id=game.id)
     else:
         form = CommentForm()
-    return render(request,"game.html", {'game':game,'comment':com, 'form':form})
+    return render(request,"game.html", {'game':game,'comment':com, 'form':form, 'user':request.user})

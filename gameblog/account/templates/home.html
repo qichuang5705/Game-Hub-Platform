@@ -8,7 +8,10 @@
         {% block body %}
         <ul>
             {% for x in game %}
+            <div>
                 <li><a href="game/{{ x.id }}">{{x.name}}</a></li>
+                <img width="120px" src="/{{ x.image}}" alt="hình trò chơi">
+            </div>
             {% endfor %}
         </ul>
         {% endblock %}
