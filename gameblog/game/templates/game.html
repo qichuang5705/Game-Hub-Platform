@@ -15,7 +15,7 @@
         <b>Nhận xét</b>
         {% for x in game.comment_set.all %}
         <div style="border: 1px solid #000;">
-            <p style="margin: 0px;">{{ x.words|linebreaksbr }}</p>
+            <p style="margin: 0px;">{{x.users.username}}: {{ x.words|linebreaksbr }}</p>
             {% if x.users.id == user.id %}
                 <!-- Nút xóa sẽ gửi request tới URL delete_comment -->
                 <a href="{% url 'DeleteComment' x.id %}">
