@@ -1,0 +1,36 @@
+Nơi chứa các cú pháp cmd, powershell
+@Virtual envoriment:
+-tạo file
+    py -m venv <name>
+-activate Virtual:
+    <name>\Scripts\activate
+virtual\Scripts\activate
+
+@Django
+-tạo project django
+    python -m django startproject <name>
+-tạo 1 app
+    py manage.py startapp <name>
+-tạo base
+    python manage.py migrate
+tạo readme.md : echo "# Softwave-Technology---Website" >> README.md
+
+-Đẩy lên data base
+    python manage.py migrate
+-Tạo table ở local    
+    py manage.py makemigrations
+-Tạo table ở 1 app local cụ thể
+    py manage.py makemigrations <name>
+
+
+@git
+-Nếu branch huy chưa tồn tại, tạo branch mới dựa trên branch hiện tại:
+    git checkout -b huy
+
+
+
+@requirements.txt
+-Tải các thư viện từ requirements.txt
+    pip install -r requirements.txt
+-Xem các thư viên đã cài trên môi trường ảo
+    pip freeze 
