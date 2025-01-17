@@ -30,7 +30,7 @@ Giao diện đăng nhập, đăng kí, quên mật khẩu, nút xác nhận Gues
 
 
 -Account:đăng nhập/ký, đổi pass, xem/chỉnh sửa thông tin
--Game: đăng tải game (API) hiển thị game, bình luận
--Assest: hiển thị asset, đăng tải asset, quản lý asset, mua bán asset
--Payment: dùng paypal
--Admim: khi đăng nhập nếu la admin thì nó sẽ chuyển trang quản trị django admin
+-Game: đăng tải game (API) hiển thị game, bình luận  
+-Assest: hiển thị asset, đăng tải asset, quản lý asset, mua bán asset  
+-Payment: dùng paypal  
+-Admim: khi đăng nhập nếu la admin thì nó sẽ chuyển trang quản trị django admin  
