@@ -27,3 +27,10 @@ Giao diện đăng nhập, đăng kí, quên mật khẩu, nút xác nhận Gues
     ├── assets         # App quản lý tài sản    
     ├── rewards         # App quản lý hệ thống tích điểm thưởng  
     ├── payments        # App quản lý thanh toán và giao dịch  
+
+
+-Account:đăng nhập/ký, đổi pass, xem/chỉnh sửa thông tin
+-Game: đăng tải game (API) hiển thị game, bình luận
+-Assest: hiển thị asset, đăng tải asset, quản lý asset, mua bán asset
+-Payment: dùng paypal
+-Admim: khi đăng nhập nếu la admin thì nó sẽ chuyển trang quản trị django admin
