@@ -17,7 +17,7 @@ class UserTestCase(unittest.TestCase):
 
     def test_user_can_login(self):
         # Đảm bảo URL đúng
-        self.browser.get('http://127.0.0.1:8000/loginas')
+        self.browser.get('http://127.0.0.1:8000/login')
         
         # Kiểm tra tiêu đề trang (cập nhật nếu cần)
         self.assertIn('Login', self.browser.title)
