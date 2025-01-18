@@ -6,12 +6,18 @@
         {% extends 'navbar.html' %}
         
         {% block body %}
+        {% load static %}
         <h2>Tên game: {{ game.name }}</h2>
         <div style="border: 2px black solid; display: inline-block;">
             <img style="display: block; width: 120px;" src="/{{ game.image }}" alt="hình trò chơi">
         </div>
         <p>Thể loại: {{ game.genre }}</p>
         <p>Ngày xuất bản: {{ game.datecreate }}</p>
+        <div>
+            <iframe src="{% static 'test.html' %}" width="800" height="600"></iframe>
+            <p>media/{{game.file}}</p>
+            <p>{{game.get_file_url}}</p>
+        </div>
         <b>Nhận xét</b>
         {% for x in game.comment_set.all %}
         <div style="border: 1px solid #000;">

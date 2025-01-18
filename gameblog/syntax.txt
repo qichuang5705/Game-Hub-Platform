@@ -22,7 +22,7 @@ tạo readme.md : echo "# Softwave-Technology---Website" >> README.md
 -Tạo table ở 1 app local cụ thể
     py manage.py makemigrations <name>
 
-
+    python manage.py createsuperuser
 @git
 -Nếu branch huy chưa tồn tại, tạo branch mới dựa trên branch hiện tại:
     git checkout -b huy
