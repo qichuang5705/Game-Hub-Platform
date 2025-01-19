@@ -28,7 +28,6 @@
                         <a class="nav-link custom-text" href="">About us</a>
                     </li>
                 </ul>
-                {% block login %}
                 {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
@@ -36,6 +35,7 @@
                 </form>
                 <a class="boxa" href="{% url 'password_change' %}">Change Password</a>
                 <a class="boxa" href="{% url 'in4user' %}">Thông tin</a>
+                <a class="boxa" href="{% url 'upgame' %}">Đăng tải game</a>
                 {% else %}
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item boxa">
@@ -43,16 +43,7 @@
                         </li>
                     </ul>
                 {% endif %}
-                {% endblock %}
             </div>
         </nav>
-
-        {% block body %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item boxa">
-                <a class="nav-link custom-text" href="{% url 'login' %}">Đăng ký / Đăng nhập</a>
-            </li>
-        </ul>
-        {% endblock %}
     </body>
 </html>

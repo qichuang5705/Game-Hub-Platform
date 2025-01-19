@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-bd10$d^_lu(h0=@x*m&h-5bfllu8k)86ndvma3huk@4z!ju(9p
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'game',
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework', 
     # 'django_ckeditor_5',
 
 ]
@@ -64,7 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-           BASE_DIR / "templates"
+           BASE_DIR / "templates",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -150,12 +151,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'  # URL sau khi đăng nhập thành công
 LOGOUT_REDIRECT_URL = '/'  # URL sau khi đăng xuất
 
-
+# URL để truy cập các file static
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+# URL để truy cập các file media
+MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# Thư mục nơi lưu trữ file media
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ] 

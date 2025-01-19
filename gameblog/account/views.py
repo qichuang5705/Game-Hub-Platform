@@ -3,9 +3,10 @@ from django.http.response import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from game.models import Game
+
 def home(request):
-    game = Game.objects.all().values()
-    return render(request, 'home.html', {'user': request.user, 'game': game})
+    game = Game.objects.all()
+    return render(request, 'home.html', {'games': game,'user': request.user})
 
 
 def login(request):

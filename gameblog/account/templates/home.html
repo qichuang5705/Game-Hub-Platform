@@ -3,18 +3,16 @@
     <head></head>
 
     <body>
-        {% extends 'navbar.html' %}
-        
-        {% block body %}
+        {% include 'navbar.html' %}
         <ul>
-            {% for x in game %}
+            {% for game in games %}
             <div>
-                <li><a href="game/{{ x.id }}">{{x.name}}</a></li>
-                <img width="120px" src="/{{ x.image}}" alt="hình trò chơi">
+                <li><a href="games/game_detail/{{ game.id }}">{{ game.name }}</a></li>
+                <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
                 <p>{{x.image}}</p>
             </div>
             {% endfor %}
         </ul>
-        {% endblock %}
+
     </body>
 </html>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Game
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class CommentForm(forms.ModelForm):
@@ -8,3 +8,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('words',)
 
+class UpGameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('name', 'genre', 'description', 'image', 'file', 'game_type')
