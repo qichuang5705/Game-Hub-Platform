@@ -1,0 +1,173 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+body {
+    font-family: serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #212121;
+    color: #333;
+    padding: 20px;
+}
+
+.page_body {
+    flex: 1;
+}
+
+.page_footer {
+    background-color: #000000;
+    color: #f8f9fa;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    align-items: start;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+}
+
+.page_footer .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page_footer .logo img {
+    height: 90px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.page_footer .info_web_page {
+    font-size: 17px;
+    line-height: 2;
+    color: #ced4da;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.page_footer .contact_info,
+.page_footer .policy_privacy,
+.page_footer .donate {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.page_footer .contact_info label,
+.page_footer .policy_privacy label,
+.page_footer .donate label,
+.page_footer .card_social label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #f8f9fa;
+    text-align: center;
+    width: 100%;
+}
+
+.page_footer .contact_info span,
+.page_footer .policy_privacy span,
+.page_footer .donate span {
+    font-size: 18px;
+    margin: 5px 0;
+    display: block;
+    color: #adb5bd;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.page_footer .contact_info span:hover,
+.page_footer .policy_privacy span:hover,
+.page_footer .donate span:hover {
+    color: #abf600;
+    transform: scale(1.05);
+}
+
+.card_social {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 10px;
+}
+
+.card_social .social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.card_social a {
+    background-color: #495057;
+    color: white;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.card_social a:hover {
+    background-color: #abf600;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+.donate label:hover{
+    color: #abf600;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.footer-bottom {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #adb5bd;
+}
+
+.copyright {
+    text-align: left;
+    font-size: 15px;
+}
+
+.btn-back-top button {
+    background-color: #495057;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back-top button:hover {
+    background-color: #abf600;
+    color: #000000;
+    transform: translateY(-3px);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.donate label, .contact_info label{
+    margin-top: 20px;
+}
