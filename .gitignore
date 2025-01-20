@@ -1,4 +1,2 @@
 virtual/
-_pycache_/
-*.pyc
-*.pyo
+__pycache__
