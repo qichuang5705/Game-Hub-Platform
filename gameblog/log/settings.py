@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-bd10$d^_lu(h0=@x*m&h-5bfllu8k)86ndvma3huk@4z!ju(9p
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -132,16 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# STATIC_URL = 'static/'
-# MEDIA_ROOT = '%s/game/static' % BASE_DIR
+
 CKEDITOR_UPLOAD_PATH = 'image/'
 
-# STATIC_URL = '/static/'
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
 
-# MEDIA_ROOT = BASE_DIR / '%s'
-# MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
