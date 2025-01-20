@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'UploadAsset',
+    'UploadAssset',
+    'rest_framework',
 ]
-
+REST_FRAMEWORK = {"DEFAULT_PAGINATION_CLASS":'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE' :2}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,10 +83,9 @@ DATABASES = {
         'USER': 'root',               # Tên người dùng MySQL
         'PASSWORD': 'Duybang11.com',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
-        'PORT': '3306',                        # Cổng MySQL mặc định
     }
 }
-
+AUTH_USER_MODEL = 'UploadAssset.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -121,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_ROOT ='%s/UploadAssset/static' % BASE_DIR
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
