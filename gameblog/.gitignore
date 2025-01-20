@@ -1,2 +1,5 @@
 virtual/
 media/
+__pycache__/
+*.pyc
+*.pyo
