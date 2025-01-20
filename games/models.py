@@ -8,7 +8,7 @@ from accounts.models import CustomUser
 class Game(models.Model):
     name = models.CharField(max_length=255)
     genre = models.CharField(max_length=100)
-    description = models.CharField(max_length=9999)
+    description = models.TextField()
     datecreate = models.DateField(auto_now_add=True)
     reward = models.IntegerField(default=0)
     image = models.ImageField(upload_to='image/', null=True, blank=True)
@@ -22,4 +22,4 @@ class Game(models.Model):
 class Comment(models.Model):
     games = models.ForeignKey(Game, on_delete=models.CASCADE)
     users = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    words = models.CharField(max_length=9999)
+    words = models.TextField()

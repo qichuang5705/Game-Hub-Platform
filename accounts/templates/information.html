@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        {% include 'navbar.html' %}
+        <h1>Hello {{user.username}}</h1>
+        <p>first name: {{user.first_name}}</p>
+        <p>last name: {{user.last_name}}</p>
+        <p>email: {{user.email}}</p>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Hiển thị form -->
+            <button type="submit">Save Changes</button>
+        </form>
+    </body>
+</html>

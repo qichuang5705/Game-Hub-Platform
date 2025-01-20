@@ -102,4 +102,4 @@ def information(request):
             form.save()
     else:
         form = FormInfor( instance=user)
-    return render(request, "in4user.html", {'form': form})
+    return render(request, "information.html", {'form': form})
