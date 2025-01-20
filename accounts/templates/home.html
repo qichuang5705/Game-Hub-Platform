@@ -1,30 +1,18 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Home Page</title>
-    <script src="{%static 'js/home.js' %}"></script>
-    <link rel="stylesheet" href="{%static 'css/home.css' %}" />
-  </head>
-  <body>
-    <!-- <section class="home">
-        <h1>Home</h1>
-        <a href="./pages/login/login.html">Đến Page Login</a>
-    </section> -->
-    <div class="thang">
-      <b>GameHub</b>
-      <p>player</p>
-      <a href="{% url 'upgrade' %}">Request Role Upgrade</a>
-    </div>
-    <hr style="border: 1px solid" />
+<html>
+    <head></head>
 
-    <div class="tien">
-      <div><a href="{% url 'login'%}">Đến Page Login</a></div>
-      <div></div>
-      <div></div>
-    </div>
+    <body>
+        {% include 'navbar.html' %}
+        <ul>
+            {% for game in games %}
+            <div>
+                <li><a href="games/game_detail/{{ game.id }}">{{ game.name }}</a></li>
+                <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                <p>{{x.image}}</p>
+            </div>
+            {% endfor %}
+        </ul>
 
-    <div class="thuc"></div>
-  </body>
+    </body>
 </html>

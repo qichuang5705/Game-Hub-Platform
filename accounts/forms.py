@@ -71,3 +71,10 @@ class RoleUpgradeRequestForm(forms.Form):
             raise forms.ValidationError({'requested_role': 'You must select a role to upgrade.'})
 
         return cleaned_data
+    
+
+class FormInfor(forms.ModelForm):
+   class Meta:
+        model = CustomUser 
+        fields = ('first_name', 'last_name', 'email')
+

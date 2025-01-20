@@ -8,8 +8,29 @@ virtual\Scripts\activate
 
 @Django
 -tạo project django
-    +django-admin startproject <name>
+    python -m django startproject <name>
 -tạo 1 app
     py manage.py startapp <name>
--Xác nhận các module tại app <name>
+-tạo base
+    python manage.py migrate
+tạo readme.md : echo "# Softwave-Technology---Website" >> README.md
+
+-Đẩy lên data base
+    python manage.py migrate
+-Tạo table ở local    
+    py manage.py makemigrations
+-Tạo table ở 1 app local cụ thể
     py manage.py makemigrations <name>
+
+    python manage.py createsuperuser
+@git
+-Nếu branch huy chưa tồn tại, tạo branch mới dựa trên branch hiện tại:
+    git checkout -b huy
+
+
+
+@requirements.txt
+-Tải các thư viện từ requirements.txt
+    pip install -r requirements.txt
+-Xem các thư viên đã cài trên môi trường ảo
+    pip freeze 

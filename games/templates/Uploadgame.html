@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+        {% include 'navbar.html' %}
+    
+        <h1>Up games</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Đăng tải</button>
+        </form>
+    </body>
+</html>

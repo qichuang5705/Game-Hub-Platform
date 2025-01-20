@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegistrationForm, LoginForm, RoleUpgradeRequestForm
+from .forms import RegistrationForm, LoginForm, RoleUpgradeRequestForm, FormInfor
 from django.http import HttpResponseForbidden, HttpResponse 
 from .models import CustomUser
-
+from games.models import Game
 def redirect_base_on_role(user):
     if user.is_superuser:
     # Đăng nhập người dùng và chuyển hướng đến admin
@@ -41,11 +41,10 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-def huy(request):
-    return HttpResponse("Hello HUy")
 
 def home(request):
-    return render(request, 'home.html')
+    game = Game.objects.all()
+    return render(request, 'home.html', {'games': game,'user': request.user})
 
 def register(request):
     if request.method == 'POST':
@@ -89,3 +88,18 @@ def upgrade_role(request):
         form = RoleUpgradeRequestForm()
 
     return render(request, 'role_upgrade.html', {'form': form})
+
+
+
+def change_pass(request):
+    return render(request, 'password_change_for.html')
+
+def information(request):
+    user = request.user
+    if request.method == "POST":
+        form = FormInfor(request.POST,  instance=user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = FormInfor( instance=user)
+    return render(request, "in4user.html", {'form': form})
