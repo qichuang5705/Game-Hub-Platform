@@ -32,13 +32,22 @@ def DeleteComment(request, comment_id):
     # else:
     #     return render(request, 'error.html', {'message': 'Bạn không có quyền xóa bình luận này.'})
 
+def Delete_Game(request, game_id):
+    game = Game.objects.get(id=game_id)
+    if game.user_id == request.user:
+        game.delete()
+        return redirect('information', id=game_id)
+
 @login_required
 def UpGame(request):
+    user_games = Game.objects.filter(user=request.user)
     if request.method == "POST":
         form = UpGameForm(request.POST, request.FILES)
         if form.is_valid():
-            Game = form.save()
+            game = form.save(commit=False)
+            game.user = request.user
+            game.save()
             return redirect('home')
     else:
         form = UpGameForm()
-    return render(request,'Uploadgame.html', {'form': form})
+    return render(request,'Uploadgame.html', {'form': form, 'games': user_games})

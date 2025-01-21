@@ -11,5 +11,22 @@
             {{ form.as_p }}
             <button type="submit">Đăng tải</button>
         </form>
+
+        <hr>
+        <div class="container">
+            {% for game in games %}
+            <div class="row" style="margin-top: 10px; background-color: antiquewhite;">
+                <div class="col" style="width: 200px; padding: 10px; ">
+                    <a href="games/game_detail/{{ game.id }}">
+                        <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                    </a>
+                    <p>Tên trò chơi: {{game.name}}, thể loại:{{ game.genre }}</p>
+                    <p>Ngày tạo: {{ game.datecreate }}</p>
+                    <p>Phiên bản: {{ game.version }}</p>
+                    <p>Mô tả:{{ game.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </body>
 </html>

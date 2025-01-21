@@ -11,4 +11,4 @@ class CommentForm(forms.ModelForm):
 class UpGameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('name', 'genre', 'description', 'image', 'file', 'game_type')
+        fields = ('name', 'genre', 'description', 'image', 'file')
