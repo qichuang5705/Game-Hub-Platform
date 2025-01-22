@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Game, Comment
 from .form import CommentForm, UpGameForm
-from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect

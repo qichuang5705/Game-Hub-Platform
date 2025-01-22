@@ -15,6 +15,36 @@
         <link rel="stylesheet" href="{%static 'css/footer.css'%}">
          <!-- footer css js -->
         <title>GameHub</title>
+
+
+        <style>
+            .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            }
+
+            button.btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+
+            button.btn-primary:hover {
+            background-color: #0056b3;
+            }
+
+        </style>
     </head>
 
     <body>
@@ -22,11 +52,32 @@
         {% include 'navbar.html' %}
 
         <h1>Up games</h1>
-        <form method="POST" enctype="multipart/form-data">
+        <!-- enctype="multipart/form-data" để cho phép post file.zip-->
+        <form method="post" enctype="multipart/form-data"> 
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Đăng tải</button>
+            <div class="form-group">
+                <label for="id_name">Name:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="id_genre">Genre:</label>
+                {{ form.genre }}
+            </div>
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label for="id_image">Image:</label>
+                {{ form.image }}
+            </div>
+            <div class="form-group">
+                <label for="id_file">File:</label>
+                {{ form.file }}
+            </div>
+            <button type="submit" class="btn btn-primary">Upload Game</button>
         </form>
+        
 
         <hr>
         <div class="container">

@@ -1,6 +1,6 @@
 from django import forms
 from .models import Comment, Game
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
