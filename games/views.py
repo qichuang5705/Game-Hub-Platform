@@ -2,10 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Game, Comment
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
-
+import os
 
 def game_detail(request, id):
     game = Game.objects.get(id=id)
@@ -34,6 +33,10 @@ def DeleteComment(request, comment_id):
 def Delete_Game(request, game_id):
     game = Game.objects.get(id=game_id)
     if game.user == request.user:
+        if game.image:
+            image_path = game.image.path
+            if os.path.exists(image_path):
+                os.remove(image_path)
         game.delete()
         return redirect('up_game')
 
