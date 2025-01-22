@@ -18,7 +18,7 @@ def game_detail(request, id):
             comment.games = game
             comment.users = request.user
             comment.save()
-            return redirect('game', id=game.id)
+            return redirect('game_detail', id=game.id)
     else:
         form = CommentForm()
     return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user, 'MEDIA_URL': settings.MEDIA_URL})
@@ -28,15 +28,15 @@ def DeleteComment(request, comment_id):
     com = Comment.objects.get(id=comment_id)
     if com.users == request.user:
         com.delete()
-        return redirect('game',id=com.games.id)
+        return redirect('game_detail',id=com.games.id)
     # else:
     #     return render(request, 'error.html', {'message': 'Bạn không có quyền xóa bình luận này.'})
 
 def Delete_Game(request, game_id):
     game = Game.objects.get(id=game_id)
-    if game.user_id == request.user:
+    if game.user == request.user:
         game.delete()
-        return redirect('information', id=game_id)
+        return redirect('up_game')
 
 @login_required
 def UpGame(request):
