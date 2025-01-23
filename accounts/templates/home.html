@@ -18,23 +18,18 @@
     </head>
 
     <body>
-
-
         {% include 'navbar.html' %}
-
-            <div class="container" style="height: 500px;">
-                {% for game in games %}
-                <div class="row">
-                    <div class="col" style="width: 200px; background-color: antiquewhite; padding: 10px #999; ">
-                        <a href="games/game_detail/{{ game.id }}">
-                            <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+        <!-- body home -->
+        
 
 
+
+
+
+
+        
+
+        <!-- body home -->
         {% include 'footer.html' %}
 
     </body>
