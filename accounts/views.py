@@ -103,3 +103,6 @@ def information(request):
     else:
         form = FormInfor( instance=user)
     return render(request, "information.html", {'form': form})
+
+def reset_password(request):
+    return render(request, 'password_reset.html')
