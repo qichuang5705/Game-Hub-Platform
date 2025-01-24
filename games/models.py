@@ -21,33 +21,35 @@ class Game(models.Model):
     version = models.TextField(max_length=15, default=1.0)
 
 
-    def save(self, *args, **kwargs):
-        # if not self.image:
-        #     self.image = 'empty.jpg'  # Đặt ảnh mặc định khi không có ảnh
-        # Lưu game vào database trước
-        super().save(*args, **kwargs)  
+    def extract(self):
+        curr_path = self.image.path
+    # def save(self, *args, **kwargs):
+    #     # if not self.image:
+    #     #     self.image = 'empty.jpg'  # Đặt ảnh mặc định khi không có ảnh
+    #     # Lưu game vào database trước
+    #     super().save(*args, **kwargs)  
 
-        # Kiểm tra nếu file zip đã được upload
-        if self.file:
-            file_path = self.file.path  # Đường dẫn tới file zip
+    #     # Kiểm tra nếu file zip đã được upload
+    #     if self.file:
+    #         file_path = self.file.path  # Đường dẫn tới file zip
 
-            if zipfile.is_zipfile(file_path):  # Kiểm tra nếu file là zip
-                # Đảm bảo giải nén vào thư mục media/games/
-                extract_dir = os.path.join(settings.MEDIA_ROOT, 'games', os.path.splitext(self.file.name)[0])
+    #         if zipfile.is_zipfile(file_path):  # Kiểm tra nếu file là zip
+    #             # Đảm bảo giải nén vào thư mục media/games/
+    #             extract_dir = os.path.join(settings.MEDIA_ROOT, 'games', os.path.splitext(self.file.name)[0])
 
-                if not os.path.exists(extract_dir):  # Nếu thư mục giải nén chưa tồn tại thì tạo mới
-                    os.makedirs(extract_dir)
+    #             if not os.path.exists(extract_dir):  # Nếu thư mục giải nén chưa tồn tại thì tạo mới
+    #                 os.makedirs(extract_dir)
 
-                # Giải nén file zip vào thư mục extract_dir
-                with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                    zip_ref.extractall(extract_dir)
+    #             # Giải nén file zip vào thư mục extract_dir
+    #             with zipfile.ZipFile(file_path, 'r') as zip_ref:
+    #                 zip_ref.extractall(extract_dir)
 
-                # (Tùy chọn) Xóa file zip sau khi giải nén
-                os.remove(file_path)
+    #             # (Tùy chọn) Xóa file zip sau khi giải nén
+    #             os.remove(file_path)
 
-                # Cập nhật lại tham chiếu đến file zip (có thể xóa tham chiếu này nếu không cần thiết nữa)
-                self.file = None
-                super().save(*args, **kwargs)  # Lưu lại để cập nhật database
+    #             # Cập nhật lại tham chiếu đến file zip (có thể xóa tham chiếu này nếu không cần thiết nữa)
+    #             self.file = None
+    #             super().save(*args, **kwargs)  # Lưu lại để cập nhật database
 
 
 class Comment(models.Model):
