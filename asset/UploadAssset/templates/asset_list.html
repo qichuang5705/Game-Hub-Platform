@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset List</title>
+</head>
+<body>
+    <h1>Asset List</h1>
+    <ul>
+        {% for asset in assets %}
+            <li>
+                <a href="{% url 'asset_detail' asset.id %}">
+                    {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

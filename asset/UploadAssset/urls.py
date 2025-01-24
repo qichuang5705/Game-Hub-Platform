@@ -1,10 +1,9 @@
-from django.contrib import admin
-from django.urls import include, path
-from . import views 
-from rest_framework.routers import DefaultRouter
+from django.urls import path
+from .views import *
 
-router = DefaultRouter()
-router.register('UploadAssset' , views.AssetViewSet)
 urlpatterns = [
-    path('',include(router.urls)),
+    path('list/',asset_list_view, name='asset_create'),
+    path('', assetview, name='asset_list'),
+    path('asset/<int:asset_id>/',asset_detail, name='asset_detail'),
+    path('buy/<int:asset_id>/',buy_asset, name='buy_asset'),
 ]
