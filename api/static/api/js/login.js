@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const baseSection = document.querySelector(".page_home");
     const loginSection = document.querySelector(".login");
     const registerSection = document.querySelector(".register");
     const forgotPasswordSection = document.querySelector(".forgot_password");
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openAccountPage.addEventListener("click", () => {
         pageAccountSection.classList.add("show");
         pageAccountSection.classList.remove("hide");
+        baseSection.classList.add("hide");
         setTimeout(() => {
             loginSection.classList.add("show");
             loginSection.classList.remove("hide");
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openAdminPage.addEventListener("click", () => {
         pageAccountSection.classList.add("show");
         pageAccountSection.classList.remove("hide");
+        baseSection.classList.add("hide");
         setTimeout(() => {
             adminSection.classList.add("show");
             adminSection.classList.remove("hide");
@@ -50,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
+
+        baseSection.classList.remove("hide");
+        baseSection.classList.add("show");
     });
 
     // Close Register
@@ -59,6 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
+        
+        baseSection.classList.remove("hide");
+        baseSection.classList.add("show");
     });
 
     // Close Forgot Password
@@ -68,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
+        
+        baseSection.classList.remove("hide");
+        baseSection.classList.add("show");
     });
 
     // Close Reset Password
@@ -77,6 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
+        
+        baseSection.classList.remove("hide");
+        baseSection.classList.add("show");
     });
 
     // Close Admin
@@ -86,6 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
+        
+        baseSection.classList.remove("hide");
+        baseSection.classList.add("show");
     });
     
     // Login -> Register
