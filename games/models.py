@@ -16,12 +16,14 @@ class Game(models.Model):
     description = models.TextField()
     datecreate = models.DateField(auto_now_add=True)
     reward = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='image/', null=True, blank=True)
-    file = models.FileField(upload_to='games/', null=True, blank=True)
+    image = models.ImageField(upload_to='games/image', null=True, blank=True)
+    file = models.FileField(upload_to='games/file', null=True, blank=True)
     version = models.TextField(max_length=15, default=1.0)
 
 
     def save(self, *args, **kwargs):
+        # if not self.image:
+        #     self.image = 'empty.jpg'  # Đặt ảnh mặc định khi không có ảnh
         # Lưu game vào database trước
         super().save(*args, **kwargs)  
 
@@ -54,6 +56,10 @@ class Comment(models.Model):
     words = models.TextField()
 
 class Genre(models.Model):
-    name = models.CharField(max_length=100)  #
+    name = models.CharField(max_length=100) 
     def __str__(self):
         return self.name
+    
+
+class leader_board(models.Model):
+    pass

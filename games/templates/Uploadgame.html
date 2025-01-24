@@ -130,7 +130,18 @@
                 color: #007bff; /* Change color of label when checkbox is checked */
             }
 
+            #editable-container {
+                margin: 20px;
+            }
+
+            #edit-input {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 14px;
+            }
         </style>
+
+        
     </head>
 
     <body>
@@ -181,15 +192,25 @@
             <div class="row" style="margin-top: 10px; background-color: antiquewhite;">
                 <div class="col" style="width: 200px; padding: 10px; ">
                     <a href="games/game_detail/{{ game.id }}">
-                        <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                            {% if game.image %}
+                            <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                            {% else %}
+                                <img width="120px" src="/media/empty.jpg" alt="hình trò chơi mặc định">
+                            {% endif %}
                     </a>
-                    <p>Tên trò chơi: {{game.name}}, thể loại:{{ game.genre }}</p>
+                    <p>Tên trò chơi: {{game.name}}</p>
+                    <p>Thể loại:
+                        {% for genre in game.genres.all %}
+                            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                     <p>Ngày tạo: {{ game.datecreate }}</p>
                     <p>Phiên bản: {{ game.version }}</p>
-                    <p>Mô tả:{{ game.description }}</p>
+                    <p>Mô tả: {{ game.description }}</p>
                     <a href="{% url 'Delete_Game' game.id %}">
                         <button type="button">Xóa</button>
                     </a>
+                    <a href="{% url 'edit_game' game.id %}">Chỉnh sửa</a>
                 </div>
             </div>
             {% endfor %}

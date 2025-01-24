@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-        'PASSWORD': 'root',           # Mật khẩu MySQL
+        'PASSWORD': 'sayonara',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
@@ -123,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 # Default primary key field type

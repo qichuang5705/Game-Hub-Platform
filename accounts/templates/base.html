@@ -9,39 +9,31 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
         <!-- navbar css js -->
-
+         
         <!-- footer css js -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{%static 'css/footer.css'%}">
          <!-- footer css js -->
-        <!-- icon -->
-        <link rel="icon" href="{% static 'minecraft.ico' %}">
-        <!-- icon -->
         <title>GameHub</title>
+
+        {% block head %}
+
+        {% endblock%}
+
     </head>
 
     <body>
-
-
         {% include 'navbar.html' %}
-
-            <div class="container" style="height: 500px;">
-                {% for game in games %}
-                <div class="row">
-                    <div class="col" style="width: 200px; background-color: antiquewhite; padding: 10px #999; ">
-                        {% if game.image %}
-                            <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
-                        {% else %}
-                            <img width="120px" src="/media/empty.jpg" alt="Hình trò chơi">
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-
+        
+        {% block body %}
+        <h1>Chỉnh sửa game tại:</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Đăng tải</button>
+        </form>
+        {% endblock %}
 
         {% include 'footer.html' %}
-
     </body>
 </html>
-
