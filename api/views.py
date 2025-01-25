@@ -6,4 +6,4 @@ def base(request):
     return render(request, 'api/base.html', {'years': years})
 
 def game(request):
-    return render(request, 'api/page_game.html')
+     return render(request, 'api/page_game.html')

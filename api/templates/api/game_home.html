@@ -6,8 +6,10 @@
             <div class="card_game">
                 <div class="cart_img">
                     <div class="img-wrapper"> 
-                            {% load static %}<img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
-                        
+                        <a href="{% url 'page_game' %}">
+                            {% load static %}
+                            <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
+                        </a>
                     </div>
                 </div>
                 <div class="game_info" data-rating="4.5"> 
@@ -19,8 +21,8 @@
                         <span>Genre: </span> 
                         <h3>Puzzle</h3>
                     </div>
-                    <div class="rating-container">
-                        <span>Rating: </span>
+                    <div class="voting-container">
+                        <span>Votting: </span>
                         <div class="stars"> </div>
                     </div>
                 </div>

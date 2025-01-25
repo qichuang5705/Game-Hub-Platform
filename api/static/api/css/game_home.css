@@ -56,6 +56,7 @@ main {
 
 .card_game:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
 
 .game_info {
@@ -75,13 +76,13 @@ main {
     transform: translateY(100%);
 }
 
-.name-container, .genre-container, .rating-container { 
+.name-container, .genre-container, .voting-container { 
     display: flex; 
     align-items: center; 
     margin: 5px 0;
 }
 
-.name-container span, .genre-container span, .rating-container span {
+.name-container span, .genre-container span, .voting-container span {
     font-weight: bold;
     margin-right: 5px;
     white-space: nowrap; 

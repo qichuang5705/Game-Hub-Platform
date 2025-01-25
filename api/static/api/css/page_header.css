@@ -203,7 +203,7 @@ header {
     display: none;
 }
 
-.page_ome.show {
+.page_home.show {
     display: auto;
 }
 
@@ -217,14 +217,14 @@ header {
     width: 100vw; 
     z-index: 10;
     box-sizing: border-box; 
-  }
+}
   
-  .page_account.show {
+.page_account.show {
     display: flex;
     background: rgba(0, 0, 0, 0.8);
     transform: translateY(0);
     visibility: visible;
-  }
+}
 
 .page_account h1 {
     font-size: 40px;
