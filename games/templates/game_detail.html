@@ -28,8 +28,7 @@
         <p>Thể loại: {{ game.genre }}</p>
         <p>Ngày xuất bản: {{ game.datecreate }}</p>
         <div>
-            <iframe src="{{ MEDIA_URL }}ball/index.html" width="800" height="600" title="Game Frame"></iframe>
-            <!-- <p>{{game.file}}</p> -->
+            <iframe src="{{game.file.url}}" width="800" height="600" title="Game Frame"></iframe>
         </div>
         <div style="background-color: #000;">
     
