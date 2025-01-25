@@ -106,3 +106,38 @@ def information(request):
 
 def reset_password(request):
     return render(request, 'password_reset.html')
+
+def login_register(request):
+    login_form=LoginForm()
+    register_form=RegistrationForm()
+    if request.method == "POST":
+        if 'login' in request.POST:
+            login_form = LoginForm(data = request.POST)
+            if login_form.is_valid():
+                username = login_form.cleaned_data.get('username')
+                password = login_form.cleaned_data.get('password')
+                user =authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, f"Welcome, {user.username}")
+                    return redirect_base_on_role(user)
+                else:
+                    messages.error(request, "Invalid username or password")
+        elif 'register' in request.POST:
+            register_form = RegistrationForm(request.POST)
+            if register_form.is_valid():
+                user = register_form.save()
+                login(request, user)
+                messages.success(request, f"Welcome, {user.username}")
+                return redirect_base_on_role(user)
+            else:
+                messages.error(request, "Invalid information")
+    else:
+        login_form=LoginForm()
+        register_form=RegistrationForm()
+
+    return render(request, 'login_register.html', {
+        'login_form': login_form,
+        'register_form': register_form,
+    })
