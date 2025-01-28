@@ -25,14 +25,21 @@
         <div style="border: 2px black solid; display: inline-block;">
             <img style="display: block; width: 120px;" src="{{ game.image.url }}" alt="hình trò chơi">
         </div>
-        <p>Thể loại: {{ game.genre }}</p>
-        <p>Ngày xuất bản: {{ game.datecreate }}</p>
-        <div>
-            <iframe src="{{game.file.url}}" width="800" height="600" title="Game Frame"></iframe>
-        </div>
-        <div style="background-color: #000;">
+            <p>Thể loại: {{ game.genre }}</p>
+            <p>Ngày xuất bản: {{ game.datecreate }}</p>
+                <div>
+                    <iframe src="{{game.file.url}}" width="800" height="600" title="Game Frame"></iframe>
+                </div>
+            <div style="background-color: #000;">
     
         </div>
+        <b>Leader board</b>
+        {% for x in game.lbhistory_set.all %}
+            <div style="border: 1px solid #000;">
+                <p style="margin: 0px;">{{x.users.username}}: {{ x.score }} điểm</p>
+            </div>
+        {% endfor %}
+            <br>
         <b>Nhận xét</b>
         {% for x in game.comment_set.all %}
         <div style="border: 1px solid #000;">
@@ -45,7 +52,9 @@
             {% endif %}
         </div>
         {% endfor %}
-        <!-- </div> -->
+
+
+
         {% if user.is_authenticated %}
         <form method="POST">
             {% csrf_token %}

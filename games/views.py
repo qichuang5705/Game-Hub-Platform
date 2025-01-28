@@ -1,12 +1,36 @@
 from django.shortcuts import render, redirect
-from .models import Game, Comment, Genre
+from .models import Game, Comment, Genre, LBHistory
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
-from django.conf import settings
-import os
-import zipfile
-import random
+from rest_framework import viewsets
+from .serializers import LBHSerializer
+import os, zipfile
+
+
+class LBHistoryViewset(viewsets.ModelViewSet):
+    queryset = LBHistory.objects.all()
+    serializer_class = LBHSerializer
+
+# class LeaderBoardAPIView(viewsets.view):
+#     def post(self, request, *args, **kwargs):
+#         # Lấy dữ liệu từ request
+#         game_id = request.data.get('game_id')
+#         user_id = request.data.get('user_id')
+#         score = request.data.get('score')
+
+#         if not game_id or not user_id or not score:
+#             return Response({"error": "Missing required fields"}, status=status.HTTP_400_BAD_REQUEST)
+
+#         # Kiểm tra xem người chơi đã có điểm trong game này chưa
+#         leader_board_game, created = Leader_board_game.objects.update_or_create(
+#             games_id=game_id, users_id=user_id, defaults={'score': score}
+#         )
+
+#         # Nếu tạo mới, trả về 201 Created. Nếu cập nhật, trả về 200 OK
+#         status_code = status.HTTP_201_CREATED if created else status.HTTP_200_OK
+
+#         return Response({"message": "Score updated successfully"}, status=status_code)
+
 def game_detail(request, id):
     game = Game.objects.get(id=id)
     if request.method == "POST":
@@ -35,14 +59,8 @@ def Delete_Game(request, game_id):
     if game.user == request.user:
         if game.image:
             image_path = game.image.path
-            print(image_path)
             if os.path.exists(image_path):
                 os.remove(image_path)
-        # if game.file:
-        #     file_path = game.file.path
-        #     print(file_path)
-        #     if os.path.exists(file_path):
-        #         os.remove(file_path)
         game.delete()
         return redirect('up_game')
 
@@ -91,3 +109,5 @@ def Edit_game(request, game_id):
     else:
         form = UpGameForm(instance=game)
     return render(request, 'Edit_game.html',{'game': Game, 'form': form})   
+
+

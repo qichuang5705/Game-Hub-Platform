@@ -54,5 +54,12 @@ class Genre(models.Model):
         return self.name
     
 
-class leader_board(models.Model):
-    pass
+
+
+class LBHistory(models.Model):  #Leader board history:Lịch sử điểm của từng người chơi
+    games = models.ForeignKey(Game, on_delete=models.CASCADE)
+    users = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    score = models.IntegerField()
+    date = models.DateTimeField(auto_now=True)
+
+
