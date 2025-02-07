@@ -186,4 +186,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
+    /* Login -> Base
+    loginToBase.addEventListener("click", () => {
+        resetPasswordSection.classList.add("hide");
+        resetPasswordSection.classList.remove("show");
+        setTimeout(() => {
+            loginSection.classList.add("show");
+            loginSection.classList.remove("hide");
+        }, 100);
+    });
+    */
+
 });
