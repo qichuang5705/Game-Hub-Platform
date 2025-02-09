@@ -161,6 +161,10 @@ body {
     color: #000000;
     transform: translateY(-3px);
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px #eee,
+        0px 0px 30px #eee,
+        0px 0px 50px #eee;
 }
 
 .donate label, .contact_info label{

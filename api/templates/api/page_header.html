@@ -21,20 +21,81 @@
         </div>
 
         <!---->
-        <div class="page_home "> 
-            <i class="fa-solid fa-user"></i>
-            <div class="cart">
+        <div class="page_home exist"> 
+            <i class="cart-btn fa-solid fa-user"></i>
+            <div class="cart close">
                 <label>Account</label>
                 <div class="account">
                     <span class="open-admin-btn">Admin</span>
-                    <span class="open-account-btn">Login</span>
+                    <span class="open-login-btn">Login</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page_home_user alternative">
+            <div class="avatar-wrapper ">  
+                <div class="avatar">
+                    {% load static %}<img src="{% static 'api/img/logo.jpg' %}" alt="Logo" />
+                </div>
+            </div>
+            <div class="account-wrapper ">  
+                <span class="close-account close-button">&times;</span>
+                <div class="account_container">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <p>Hello, NPT!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="your-detail">
+                        <label>YOUR DETAIL</label>
+                        <div class="info-group">
+                            <p>Name:</p>
+                            <input type="text" name="name" value="NPT">
+                        </div>
+                        <div class="info-group">
+                            <p>Email:</p>
+                            <input type="email" name="email" value="bucudianh@gmail.com" disabled>
+                        </div>
+                        <div class="info-group">
+                            <p>Tel:</p>
+                            <input type="tel" name="tel" value="0123456789">
+                        </div>
+                        <div class="info-group">
+                            <label for="account-type">Type Account:</label>
+                            <select id="account-type" name="account-type" disabled>
+                                <option value="player">Player Account</option>
+                                <option value="developer">Developer Account</option>
+                                <option value="designer">Designer Account</option>
+                            </select>
+                        </div>
+                        <div class="change-type-account">
+                            <span class="open-change-type-account-btn">Change Type Account</span>
+                        </div>
+                    </div>
+        
+                    <div class="password-section">
+                        <label>PASSWORD</label>
+                        <div class="change-password">
+                            <span class="open-change-password-btn">Change Password</span>
+                        </div>
+                    </div>
+        
+                    <div class="update-profile">
+                        <button>UPDATE PROFILE</button>
+                    </div>
+        
+                    <div class="account_logout">
+                        <span class="logout-account-btn">Log Out</span>
+                    </div>
+
                 </div>
             </div>
         </div>
     
         <div class="page_account hide">
             <!--Login-->
-            <div class="login ">
+            <div class="login hide">
                 <div class="login_inner">
                     <div class="page_account_header">
                         <span class="close-login close-button">&times;</span>
@@ -48,12 +109,12 @@
                             <input type="password" name="password" placeholder="Enter password">
                             <div class="remember-me">
                                 <input type="checkbox" id="saveLogin" name="saveLogin">
-                                <label for="saveLogin">Save Login</label>
+                                <label for="saveLogin">Remember me!</label>
                             </div>
                         </form>
                     </div>
                     <div class="login_footer">
-                        <button>Login</button>
+                        <button class="btn-login">Login</button>
                         <span class="forgot-password-btn">Forgot password</span>
                         <span class="create-account-btn">Create new account</span>
                     </div>
@@ -69,7 +130,7 @@
             </div>
     
             <!--Register-->
-            <div class="register ">
+            <div class="register hide">
                 <div class="register_inner">
                     <div class="page_account_header">
                         <span class="close-register close-button">&times;</span>
@@ -113,11 +174,11 @@
             </div>
     
             <!--Forgot Password-->
-            <div class="forgot_password ">
+            <div class="forgot_password hide">
                 <div class="forgot_password_inner">
                     <div class="page_account_header">
                         <span class="close-forgot_password close-button">&times;</span>
-                        <h1>FORGOT PASSWORD</h1>
+                        <h1>CHANGE PASSWORD</h1>
                     </div>
                     <div class="forgot_password_body">
                         <form action="" method="">
@@ -150,7 +211,7 @@
             </div>
     
                 <!--Reset Password-->
-            <div class="reset_password">
+            <div class="reset_password hide">
                 <div class="reset_password_inner">
                     <div class="page_account_header">
                         <span class="close-reset_password close-button">&times;</span>
@@ -175,7 +236,7 @@
             </div>
     
             <!--Admin-->
-            <div class="admin ">
+            <div class="admin hide">
                 <div class="admin_inner">
                     <div class="page_account_header">
                         <span class="close-admin close-button">&times;</span>
@@ -198,4 +259,5 @@
         </div>
 
     </header>
+    
 </body>

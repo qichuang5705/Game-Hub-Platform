@@ -4,7 +4,7 @@ header {
     background-color: #000000;
     color: white;
     position: relative;
-    z-index: 100;
+    z-index: 80;
     padding: 20px;
     border-radius: 5px;
     margin-top: 0;
@@ -96,12 +96,12 @@ header {
 .page_home {
     position: relative; 
     top: 20px; 
-    right: 50px; 
+    right: 130px; 
     cursor: pointer; 
-    z-index: 100; 
+    z-index: 80;   
 }
 
-.page_home i {
+.page_home i{
     color: #ffffff;
     font-size: 30px;
     background-color: #3e3e3e;
@@ -111,11 +111,10 @@ header {
     transition: transform 0.3s ease; 
 }
 
-.page_home:hover i {
+.page_home:hover i{
     transform: scale(1.1); 
 }
 
-/**/
 .cart {
     position: absolute;
     top: 52px; 
@@ -127,11 +126,15 @@ header {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
     flex-direction: column;
     gap: 10px;
-    z-index: 99; 
+    z-index: 79; 
 }
 
-.page_home:hover .cart {
+.page_home .cart.open {
     display: flex;
+}
+
+.page_home .cart.close {
+    display: none;
 }
 
 .cart label {
@@ -163,87 +166,222 @@ header {
     cursor: pointer; 
 }
 
+/**/
+.page_home_user {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.page_home_user p:hover{
+    cursor: default;
+}
+
 .account_container {
-    position: absolute;
-    top: 52px;
-    right: 20px;
-    background-color: #2b2b2b;
-    border-radius: 10px;
-    width: 250px; /* Giảm chiều rộng */
-    padding: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
-    display: none;
+    width: 100%;
+    display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 101;
-    border: 1px solid #444;
+}
+
+.account-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 80px;
+    transform: translateY(0);
+    width: 430px;
+    min-height: 400px;
+    background-color: #f8d7da;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 1);
+    padding: 20px;
+    z-index: 81;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    opacity: 0;
+}
+
+.account-wrapper.show {
+    z-index: 82;
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.account-wrapper.hide{
+    z-index: 81;
+    opacity: 0;
+    transform: translateY(-50%);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.avatar-wrapper {
+    position: relative; 
+    top: 20px; 
+    right: 250%; 
+    z-index: 85; 
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     overflow: hidden;
-    align-items: flex-start; /* Căn giữa theo chiều ngang */
 }
 
-.page_home:hover .account_container {
-    display: flex;
-}
-
-.account_info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%; /* Để các phần tử con có thể chiếm hết chiều rộng */
-}
-
-.personal_info, .rewards {
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
+.avatar img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.personal_info p, .rewards p {
-    margin: 5px 0;
-    font-size: 16px;
-    color: #eee;
-    text-align: left;
+.avatar-wrapper.open{
+    transform: translateX(-300px);
 }
 
-.personal_info input {
-    width: 100%;
-    padding: 5px;
-    margin: 5px 0;
-    border: none;
-    background: transparent;
-    color: #eee;
-    font-size: 16px;
-    outline: none;
+.avatar-wrapper.close{
+    transform: translateX(0);
 }
 
-.pw, .account_logout {
-    text-align: left;
-    width: 100%;
-}
-
-.account_container span {
-    font-size: 16px;
-    padding: 8px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.avatar-wrapper .avatar:hover{
     cursor: pointer;
-    background-color: transparent; /* Loại bỏ background */
-    border: none;
-    color: #eee;
-    font-weight: 500;
+    transform: scale(1.05);
 }
 
-.account_container span:hover {
-    color: #abf600;
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 80px;
 }
 
-.account_container hr {
-    border-top: 1px solid #444;
-    margin: 10px 0;
+.user-info p {
+    font-size: 20px;
+    color: #000000;
+}
+
+.your-detail label,
+.password-section label {
+    font-size: 20px; 
+    color: #000000;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: bolder;
+}
+
+.info-group {
+    margin-bottom: 10px;
+}
+
+.info-group p {
+    font-size: 18px; 
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.info-group input,
+.info-group select {
     width: 100%;
+    padding: 10px; 
+    font-size: 16px; 
+    border: none;
+    background-color: #eee;
+    color: #000000;
+    border-radius: 5px;
 }
 
-/**/
+.info-group input:focus, .info-group select:focus {
+    transform: scale(1.02);
+}
+
+.change-password, .change-type-account {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.change-password span, .change-type-account span{
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #dc3545;
+    transition: color 0.3s ease;
+}
+
+.change-password span:hover, .change-type-account span:hover {
+    font-size: 19px;
+}
+
+.update-profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.update-profile button {
+    background-color: #ffffff;
+    color: #dc3545;
+    border: none;
+    padding: 18px 28px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bolder;
+    transition: background-color 0.3s ease;
+}
+
+.update-profile button:hover {
+    transform: scale(0.99);
+}
+
+.account_logout {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    cursor: pointer;
+    color: #dc3545;
+    transition: color 0.3s ease;
+    font-weight: bolder;
+}
+
+.account_logout:hover {
+    font-size: 19px;
+}
+
+.account-wrapper .close-account {
+    font-size: 30px;
+    color: #dc3545;
+    position: absolute;
+    top: 0px; 
+    right: 10px; 
+    cursor: pointer; 
+    z-index: 83;
+    font-weight: bolder;
+}
+
+.account-wrapper .close-account:hover {
+    color: #dc3545;
+    transform: scale(1.01);
+}
+
+input:disabled, select:disabled {
+    opacity: 0.6; 
+    cursor: default; 
+}
+
+.page_home.alternative, .page_home_user.alternative {
+    display: none;
+}
+
+.page_home.exist, .page_home_user.exist {
+    display: auto;
+}
+
+/*aaaaaaaaaaaaaaaaaaaa*/
+
 .login, .register, .forgot_password, .admin, .reset_password {
     background: linear-gradient(to top, #030303, #242424);
     padding: 40px;
@@ -267,7 +405,7 @@ header {
 }
 
 .login.show, .register.show, .forgot_password.show, .admin.show, .reset_password.show {
-    z-index: 1;
+    z-index: 100;
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
@@ -298,7 +436,7 @@ header {
     top: 0;
     height: 100vh; 
     width: 100vw; 
-    z-index: 10;
+    z-index: 100;
     box-sizing: border-box; 
 }
   
@@ -340,10 +478,10 @@ header {
     border-radius: 8px;
     font-size: 16px;
     box-sizing: border-box;
+    cursor: text;
 }
 
-.page_account input[type="text"]:hover, .page_account input[type="password"]:hover, .page_account input[type="email"]:hover {
-    cursor: text;
+.page_account input[type="text"]:focus, .page_account input[type="password"]:focus, .page_account input[type="email"]:focus {
     transform: scale(1.05);
 }
 
@@ -434,7 +572,10 @@ header {
 .close-button:hover {
     transform: scale(1.25);
     color: #abf600;
-    font-weight: bold;
+    box-shadow: 
+        0px 0px 10px #eee,
+        0px 0px 30px #eee,
+        0px 0px 50px #eee;
 }
 
 .send_code {

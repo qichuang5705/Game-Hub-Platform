@@ -16,6 +16,7 @@ body {
 main.page_body {
     flex: 1;
     padding: 70px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     max-width: 60%;
@@ -48,6 +49,7 @@ main.page_body {
 
 .game_box_footer{
     margin-top: 20px;
+    margin-bottom: 0;
 }
 
 .play_game_box {
@@ -231,7 +233,7 @@ main.page_body {
 }
 
 .comment-footer p:hover{
-    cursor: pointer;
+
     transform: scale(1.05); 
     color: #abf600;
 }
