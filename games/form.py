@@ -1,6 +1,6 @@
 from django import forms
 from .models import Comment, Game, Genre
-import os
+import os, zipfile
 from django.conf import settings
 from django.utils.text import slugify
 import uuid
@@ -43,14 +43,15 @@ class UpGameForm(forms.ModelForm):
             if file_extension == '.html' and file_name.lower() != 'index.html':
                 raise forms.ValidationError("File HTML phải có tên là 'index.html'")
             
-            # Lấy tên file không có phần mở rộng
-            file_name = os.path.splitext(file.name)[0]
-            # Đường dẫn đầy đủ của thư mục dự kiến
-            target_folder = os.path.join('games', 'file', file_name)
-
-            # Kiểm tra nếu thư mục đã tồn tại
-            if os.path.exists(os.path.join(settings.MEDIA_ROOT, target_folder)):
-                raise forms.ValidationError(f"Tên file '{file_name}' đã trùng với một thư mục hiện có!")
+            if file_extension == '.zip':
+                try:
+                    with zipfile.ZipFile(file, 'r') as zip_ref:
+                        file_list = zip_ref.namelist()  # Lấy danh sách file trong zip
+                        print(file_list)
+                        if 'index.html' not in file_list:
+                            raise forms.ValidationError("Phải đăng tải file 'index.html' là con cấp 1 của file .zip")
+                except zipfile.BadZipFile:
+                    raise forms.ValidationError("File .zip không hợp lệ hoặc bị lỗi.")
         return file
 
     def clean_image(self):
@@ -75,26 +76,15 @@ class UpGameForm(forms.ModelForm):
             return os.path.join('games', 'image', new_image_name)
 
         return image
+
     
-    # def clean_file(self):
-    #     file = self.cleaned_data.get('file')
-    #     if file:
-    #         # Lấy phần mở rộng và tên file
-    #         file_name = os.path.basename(file.name)
-    #         file_extension = os.path.splitext(file_name)[1].lower()
 
-    #         # Tạo tên file mới theo công thức: {tên_game}_file_{ngẫu nhiên}
-    #         new_file_name = f"{slugify(self.cleaned_data.get('name'))}_file_{uuid.uuid4().hex}{file_extension}"
-            
-    #         # Di chuyển file tới tên mới trong MEDIA_ROOT
-    #         new_file_path = os.path.join(settings.MEDIA_ROOT, 'games', 'file', new_file_name)
-            
-    #         # Di chuyển file tới tên mới
-    #         with open(new_file_path, 'wb') as f:
-    #             for chunk in file.chunks():
-    #                 f.write(chunk)
+    # def __init__(self, *args, **kwargs):
+    #     super(UpGameForm, self).__init__(*args, **kwargs)
 
-    #         # Trả lại đường dẫn mới cho file
-    #         return os.path.join('games', 'file', new_file_name)
-
-    #     return file
+    #     # Nếu đã có file hoặc image, ẩn trường này đi
+    #     if self.instance and self.instance.pk:
+    #         if self.instance.image:
+    #             self.fields['image'].widget = forms.HiddenInput()
+    #         if self.instance.file:
+    #             self.fields['file'].widget = forms.HiddenInput()

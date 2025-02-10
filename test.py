@@ -28,6 +28,5 @@ def extract_with_unique_folder(zip_path, extract_to):
     return dest_folder
 # Đường dẫn file cũ
 file = "C:\\Users\\Huy Le\\Desktop\\Projects\\gamehub\\catch_the_ball_709.z111ip"
-new = os.rename(file, 'ab')
-
-print(new)
+path = "C:\\Users\\Huy Le\\Desktop\\Huye"
+os.mkdir(path)  

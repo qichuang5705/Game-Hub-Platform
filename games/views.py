@@ -4,7 +4,7 @@ from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializers import LBHSerializer
-import os, zipfile
+import os, zipfile, shutil
 
 
 class LBHistoryViewset(viewsets.ModelViewSet):
@@ -61,6 +61,11 @@ def Delete_Game(request, game_id):
             image_path = game.image.path
             if os.path.exists(image_path):
                 os.remove(image_path)
+        if game.file:
+            file_path = game.file.path
+            parent_path = os.path.dirname(file_path)
+            if os.path.exists(parent_path):
+                shutil.rmtree(parent_path)
         game.delete()
         return redirect('up_game')
 
@@ -89,15 +94,8 @@ def Edit_game(request, game_id):
         form = UpGameForm(request.POST,  request.FILES, instance=game)
         if form.is_valid():
             if 'image' in request.FILES and game.image:
-                print("C")
                 game.delete()
                 
-                # name = os.path.basename(game.image.path)
-                # old_image = f"{os.path.dirname(game.image.path)}\\games\\image\\{name}"
-                # print(old_image)
-                # if os.path.exists(old_image):
-                #     print("CÓ")
-                #     os.remove(old_image)
             if 'file' in request.FILES:
                 print("file")
                 if game.file:

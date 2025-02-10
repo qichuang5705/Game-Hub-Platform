@@ -1,10 +1,9 @@
 from django.db import models
 from accounts.models import CustomUser
-import os
 import zipfile
 from accounts.models import CustomUser
 from django.conf import settings
-import random, uuid
+import uuid, os
 # Create your models here.
 
 
@@ -21,20 +20,23 @@ class Game(models.Model):
     version = models.TextField(max_length=15, default=1.0)
     
     def extract(self):
+        # file = "C:\\Users\\Huy Le\\Desktop\\Projects\\file\\catch_the_ball_709.z111ip"
         file_zip_path = self.file.path 
-        name = os.path.basename(file_zip_path)
-        name = name[0:len(name)-4]  #lấy tên file
+        name = f"file_{uuid.uuid4().hex}" #tạo tên file ngẫu nhiên
         parent_file = os.path.dirname(file_zip_path)  #lấy file cha
+        new_path = os.path.join(parent_file, f"{name}")
+        os.mkdir(new_path)
+        print(new_path)
         with zipfile.ZipFile(file_zip_path, 'r') as zip_ref:
-            zip_ref.extractall(parent_file)
+            zip_ref.extractall(new_path)
         os.remove(file_zip_path)
-        new_path = os.path.join(parent_file, name)
-        new_file_name = f"file_{uuid.uuid4().hex}"
-        os.rename(new_path, f"{parent_file}\\{new_file_name}")
+
+        # new_path = os.path.join(parent_file, name)
+        # new_file_name = f"file_{uuid.uuid4().hex}"
+        # os.rename(new_path, f"{parent_file}\\{new_file_name}")
         
         url = str(self.file)
-        print(url)
-        new_url = f"{os.path.dirname(url)}/{new_file_name}/index.html"
+        new_url = f"{os.path.dirname(url)}/{name}/index.html"
         self.file = new_url
         super().save()
 

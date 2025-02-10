@@ -23,7 +23,11 @@
         {% load static %}
         <h2>Tên game: {{ game.name }}</h2>
         <div style="border: 2px black solid; display: inline-block;">
-            <img style="display: block; width: 120px;" src="{{ game.image.url }}" alt="hình trò chơi">
+            {% if game.image %}
+                <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+            {% else %}
+                <img width="120px" src="/media/empty.jpg" alt="Hình trò chơi">
+            {% endif %}
         </div>
             <p>Thể loại: {{ game.genre }}</p>
             <p>Ngày xuất bản: {{ game.datecreate }}</p>
