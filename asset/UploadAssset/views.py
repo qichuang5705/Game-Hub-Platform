@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
-from .models import asset
+from .models import asset,Purchase
 from django.http import HttpResponse
 def assetview(request):
     if request.method == 'POST':
@@ -40,3 +40,18 @@ def asset_edit_view(request, asset_id):
         return redirect('asset_list')  
 
     return render(request, 'edit_asset.html', {'asset': asset_obj})
+
+def asset_buy_view(request, asset_id):
+    asset = get_object_or_404(asset, id=asset_id)
+
+    if request.method == 'POST':
+        payment_method = request.POST.get('payment_method')
+        Purchase.objects.create(user=request.user, asset=asset, payment_method=payment_method)
+        return redirect('purchase_success')
+
+    return render(request, 'buy_asset.html', {'asset': asset})
+
+
+def purchase_success_view(request):
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request, 'purchase_success.html', {'purchases': purchases})

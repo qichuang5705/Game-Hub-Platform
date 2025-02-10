@@ -1,4 +1,3 @@
-# vì sao lại có file này  ? dành cho người dùng bình thường không được phép chỉnh sửa
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +15,9 @@
                 {% endif %}
                 <br>
                 {{ asset.title }} - {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
+                <br>
+               
+                <a href="{% url 'buy_asset' asset.id %}">Mua ngay</a>
             </li>
         {% endfor %}
     </ul>
