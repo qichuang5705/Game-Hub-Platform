@@ -12,13 +12,6 @@ def redirect_base_on_role(user):
         user.role = 'admin'
         user.save()
         return redirect('/admin/')  # Trang admin của Django
-    # Kiểm tra vai trò và chuyển hướng đến trang phù hợp
-    elif user.role == 'developer':
-        return redirect('home')  # Trang dành cho developer
-    elif user.role == 'designer':
-        return redirect('home')  # Trang dành cho designer
-    elif user.role == 'player':
-        return redirect('home')  # Trang dành cho player
     else:
         return redirect('home')  # Trang mặc định nếu không phải các vai trò trên  # Nếu không khớp vai trò nào, mặc định là home
 
