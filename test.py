@@ -12,7 +12,6 @@ class AssetAPITest(APITestCase):
             image=SimpleUploadedFile("test_image.jpg", b"file_content", content_type="image/jpeg"),
         )
 
-<<<<<<< HEAD
     def test_get_asset_list(self):
         """Kiểm tra API trả về danh sách tài sản"""
         response = self.client.get("/api/assets/")
@@ -27,14 +26,3 @@ class AssetAPITest(APITestCase):
         }
         response = self.client.post("/api/assets/", data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-=======
-#ctrl + f để tìm kiếm nhanh
-print("ss")
-print("ss")
-print("ss")
-print("ss")
-print("ss")
-print("ss")
-print("ss")
-print("ss")
->>>>>>> 8e03684fd4b6395ab5b2ac817c62b135387b4bc5
