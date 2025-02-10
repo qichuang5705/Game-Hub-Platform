@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="{% static 'js/login.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+
+  <body>
+    <section class="login">
+      <h1>Login</h1>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail"
+            name="username"
+            placeholder=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword"
+            name="password"
+            placeholder=""
+          />
+        </div>
+        <p class="login-text">
+          If you don't have an account, register
+          <a href="{% url 'register' %}">here</a>
+        </p>
+        <button type="submit" id="submitButton">Submit</button>
+      </form>
+    </section>
+    <!-- Scripts -->
+    <script type="module">
+      import {
+        toggleSubmitButton,
+        handleFormSubmit,
+        emailInput,
+        passwordInput,
+      } from "./login.js";
+
+      emailInput.addEventListener("input", toggleSubmitButton);
+      passwordInput.addEventListener("input", toggleSubmitButton);
+      document
+        .querySelector("form")
+        .addEventListener("submit", handleFormSubmit);
+    </script>
+    <script src="/assets/scripts/base.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

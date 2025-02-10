@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Role Upgrade</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Request Role Upgrade</h1>
+
+        {% if user.role == 'player' %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="requested_role">Choose Role to Upgrade</label>
+                {{ form.requested_role }}
+                {% if form.requested_role.errors %}
+                    <ul class="errors">
+                        {% for error in form.requested_role.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+
+        {% else %}
+            <p>You are already a Developer or Designer. You cannot upgrade your role.</p>
+        {% endif %}
+
+        <div class="status">
+            <h2>Status of Your Request:</h2>
+            {% if user.request_status == 'pending' %}
+                <p>Your request is currently pending.</p>
+            {% elif user.request_status == 'approved' %}
+                <p>Your request has been approved. You are now a {{ user.role }}.</p>
+            {% elif user.request_status == 'rejected' %}
+                <p>Your request has been rejected.</p>
+            {% else %}
+                <p>No request has been made yet.</p>
+            {% endif %}
+        </div>
+
+        <a href="{% url 'home' %}">Go back to Home</a>
+    </div>
+</body>
+</html>
