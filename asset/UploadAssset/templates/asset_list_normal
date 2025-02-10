@@ -1,0 +1,23 @@
+# vì sao lại có file này  ? dành cho người dùng bình thường không được phép chỉnh sửa
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset List</title>
+</head>
+<body>
+    <h1>Asset List</h1>
+    <ul>
+        {% for asset in assets %}
+            <li>
+                {% if asset.thumnail %}
+                    <img src="{{ asset.thumnail.url }}" alt="{{ asset.title }}" width="200">
+                {% else %}
+                    <img src="/media/defaults/NoneImage.png" alt="Ảnh mặc định" width="200">
+                {% endif %}
+                <br>
+                {{ asset.title }} - {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

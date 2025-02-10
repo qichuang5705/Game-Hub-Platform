@@ -10,5 +10,5 @@ class asset (models.Model):
     quantifier = models.IntegerField()
     title = models.CharField(max_length= 300,null=False)
     create_date = models.DateTimeField(auto_now_add= True)
-    thumnail = models.ImageField(upload_to='thumnail/%Y/%m', default=None, blank=True, null=True)
+    thumnail = models.ImageField(upload_to='thumnail/%Y/%m', default='defaults/NoneImage.png', blank=True, null=True)
     User = models.ForeignKey(user,on_delete=models.SET_NULL , null= True)

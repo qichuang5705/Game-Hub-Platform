@@ -8,9 +8,16 @@
     <ul>
         {% for asset in assets %}
             <li>
-                <a href="{% url 'asset_detail' asset.id %}">
-                    {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
-                </a>
+                {% if asset.thumnail %}
+                    <img src="{{ asset.thumnail.url }}" alt="{{ asset.title }}" width="200">
+                {% else %}
+                    <img src="/media/defaults/NoneImage.png" alt="Ảnh mặc định" width="200">
+                {% endif %}
+                <br>
+                {{ asset.title }} - {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
+
+                <!-- 🆕 Thêm nút chỉnh sửa -->
+                <a href="{% url 'edit_asset' asset.id %}" class="edit-button">Chỉnh sửa</a>
             </li>
         {% endfor %}
     </ul>
