@@ -22,6 +22,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.exceptions import ValidationError
 
+ 
+
 class CustomUser(AbstractUser):
     ROLE_PLAYER = 'player'
     ROLE_DEVELOPER = 'developer'

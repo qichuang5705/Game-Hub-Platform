@@ -25,14 +25,18 @@
 
         {% include 'navbar.html' %}
 
-            <div class="container" style="height: 500px;">
+            <div class="container" >
                 {% for game in games %}
                 <div class="row">
                     <div class="col" style="width: 200px; background-color: antiquewhite; padding: 10px #999; ">
                         {% if game.image %}
+                        <a href="{% url 'game_detail' game.id %}">
                             <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                        </a>
                         {% else %}
+                        <a href="{% url 'game_detail' game.id %}">
                             <img width="120px" src="/media/empty.jpg" alt="Hình trò chơi">
+                        </a>
                         {% endif %}
                     </div>
                 </div>

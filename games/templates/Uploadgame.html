@@ -18,32 +18,16 @@
 
 
         <style>
-            /* .form-group label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            }
+            /* Lỗi của từng trường */
+        .text-danger {
+            color: #d9534f; /* Màu đỏ nổi bật */
+            font-size: 14px;
+            margin-top: 5px;
+            margin-left: 5px;
+            list-style-type: none; /* Bỏ dấu chấm đầu dòng */
+        }
 
-            .form-group input,
-            .form-group textarea {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            }
 
-            button.btn-primary {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            }
-
-            button.btn-primary:hover {
-            background-color: #0056b3;
-            } */
-            /* General styling for the form */
             .form1 {
                 max-width: 600px;
                 margin: 0 auto;
@@ -151,6 +135,8 @@
              <!-- enctype="multipart/form-data" để cho phép post file.zip-->
         <!-- HTML form -->
         <h1>Up games</h1>
+        <h2>Chỉ đăng tải file index.html hoặc file .zip</h2>
+        <h2>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</h2>
         <form method="post" enctype="multipart/form-data" class="form1">
             {% csrf_token %}
             
@@ -164,6 +150,14 @@
                 <div class="genres-checkbox">
                     {{ form.genres }}
                 </div>
+                {% if form.genres.errors %}
+                <ul class="text-danger">
+                    {% for error in form.genres.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+    
             </div>
 
             <div class="form-group">
@@ -179,6 +173,13 @@
             <div class="form-group">
                 <label for="id_file">File:</label>
                 {{ form.file }}
+                {% if form.file.errors %}
+                <ul class="text-danger">
+                    {% for error in form.file.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
 
             <button class="button1" type="submit" class="btn btn-primary">Upload Game</button>
