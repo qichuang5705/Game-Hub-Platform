@@ -2,24 +2,56 @@ from django.shortcuts import render, redirect
 from .models import Game, Comment, Genre, LBHistory
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
-from rest_framework import viewsets
-from .serializers import LBHSerializer
+from rest_framework import viewsets, permissions, status
+from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import action
+from .serializers import LBHSerializer, GameSerializer
 import os, zipfile, shutil
-from rest_framework.permissions import AllowAny
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-from django.middleware.csrf import get_token
 
-@method_decorator(csrf_exempt, name='dispatch')
+
+
+
+
 class LBHistoryViewset(viewsets.ModelViewSet):
     queryset = LBHistory.objects.all().order_by('-score')
     serializer_class = LBHSerializer
+    # authentication_classes = [TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        user = self.request.user  # Lấy user từ request
+        print("User submitting score:", user)  # Debug xem user có đúng không
+        serializer.save(users=user)  # Lưu user vào model
+    
+        
 
+class GameViewset(viewsets.ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+    
+    @action(detail=True, methods=['post'], url_path='post_score')
+    def post_score(self, request, pk=None):
+        """
+        API POST điểm số cho một game cụ thể
+        URL: /API/gameapi/{game_id}/post_score/
+        """
+        game = Game.objects.get(pk=pk)
+        user = request.user  # Lấy user từ request (giả định authentication đã bật)
+        score = request.data.get('score')  # Lấy score từ request body
+
+        if score is None:
+            return Response({"error": "Score is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Tạo lịch sử điểm mới
+        lb_entry = LBHistory.objects.create(games=game, users=user, score=score)
+        serializer = LBHSerializer(lb_entry)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
 def game_detail(request, id):
     game = Game.objects.get(id=id)
-    csrf_token = get_token(request)  # Lấy CSRF token từ Django
-
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -31,7 +63,7 @@ def game_detail(request, id):
     else:
         form = CommentForm()
     
-    return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user,  "csrf_token": csrf_token})
+    return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user})
 
 
 def DeleteComment(request, comment_id):
