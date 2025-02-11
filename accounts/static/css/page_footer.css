@@ -1,18 +1,12 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
 
-/* body {
+body {
     font-family: serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #212121;
     color: #333;
-
-} */
+}
 
 .page_body {
     flex: 1;
@@ -26,6 +20,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     align-items: start;
+    border-radius: 5px;
 }
 
 .footer-column {
@@ -166,8 +161,16 @@
     color: #000000;
     transform: translateY(-3px);
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px #eee,
+        0px 0px 30px #eee,
+        0px 0px 50px #eee;
 }
 
 .donate label, .contact_info label{
     margin-top: 20px;
+}
+
+.footer_bottom .copyright:hover{
+    cursor: default;
 }

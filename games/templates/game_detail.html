@@ -1,76 +1,238 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="csrf-token" content="{{ csrf_token }}">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- navbar css js -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
-        <!-- navbar css js -->
-         
-        <!-- footer css js -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{%static 'css/footer.css'%}">
-         <!-- footer css js -->
-        <title>GameHub</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        {% include 'navbar.html' %}
-    
-        {% load static %}
-        <h2>Tên game: {{ game.name }}</h2>
-        <div style="border: 2px black solid; display: inline-block;">
-            {% if game.image %}
-                <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
-            {% else %}
-                <img width="120px" src="/media/empty.jpg" alt="Hình trò chơi">
-            {% endif %}
-        </div>
-            <p>Thể loại: {{ game.genre }}</p>
-            <p>Ngày xuất bản: {{ game.datecreate }}</p>
-                <div>
 
-                    <iframe src="{{game.file.url}}" width="800" height="600" title="Game Frame"></iframe>
-                </div>
-            <div style="background-color: #000;">
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/page_game.css' %}">
     
-        </div>
-        <b>Leader board</b>
-        {% for x in game.lbhistory_set.all %}
-            <div style="border: 1px solid #000;">
-                <p style="margin: 0px;">{{x.users.username}}: {{ x.score }} điểm</p>
+    <style>
+   .play_game_box {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Giới hạn chiều rộng nếu cần */
+    padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 = 0.5625) */
+}
+
+.play_game_box iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+    
+    </style>
+    <script>
+        function toggleFullscreen() {
+            let iframe = document.getElementById("gameIframe");
+        
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Edge
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+        </script>
+{% endblock %}
+
+
+
+{% block body %}
+<main class="page_body">
+    <div class="main-game-wrapper">
+        <div class="main-game">
+
+            <!--box game-->
+            <div class="play_game_box">
+                <iframe src="{{ game.file.url }}" allowfullscreen></iframe>
             </div>
-        {% endfor %}
-            <br>
-        <b>Nhận xét</b>
-        {% for x in game.comment_set.all %}
-        <div style="border: 1px solid #000;">
-            <p style="margin: 0px;">{{x.users.username}}: {{ x.words|linebreaksbr }}</p>
-            {% if x.users.id == user.id %}
-                <!-- Nút xóa sẽ gửi request tới URL delete_comment -->
-                <a href="{% url 'DeleteComment' x.id %}">
-                    <button type="button">Xóa</button>
-                </a>
-            {% endif %}
+            <button onclick="toggleFullscreen()">🔲 Fullscreen</button>
+            <!--name game-->
+            <div class="name_game">
+                <h3>{{ game.name }}</h3>
+            </div>
+
+            <!--info game-->
+            <div class="info_game">
+                <p>
+                    {{ game.description }}
+                </p>
+            </div>
+
+            <!--img-->
+            <div class="game_img"> 
+                <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
+            </div>
+            <!--instruct game-->
+            <div class="instruct_game">
+                <h3>Gameplay</h3>
+                <label>Objective:</label>
+                <p>Prevent the bees from attacking the dog by drawing a single line.</p>
+                <label>Controls:</label>
+                <p>Touch the screen and drag to draw a line.</p>
+                <label>Rules:</label>
+                <p>You can only draw one line.</p>
+                <p>The drawn line must protect the dog from all bee attacks for a certain period.</p>
+                <p>The shorter the drawn line, the more points you get.</p>
+                <label>Difficulty:</label>
+                <p>The difficulty increases with each level, with more bees, more complex bee positions, and other obstacles.</p>
+            </div>
+
+            <!--voting-->
+            <div class="voting_box">
+                <div class="rating-summary">
+                    <div class="average-rating">
+                        <label class="label">Average:</label>
+                        <label class="value">4.5</label>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <label class="total-votes">365 Votes</label>
+                    </div>
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <label class="rating-label">Excellent</label>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 51.5%;"></div>
+                            </div>
+                            <label class="vote-count">188 votes</label>
+                        </div>
+                        <div class="rating-bar">
+                            <label class="rating-label">Good</label>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 7.1%;"></div>
+                            </div>
+                            <label class="vote-count">26 votes</label>
+                        </div>
+                        <div class="rating-bar">
+                            <label class="rating-label">Average</label>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 4.4%;"></div>
+                            </div>
+                            <label class="vote-count">16 votes</label>
+                        </div>
+                        <div class="rating-bar">
+                            <label class="rating-label">Poor</label>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 6%;"></div>
+                            </div>
+                            <label class="vote-count">22 votes</label>
+                        </div>
+                        <div class="rating-bar">
+                            <p class="rating-label">Terrible</p>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 31.2%;"></div>
+                            </div>
+                            <label class="vote-count">113 votes</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--leaderboard-->
+            <div class="leaderboard">
+                <h3>Leaderboard</h3>
+
+                <div class="user-info">
+                    <div class="user-points">
+                        <label>Your Socre: </label>
+                        <p>1120</p>
+                    </div>
+                    <div class="user-ranking">
+                        <label>Your Ranking: </label>
+                        <p>50+</p>
+                    </div>
+                </div>
+
+                <table>
+                    <tr class="header_leader">
+                        <th>Rank</th>
+                        <th>Player Name</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Player 1</td>
+                        <td>12345</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Player 2</td>
+                        <td>11000</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Player 3</td>
+                        <td>10234</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--comment-->
+            <div class="comment_container">
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment-form">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle fa-3x"></i>
+                        </div>
+                        <div class="comment-input">
+                            <textarea placeholder="Add a comment..."></textarea>
+                            <div class="comment-actions">
+                                <button>Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <div class="comment">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle fa-2x"></i>
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-content-box"> 
+                                    <div class="comment-header">
+                                        <p class="user-name">NPT</p>
+                                        <p class="comment-date">25/01/2025</p>
+                                    </div>
+                                    <p>GG!!</p>
+                                </div>
+                                <div class="comment-footer">
+                                    <p id="like">Like</p> 
+                                    <a>.</a>
+                                    <p>Reply</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--footer-->
+            <div class="game_box_footer">
+                <p>
+                    Simple and easy to play: Anyone can play, requiring no special skills.
+                    The gameplay challenges intellect and creativity, making players want to overcome each level.
+                    The cute image of the Doge and humorous situations create a relaxing feeling for players.
+                    Helps players train logical thinking, judgment, and dexterity.
+                    Often has hundreds of levels with increasing difficulty, providing many hours of entertainment.
+                </p>
+                <p>
+                    In summary: "Save the Doge" is a delightful puzzle game suitable for all ages.
+                    With simple yet challenging gameplay, this game offers relaxing moments of entertainment
+                    and helps train the brain. If you enjoy light and fun puzzle games, "Save the Doge" is worth a try.
+                </p>
+            </div>
+
         </div>
-        {% endfor %}
-
-
-
-        {% if user.is_authenticated %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Bình luận</button>
-        </form>
-        {% endif %} 
-
-        {% include 'footer.html' %}
-
-    </body>
-</html>
-
+    </div>
+</main>
+{% endblock %}

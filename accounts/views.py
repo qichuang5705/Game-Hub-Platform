@@ -36,8 +36,8 @@ def login_view(request):
 
 
 def home(request):
-    game = Game.objects.all()
-    return render(request, 'home.html', {'games': game,'user': request.user})
+    gamehay = Game.objects.all()
+    return render(request, 'home.html', {'games': gamehay,'user': request.user})
 
 def register(request):
     if request.method == 'POST':
