@@ -3,7 +3,7 @@ from .views import DeleteComment, UpGame, game_detail, Delete_Game, Edit_game, L
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('game', LBHistoryViewset)
+router.register('leaderboard', LBHistoryViewset)
 
 
 urlpatterns = [

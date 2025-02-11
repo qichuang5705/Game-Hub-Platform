@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="csrf-token" content="{{ csrf_token }}">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- navbar css js -->
@@ -32,6 +33,7 @@
             <p>Thể loại: {{ game.genre }}</p>
             <p>Ngày xuất bản: {{ game.datecreate }}</p>
                 <div>
+
                     <iframe src="{{game.file.url}}" width="800" height="600" title="Game Frame"></iframe>
                 </div>
             <div style="background-color: #000;">

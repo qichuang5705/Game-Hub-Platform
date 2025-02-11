@@ -5,34 +5,21 @@ from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializers import LBHSerializer
 import os, zipfile, shutil
+from rest_framework.permissions import AllowAny
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import get_token
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class LBHistoryViewset(viewsets.ModelViewSet):
-    queryset = LBHistory.objects.all()
+    queryset = LBHistory.objects.all().order_by('-score')
     serializer_class = LBHSerializer
 
-# class LeaderBoardAPIView(viewsets.view):
-#     def post(self, request, *args, **kwargs):
-#         # Lấy dữ liệu từ request
-#         game_id = request.data.get('game_id')
-#         user_id = request.data.get('user_id')
-#         score = request.data.get('score')
-
-#         if not game_id or not user_id or not score:
-#             return Response({"error": "Missing required fields"}, status=status.HTTP_400_BAD_REQUEST)
-
-#         # Kiểm tra xem người chơi đã có điểm trong game này chưa
-#         leader_board_game, created = Leader_board_game.objects.update_or_create(
-#             games_id=game_id, users_id=user_id, defaults={'score': score}
-#         )
-
-#         # Nếu tạo mới, trả về 201 Created. Nếu cập nhật, trả về 200 OK
-#         status_code = status.HTTP_201_CREATED if created else status.HTTP_200_OK
-
-#         return Response({"message": "Score updated successfully"}, status=status_code)
 
 def game_detail(request, id):
     game = Game.objects.get(id=id)
+    csrf_token = get_token(request)  # Lấy CSRF token từ Django
+
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -43,7 +30,8 @@ def game_detail(request, id):
             return redirect('game_detail', id=game.id)
     else:
         form = CommentForm()
-    return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user})
+    
+    return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user,  "csrf_token": csrf_token})
 
 
 def DeleteComment(request, comment_id):
