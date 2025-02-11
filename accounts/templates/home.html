@@ -25,7 +25,7 @@
 
         {% include 'navbar.html' %}
 
-            <div class="container" >
+            <!-- <div class="container" >
                 {% for game in games %}
                 <div class="row">
                     <div class="col" style="width: 200px; background-color: antiquewhite; padding: 10px #999; ">
@@ -41,8 +41,31 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div> -->
+            <div class="card_game">
+                <div class="cart_img">
+                    <div class="img-wrapper"> 
+                        <a href="{% url 'page_game' %}">
+                            {% load static %}
+                            <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
+                        </a>
+                    </div>
+                </div>
+                <div class="game_info" data-rating="4.5"> 
+                    <div class="name-container"> 
+                        <span>Name: </span> 
+                        <h3>Save The Doge</h3>
+                    </div>
+                    <div class="genre-container"> 
+                        <span>Genre: </span> 
+                        <h3>Puzzle</h3>
+                    </div>
+                    <div class="voting-container">
+                        <span>Votting: </span>
+                        <div class="stars"> </div>
+                    </div>
+                </div>
             </div>
-
 
         {% include 'footer.html' %}
 
