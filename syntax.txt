@@ -23,6 +23,10 @@ tạo readme.md : echo "# Softwave-Technology---Website" >> README.md
     py manage.py makemigrations <name>
 
     python manage.py createsuperuser
+
+
+    python manage.py shell
+
 @git
 -Nếu branch huy chưa tồn tại, tạo branch mới dựa trên branch hiện tại:
     git checkout -b huy
@@ -34,3 +38,5 @@ tạo readme.md : echo "# Softwave-Technology---Website" >> README.md
     pip install -r requirements.txt
 -Xem các thư viên đã cài trên môi trường ảo
     pip freeze 
+
+

@@ -49,6 +49,7 @@ class Comment(models.Model):
     games = models.ForeignKey(Game, on_delete=models.CASCADE)
     users = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     words = models.TextField()
+    datecreate = models.DateField(auto_now_add=True)
 
 class Genre(models.Model):
     name = models.CharField(max_length=100) 

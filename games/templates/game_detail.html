@@ -21,23 +21,45 @@
     height: 100%;
     border: none;
 }
-    
+
+
+.comment-textarea{
+    width: 100%;
+}
+
+
+/* CSS */
+.button-32 {
+  background-color: #fff000;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-32:not(:disabled):hover,
+.button-32:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+
+.button-32:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
     </style>
-    <script>
-        function toggleFullscreen() {
-            let iframe = document.getElementById("gameIframe");
-        
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) { // Firefox
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Edge
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) { // IE/Edge
-                iframe.msRequestFullscreen();
-            }
-        }
-        </script>
 {% endblock %}
 
 
@@ -50,9 +72,7 @@
             <!--box game-->
             <div class="play_game_box">
                 <iframe src="{{ game.file.url }}" allowfullscreen></iframe>
-            </div>
-            <button onclick="toggleFullscreen()">🔲 Fullscreen</button>
-            <!--name game-->
+            </div>       
             <div class="name_game">
                 <h3>{{ game.name }}</h3>
             </div>
@@ -69,19 +89,7 @@
                 <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
             </div>
             <!--instruct game-->
-            <div class="instruct_game">
-                <h3>Gameplay</h3>
-                <label>Objective:</label>
-                <p>Prevent the bees from attacking the dog by drawing a single line.</p>
-                <label>Controls:</label>
-                <p>Touch the screen and drag to draw a line.</p>
-                <label>Rules:</label>
-                <p>You can only draw one line.</p>
-                <p>The drawn line must protect the dog from all bee attacks for a certain period.</p>
-                <p>The shorter the drawn line, the more points you get.</p>
-                <label>Difficulty:</label>
-                <p>The difficulty increases with each level, with more bees, more complex bee positions, and other obstacles.</p>
-            </div>
+          
 
             <!--voting-->
             <div class="voting_box">
@@ -159,11 +167,11 @@
                         <th>Player Name</th>
                         <th>Score</th>
                     </tr>
-                    {% for entry in history %}
+                    {% for entry in leader %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>Player 1</td>
-                        <td>12345</td>
+                        <td>{{ entry.user.username }}</td>
+                        <td>{{ entry.max_score }}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -173,18 +181,40 @@
             <div class="comment_container">
                 <div class="comment-section">
                     <h3>Comments</h3>
+
                     <div class="comment-form">
+                        <!-- avatar -->
                         <div class="user-avatar">
-                            <i class="fas fa-user-circle fa-3x"></i>
+                            <i class="fas fa-user-circle fa-3x">
+
+                            </i>
                         </div>
-                        <div class="comment-input">
+                        <!-- avatar -->
+                        <!-- nhập comment -->
+                         <div class="comment-input">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
+                                </div>
+                            
+                                <div class="comment-actions">
+                                    <button class="button-32" type="submit">Gửi</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- nhập comment -->
+                        <!-- <div class="comment-input">
                             <textarea placeholder="Add a comment..."></textarea>
                             <div class="comment-actions">
                                 <button>Comment</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
+
+                    <!-- Hiển thị commet -->
                     <div class="comments">
+                        {% for comment in game.comment_set.all %}
                         <div class="comment">
                             <div class="user-avatar">
                                 <i class="fas fa-user-circle fa-2x"></i>
@@ -192,19 +222,27 @@
                             <div class="comment-content">
                                 <div class="comment-content-box"> 
                                     <div class="comment-header">
-                                        <p class="user-name">NPT</p>
-                                        <p class="comment-date">25/01/2025</p>
+                                        <p class="user-name">{{ comment.users.username }}</p>
+                                        <p class="comment-date">{{ comment.datecreate }}</p>
                                     </div>
-                                    <p>GG!!</p>
+                                    <p>{{ comment.words }}</p>
                                 </div>
+                                
                                 <div class="comment-footer">
-                                    <p id="like">Like</p> 
-                                    <a>.</a>
-                                    <p>Reply</p>
+                                    {% if user.id == comment.users.id %}
+                                    <form action="{% url 'DeleteComment' comment.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button class="button-32" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                            Xóa
+                                        </button>
+                                    </form>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
+                      <!-- Hiển thị commet -->
                 </div>
             </div>
 

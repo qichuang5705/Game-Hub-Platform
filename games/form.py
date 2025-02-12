@@ -9,6 +9,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('words',)
+        widgets = {
+            'words': forms.Textarea(attrs={ 
+                'class': 'comment-textarea',
+                'placeholder': 'Nhập bình luận của bạn...'
+            })
+        }
 
 class UpGameForm(forms.ModelForm):
     genres = forms.ModelMultipleChoiceField(
@@ -78,13 +84,3 @@ class UpGameForm(forms.ModelForm):
         return image
 
     
-
-    # def __init__(self, *args, **kwargs):
-    #     super(UpGameForm, self).__init__(*args, **kwargs)
-
-    #     # Nếu đã có file hoặc image, ẩn trường này đi
-    #     if self.instance and self.instance.pk:
-    #         if self.instance.image:
-    #             self.fields['image'].widget = forms.HiddenInput()
-    #         if self.instance.file:
-    #             self.fields['file'].widget = forms.HiddenInput()

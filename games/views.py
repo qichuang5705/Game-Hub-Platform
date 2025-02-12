@@ -3,6 +3,7 @@ from django.db.models import Max
 from .models import Game, Comment, Genre, LBHistory, CustomUser
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
@@ -60,8 +61,12 @@ def game_detail(request, gameId):
         .order_by('-max_score')  # Sắp xếp theo điểm giảm dần
     )
 
+    # Tạo một dictionary chứa toàn bộ user, với key là user.id
+    user_dict = {user.id: user for user in CustomUser.objects.all()}
+
+    # Duyệt qua danh sách history và gán đối tượng user tương ứng
     for entry in history:
-        entry['user'] = CustomUser.objects.get(id=entry['users'])  # Lấy user từ ID
+        entry['user'] = user_dict[entry['users']]
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -70,20 +75,19 @@ def game_detail(request, gameId):
             comment.games = game
             comment.users = request.user
             comment.save()
-            return redirect('game_detail', id=game.id)
+            return redirect('game_detail', gameId=game.id)
     else:
         form = CommentForm()
     
-    return render(request,"game_detail.html", {'game':game,'leader':history, 'form':form, 'user':request.user})
+    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user})
 
-
+@login_required
 def DeleteComment(request, comment_id):
-    com = Comment.objects.get(id=comment_id)
-    if com.users == request.user:
-        com.delete()
-        return redirect('game_detail',id=com.games.id)
-    # else:
-    #     return render(request, 'error.html', {'message': 'Bạn không có quyền xóa bình luận này.'})
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if request.user == comment.users or request.user.is_superuser:
+        comment.delete()
+    return redirect ('game_detail', comment.games.id)
 
 def Delete_Game(request, game_id):
     game = Game.objects.get(id=game_id)

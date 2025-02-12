@@ -8,7 +8,7 @@
         <!--Game1-->
         <div class="card_game">
             <div class="cart_img">
-                <a href="{% url 'game_detail' id=game.id %}">
+                <a href="{% url 'game_detail' gameId=game.id %}">
                     {% if game.image %}
                         <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
                     {% else %}
