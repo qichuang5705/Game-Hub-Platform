@@ -2,23 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegistrationForm, LoginForm, RoleUpgradeRequestForm
+from .forms import RegistrationForm, LoginForm, RoleUpgradeRequestForm, FormInfor
 from django.http import HttpResponseForbidden, HttpResponse 
 from .models import CustomUser
-
+from games.models import Game
 def redirect_base_on_role(user):
     if user.is_superuser:
     # Đăng nhập người dùng và chuyển hướng đến admin
         user.role = 'admin'
         user.save()
         return redirect('/admin/')  # Trang admin của Django
-    # Kiểm tra vai trò và chuyển hướng đến trang phù hợp
-    elif user.role == 'developer':
-        return redirect('home')  # Trang dành cho developer
-    elif user.role == 'designer':
-        return redirect('home')  # Trang dành cho designer
-    elif user.role == 'player':
-        return redirect('home')  # Trang dành cho player
     else:
         return redirect('home')  # Trang mặc định nếu không phải các vai trò trên  # Nếu không khớp vai trò nào, mặc định là home
 
@@ -41,11 +34,10 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-def huy(request):
-    return HttpResponse("Hello HUy")
 
 def home(request):
-    return render(request, 'home.html')
+    gamehay = Game.objects.all()
+    return render(request, 'home.html', {'games': gamehay,'user': request.user})
 
 def register(request):
     if request.method == 'POST':
@@ -89,3 +81,56 @@ def upgrade_role(request):
         form = RoleUpgradeRequestForm()
 
     return render(request, 'role_upgrade.html', {'form': form})
+
+
+
+def change_pass(request):
+    return render(request, 'password_change_for.html')
+
+def information(request):
+    user = request.user
+    if request.method == "POST":
+        form = FormInfor(request.POST,  instance=user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = FormInfor( instance=user)
+    return render(request, "information.html", {'form': form})
+
+def reset_password(request):
+    return render(request, 'password_reset.html')
+
+def login_register(request):
+    login_form=LoginForm()
+    register_form=RegistrationForm()
+    if request.method == "POST":
+        if 'login' in request.POST:
+            login_form = LoginForm(data = request.POST)
+            if login_form.is_valid():
+                username = login_form.cleaned_data.get('username')
+                password = login_form.cleaned_data.get('password')
+                user =authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, f"Welcome, {user.username}")
+                    return redirect_base_on_role(user)
+                else:
+                    messages.error(request, "Invalid username or password")
+        elif 'register' in request.POST:
+            register_form = RegistrationForm(request.POST)
+            if register_form.is_valid():
+                user = register_form.save()
+                login(request, user)
+                messages.success(request, f"Welcome, {user.username}")
+                return redirect_base_on_role(user)
+            else:
+                messages.error(request, "Invalid information")
+    else:
+        login_form=LoginForm()
+        register_form=RegistrationForm()
+
+    return render(request, 'login_register.html', {
+        'login_form': login_form,
+        'register_form': register_form,
+    })

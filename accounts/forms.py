@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
 from .models import CustomUser
 
 class RegistrationForm(UserCreationForm):
@@ -70,4 +70,28 @@ class RoleUpgradeRequestForm(forms.Form):
         if not requested_role:
             raise forms.ValidationError({'requested_role': 'You must select a role to upgrade.'})
 
+        return cleaned_data
+    
+
+class FormInfor(forms.ModelForm):
+   class Meta:
+        model = CustomUser 
+        fields = ('first_name', 'last_name', 'email')
+
+class CustomPasswordResetForm(PasswordResetForm):
+    username = forms.CharField(max_length=150, required=True, label="Username")
+
+    def __init__(self, *args, **kwargs):
+        # Gọi constructor của lớp cha để xử lý các tham số như `initial`
+        super().__init__(*args, **kwargs)
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        username = cleaned_data.get('username')
+
+        # Kiểm tra xem username và email có tồn tại không
+        if not CustomUser.objects.filter(username=username, email=email).exists():
+            raise forms.ValidationError("Không tìm thấy người dùng với username và email này.")
+        
         return cleaned_data

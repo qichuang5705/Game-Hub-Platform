@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+X_FRAME_OPTIONS = 'ALLOWALL'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-!lat55qv-1sobjvb56n%wj$(24#fy_y)-$g#b2ms&b*q@(*#dn
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'games',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-        'PASSWORD': 'root',           # Mật khẩu MySQL
+        'PASSWORD': 'sayonara',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
@@ -121,11 +123,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Thư mục lưu tệp media
+# MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'antran08112005@gmail.com'  # Thay bằng email của bạn
+EMAIL_HOST_PASSWORD = 'evrb bxti ehpv rhrc'  # Thay bằng mật khẩu ứng dụng
+

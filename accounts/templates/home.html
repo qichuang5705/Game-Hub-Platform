@@ -1,30 +1,41 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Home Page</title>
-    <script src="{%static 'js/home.js' %}"></script>
-    <link rel="stylesheet" href="{%static 'css/home.css' %}" />
-  </head>
-  <body>
-    <!-- <section class="home">
-        <h1>Home</h1>
-        <a href="./pages/login/login.html">Đến Page Login</a>
-    </section> -->
-    <div class="thang">
-      <b>GameHub</b>
-      <p>player</p>
-      <a href="{% url 'upgrade' %}">Request Role Upgrade</a>
-    </div>
-    <hr style="border: 1px solid" />
+{% extends "base.html" %}
 
-    <div class="tien">
-      <div><a href="{% url 'login'%}">Đến Page Login</a></div>
-      <div></div>
-      <div></div>
-    </div>
+{% block body %}
 
-    <div class="thuc"></div>
-  </body>
-</html>
+<main class="page_body">
+    {% for game in games %}
+    <div class="game-container">
+        <!--Game1-->
+        <div class="card_game">
+            <div class="cart_img">
+                <a href="{% url 'game_detail' gameId=game.id %}">
+                    {% if game.image %}
+                        <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
+                    {% else %}
+                       <img width="120px" src="/media/empty.jpg" alt="Hình trò chơi">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="game_info" data-rating="4.5"> 
+                <div class="name-container"> 
+                    <span>Name: </span>  <h3>{{ game.name }}</h3>
+                </div>
+                <div class="genre-container"> 
+                    <span>Genre: </span> 
+                    {% for genre in game.genres.all %}
+                        <h3>{{ genre.name }}</h3>
+                    {% endfor %}
+                </div>
+                <div class="voting-container">
+                    <span>Votting: </span>
+                    <div class="stars"> </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        
+
+    </div>
+</main>
+
+{% endblock %}
