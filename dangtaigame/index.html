@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Tải Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>📌 Đăng Tải Game</h2>
+
+      <!-- 📂 Upload Avatar -->
+      <div class="avatar-upload">
+        <label for="game-avatar">
+          <img id="avatar-preview" src="default-avatar.png" alt="Avatar Game" />
+        </label>
+        <input type="file" id="game-avatar" accept="image/*" />
+      </div>
+
+      <!-- 📑 Form đăng tải game -->
+      <div class="form-container">
+        <form id="game-form">
+          <label for="game-name">📌 Tên Game:</label>
+          <input
+            type="text"
+            id="game-name"
+            placeholder="Nhập tên game..."
+            required
+          />
+
+          <label for="game-description">📌 Mô Tả:</label>
+          <textarea
+            id="game-description"
+            placeholder="Mô tả game của bạn..."
+            required
+          ></textarea>
+
+          <label for="game-category">📌 Thể Loại:</label>
+          <select id="game-category">
+            <option value="action">🎮 Hành Động</option>
+            <option value="adventure">🏝️ Phiêu Lưu</option>
+            <option value="rpg">⚔️ Nhập Vai</option>
+            <option value="strategy">🧠 Chiến Thuật</option>
+          </select>
+
+          <label for="game-price">📌 Giá Bán (VNĐ):</label>
+          <input
+            type="number"
+            id="game-price"
+            min="0"
+            placeholder="Nhập giá bán..."
+            required
+          />
+
+          <!-- 📜 Nút lưu & xem danh sách -->
+          <div class="buttons">
+            <button id="save-button" type="submit">🚀 Lưu Game</button>
+            <a href="games.html" class="view-games-btn"
+              >📜 Xem Danh Sách Game</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
