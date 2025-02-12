@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import Game, Comment, Genre, LBHistory
+from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Max
+from .models import Game, Comment, Genre, LBHistory, CustomUser
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets, permissions, status
@@ -50,8 +51,18 @@ class GameViewset(viewsets.ModelViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
-def game_detail(request, id):
-    game = Game.objects.get(id=id)
+def game_detail(request, gameId):
+    game = get_object_or_404(Game,id=gameId)
+    history = (
+        LBHistory.objects.filter(games=game)  # Lọc lịch sử theo game
+        .values('users')  # Chỉ nhóm theo user ID
+        .annotate(max_score=Max('score'))  # Lấy điểm cao nhất của từng user
+        .order_by('-max_score')  # Sắp xếp theo điểm giảm dần
+    )
+
+    for entry in history:
+        entry['user'] = CustomUser.objects.get(id=entry['users'])  # Lấy user từ ID
+
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -63,7 +74,7 @@ def game_detail(request, id):
     else:
         form = CommentForm()
     
-    return render(request,"game_detail.html", {'game':game, 'form':form, 'user':request.user})
+    return render(request,"game_detail.html", {'game':game,'leader':history, 'form':form, 'user':request.user})
 
 
 def DeleteComment(request, comment_id):

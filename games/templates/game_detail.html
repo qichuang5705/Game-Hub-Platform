@@ -142,7 +142,7 @@
             <div class="leaderboard">
                 <h3>Leaderboard</h3>
 
-                <div class="user-info">
+                <!-- <div class="user-info">
                     <div class="user-points">
                         <label>Your Socre: </label>
                         <p>1120</p>
@@ -151,7 +151,7 @@
                         <label>Your Ranking: </label>
                         <p>50+</p>
                     </div>
-                </div>
+                </div> -->
 
                 <table>
                     <tr class="header_leader">
@@ -159,21 +159,13 @@
                         <th>Player Name</th>
                         <th>Score</th>
                     </tr>
+                    {% for entry in history %}
                     <tr>
-                        <td>1</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>Player 1</td>
                         <td>12345</td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Player 2</td>
-                        <td>11000</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Player 3</td>
-                        <td>10234</td>
-                    </tr>
+                    {% endfor %}
                 </table>
             </div>
 
