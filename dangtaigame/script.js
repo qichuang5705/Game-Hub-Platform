@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const avatarInput = document.getElementById("game-avatar");
   const avatarPreview = document.getElementById("avatar-preview");
   const gameForm = document.getElementById("game-form");
+  const gamesList = document.getElementById("games-list");
 
   // 🖼 Xử lý chọn avatar
   if (avatarInput) {
@@ -27,10 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
     gameForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const gameName = document.getElementById("game-name").value;
-      const gameDescription = document.getElementById("game-description").value;
-      const gameCategory = document.getElementById("game-category").value;
-      const gamePrice = document.getElementById("game-price").value;
+      const gameName =
+        document.getElementById("game-name").value.trim() || "Chưa có tên";
+      const gameDescription =
+        document.getElementById("game-description").value.trim() ||
+        "Không có mô tả";
+      const gameCategory =
+        document.getElementById("game-category").value.trim() ||
+        "Không xác định";
+      const gamePrice =
+        document.getElementById("game-price").value.trim() || "0";
       const gameAvatar = localStorage.getItem("avatar") || "default-avatar.png";
 
       let games = JSON.parse(localStorage.getItem("games")) || [];
@@ -44,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       localStorage.setItem("games", JSON.stringify(games));
+      localStorage.removeItem("avatar"); // Xóa avatar sau khi lưu
       gameForm.reset();
       avatarPreview.src = "default-avatar.png";
       window.location.href = "games.html"; // Chuyển đến danh sách game
@@ -51,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 📜 Hiển thị danh sách game
-  const gamesList = document.getElementById("games-list");
   if (gamesList) {
     let games = JSON.parse(localStorage.getItem("games")) || [];
 
@@ -66,10 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
       gameItem.innerHTML = `
         <div class="game-card">
           <img src="${game.avatar}" alt="Game Avatar" class="game-avatar">
-          <h3 contenteditable="false" class="edit-game-name">🎮Tên Game: ${game.name}</h3>
-          <p><strong>📄Mô Tả:</strong> <span contenteditable="false" class="edit-game-description">${game.description}</span></p>
-          <p><strong>📑Thể loại:</strong> <span contenteditable="false" class="edit-game-category">${game.category}</span></p>
-          <p><strong>💲Giá:</strong> <span contenteditable="false" class="edit-game-price">${game.price}</span> VNĐ</p>
+          <h3><strong>🎮 Tên Game:</strong> <span class="edit-game-name" contenteditable="false">${game.name}</span></h3>
+          <p><strong>📄 Mô Tả:</strong> <span class="edit-game-description" contenteditable="false">${game.description}</span></p>
+          <p><strong>📑 Thể loại:</strong> <span class="edit-game-category" contenteditable="false">${game.category}</span></p>
+          <p><strong>💲 Giá:</strong> <span class="edit-game-price" contenteditable="false">${game.price}</span> VNĐ</p>
           <div class="game-buttons">
               <button class="edit-game" data-index="${index}">✏️ Sửa</button>
               <button class="save-game" data-index="${index}" style="display: none;">💾 Lưu</button>
@@ -106,15 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const gameDiv = this.parentElement.parentElement;
 
         // Lưu thông tin đã chỉnh sửa
-        games[index].name = gameDiv.querySelector(".edit-game-name").innerText;
-        games[index].description = gameDiv.querySelector(
-          ".edit-game-description"
-        ).innerText;
-        games[index].category = gameDiv.querySelector(
-          ".edit-game-category"
-        ).innerText;
+        games[index].name =
+          gameDiv.querySelector(".edit-game-name").innerText.trim() ||
+          "Chưa có tên";
+        games[index].description =
+          gameDiv.querySelector(".edit-game-description").innerText.trim() ||
+          "Không có mô tả";
+        games[index].category =
+          gameDiv.querySelector(".edit-game-category").innerText.trim() ||
+          "Không xác định";
         games[index].price =
-          gameDiv.querySelector(".edit-game-price").innerText;
+          gameDiv.querySelector(".edit-game-price").innerText.trim() || "0";
 
         // Cập nhật localStorage
         localStorage.setItem("games", JSON.stringify(games));
