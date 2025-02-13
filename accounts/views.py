@@ -103,7 +103,7 @@ def information(request):
 def reset_password(request):
     return render(request, 'password_reset.html')
 
-def login_register(request):
+def home(request):
     login_form=LoginForm()
     register_form=RegistrationForm()
     if request.method == "POST":
@@ -133,7 +133,7 @@ def login_register(request):
         login_form=LoginForm()
         register_form=RegistrationForm()
 
-    return render(request, 'login_register.html', {
+    return render(request, 'home.html', {
         'login_form': login_form,
         'register_form': register_form,
     })
