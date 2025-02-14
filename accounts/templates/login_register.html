@@ -15,14 +15,76 @@
     <link rel="stylesheet" href="{% static 'css/login_register.css' %}" />
   </head>
   <body>
-    <div class="page_home">
-      <i class="fa-solid fa-user"></i>
-      <div class="cart">
-        <label>Account</label>
-        <div class="account">
-          <span class="open-admin-btn">Admin</span>
-          <span class="open-account-btn">Login</span>
-        </div>
+    <!---->
+    <div class="page_home exist"> 
+      <i class="cart-btn fa-solid fa-user"></i>
+      <div class="cart close">
+          <div class="account">
+              <span class="open-login-btn">Login</span>
+          </div>
+      </div>
+    </div>
+
+    <div class="page_home_user alternative">
+      <div class="avatar-wrapper ">  
+          <div class="avatar">
+              {% load static %}<img src="{% static 'api/img/logo.jpg' %}" alt="Logo" />
+          </div>
+      </div>
+      <div class="cart_user close">
+          <div class="account">
+              <span class="show-info-btn">Infomation</span>
+              <span class="logout-account-btn">Log out</span>
+          </div>
+      </div>
+      <div class="account-wrapper ">  
+          <span class="close-account close-button">&times;</span>
+          <div class="account_container">
+              <div class="user-profile">
+                  <div class="user-info">
+                      <p>Hello, NPT!</p>
+                  </div>
+              </div>
+              
+              <div class="your-detail">
+                  <label>YOUR DETAIL</label>
+                  <div class="info-group">
+                      <p>Name:</p>
+                      <input type="text" name="name" value="">
+                  </div>
+                  <div class="info-group">
+                      <p>Email:</p>
+                      <input type="email" name="email" value="" disabled>
+                  </div>
+                  <div class="info-group">
+                      <p>Tel:</p>
+                      <input type="tel" name="tel" value="">
+                  </div>
+                  <div class="info-group">
+                      <label for="account-type">Type Account:</label>
+                      <select id="account-type" name="account-type" disabled>
+                          <option value="player">Player Account</option>
+                          <option value="developer">Developer Account</option>
+                          <option value="designer">Designer Account</option>
+                      </select>
+                  </div>
+                  <div class="change-type-account">
+                      <span class="open-change-type-account-btn">Change Type Account</span>
+                  </div>
+              </div>
+  
+              <div class="password-section">
+                  <label>PASSWORD</label>
+                  <div class="change-password">
+                      <span class="open-change-password-btn">Change Password</span>
+                  </div>
+              </div>
+  
+              <div class="update-profile">
+                  <button>UPDATE PROFILE</button>
+              </div>
+
+          </div>
       </div>
     </div>
 
@@ -56,6 +118,14 @@
           <div class="login_footer">
             <span class="forgot-password-btn">Forgot password</span>
             <span class="create-account-btn">Create new account</span>
+          </div>
+          <div class="with_another">
+            <div class="with_another_inner"> 
+                <div class="with_another_icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,12 +179,8 @@
                 <label for="day">Type Account:</label>
                 <select class="option" name="requested_role" id="day">
                   <option class="option" value="player">Player Account</option>
-                  <option class="option" value="developer">
-                    Developer Account
-                  </option>
-                  <option class="option" value="designer">
-                    Designer Account
-                  </option>
+                  <option class="option" value="developer">Developer Account</option>
+                  <option class="option" value="designer">Designer Account</option>
                 </select>
               </div>
               <button type="submit" class="create-account-btn">Create</button>
@@ -122,6 +188,14 @@
           </div>
           <div class="register_footer">
             <span class="login-btn">Login</span>
+          </div>
+          <div class="with_another">
+            <div class="with_another_inner"> 
+                <div class="with_another_icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -131,7 +205,7 @@
         <div class="forgot_password_inner">
           <div class="page_account_header">
             <span class="close-forgot_password close-button">&times;</span>
-            <h1>FORGOT PASSWORD</h1>
+            <h1>CHANGE PASSWORD</h1>
           </div>
           <div class="forgot_password_body">
             <form action="" method="POST">
@@ -210,27 +284,6 @@
         </div>
       </div>
 
-      <!--Admin-->
-      <div class="admin">
-        <div class="admin_inner">
-          <div class="page_account_header">
-            <span class="close-admin close-button">&times;</span>
-            <h1>ADMIN</h1>
-          </div>
-          <div class="admin_body">
-            <form action="" method="">
-              <label>Admin</label>
-              <input type="text" name="name" />
-              <label>Password</label>
-              <input type="password" name="password" />
-            </form>
-          </div>
-          <div class="admin_footer">
-            <button>Login</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
