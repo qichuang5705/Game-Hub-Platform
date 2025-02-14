@@ -107,6 +107,7 @@ def Delete_Game(request, game_id):
 @login_required
 def UpGame(request):
     user_games = Game.objects.filter(user=request.user)
+    idgame = Game.objects.order_by('-id').first()
     if request.method == "POST":
         form = UpGameForm(request.POST, request.FILES)
         if form.is_valid():
@@ -120,7 +121,7 @@ def UpGame(request):
             return redirect('home')
     else:
         form = UpGameForm()
-    return render(request,'Uploadgame.html', {'form': form, 'games': user_games})
+    return render(request,'Uploadgame.html', {'form': form, 'games': user_games, 'gameid': idgame})
 
 @login_required
 def Edit_game(request, game_id):
@@ -142,5 +143,3 @@ def Edit_game(request, game_id):
     else:
         form = UpGameForm(instance=game)
     return render(request, 'Edit_game.html',{'game': Game, 'form': form})   
-
-

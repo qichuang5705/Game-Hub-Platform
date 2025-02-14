@@ -26,7 +26,7 @@ class UpGameForm(forms.ModelForm):
 
     class Meta:
         model = Game
-        fields = ('name', 'genres', 'description', 'image', 'file')
+        fields = ('name', 'genres', 'ApiLD', 'description', 'image', 'file')
 
     def clean_genres(self):
         genres = self.cleaned_data.get('genres')
@@ -53,7 +53,6 @@ class UpGameForm(forms.ModelForm):
                 try:
                     with zipfile.ZipFile(file, 'r') as zip_ref:
                         file_list = zip_ref.namelist()  # Lấy danh sách file trong zip
-                        print(file_list)
                         if 'index.html' not in file_list:
                             raise forms.ValidationError("Phải đăng tải file 'index.html' là con cấp 1 của file .zip")
                 except zipfile.BadZipFile:
@@ -69,9 +68,11 @@ class UpGameForm(forms.ModelForm):
 
             # Đổi tên file ảnh
             new_image_name = f"{slugify(self.cleaned_data.get('name'))}_image_{uuid.uuid4().hex}{image_extension}"
-
+            
            # Di chuyển file ảnh tới tên mới trong MEDIA_ROOT
             new_image_path = os.path.join(settings.MEDIA_ROOT, 'games', 'image', new_image_name)
+
+            os.makedirs(os.path.dirname(new_image_path), exist_ok=True) #Tạo thư mục nếu chưa tồn tại
 
             # Di chuyển ảnh tới tên mới
             with open(new_image_path, 'wb') as f:

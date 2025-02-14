@@ -18,7 +18,9 @@ class Game(models.Model):
     image = models.ImageField(upload_to='games/image', null=True, blank=True)
     file = models.FileField(upload_to='games/file', null=True, blank=True)
     version = models.TextField(max_length=15, default=1.0)
-    
+    ApiLD = models.BooleanField(default=False) #API leaderboard
+
+
     def extract(self):
         # file = "C:\\Users\\Huy Le\\Desktop\\Projects\\file\\catch_the_ball_709.z111ip"
         file_zip_path = self.file.path 

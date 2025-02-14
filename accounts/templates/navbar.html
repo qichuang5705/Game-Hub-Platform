@@ -1,14 +1,17 @@
+{% load static %}
 <body>
   <header>
       <div class="navbar">
           <div class="logo">
-              {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+            <a href="{% url 'home' %}">
+              <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+            </a>
           </div>
           <nav class="header_function">
               <ul>
-                  <li><a href="#">Home</a></li>
+                  <li><a href="{% url 'home' %}">Home</a></li>
                   <li><a href="#">About Us</a></li>
-                  <li><a href="#">Developer</a></li>
+                  <li><a href="{% url 'up_game'%}">Developer</a></li>
                   <li><a href="#">Designer</a></li>
               </ul>
           </nav>
@@ -108,17 +111,44 @@
             <h1>LOGIN</h1>
           </div>
           <div class="login_body">
-                      <form action="" method="">
+            <!-- chức năng đăng nhập -->
+            <form action="" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="login" value="true" />
               <label>User Name</label>
-                          <input type="text" name="name" placeholder="Enter username">
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+              />
+              <p class="error-message"></p>
               <label>Password</label>
-                          <input type="password" name="password" placeholder="Enter password">
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+              />
+              <p class="error-message"></p>
+          
+                {% if messages %}
+                {% for message in messages %}
+                  <div style="background-color: #f8d7da;
+                  color: #721c24;
+                  border: 1px solid #f5c6cb;" class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                  </div>
+                {% endfor %}
+                {% endif %}
               <div class="remember-me">
-                              <input type="checkbox" id="saveLogin" name="saveLogin">
+                <input type="checkbox" id="saveLogin" name="saveLogin" />
                 <label for="saveLogin">Remember me!</label>
               </div>
+              <button type="submit">Login</button>
             </form>
-            <button type="submit" class="btn-login">Login</button>
+            <!-- chức năng đăng nhập -->
+
           </div>
           <div class="login_footer">
             <button type="submit" class="btn-login">Login</button>

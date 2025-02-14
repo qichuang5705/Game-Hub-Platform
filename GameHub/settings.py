@@ -142,3 +142,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'antran08112005@gmail.com'  # Thay bằng email của bạn
 EMAIL_HOST_PASSWORD = 'evrb bxti ehpv rhrc'  # Thay bằng mật khẩu ứng dụng
 
+LOGIN_URL = '/'

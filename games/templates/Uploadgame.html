@@ -124,7 +124,7 @@
         <h2>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</h2>
         <form method="post" enctype="multipart/form-data" class="form1">
             {% csrf_token %}
-            
+            <p>Mã game: {{ gameid.id|add:"1" }}</p>
             <div class="form-group">
                 <label for="id_name">Name:</label>
                 {{ form.name }}
@@ -142,14 +142,16 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-    
+            </div>
+            <div class="form-group">
+                <label for="id_genres">Bảng xếp hạng:</label> {{ form.ApiLD }}
             </div>
 
             <div class="form-group">
                 <label for="id_description">Description:</label>
                 {{ form.description }}
             </div>
-
+            
             <div class="form-group">
                 <label for="id_image">Image:</label>
                 {{ form.image }}
@@ -193,6 +195,7 @@
                     <p>Ngày tạo: {{ game.datecreate }}</p>
                     <p>Phiên bản: {{ game.version }}</p>
                     <p>Mô tả: {{ game.description }}</p>
+                    <p>Bảng xếp hạng: {{ game.ApiLD }}</p>
                     <a href="{% url 'Delete_Game' game.id %}">
                         <button type="button">Xóa</button>
                     </a>

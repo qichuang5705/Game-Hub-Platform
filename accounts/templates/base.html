@@ -14,7 +14,17 @@
     <link rel="stylesheet" href="{% static 'css/game_home.css' %}">
 
     {% block head %}
-
+    <style>
+        .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .error-border {
+        border: 2px solid red;
+        background-color: #ffe6e6;
+    }
+    </style>
     {% endblock %}
 </head>
 <body>

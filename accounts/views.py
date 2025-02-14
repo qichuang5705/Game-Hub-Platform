@@ -116,6 +116,8 @@ def home(request):
                     return redirect_base_on_role(user)
                 else:
                     messages.error(request, "Invalid username or password")
+            else:
+                messages.error(request, "Invalid username or password")
         elif 'register' in request.POST:
             register_form = RegistrationForm(request.POST)
             if register_form.is_valid():

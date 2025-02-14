@@ -1,4 +1,5 @@
-media/games/
+media/games/file/
+media/games/image/
 virtual/
 __pycache__/
 *.pyc
