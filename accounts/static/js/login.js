@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Forgot Password -> Login
     loginButtonFromForgot.addEventListener("click", () => {
-        if (avatar.classList.contains("hide"))
+        if (userAccount.classList.contains("alternative"))
         {
             forgotPasswordSection.classList.add("hide");
             forgotPasswordSection.classList.remove("show");
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Forgot Password -> Register
     createButtonFromForgot.addEventListener("click", () => {
-        if (avatar.classList.contains("hide"))
+        if (userAccount.classList.contains("alternative"))
         {
             forgotPasswordSection.classList.add("hide");
             forgotPasswordSection.classList.remove("show");
