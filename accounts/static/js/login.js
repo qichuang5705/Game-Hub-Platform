@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const opencartShow = document.querySelector(".cart-btn");
     const opencartUserShow = document.querySelector(".avatar-wrapper");
 
+    
+
     //
     opencartShow.addEventListener("click", () => {
         if (cartShow.classList.contains("open")) {

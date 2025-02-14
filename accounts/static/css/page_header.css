@@ -15,31 +15,35 @@ header {
 
 .navbar {
     display: flex;
-    align-items: center; 
-}
-
-.navbar .logo {
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between; /* Distribute space between logo and right elements */
 }
 
-.navbar .logo img {
-    height: 90px;
-    margin-bottom: 5px;
+.logo img {
+    height: 60px;
+    border-radius: 10px;
     cursor: pointer;
-    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.03);
 }
 
 .header_function {
-    margin-left: 50px;
+    /* Removed margin-left */
+    flex-grow: 1; /* Allow navigation to take up available space */
+    display: flex; /* Enable flexbox for alignment within header_function */
+    justify-content: center; /* Center the <ul> */
 }
 
 .header_function ul {
     list-style: none;
-    padding: 0;
+    padding: 0; /* Removed padding */
     margin: 0;
     display: flex;
+    align-items: center;
+    justify-content: center; /* Center the list items */
 }
 
 .header_function li {
@@ -49,25 +53,25 @@ header {
 .header_function a {
     text-decoration: none;
     color: white;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .header_function a:hover {
-    background-color: #555;
-    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
 }
 
 .search-container {
     display: flex;
     align-items: center;
-    
+    /* Removed margin-left */
 }
 
 .search-box {
     display: flex;
-    height: 30px;
-    margin-right: 10px; 
+    height: 35px;
 }
 
 .search-box input[type="text"] {
@@ -75,13 +79,19 @@ header {
     border: none;
     border-radius: 5px 0 0 5px;
     outline: none;
-    width: 150px; 
+    width: 180px;
+    background-color: #111;
+    color: white;
+}
+
+.search-box input[type="text"]::placeholder {
+    color: #555;
 }
 
 .search-box button {
-    padding: 8px 12px;
+    padding: 8px 15px;
     border: none;
-    background-color: #555;
+    background-color: #333;
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -89,14 +99,14 @@ header {
 }
 
 .search-box button:hover {
-    background-color: #777;
+    background-color: #555;
 }
 
 /**/
 .page_home {
     position: relative; 
-    top: 20px; 
-    right: 130px; 
+    top: 0px; 
+    right: 30px; 
     cursor: pointer; 
     z-index: 80;   
 }
@@ -119,7 +129,7 @@ header {
 .cart, .cart_user {
     position: absolute;
     top: 52px; 
-    right: 20px; 
+    right: -50px; 
     background-color: #2b2b2b;
     border-radius: 10px;
     width: 150px;
@@ -128,11 +138,6 @@ header {
     flex-direction: column;
     gap: 10px;
     z-index: 79; 
-}
-
-.cart_user {
-    top: 70px;
-    right: 150px;
 }
 
 .page_home .cart.open , .page_home_user .cart_user.open{
@@ -171,6 +176,8 @@ header {
     align-items: center;
     width: fit-content;
     transition: transform 0.3s ease;
+    top: 0px;
+    right: 30px;
 }
 
 .page_home_user p:hover{
@@ -186,8 +193,8 @@ header {
 
 .account-wrapper {
     position: absolute;
-    top: 5px;
-    right: 80px;
+    top: -10px;
+    right: 30px;
     transform: translateY(0);
     width: 430px;
     min-height: 400px;
@@ -218,8 +225,6 @@ header {
 
 .avatar-wrapper {
     position: relative; 
-    top: 20px; 
-    right: 250%; 
     z-index: 85; 
     transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
@@ -238,7 +243,7 @@ header {
 }
 
 .avatar-wrapper.open{
-    transform: translateX(-300px);
+    transform: translateX(-380px);
 }
 
 .avatar-wrapper.close{
@@ -255,6 +260,7 @@ header {
     align-items: center;
     margin-bottom: 20px;
     margin-left: 80px;
+    margin-top: -5px;
 }
 
 .user-info p {
