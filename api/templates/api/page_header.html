@@ -24,9 +24,7 @@
         <div class="page_home exist"> 
             <i class="cart-btn fa-solid fa-user"></i>
             <div class="cart close">
-                <label>Account</label>
                 <div class="account">
-                    <span class="open-admin-btn">Admin</span>
                     <span class="open-login-btn">Login</span>
                 </div>
             </div>
@@ -36,6 +34,12 @@
             <div class="avatar-wrapper ">  
                 <div class="avatar">
                     {% load static %}<img src="{% static 'api/img/logo.jpg' %}" alt="Logo" />
+                </div>
+            </div>
+            <div class="cart_user close">
+                <div class="account">
+                    <span class="show-info-btn">Infomation</span>
+                    <span class="logout-account-btn">Log out</span>
                 </div>
             </div>
             <div class="account-wrapper ">  
@@ -51,15 +55,15 @@
                         <label>YOUR DETAIL</label>
                         <div class="info-group">
                             <p>Name:</p>
-                            <input type="text" name="name" value="NPT">
+                            <input type="text" name="name" value="">
                         </div>
                         <div class="info-group">
                             <p>Email:</p>
-                            <input type="email" name="email" value="bucudianh@gmail.com" disabled>
+                            <input type="email" name="email" value="" disabled>
                         </div>
                         <div class="info-group">
                             <p>Tel:</p>
-                            <input type="tel" name="tel" value="0123456789">
+                            <input type="tel" name="tel" value="">
                         </div>
                         <div class="info-group">
                             <label for="account-type">Type Account:</label>
@@ -83,10 +87,6 @@
         
                     <div class="update-profile">
                         <button>UPDATE PROFILE</button>
-                    </div>
-        
-                    <div class="account_logout">
-                        <span class="logout-account-btn">Log Out</span>
                     </div>
 
                 </div>

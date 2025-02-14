@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userAccount = document.querySelector(".page_home_user");
     const guestAccount = document.querySelector(".page_home");
     const cartShow = document.querySelector(".page_home .cart");
+    const cartUserShow = document.querySelector(".page_home_user .cart_user");
 
     const createNewAccountButton = document.querySelector(".login_footer span:last-child");
     const createButton = document.querySelector(".register_footer .create-account-btn");
@@ -30,13 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeAdmin = document.querySelector(".close-admin");
     const closeResetPassword = document.querySelector(".close-reset_password");
 
-    const openAccount = document.querySelector(".avatar-wrapper");
+    const openAccount = document.querySelector(".show-info-btn");
     const closeAccount = document.querySelector(".close-account");
 
     const loginToUser = document.querySelector(".login_footer .btn-login");
     const logoutToGuest = document.querySelector(".logout-account-btn");
 
     const opencartShow = document.querySelector(".cart-btn");
+    const opencartUserShow = document.querySelector(".avatar-wrapper");
 
     //
     opencartShow.addEventListener("click", () => {
@@ -49,8 +51,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    //Login --> User Page
+    //
+    opencartUserShow.addEventListener("click", () => {
+        if (cartUserShow.classList.contains("open")) {
+            cartUserShow.classList.remove("open");
+            cartUserShow.classList.add("close");
+        } else {
+            cartUserShow.classList.remove("close");
+            cartUserShow.classList.add("open");
+        }
+    });
+
+    //Login --> User 
     loginToUser.addEventListener("click", () => {
+        const usernameInput = document.querySelector('.login_body input[name="name"]');
+        const passwordInput = document.querySelector('.login_body input[name="password"]');
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        if (username.trim() === "" || password.trim() === "") {
+            return; 
+        }
+
+
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
 
@@ -60,10 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
         guestAccount.classList.remove("exist");
         guestAccount.classList.add("alternative");
 
+        accountSection.classList.add("hide");
+        accountSection.classList.remove("show");
+
         setTimeout(() => {
             userAccount.classList.add("exist");
             userAccount.classList.remove("alternative");
         }, 100);
+
     });
 
     //Usser Logout -> Guest
@@ -77,6 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
         avatar.classList.add("close");
         avatar.classList.remove("open");
 
+        cartUserShow.classList.add("close");
+        cartUserShow.classList.remove("open");
+
         setTimeout(() => {
             guestAccount.classList.remove("hide");
             guestAccount.classList.add("exist");
@@ -85,8 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    //Show Account
+    //Show Info
     openAccount.addEventListener("click", () => {
+        cartUserShow.classList.add("close");
+        cartUserShow.classList.remove("open")
 
         setTimeout(() => {
             avatar.classList.add("open");
@@ -96,15 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 150);
     });
 
-    //Close Account
+    //Close Info
     closeAccount.addEventListener("click", () => {
-
-        setTimeout(() => {
-            avatar.classList.add("close");
-            avatar.classList.remove("open");
-            accountSection.classList.add("hide");
-            accountSection.classList.remove("show");
-        }, 200);
+        avatar.classList.add("close");
+        avatar.classList.remove("open");
+        accountSection.classList.add("hide");
+        accountSection.classList.remove("show");
     });
 
     // Show Login
@@ -118,20 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             loginSection.classList.add("show");
             loginSection.classList.remove("hide");
-        }, 100);
-    });
-
-    // Show Admin
-    openAdminPage.addEventListener("click", () => {
-        pageAccountSection.classList.add("show");
-        pageAccountSection.classList.remove("hide");
-
-        cartShow.classList.add("close");
-        cartShow.classList.remove("open");
-        
-        setTimeout(() => {
-            adminSection.classList.add("show");
-            adminSection.classList.remove("hide");
         }, 100);
     });
 

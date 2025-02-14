@@ -109,13 +109,14 @@ header {
     border-radius: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease; 
+    z-index: 90;
 }
 
 .page_home:hover i{
     transform: scale(1.1); 
 }
 
-.cart {
+.cart, .cart_user {
     position: absolute;
     top: 52px; 
     right: 20px; 
@@ -129,25 +130,21 @@ header {
     z-index: 79; 
 }
 
-.page_home .cart.open {
+.cart_user {
+    top: 70px;
+    right: 150px;
+}
+
+.page_home .cart.open , .page_home_user .cart_user.open{
     display: flex;
 }
 
-.page_home .cart.close {
+.page_home .cart.close, .page_home_user .cart_user.close {
     display: none;
+    pointer-events: none;
 }
 
-.cart label {
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.cart span:hover {
+.cart span:hover, .cart_user span:hover {
     transform: scale(1.05);
     background-color: #464646;
     color: #abf600;
@@ -212,7 +209,7 @@ header {
 }
 
 .account-wrapper.hide{
-    z-index: 81;
+    z-index: 0;
     opacity: 0;
     transform: translateY(-50%);
     visibility: hidden;
@@ -337,20 +334,6 @@ header {
     transform: scale(0.99);
 }
 
-.account_logout {
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    cursor: pointer;
-    color: #dc3545;
-    transition: color 0.3s ease;
-    font-weight: bolder;
-}
-
-.account_logout:hover {
-    font-size: 19px;
-}
-
 .account-wrapper .close-account {
     font-size: 30px;
     color: #dc3545;
@@ -374,6 +357,7 @@ input:disabled, select:disabled {
 
 .page_home.alternative, .page_home_user.alternative {
     display: none;
+    pointer-events: none;
 }
 
 .page_home.exist, .page_home_user.exist {
