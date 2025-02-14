@@ -8,7 +8,7 @@ from .models import CustomUser
 from games.models import Game
 from django.core.mail import send_mail
 import random
-
+from django.conf import settings
 def redirect_base_on_role(user):
     if user.is_superuser:
     # Đăng nhập người dùng và chuyển hướng đến admin
@@ -36,11 +36,6 @@ def login_view(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-
-
-def home(request):
-    gamehay = Game.objects.all()
-    return render(request, 'home.html', {'games': gamehay,'user': request.user})
 
 def register(request):
     if request.method == 'POST':
@@ -104,6 +99,7 @@ def reset_password(request):
     return render(request, 'password_reset.html')
 
 def home(request):
+    game = Game.objects.all()
     login_form=LoginForm()
     register_form=RegistrationForm()
     if request.method == "POST":
@@ -136,6 +132,7 @@ def home(request):
     return render(request, 'home.html', {
         'login_form': login_form,
         'register_form': register_form,
+        'games': game
     })
 
 def send_otp_email(email, otp):

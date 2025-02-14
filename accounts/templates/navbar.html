@@ -2,7 +2,7 @@
   <header>
       <div class="navbar">
           <div class="logo">
-              {% load static %}<img src="{% static '/img/logo.jpg' %}" alt="Logo" />
+              {% load static %}<img src="{% static 'api/img/logo.jpg' %}" alt="Logo" />
           </div>
           <nav class="header_function">
               <ul>
@@ -33,7 +33,7 @@
       <div class="page_home_user alternative">
           <div class="avatar-wrapper ">  
               <div class="avatar">
-                {% load static %}<img src="{% static '/img/logo.jpg' %}" alt="Logo" />
+                  {% load static %}<img src="{% static 'api/img/logo.jpg' %}" alt="Logo" />
               </div>
           </div>
           <div class="cart_user close">
@@ -89,152 +89,152 @@
                       <button>UPDATE PROFILE</button>
                   </div>
 
-              </div>
-          </div>
+        </div>
       </div>
-  
-      <div class="page_account hide">
-          <!--Login-->
-          <div class="login hide">
-              <div class="login_inner">
-                  <div class="page_account_header">
-                      <span class="close-login close-button">&times;</span>
-                      <h1>LOGIN</h1>
-                  </div>
-                  <div class="login_body">
-                      <form action="" method="">
-                          <label>User Name</label>
-                          <input type="text" name="name" placeholder="Enter username">
-                          <label>Password</label>
-                          <input type="password" name="password" placeholder="Enter password">
-                          <div class="remember-me">
-                              <input type="checkbox" id="saveLogin" name="saveLogin">
-                              <label for="saveLogin">Remember me!</label>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="login_footer">
-                      <button class="btn-login">Login</button>
-                      <span class="forgot-password-btn">Forgot password</span>
-                      <span class="create-account-btn">Create new account</span>
-                  </div>
-                  <div class="with_another">
-                      <div class="with_another_inner"> 
-                          <div class="with_another_icons">
-                              <a href="#"><i class="fab fa-facebook-f"></i></a>
-                              <a href="#"><i class="fab fa-google"></i></a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+    </div>
+
+    <div class="page_account hide">
+      <!--Login-->
+      <div class="login hide">
+        <div class="login_inner">
+          <div class="page_account_header">
+            <span class="close-login close-button">&times;</span>
+            <h1>LOGIN</h1>
           </div>
-  
-          <!--Register-->
-          <div class="register hide">
-              <div class="register_inner">
-                  <div class="page_account_header">
-                      <span class="close-register close-button">&times;</span>
-                      <h1>CREATE</h1>
-                  </div>
-                  <div class="register_body">
+          <div class="login_body">
                       <form action="" method="">
-                          <label>User Name</label>
+              <label>User Name</label>
+                          <input type="text" name="name" placeholder="Enter username">
+              <label>Password</label>
+                          <input type="password" name="password" placeholder="Enter password">
+              <div class="remember-me">
+                              <input type="checkbox" id="saveLogin" name="saveLogin">
+                <label for="saveLogin">Remember me!</label>
+              </div>
+            </form>
+          </div>
+          <div class="login_footer">
+            <button class="btn-login">Login</button>
+            <span class="forgot-password-btn">Forgot password</span>
+            <span class="create-account-btn">Create new account</span>
+          </div>
+          <div class="with_another">
+            <div class="with_another_inner">
+              <div class="with_another_icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Register-->
+      <div class="register hide">
+        <div class="register_inner">
+          <div class="page_account_header">
+            <span class="close-register close-button">&times;</span>
+            <h1>CREATE</h1>
+          </div>
+          <div class="register_body">
+                      <form action="" method="">
+              <label>User Name</label>
                           <input type="text" name="name" placeholder="Enter User Name">
-                          <label>Email</label>
+              <label>Email</label>
                           <input type="email" name="email" placeholder="Enter Your Email">
-                          <label>Password</label>
+              <label>Password</label>
                           <input type="password" name="password" placeholder="Enter Password">
-                          <label>Confirm Password</label>
+              <label>Confirm Password</label>
                           <input type="password" name="password" placeholder="Re-Enter Your Password">
                           <div class="form-group">
                           </div>
-                          <div class="form-group">
-                              <label for="day">Type Account:</label>
+              <div class="form-group">
+                <label for="day">Type Account:</label>
                               <select class="option" name="day" id="day">
-                                  <option class="option" value="player">Player Account</option>
+                  <option class="option" value="player">Player Account</option>
                                   <option class="option" value="developer">Developer Account</option>
                                   <option class="option" value="designer">Designer Account</option>
-                              </select>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="register_footer">
-                      <button class="create-account-btn">Create</button>
-                      <span class="login-btn">Login</span>
-                  </div>
-                  <div class="with_another">
-                      <div class="with_another_inner"> 
-                          <div class="with_another_icons">
-                              <a href="#"><i class="fab fa-facebook-f"></i></a>
-                              <a href="#"><i class="fab fa-google"></i></a>
-                          </div>
-                      </div>
-                  </div>
+                </select>
               </div>
+            </form>
           </div>
-  
-          <!--Forgot Password-->
-          <div class="forgot_password hide">
-              <div class="forgot_password_inner">
-                  <div class="page_account_header">
-                      <span class="close-forgot_password close-button">&times;</span>
-                      <h1>CHANGE PASSWORD</h1>
-                  </div>
-                  <div class="forgot_password_body">
-                      <form action="" method="">
-                          <label>User Name</label>
+          <div class="register_footer">
+            <button class="create-account-btn">Create</button>
+            <span class="login-btn">Login</span>
+          </div>
+          <div class="with_another">
+            <div class="with_another_inner">
+              <div class="with_another_icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Forgot Password-->
+      <div class="forgot_password hide">
+        <div class="forgot_password_inner">
+          <div class="page_account_header">
+            <span class="close-forgot_password close-button">&times;</span>
+            <h1>CHANGE PASSWORD</h1>
+          </div>
+          <div class="forgot_password_body">
+            <form action="" method="">
+              <label>User Name</label>
                           <input type="text" name="name" placeholder="Enter User Name">
-                          <label>Email</label>
+              <label>Email</label>
                           <input type="email" name="email" placeholder="Enter Your Email">
-                      </form>
-                  </div>
-                  <div class="enter-code"> 
-                      <div class="send_code">
-                          <label>Enter Code:</label>
-                          <button class="btn-sendcode">Send Code</button>
-                      </div>
-                      <div class="box">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                      </div>
-                  </div>
-                  <div class="forgot_password_footer">
-                      <button class="send-code-btn">Confirm</button>
-                      <span class="login-btn">Login</span>
-                      <span class="create-account-btn">Create new account</span>
-                  </div>
-              </div>
+            </form>
           </div>
-  
-          <!--Reset Password-->
-          <div class="reset_password hide">
-              <div class="reset_password_inner">
-                  <div class="page_account_header">
-                      <span class="close-reset_password close-button">&times;</span>
-                      <h1>RESET PASSWORD</h1>
-                  </div>
-                  <div class="reset_password_body">
-                      <form action="" method="">
-                          <label>User Name</label>
+          <div class="enter-code">
+            <div class="send_code">
+              <label>Enter Code:</label>
+              <button class="btn-sendcode">Send Code</button>
+            </div>
+            <div class="box">
+                          <input type="text" name="digit" maxlength="1">
+                          <input type="text" name="digit" maxlength="1">
+                          <input type="text" name="digit" maxlength="1">
+                          <input type="text" name="digit" maxlength="1">
+                          <input type="text" name="digit" maxlength="1">
+                          <input type="text" name="digit" maxlength="1">
+            </div>
+          </div>
+          <div class="forgot_password_footer">
+            <button class="send-code-btn">Confirm</button>
+            <span class="login-btn">Login</span>
+            <span class="create-account-btn">Create new account</span>
+          </div>
+        </div>
+      </div>
+
+      <!--Reset Password-->
+      <div class="reset_password hide">
+        <div class="reset_password_inner">
+          <div class="page_account_header">
+            <span class="close-reset_password close-button">&times;</span>
+            <h1>RESET PASSWORD</h1>
+          </div>
+          <div class="reset_password_body">
+            <form action="" method="">
+              <label>User Name</label>
                           <input type="text" name="name" placeholder="Hiện tên người dùng" readonly>
-                          <label>Email</label>
+              <label>Email</label>
                           <input type="email" name="email" placeholder="Hiện email người dùng" readonly>
-                          <label>New Password</label>
+              <label>New Password</label>
                           <input type="password" name="password" placeholder="Enter new Password">
-                          <label>Confirm New Password</label>
+              <label>Confirm New Password</label>
                           <input type="password" name="password" placeholder="Re-Enter Your New Password">
-                      </form>
-                  </div>
-                  <div class="reset_password_footer">
-                      <button class="reset_password-btn">Confirm</button>
-                  </div>
-              </div>
+            </form>
           </div>
-  
+          <div class="reset_password_footer">
+            <button class="reset_password-btn">Confirm</button>
+          </div>
+        </div>
+      </div>
+
       </div>
 
   </header>
