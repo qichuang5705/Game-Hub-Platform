@@ -19,7 +19,13 @@
               </div>
           </div>
       </div>
-
+      <!-- đã đăng nhập  -->
+      {% if user.is_authenticated %}  
+      <p>Đã đăng nhập</p>
+      {% else %} 
+      <!-- Chưa đang nhập -->
+      <p>Chưa đăng nhập</p>
+      {% endif %}
       <!---->
       <div class="page_home exist"> 
           <i class="cart-btn fa-solid fa-user"></i>
@@ -112,9 +118,10 @@
                 <label for="saveLogin">Remember me!</label>
               </div>
             </form>
+            <button type="submit" class="btn-login">Login</button>
           </div>
           <div class="login_footer">
-            <button class="btn-login">Login</button>
+            <button type="submit" class="btn-login">Login</button>
             <span class="forgot-password-btn">Forgot password</span>
             <span class="create-account-btn">Create new account</span>
           </div>
