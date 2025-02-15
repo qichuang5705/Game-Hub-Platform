@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
 from .models import asset,Purchase
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseForbidden,FileResponse
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
@@ -20,9 +20,9 @@ def asset_detail(request, asset_id):
     selected_asset = get_object_or_404(asset, id=asset_id)
     return render(request, 'asset_detail.html', {'asset': selected_asset})
 
-def buy_asset(request, asset_id):
+"""def buy_asset(request, asset_id):
     return HttpResponse(f"You have bought asset with ID {asset_id}")
-
+"""
 
 def asset_edit_view(request, asset_id):
     asset_obj = get_object_or_404(asset, id=asset_id)
@@ -42,16 +42,28 @@ def asset_edit_view(request, asset_id):
     return render(request, 'edit_asset.html', {'asset': asset_obj})
 
 def asset_buy_view(request, asset_id):
-    asset = get_object_or_404(asset, id=asset_id)
+    asset1 = get_object_or_404(asset, id=asset_id)
 
     if request.method == 'POST':
         payment_method = request.POST.get('payment_method')
-        Purchase.objects.create(user=request.user, asset=asset, payment_method=payment_method)
+        Purchase.objects.create(user=None, asset=asset1, payment_method=payment_method)
         return redirect('purchase_success')
 
     return render(request, 'buy_asset.html', {'asset': asset})
 
 
 def purchase_success_view(request):
-    purchases = Purchase.objects.filter(user=request.user)
+    user = request.user if request.user.is_authenticated else None 
+    
+    #purchases = Purchase.objects.filter(user=user) if user else []  
+    purchases = Purchase.objects.all()
     return render(request, 'purchase_success.html', {'purchases': purchases})
+
+def download_asset_view(request, asset_id):
+    asset1 = get_object_or_404(asset, id=asset_id) 
+
+    if asset.file:  
+        response = FileResponse(asset1.file.open('rb'), as_attachment=True)
+        return response
+
+    return HttpResponse("File không tồn tại", status=404)
