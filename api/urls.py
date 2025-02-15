@@ -3,5 +3,6 @@ from api import views
 
 urlpatterns = [
     path('', views.base, name='base'),
-     path('game/', views.game, name='page_game'),
+    path('game/', views.game, name='page_game'),
+    path('donate/', views.donate, name='donate'),
 ]

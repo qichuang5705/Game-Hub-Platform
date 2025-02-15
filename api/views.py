@@ -7,3 +7,6 @@ def base(request):
 
 def game(request):
      return render(request, 'api/page_game.html')
+
+def donate(request):
+     return render(request, 'api/donate.html')
