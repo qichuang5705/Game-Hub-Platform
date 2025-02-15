@@ -3,8 +3,9 @@
 {% block body %}
 
 <main class="page_body">
-    {% for game in games %}
     <div class="game-container">
+    {% for game in games %}
+
         <!--Game1-->
         <div class="card_game">
             <div class="cart_img">
@@ -18,23 +19,21 @@
             </div>
             <div class="game_info" data-rating="4.5"> 
                 <div class="name-container"> 
-                    <span>Name: </span>  <h3>{{ game.name }}</h3>
+                    <span>Game: </span>  <h3>{{ game.name }}</h3>
                 </div>
                 <div class="genre-container"> 
-                    <span>Genre: </span> 
+                    <span>Thể loại: </span> 
                     {% for genre in game.genres.all %}
                         <h3>{{ genre.name }}</h3>
                     {% endfor %}
                 </div>
                 <div class="voting-container">
-                    <span>Votting: </span>
+                    <span>Đánh giá: </span>
                     <div class="stars"> </div>
                 </div>
             </div>
         </div>
     {% endfor %}
-        
-
     </div>
 </main>
 

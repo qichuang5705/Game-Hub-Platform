@@ -10,114 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartShow = document.querySelector(".page_home .cart");
     const cartUserShow = document.querySelector(".page_home_user .cart_user");
 
-    const createNewAccountButton = document.querySelector(".login_footer span:last-child");
-    const createButton = document.querySelector(".register_footer .create-account-btn");
-    const loginButtonFromRegister = document.querySelector(".register_footer .login-btn");
-    const loginButtonFromForgot = document.querySelector(".forgot_password_footer .login-btn");
-    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn");
-    const createButtonFromForgot = document.querySelector(".forgot_password_footer .create-account-btn");
-    const resetPasswordFromForgot = document.querySelector(".forgot_password_footer .send-code-btn");
-    const loginFromReset = document.querySelector(".reset_password_footer .reset_password-btn");
-
-    const openLoginPage = document.querySelector(".open-login-btn");
-    const openChangePasswordPage = document.querySelector(".open-change-password-btn");
-    
-    const closeLogin = document.querySelector(".close-login");
-    const closeRegister = document.querySelector(".close-register");
-    const closeForgotPassword = document.querySelector(".close-forgot_password");
-    const closeResetPassword = document.querySelector(".close-reset_password");
-
-    const openAccount = document.querySelector(".show-info-btn");
-    const closeAccount = document.querySelector(".close-account");
-
-    const loginToUser = document.querySelector(".login_footer .btn-login");
-    const logoutToGuest = document.querySelector(".logout-account-btn");
-
-    const opencartShow = document.querySelector(".cart-btn");
+    //open user choice
     const opencartUserShow = document.querySelector(".avatar-wrapper");
-
-    
-
-    //
-    opencartShow.addEventListener("click", () => {
-        if (cartShow.classList.contains("open")) {
-            cartShow.classList.remove("open");
-            cartShow.classList.add("close");
-        } else {
-            cartShow.classList.remove("close");
-            cartShow.classList.add("open");
-        }
-    });
-
-    //
     opencartUserShow.addEventListener("click", () => {
-        if (cartUserShow.classList.contains("open")) {
+        if (cartUserShow.classList.contains("close"))
+        {
+            cartUserShow.classList.add("open");
+            cartUserShow.classList.remove("close");
+        } else {
             cartUserShow.classList.remove("open");
             cartUserShow.classList.add("close");
+        }
+    });
+
+    //open guest choice
+    const opencartShow = document.querySelector(".cart-btn");
+    opencartShow.addEventListener("click", () => {
+        if (cartShow.classList.contains("close"))
+        {
+            cartShow.classList.add("open");
+            cartShow.classList.remove("close");
         } else {
-            cartUserShow.classList.remove("close");
-            cartUserShow.classList.add("open");
+            cartShow.classList.remove("open");
+            cartShow.classList.add("close");
         }
     });
-
-    //Login --> User 
-    loginToUser.addEventListener("click", () => {
-        const usernameInput = document.querySelector('.login_body input[name="name"]');
-        const passwordInput = document.querySelector('.login_body input[name="password"]');
-
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-
-        if (username.trim() === "" || password.trim() === "") {
-            return; 
-        }
-
-
-        loginSection.classList.add("hide");
-        loginSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-
-        guestAccount.classList.remove("exist");
-        guestAccount.classList.add("alternative");
-
-        accountSection.classList.add("hide");
-        accountSection.classList.remove("show");
-
-        setTimeout(() => {
-            userAccount.classList.add("exist");
-            userAccount.classList.remove("alternative");
-        }, 100);
-
-    });
-
-    //Usser Logout -> Guest
-    logoutToGuest.addEventListener("click", () => {
-        userAccount.classList.add("alternative");
-        userAccount.classList.remove("exist");
-
-        accountSection.classList.add("hide");
-        accountSection.classList.remove("show");
-
-        avatar.classList.add("close");
-        avatar.classList.remove("open");
-
-        cartUserShow.classList.add("close");
-        cartUserShow.classList.remove("open");
-
-        setTimeout(() => {
-            guestAccount.classList.remove("hide");
-            guestAccount.classList.add("exist");
-            guestAccount.classList.remove("alternative");
-        }, 100);
-    });
-
 
     //Show Info
+    const openAccount = document.querySelector(".show-info-btn");
     openAccount.addEventListener("click", () => {
         cartUserShow.classList.add("close");
-        cartUserShow.classList.remove("open")
+        cartUserShow.classList.remove("open");
 
         setTimeout(() => {
             avatar.classList.add("open");
@@ -128,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //Close Info
+    const closeAccount = document.querySelector(".close-account");
     closeAccount.addEventListener("click", () => {
         avatar.classList.add("close");
         avatar.classList.remove("open");
@@ -136,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Show Login
+    const openLoginPage = document.querySelector(".open-login-btn");
     openLoginPage.addEventListener("click", () => {
         pageAccountSection.classList.add("show");
         pageAccountSection.classList.remove("hide");
@@ -150,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Account --> Fogot Password
+    const openChangePasswordPage = document.querySelector(".open-change-password-btn");
     openChangePasswordPage.addEventListener("click", () => {
         pageAccountSection.classList.add("show");
         pageAccountSection.classList.remove("hide");
@@ -161,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close Login
+    const closeLogin = document.querySelector(".close-login");
     closeLogin.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -170,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close Register
+    const closeRegister = document.querySelector(".close-register");
     closeRegister.addEventListener("click", () => {
         registerSection.classList.add("hide");
         registerSection.classList.remove("show");
@@ -179,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close Forgot Password
+    const closeForgotPassword = document.querySelector(".close-forgot_password");
     closeForgotPassword.addEventListener("click", () => {
         forgotPasswordSection.classList.add("hide");
         forgotPasswordSection.classList.remove("show");
@@ -186,17 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
     });
-
-    // Close Reset Password
-    closeResetPassword.addEventListener("click", () => {
-        resetPasswordSection.classList.add("hide");
-        resetPasswordSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-    });
     
     // Login -> Register
+    const createNewAccountButton = document.querySelector(".login_footer .create-account-btn"); 
     createNewAccountButton.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -206,31 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Register -> Login
-    createButton.addEventListener("click", () => {
-        const usernameInput = document.querySelector('.register_body input[name="name"]');
-        const emailInput = document.querySelector('.register_body input[name="email"]');
-        const passwordInput = document.querySelector('.register_body input[name="password"]');
-        const repasswordInput = document.querySelector('.register_body input[name="password"]');
-
-        const username = usernameInput.value;
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        const repassword = repasswordInput.value;
-
-        if (username.trim() === "" || password.trim() === "" || email.trim() === "" || repassword.trim() === "") {
-            return; 
-        }
-
-        registerSection.classList.add("hide");
-        registerSection.classList.remove("show");
-        setTimeout(() => {
-            loginSection.classList.add("show");
-            loginSection.classList.remove("hide");
-        }, 100);
-    });
-
     // Login -> Forgot Password
+    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn"); 
     forgotPasswordButton.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -240,17 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
     
-    // Forgot Password -> Reset Password
-    resetPasswordFromForgot.addEventListener("click", () => {
-        forgotPasswordSection.classList.add("hide");
-        forgotPasswordSection.classList.remove("show");
-        setTimeout(() => {
-            resetPasswordSection.classList.add("show");
-            resetPasswordSection.classList.remove("hide");
-        }, 100);
-    });
-    
     // Forgot Password -> Login
+    const loginButtonFromForgot = document.querySelector(".forgot_password_footer .login-btn");
     loginButtonFromForgot.addEventListener("click", () => {
         if (userAccount.classList.contains("alternative"))
         {
@@ -264,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Forgot Password -> Register
+    const createButtonFromForgot = document.querySelector(".forgot_password_footer .create-account-btn");
     createButtonFromForgot.addEventListener("click", () => {
         if (userAccount.classList.contains("alternative"))
         {
@@ -277,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Register -> Login
+    const loginButtonFromRegister = document.querySelector(".register_footer .login-btn");
     loginButtonFromRegister.addEventListener("click", () => {
         registerSection.classList.add("hide");
         registerSection.classList.remove("show");
@@ -287,26 +178,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Reset Password -> Login
-    loginFromReset.addEventListener("click", () => {
-        if (avatar.classList.contains("open"))
-        {
-            resetPasswordSection.classList.add("hide");
-            resetPasswordSection.classList.remove("show");
-
-            pageAccountSection.classList.add("hide");
-            pageAccountSection.classList.remove("show");
-        } else
-        {
-            resetPasswordSection.classList.add("hide");
-            resetPasswordSection.classList.remove("show");
-            setTimeout(() => {
-                loginSection.classList.add("show");
-                loginSection.classList.remove("hide");
-            }, 100);
-        }
-    });
-
-
 });
-
