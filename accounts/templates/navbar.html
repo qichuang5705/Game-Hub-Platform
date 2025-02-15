@@ -29,6 +29,12 @@
       <!-- Chưa đang nhập -->
       <p>Chưa đăng nhập</p>
       {% endif %}
+
+      {% if user.is_authenticated %}  
+      <p>Hiển thị thông tin của user, và nút logout</p>
+      {% else %} 
+      <p>Hiển thị log, đổi pass, tạo tk</p>
+      {% endif %}
       <!---->
       <div class="page_home exist"> 
           <i class="cart-btn fa-solid fa-user"></i>
@@ -145,10 +151,13 @@
                 <input type="checkbox" id="saveLogin" name="saveLogin" />
                 <label for="saveLogin">Remember me!</label>
               </div>
-              <button type="submit">Login</button>
+              <div class="login_footer">
+                <button type="submit" class="btn-login">Login</button>
+                <span class="forgot-password-btn">Forgot password</span>
+                <span class="create-account-btn">Create new account</span>
+              </div>
             </form>
             <!-- chức năng đăng nhập -->
-
           </div>
           <div class="login_footer">
             <button type="submit" class="btn-login">Login</button>

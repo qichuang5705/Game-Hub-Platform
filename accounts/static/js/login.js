@@ -31,13 +31,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const openAccount = document.querySelector(".show-info-btn");
     const closeAccount = document.querySelector(".close-account");
 
-    const loginToUser = document.querySelector(".login_footer .btn-login");
+    const loginToUser = document.querySelector(".btn-login");
     const logoutToGuest = document.querySelector(".logout-account-btn");
 
     const opencartShow = document.querySelector(".cart-btn");
     const opencartUserShow = document.querySelector(".avatar-wrapper");
 
-    
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn) {
+        
+        loginSection.classList.add("hide");
+        loginSection.classList.remove("show");
+
+        pageAccountSection.classList.add("hide");
+        pageAccountSection.classList.remove("show");
+
+        guestAccount.classList.remove("exist");
+        guestAccount.classList.add("alternative");
+
+        accountSection.classList.add("hide");
+        accountSection.classList.remove("show");
+
+        userAccount.classList.add("exist");
+        userAccount.classList.remove("alternative");
+    } else {
+        
+        userAccount.classList.add("alternative");
+        userAccount.classList.remove("exist");
+
+        accountSection.classList.add("hide");
+        accountSection.classList.remove("show");
+
+        avatar.classList.add("close");
+        avatar.classList.remove("open");
+
+        cartUserShow.classList.add("close");
+        cartUserShow.classList.remove("open");
+
+        guestAccount.classList.remove("hide");
+        guestAccount.classList.add("exist");
+        guestAccount.classList.remove("alternative");
+    }
 
     //
     opencartShow.addEventListener("click", () => {
@@ -91,6 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
             userAccount.classList.remove("alternative");
         }, 100);
 
+        localStorage.setItem("isLoggedIn", "true");
+
     });
 
     //Usser Logout -> Guest
@@ -112,6 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
             guestAccount.classList.add("exist");
             guestAccount.classList.remove("alternative");
         }, 100);
+
+        localStorage.removeItem("isLoggedIn");
+
     });
 
 
@@ -310,4 +350,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
-
