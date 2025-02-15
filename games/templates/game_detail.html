@@ -9,6 +9,7 @@
    .play_game_box {
     position: relative;
     width: 100%;
+    max-width: 800px; /* Giới hạn chiều rộng nếu cần */
     padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 = 0.5625) */
 }
 
@@ -84,9 +85,9 @@
             </div>
 
             <!--img-->
-            <!-- <div class="game_img"> 
+            <div class="game_img"> 
                 <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
-            </div> -->
+            </div>
             <!--instruct game-->
           
 
@@ -146,9 +147,20 @@
             </div>
 
             <!--leaderboard-->
-            {% if game.ApiLD %}
             <div class="leaderboard">
                 <h3>Leaderboard</h3>
+
+                <!-- <div class="user-info">
+                    <div class="user-points">
+                        <label>Your Socre: </label>
+                        <p>1120</p>
+                    </div>
+                    <div class="user-ranking">
+                        <label>Your Ranking: </label>
+                        <p>50+</p>
+                    </div>
+                </div> -->
+
                 <table>
                     <tr class="header_leader">
                         <th>Rank</th>
@@ -164,11 +176,6 @@
                     {% endfor %}
                 </table>
             </div>
-            {% else %}
-            <div class="leaderboard">
-                <h3>Trò chơi không hỗ trợ bảng xếp hạng</h3>
-            </div>
-            {% endif %}
 
             <!--comment-->
             <div class="comment_container">

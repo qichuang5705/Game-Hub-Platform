@@ -1,9 +1,10 @@
 from django.urls import path, include
-from .views import DeleteComment, UpGame, game_detail, Delete_Game, Edit_game, LBHistoryViewset
+from .views import DeleteComment, UpGame, game_detail, Delete_Game, Edit_game, LBHistoryViewset, GameViewset
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('leaderboard', LBHistoryViewset, basename='leaderboard')
+router.register('gameapi', GameViewset, basename='gameapi')
 
 urlpatterns = [
     path("game_detail/<int:gameId>",game_detail, name="game_detail"),
