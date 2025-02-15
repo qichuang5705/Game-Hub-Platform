@@ -1,0 +1,6 @@
+media/games/file/
+media/games/image/
+virtual/
+__pycache__/
+*.pyc
+*.pyo
