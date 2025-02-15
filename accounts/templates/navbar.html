@@ -22,30 +22,18 @@
               </div>
           </div>
       </div>
-      <!-- đã đăng nhập  -->
-      {% if user.is_authenticated %}  
-      <p>Đã đăng nhập</p>
-      {% else %} 
-      <!-- Chưa đang nhập -->
-      <p>Chưa đăng nhập</p>
-      {% endif %}
 
-      {% if user.is_authenticated %}  
-      <p>Hiển thị thông tin của user, và nút logout</p>
-      {% else %} 
-      <p>Hiển thị log, đổi pass, tạo tk</p>
-      {% endif %}
       <!---->
-      <div class="page_home exist"> 
+      <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
           <i class="cart-btn fa-solid fa-user"></i>
           <div class="cart close">
               <div class="account">
-                  <span class="open-login-btn">Login</span>
+                  <button class="open-login-btn">Đăng nhập</button>
               </div>
           </div>
       </div>
 
-      <div class="page_home_user alternative">
+      <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
           <div class="avatar-wrapper ">  
               <div class="avatar">
                   {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
@@ -53,11 +41,13 @@
           </div>
           <div class="cart_user close">
               <div class="account">
-                  <span class="show-info-btn">Infomation</span>
-                  <span class="logout-account-btn">Log out</span>
+                  <button class="show-info-btn">Thông tin cá nhân</button>
+                  <button onclick="window.location.href='{% url 'logout' %}'" class="logout-account-btn">
+                    Đăng xuất
+                  </button>
               </div>
           </div>
-          <div class="account-wrapper ">  
+          <div class="account-wrapper hide">  
               <span class="close-account close-button">&times;</span>
               <div class="account_container">
                   <div class="user-profile">
@@ -67,9 +57,9 @@
                   </div>
                   
                   <div class="your-detail">
-                      <label>YOUR DETAIL</label>
+                      <label>CHI TIẾT</label>
                       <div class="info-group">
-                          <p>Name:</p>
+                          <p>Tên:</p>
                           <input type="text" name="name" value="">
                       </div>
                       <div class="info-group">
@@ -77,11 +67,11 @@
                           <input type="email" name="email" value="" disabled>
                       </div>
                       <div class="info-group">
-                          <p>Tel:</p>
+                          <p>Điện thoại:</p>
                           <input type="tel" name="tel" value="">
                       </div>
                       <div class="info-group">
-                          <label for="account-type">Type Account:</label>
+                          <label for="account-type">Loại tài khoản:</label>
                           <select id="account-type" name="account-type" disabled>
                               <option value="player">Player Account</option>
                               <option value="developer">Developer Account</option>
@@ -89,24 +79,23 @@
                           </select>
                       </div>
                       <div class="change-type-account">
-                          <span class="open-change-type-account-btn">Change Type Account</span>
+                          <span class="open-change-type-account-btn">Đổi tài khoản</span>
                       </div>
                   </div>
       
                   <div class="password-section">
-                      <label>PASSWORD</label>
+                      <label>MẬT KHẨU</label>
                       <div class="change-password">
-                          <span class="open-change-password-btn">Change Password</span>
+                          <span class="open-change-password-btn">Đổi mật khẩu</span>
                       </div>
                   </div>
       
                   <div class="update-profile">
-                      <button>UPDATE PROFILE</button>
+                      <button>CẬP NHẬT</button>
                   </div>
-
-        </div>
+            </div>
+          </div>
       </div>
-    </div>
 
     <div class="page_account hide">
       <!--Login-->
@@ -114,26 +103,26 @@
         <div class="login_inner">
           <div class="page_account_header">
             <span class="close-login close-button">&times;</span>
-            <h1>LOGIN</h1>
+            <h1>ĐĂNG NHẬP</h1>
           </div>
           <div class="login_body">
             <!-- chức năng đăng nhập -->
             <form action="" method="POST">
               {% csrf_token %}
               <input type="hidden" name="login" value="true" />
-              <label>User Name</label>
+              <label>Tên đăng nhập</label>
               <input
                 type="text"
                 name="username"
-                placeholder="Enter username"
+                placeholder="Tên đăng nhập"
                 required
               />
               <p class="error-message"></p>
-              <label>Password</label>
+              <label>Mật khẩu</label>
               <input
                 type="password"
                 name="password"
-                placeholder="Enter password"
+                placeholder="Mật khẩu"
                 required
               />
               <p class="error-message"></p>
@@ -149,20 +138,15 @@
                 {% endif %}
               <div class="remember-me">
                 <input type="checkbox" id="saveLogin" name="saveLogin" />
-                <label for="saveLogin">Remember me!</label>
+                <label for="saveLogin">Ghi nhớ đăng nhập !</label>
               </div>
               <div class="login_footer">
-                <button type="submit" class="btn-login">Login</button>
-                <span class="forgot-password-btn">Forgot password</span>
-                <span class="create-account-btn">Create new account</span>
+                <button type="submit" class="btn-login">Đăng nhập</button>
+                <span class="forgot-password-btn">Quên mật khẩu?</span>
+                <span class="create-account-btn">Chưa có tài khoản?</span>
               </div>
             </form>
             <!-- chức năng đăng nhập -->
-          </div>
-          <div class="login_footer">
-            <button type="submit" class="btn-login">Login</button>
-            <span class="forgot-password-btn">Forgot password</span>
-            <span class="create-account-btn">Create new account</span>
           </div>
           <div class="with_another">
             <div class="with_another_inner">
@@ -180,22 +164,22 @@
         <div class="register_inner">
           <div class="page_account_header">
             <span class="close-register close-button">&times;</span>
-            <h1>CREATE</h1>
+            <h1>TẠO TÀI KHOẢN</h1>
           </div>
           <div class="register_body">
                       <form action="" method="">
-              <label>User Name</label>
-                          <input type="text" name="name" placeholder="Enter User Name">
+              <label>Tên đăng nhập</label>
+                          <input type="text" name="name" placeholder="Tên đăng nhập">
               <label>Email</label>
-                          <input type="email" name="email" placeholder="Enter Your Email">
-              <label>Password</label>
-                          <input type="password" name="password" placeholder="Enter Password">
+                          <input type="email" name="email" placeholder="Email">
+              <label>Mật khẩu</label>
+                          <input type="password" name="password" placeholder="Mật khẩu">
               <label>Confirm Password</label>
-                          <input type="password" name="password" placeholder="Re-Enter Your Password">
+                          <input type="password" name="password" placeholder="Nhập lại mật khẩu">
                           <div class="form-group">
                           </div>
               <div class="form-group">
-                <label for="day">Type Account:</label>
+                <label for="day">Loại tài khoản:</label>
                               <select class="option" name="day" id="day">
                   <option class="option" value="player">Player Account</option>
                                   <option class="option" value="developer">Developer Account</option>
@@ -205,8 +189,8 @@
             </form>
           </div>
           <div class="register_footer">
-            <button class="create-account-btn">Create</button>
-            <span class="login-btn">Login</span>
+            <button class="create-account-btn">Tạo tài khoản</button>
+            <span class="login-btn">Đã có tài khoản?</span>
           </div>
           <div class="with_another">
             <div class="with_another_inner">
@@ -224,63 +208,35 @@
         <div class="forgot_password_inner">
           <div class="page_account_header">
             <span class="close-forgot_password close-button">&times;</span>
-            <h1>CHANGE PASSWORD</h1>
+            <h1>QUÊN MẬT KHẨU</h1>
           </div>
           <div class="forgot_password_body">
             <form action="" method="">
-              <label>User Name</label>
-                          <input type="text" name="name" placeholder="Enter User Name">
+              <label>Tên đăng nhập</label>
+                          <input type="text" name="name" placeholder="Tên đăng nhập">
               <label>Email</label>
-                          <input type="email" name="email" placeholder="Enter Your Email">
+                          <input type="email" name="email" placeholder="Email">
             </form>
           </div>
           <div class="enter-code">
             <div class="send_code">
-              <label>Enter Code:</label>
-              <button class="btn-sendcode">Send Code</button>
+              <label>Code:</label>
+              <button class="btn-sendcode">Gửi</button>
             </div>
             <div class="box">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
-                          <input type="text" name="digit" maxlength="1">
+              <input type="text" name="digit" maxlength="1">
+              <input type="text" name="digit" maxlength="1">
+              <input type="text" name="digit" maxlength="1">
+              <input type="text" name="digit" maxlength="1">
+              <input type="text" name="digit" maxlength="1">
             </div>
           </div>
           <div class="forgot_password_footer">
-            <button class="send-code-btn">Confirm</button>
-            <span class="login-btn">Login</span>
-            <span class="create-account-btn">Create new account</span>
+            <button class="send-code-btn">Xác nhận</button>
+            <span class="login-btn">Đăng nhập</span>
+            <span class="create-account-btn">Tạo tài khoản</span>
           </div>
         </div>
-      </div>
-
-      <!--Reset Password-->
-      <div class="reset_password hide">
-        <div class="reset_password_inner">
-          <div class="page_account_header">
-            <span class="close-reset_password close-button">&times;</span>
-            <h1>RESET PASSWORD</h1>
-          </div>
-          <div class="reset_password_body">
-            <form action="" method="">
-              <label>User Name</label>
-                          <input type="text" name="name" placeholder="Hiện tên người dùng" readonly>
-              <label>Email</label>
-                          <input type="email" name="email" placeholder="Hiện email người dùng" readonly>
-              <label>New Password</label>
-                          <input type="password" name="password" placeholder="Enter new Password">
-              <label>Confirm New Password</label>
-                          <input type="password" name="password" placeholder="Re-Enter Your New Password">
-            </form>
-          </div>
-          <div class="reset_password_footer">
-            <button class="reset_password-btn">Confirm</button>
-          </div>
-        </div>
-      </div>
-
       </div>
 
   </header>

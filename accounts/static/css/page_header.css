@@ -122,8 +122,8 @@ header {
     z-index: 90;
 }
 
-.page_home:hover i{
-    transform: scale(1.1); 
+.page_home i:hover{
+    transform: scale(1.05); 
 }
 
 .cart, .cart_user {
@@ -149,23 +149,31 @@ header {
     pointer-events: none;
 }
 
-.cart span:hover, .cart_user span:hover {
+.cart button:hover, .cart_user button:hover {
     transform: scale(1.05);
     background-color: #464646;
     color: #abf600;
 }
 
-.account span {
-    margin: 8px 0;
-    padding: 8px 12px;
+.account button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+
+    margin: 0 0 0 15px;
+    padding: 8px 20px;
     background-color: #3e3e3e;
     color: white;
     border-radius: 8px;
     text-align: center;
     display: block;
     font-size: 14px;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer; 
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 /**/
@@ -370,9 +378,19 @@ input:disabled, select:disabled {
     display: auto;
 }
 
+.cart_user .show-info-btn {
+    margin: 8px 15px;
+}
+
+.cart_user .logout-account-btn {
+    margin: 8px 15px ;
+    padding-right: 21px;
+    padding-left: 21px;
+}
+
 /*aaaaaaaaaaaaaaaaaaaa*/
 
-.login, .register, .forgot_password, .reset_password {
+.login, .register, .forgot_password {
     background: linear-gradient(to top, #030303, #242424);
     padding: 40px;
     border-radius: 10px;
@@ -394,7 +412,7 @@ input:disabled, select:disabled {
     max-height: 90vh;
 }
 
-.login.show, .register.show, .forgot_password.show, .reset_password.show {
+.login.show, .register.show, .forgot_password.show {
     z-index: 100;
     opacity: 1;
     transform: translateY(0);
@@ -402,7 +420,7 @@ input:disabled, select:disabled {
     pointer-events: auto;
 }
 
-.login.hide, .register.hide, .forgot_password.hide, .reset_password.hide {
+.login.hide, .register.hide, .forgot_password.hide {
     z-index: 0;
     opacity: 0;
     transform: translateY(-50%);
