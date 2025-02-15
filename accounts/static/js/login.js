@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const accountSection = document.querySelector(".account-wrapper");
     const avatar = document.querySelector(".avatar-wrapper");
     const userAccount = document.querySelector(".page_home_user");
-    const guestAccount = document.querySelector(".page_home");
     const cartShow = document.querySelector(".page_home .cart");
     const cartUserShow = document.querySelector(".page_home_user .cart_user");
 

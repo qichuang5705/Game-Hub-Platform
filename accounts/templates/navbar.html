@@ -1,25 +1,25 @@
 {% load static %}
 <body>
   <header>
-      <div class="navbar">
-          <div class="logo">
-            <a href="{% url 'home' %}">
+    <div class="navbar">
+      <div class="logo">
+          <a href="{% url 'home' %}">
               <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
-            </a>
-          </div>
-          <nav class="header_function">
-              <ul>
-                  <li><a href="{% url 'home' %}">Home</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="{% url 'up_game'%}">Developer</a></li>
-                  <li><a href="#">Designer</a></li>
-              </ul>
-          </nav>
-          <div class="search-container"> 
-              <div class="search-box">
-                  <input type="text" placeholder="Search...">
-                  <button type="submit">Search</button>
-              </div>
+          </a>
+      </div>
+      <nav class="header_function">
+          <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="#">Cửa hàng</a></li>  
+              <li><a href="{% url 'up_game'%}">Developer</a></li>
+              <li><a href="#">Designer</a></li>
+          </ul>
+      </nav>
+      <div class="search-container">
+          <div class="search-box">
+              <input type="text" placeholder="Tìm kiếm..." id="search-input">
+              <button type="button" id="search-button">
+                  <img src="{% static 'img/search_icon.png' %}" alt="Search" id="search-icon"> </button>
           </div>
       </div>
       <!-- đã đăng nhập  -->
@@ -111,7 +111,6 @@
             <h1>LOGIN</h1>
           </div>
           <div class="login_body">
-            <!-- chức năng đăng nhập -->
             <form action="" method="POST">
               {% csrf_token %}
               <input type="hidden" name="login" value="true" />
