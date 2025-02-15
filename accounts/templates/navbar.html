@@ -53,7 +53,7 @@
               <div class="account_container">
                   <div class="user-profile">
                       <div class="user-info">
-                          <p>Hello, NPT!</p>
+                          <p>Hello, {{user.username}}!</p>
                       </div>
                   </div>
                   
@@ -115,7 +115,6 @@
                 type="text"
                 name="username"
                 placeholder="Tên đăng nhập"
-                required
               />
               <p class="error-message"></p>
               <label>Mật khẩu</label>
@@ -166,29 +165,42 @@
             <h1>TẠO TÀI KHOẢN</h1>
           </div>
           <div class="register_body">
-                      <form action="" method="">
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="register" value="true" />
               <label>Tên đăng nhập</label>
-                          <input type="text" name="name" placeholder="Tên đăng nhập">
+                          <input type="text" name="username" placeholder="Tên đăng nhập" required>
               <label>Email</label>
-                          <input type="email" name="email" placeholder="Email">
+                          <input type="email" name="email" placeholder="Email" required>
               <label>Mật khẩu</label>
-                          <input type="password" name="password" placeholder="Mật khẩu">
+                          <input type="password" name="password1" placeholder="Mật khẩu" required>
               <label>Confirm Password</label>
-                          <input type="password" name="password" placeholder="Nhập lại mật khẩu">
+                          <input type="password" name="password2" placeholder="Nhập lại mật khẩu" required>
                           <div class="form-group">
                           </div>
               <div class="form-group">
                 <label for="day">Loại tài khoản:</label>
-                              <select class="option" name="day" id="day">
+                              <select class="option" name="requested_role" id="day">
                   <option class="option" value="player">Player Account</option>
                                   <option class="option" value="developer">Developer Account</option>
                                   <option class="option" value="designer">Designer Account</option>
                 </select>
               </div>
+              <p class="error-message"></p>
+          
+                {% if messages %}
+                {% for message in messages %}
+                  <div style="background-color: #f8d7da;
+                  color: #721c24;
+                  border: 1px solid #f5c6cb;" class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                  </div>
+                {% endfor %}
+                {% endif %}
+                <button type="submit" class="create-account-btn">Tạo tài khoản</button>
             </form>
           </div>
           <div class="register_footer">
-            <button class="create-account-btn">Tạo tài khoản</button>
             <span class="login-btn">Đã có tài khoản?</span>
           </div>
           <div class="with_another">
@@ -210,16 +222,17 @@
             <h1>QUÊN MẬT KHẨU</h1>
           </div>
           <div class="forgot_password_body">
-            <form action="" method="">
+            <form action="http://127.0.0.1:8000/reset_password/" method="POST">
+              {% csrf_token %}
               <label>Tên đăng nhập</label>
-                          <input type="text" name="name" placeholder="Tên đăng nhập">
+                          <input type="text" name="username" placeholder="Tên đăng nhập" required>
               <label>Email</label>
-                          <input type="email" name="email" placeholder="Email">
+                          <input type="email" name="email" placeholder="Email" required>
+                          <button type="submit" class="send-code-btn">Xác nhận</button>
             </form>
           </div>
           
           <div class="forgot_password_footer">
-            <button class="send-code-btn">Xác nhận</button>
             <span class="login-btn">Đăng nhập</span>
             <span class="create-account-btn">Tạo tài khoản</span>
           </div>
