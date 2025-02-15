@@ -7,14 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const accountSection = document.querySelector(".account-wrapper");
     const avatar = document.querySelector(".avatar-wrapper");
     const userAccount = document.querySelector(".page_home_user");
-    const guestAccount = document.querySelector(".page_home");
     const cartShow = document.querySelector(".page_home .cart");
     const cartUserShow = document.querySelector(".page_home_user .cart_user");
-
-    const loginToUser = document.querySelector(".btn-login");
-    const logoutToGuest = document.querySelector(".logout-account-btn");
-
-    
 
     //open user choice
     const opencartUserShow = document.querySelector(".avatar-wrapper");
@@ -121,19 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
     });
-
-    // Close Reset Password
-    const closeResetPassword = document.querySelector(".close-reset_password");
-    closeResetPassword.addEventListener("click", () => {
-        resetPasswordSection.classList.add("hide");
-        resetPasswordSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-    });
     
     // Login -> Register
-    const createNewAccountButton = document.querySelector(".login_footer span:last-child");
+    const createNewAccountButton = document.querySelector(".login_footer .create-account-btn"); 
     createNewAccountButton.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -144,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Login -> Forgot Password
-    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn");
+    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn"); 
     forgotPasswordButton.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
