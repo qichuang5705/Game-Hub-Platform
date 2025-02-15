@@ -37,15 +37,15 @@
       <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
           <div class="avatar-wrapper ">  
               <div class="avatar">
-                  {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+                 <img src="{{ user.avatar.url }}" alt="Logo" />
               </div>
           </div>
           <div class="cart_user close">
               <div class="account">
                   <button class="show-info-btn">Thông tin cá nhân</button>
-                  <button onclick="window.location.href='{% url 'logout' %}'" class="logout-account-btn">
-                    Đăng xuất
-                  </button>
+                  <a href="{% url 'logout' %}">
+                    <button>Đăng xuất</button>
+                  </a>
               </div>
           </div>
           <div class="account-wrapper hide">  
@@ -53,13 +53,13 @@
               <div class="account_container">
                   <div class="user-profile">
                       <div class="user-info">
-                          <p>Hello, NPT!</p>
+                          <p>Hello, {{ user.first_name }}</p>
                       </div>
                   </div>
                   
                   <div class="your-detail">
                       <label>CHI TIẾT</label>
-                      <div class="info-group">
+                      <!-- <div class="info-group">
                           <p>Tên:</p>
                           <input type="text" name="name" value="">
                       </div>
@@ -72,28 +72,47 @@
                           <input type="tel" name="tel" value="">
                       </div>
                       <div class="info-group">
-                          <label for="account-type">Loại tài khoản:</label>
-                          <select id="account-type" name="account-type" disabled>
-                              <option value="player">Player Account</option>
-                              <option value="developer">Developer Account</option>
-                              <option value="designer">Designer Account</option>
-                          </select>
+                          <p>Loại tài khoản: {{ user.role }}</p>
+                      </div> -->
+                      
+                      <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+              
+                        <div class="info-group">
+                          <label for="f1">Họ:</label>
+                          <input type="text" name="last_name" id="f1" placeholder="{{ user.last_name }}">
                       </div>
-                      <div class="change-type-account">
-                          <span class="open-change-type-account-btn">Đổi tài khoản</span>
+                      
+                        <div class="info-group">
+                          <label for="f2">Tên:</label>
+                          <input type="text" name="first_name" id="f2" placeholder="{{ user.first_name }}">
                       </div>
+
+               
+                      <div class="info-group">
+                        <label for="f3">Email:</label>
+                        <input type="text" name="email" id="f3" placeholder="{{ user.email }}">
+                    </div>  
+
+                    <div class="info-group">
+                      <label for="f4">Ảnh đại diện:</label>
+                      <input type="file" name="avatar">
+                  </div>
+
+                      <div class="update-profile">
+                        <button type="submit">Cập nhật</button>
+                    </div>
+                      </form>
+              
                   </div>
       
                   <div class="password-section">
-                      <label>MẬT KHẨU</label>
                       <div class="change-password">
                           <span class="open-change-password-btn">Đổi mật khẩu</span>
                       </div>
                   </div>
       
-                  <div class="update-profile">
-                      <button>CẬP NHẬT</button>
-                  </div>
+                
             </div>
           </div>
       </div>
@@ -107,7 +126,7 @@
             <h1>ĐĂNG NHẬP</h1>
           </div>
           <div class="login_body">
-            <form action="" method="POST">
+            <form action="{% url 'home' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="login" value="true" />
               <label>Tên đăng nhập</label>
@@ -125,23 +144,16 @@
                 placeholder="Mật khẩu"
                 required
               />
-              <p class="error-message"></p>
-          
-                {% if messages %}
-                {% for message in messages %}
-                  <div style="background-color: #f8d7da;
-                  color: #721c24;
-                  border: 1px solid #f5c6cb;" class="alert alert-{{ message.tags }}">
-                      {{ message }}
-                  </div>
-                {% endfor %}
-                {% endif %}
+              {% if login_form.errors %}
+                  <p class="error">{{ login_form.non_field_errors.0 }}</p>
+              {% endif %}
+              
               <div class="remember-me">
                 <input type="checkbox" id="saveLogin" name="saveLogin" />
                 <label for="saveLogin">Ghi nhớ đăng nhập !</label>
               </div>
               <div class="login_footer">
-                <button type="submit" class="btn-login">Đăng nhập</button>
+                <button type="submit" name="login" class="btn-login">Đăng nhập</button>
                 <span class="create-account-btn">Chưa có tài khoản?</span>
                 <span class="forgot-password-btn">Quên mật khẩu?</span>
               </div>
@@ -166,31 +178,57 @@
             <h1>TẠO TÀI KHOẢN</h1>
           </div>
           <div class="register_body">
-                      <form action="" method="">
-              <label>Tên đăng nhập</label>
-                          <input type="text" name="name" placeholder="Tên đăng nhập">
-              <label>Email</label>
-                          <input type="email" name="email" placeholder="Email">
-              <label>Mật khẩu</label>
-                          <input type="password" name="password" placeholder="Mật khẩu">
-              <label>Confirm Password</label>
-                          <input type="password" name="password" placeholder="Nhập lại mật khẩu">
-                          <div class="form-group">
-                          </div>
+            <form method="post" action="{% url 'home' %}">
+              {% csrf_token %}
+          
+                <label for="id_register_username">Username</label>
+                <input type="text" id="id_register_username" name="username">
+
+        
+ 
+                <label for="id_register_email">Email</label>
+                <input type="email" id="id_register_email" name="email" >
+    
+        
+         
+                <label for="id_register_password1">Password</label>
+                <input type="password" id="id_register_password1" name="password1">
+  
+        
+    
+                <label for="id_register_password2">Confirm Password</label>
+                <input type="password" id="id_register_password2" name="password2" >
+    
+          
               <div class="form-group">
-                <label for="day">Loại tài khoản:</label>
-                              <select class="option" name="day" id="day">
+                <label for="day">Type Account:</label>
+                <select class="option" name="requested_role" id="day">
                   <option class="option" value="player">Player Account</option>
-                                  <option class="option" value="developer">Developer Account</option>
-                                  <option class="option" value="designer">Designer Account</option>
+                  <option class="option" value="developer">
+                    Developer Account
+                  </option>
+                  <option class="option" value="designer">
+                    Designer Account
+                  </option>
                 </select>
               </div>
-            </form>
+              {% if register_form.errors %}
+              <ul>
+                  {% for field, errors in register_form.errors.items %}
+                      <li>{{ field }}: {{ errors }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+              
+              <div class="register_footer">
+                <button name="register" class="create-account-btn">Tạo tài khoản</button>
+                <span class="login-btn">Đã có tài khoản?</span>
+              </div>
+          </form>
           </div>
-          <div class="register_footer">
-            <button class="create-account-btn">Tạo tài khoản</button>
-            <span class="login-btn">Đã có tài khoản?</span>
-          </div>
+  
+
+
           <div class="with_another">
             <div class="with_another_inner">
               <div class="with_another_icons">
@@ -210,18 +248,39 @@
             <h1>QUÊN MẬT KHẨU</h1>
           </div>
           <div class="forgot_password_body">
-            <form action="" method="">
-              <label>Tên đăng nhập</label>
-                          <input type="text" name="name" placeholder="Tên đăng nhập">
-              <label>Email</label>
-                          <input type="email" name="email" placeholder="Email">
-            </form>
+            <form method="post" action="{% url 'reset_password' %}" class="reset-form">
+              {% csrf_token %}
+          
+          
+                  <label for="f1">Mật khẩu cũ:</label>
+                  <input type="text" id="id_reset_username" name="username" class="form-input {% if form.username.errors %}error-field{% endif %}" value="{{ form.username.value|default:'' }}">
+                  <span class="error-message">
+                      {% for error in form.username.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </span>
+ 
+          
+
+                  <label for="id_reset_email">Email:</label>
+                  <input type="email" id="id_reset_email" name="email" class="form-input {% if form.email.errors %}error-field{% endif %}" value="{{ form.email.value|default:'' }}">
+                  <span  class="error-message">
+                      {% for error in form.email.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </span>
+ 
+          
+              <div class="forgot_password_footer">
+                <button type="submit" class="send-code-btn">Xác nhận</button>
+                <span class="login-btn">Đăng nhập</span>
+                <span class="create-account-btn">Tạo tài khoản</span>
+              </div>
+          </form>
+          
+
           </div>
           
-          <div class="forgot_password_footer">
-            <button class="send-code-btn">Xác nhận</button>
-            <span class="login-btn">Đăng nhập</span>
-            <span class="create-account-btn">Tạo tài khoản</span>
           </div>
         </div>
       </div>

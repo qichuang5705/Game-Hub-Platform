@@ -76,7 +76,7 @@ class RoleUpgradeRequestForm(forms.Form):
 class FormInfor(forms.ModelForm):
    class Meta:
         model = CustomUser 
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email','avatar')
 
 class CustomPasswordResetForm(PasswordResetForm):
     username = forms.CharField(max_length=150, required=True, label="Username")
@@ -90,8 +90,8 @@ class CustomPasswordResetForm(PasswordResetForm):
         email = cleaned_data.get('email')
         username = cleaned_data.get('username')
 
-        # Kiểm tra xem username và email có tồn tại không
         if not CustomUser.objects.filter(username=username, email=email).exists():
-            raise forms.ValidationError("Không tìm thấy người dùng với username và email này.")
-        
+            self.add_error('username', "Không tìm thấy người dùng với username và email này.")
+            self.add_error('email', "Vui lòng kiểm tra lại email.")
+
         return cleaned_data
