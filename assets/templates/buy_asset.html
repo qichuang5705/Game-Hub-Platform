@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mua tài nguyên</title>
+</head>
+<body>
+    <h1>Mua {{ asset.title }}</h1>
+    <p>Giá: {{ asset.price }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Chọn phương thức thanh toán:</label>
+        <select name="payment_method">
+            <option value="credit_card">Thẻ tín dụng</option>
+            <option value="paypal">PayPal</option>
+        </select>
+        <br>
+        <button type="submit">Thanh toán</button>
+        <a href="{% url 'asset_list' %}">Hủy</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset List</title>
+</head>
+<body>
+    <h1>Asset List</h1>
+    <ul>
+        {% for asset in assets %}
+            <li>
+                {% if asset.thumnail %}
+                    <img src="{{ asset.thumnail.url }}" alt="{{ asset.title }}" width="200">
+                {% else %}
+                    <img src="/media/defaults/NoneImage.png" alt="Ảnh mặc định" width="200">
+                {% endif %}
+                <br>
+                {{ asset.title }} - {{ asset.price }} - {{ asset.type }} - {{ asset.description }}
+                <br>
+               
+                <a href="{% url 'buy_asset' asset.id %}">Mua ngay</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'games',
     'payments',
+    'assets',
     'rest_framework',
 ]
 
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-        'PASSWORD': 'root',           # Mật khẩu MySQL
+        'PASSWORD': 'Duybang11.com',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
@@ -109,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = 'accounts.CustomUser'
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -125,8 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+import os
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Thư mục lưu tệp media
 # MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
