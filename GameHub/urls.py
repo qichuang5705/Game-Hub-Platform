@@ -9,4 +9,5 @@ urlpatterns = [
     path('games/', include('games.urls')),
     path('payments/',include('payments.urls')),
     path('store/', include('assets.urls')),
+    path('rewards/', include('rewards.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

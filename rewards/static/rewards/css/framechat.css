@@ -1,0 +1,17 @@
+.default-chat{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.red-chat{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.bluis-chat{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+}
