@@ -1,0 +1,68 @@
+<main class="page_body">
+    <div class="main-game-wrapper">
+        <div class="main-game">
+
+                <!--comment-->
+                <div class="comment_container">
+                    <div class="comment-section">
+                        <h3>Comments</h3>
+    
+                        <div class="comment-form">
+                            <!-- avatar -->
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle fa-3x">
+    
+                                </i>
+                            </div>
+                            <!-- avatar -->
+                            <!-- nhập comment -->
+                             <div class="comment-input">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
+                                    </div>
+                                
+                                    <div class="comment-actions">
+                                        <button class="button-32" type="submit">Gửi</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- nhập comment -->
+                            <!-- <div class="comment-input">
+                                <textarea placeholder="Add a comment..."></textarea>
+                                <div class="comment-actions">
+                                    <button>Comment</button>
+                                </div>
+                            </div> -->
+                        </div>
+    
+                        <!-- Hiển thị commet -->
+                        <div class="comments">
+                            <div class="comment">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle fa-2x"></i>
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-content-box"> 
+                                        <div class="comment-header">
+                                            <p class="user-name">Huy</p>
+                                            <p class="comment-date">1/2/2025</p>
+                                        </div>
+                                        <p>Hay</p>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+    
+                        </div>
+                          <!-- Hiển thị commet -->
+                    </div>
+                </div>
+
+        
+
+        </div>
+    </div>
+</main>

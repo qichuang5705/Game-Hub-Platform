@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/page_game.css' %}">
+
+    <style>
+.comment-box {
+    width: 100%;
+    max-width: 500px; /* Giới hạn chiều rộng */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-date {
+    font-size: 12px;
+    color: gray;
+}
+
+.comment-content {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+}
+
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="comment-box">
+    <div class="comment-header">
+        <span class="comment-author">Nguyễn Văn A</span>
+        <span class="comment-date">14/02/2025</span>
+    </div>
+    <div class="comment-content">
+        Đây là một bình luận mẫu! 🚀
+    </div>
+</div>
+
+<div class="coment-box">
+    
+</div>
+
+{% endblock %}

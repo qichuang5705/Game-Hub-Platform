@@ -96,17 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Account --> Fogot Password
-    const openChangePasswordPage = document.querySelector(".open-change-password-btn");
-    openChangePasswordPage.addEventListener("click", () => {
-        pageAccountSection.classList.add("show");
-        pageAccountSection.classList.remove("hide");
-
-        setTimeout(() => {
-            forgotPasswordSection.classList.add("show");
-            forgotPasswordSection.classList.remove("hide");
-        }, 100);
-    });
 
     // Close Login
     const closeLogin = document.querySelector(".close-login");

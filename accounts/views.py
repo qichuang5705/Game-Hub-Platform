@@ -49,8 +49,9 @@ def register(request):
             messages.error(request, "Invalid information")
     else:
         form = RegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -82,21 +83,20 @@ def upgrade_role(request):
 
 
 
-def change_pass(request):
-    return render(request, 'password_change_for.html')
-
+@login_required
 def information(request):
     user = request.user
     if request.method == "POST":
-        form = FormInfor(request.POST,  instance=user)
+        form = FormInfor(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
     else:
         form = FormInfor( instance=user)
-    return render(request, "information.html", {'form': form})
+    return redirect('home')
 
 def reset_password(request):
     return render(request, 'password_reset.html')
+
 
 def home(request):
     game = Game.objects.all()
@@ -116,16 +116,17 @@ def home(request):
                     return redirect_base_on_role(user)
                 else:
                     messages.error(request, "Invalid username or password")
-            else:
-                messages.error(request, "Invalid username or password")
         elif 'register' in request.POST:
+            print("sss")
             register_form = RegistrationForm(request.POST)
             if register_form.is_valid():
+                print("oke")
                 user = register_form.save()
                 login(request, user)
                 messages.success(request, f"Welcome, {user.username}")
                 return redirect_base_on_role(user)
             else:
+                print("ko")
                 messages.error(request, "Invalid information")
     else:
         login_form=LoginForm()
