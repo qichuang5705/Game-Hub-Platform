@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, PasswordResetForm
 from .models import CustomUser
+import os, uuid
+from django.conf import settings
 
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
@@ -74,9 +76,31 @@ class RoleUpgradeRequestForm(forms.Form):
     
 
 class FormInfor(forms.ModelForm):
-   class Meta:
+    class Meta:
         model = CustomUser 
         fields = ('first_name', 'last_name', 'email','avatar')
+
+
+    def clean_avatar(self):
+        print("clean")
+        avatar = self.cleaned_data.get('avatar')
+        if avatar == self.instance.avatar.name:
+            print("báo lỗi trùng tên")
+            forms.ValidationError("Đổi lại tên tệp avatar")
+        elif avatar:
+            # Lấy phần mở rộng của file (đuôi file)
+            _, image_extension = os.path.splitext(avatar.name)
+
+            # Tạo tên mới ngẫu nhiên
+            new_image_name = f"{uuid.uuid4().hex}{image_extension.lower()}"
+            print(new_image_name)
+            # Cập nhật tên mới cho file avatar
+            avatar.name = os.path.join('avatar', new_image_name)
+
+        return avatar  # Django sẽ tự động lưu vào MEDIA_ROOT
+   
+
+
 
 class CustomPasswordResetForm(PasswordResetForm):
     username = forms.CharField(max_length=150, required=True, label="Username")
