@@ -7,115 +7,137 @@
               <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
           </a>
       </div>
-      <nav class="header_function">
+      <nav class="main-nav">
           <ul>
+<<<<<<< HEAD
               <li><a href="{% url 'home' %}">Home</a></li>
               <li><a href="/store/">Cửa hàng</a></li>  
               <li><a href="{% url 'up_game'%}">Developer</a></li>
               <li><a href="#">Designer</a></li>
+=======
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+              </a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a></li>
+              <li><a href="{% url 'up_game' %}">
+                <i class="fa-solid fa-laptop-code"></i>
+              </a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-pen-ruler"></i>
+              </a></li>
+              <li>
+                <div class="search-box ">
+                  <input class="search-box_input" type="text">
+                  <button class="search-box_btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </li>
+>>>>>>> eed7e226dd84c0e8613ee49efd6bb90d25488f4d
           </ul>
       </nav>
-      <div class="search-container">
-          <div class="search-box">
-              <input type="text" placeholder="Tìm kiếm..." id="search-input">
-              <button type="button" id="search-button">
-                  <img src="{% static 'img/search_icon.png' %}" alt="Search" id="search-icon"> </button>
-          </div>
+      <div> 
+        <!---->
+        <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
+            <i class="cart-btn fa-solid fa-user"></i>
+            <div class="cart close">
+                <div class="account">
+                    <button class="open-login-btn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
+            <div class="avatar-wrapper ">  
+                <div class="avatar">
+                  <img src="{{ user.avatar.url }}" alt="Logo" />
+                </div>
+            </div>
+            <div class="cart_user close">
+                <div class="account">
+                    <button class="show-info-btn">Thông tin cá nhân</button>
+                    <a href="{% url 'logout' %}">
+                      <button>Đăng xuất</button>
+                    </a>
+                </div>
+            </div>
+            <div class="account-wrapper hide">  
+                <span class="close-account close-button">&times;</span>
+                <div class="account_container">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <p>Hello, {{ user.first_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="your-detail">
+                        <label>CHI TIẾT</label>
+                        <!-- <div class="info-group">
+                            <p>Tên:</p>
+                            <input type="text" name="name" value="">
+                        </div>
+                        <div class="info-group">
+                            <p>Email:</p>
+                            <input type="email" name="email" value="" disabled>
+                        </div>
+                        <div class="info-group">
+                            <p>Điện thoại:</p>
+                            <input type="tel" name="tel" value="">
+                        </div>
+                        <div class="info-group">
+                            <p>Loại tài khoản: {{ user.role }}</p>
+                        </div> -->
+                        
+                        <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                
+                          <div class="info-group">
+                            <label for="f1">Họ:</label>
+                            <input type="text" name="last_name" id="f1" value="{{ user.last_name }}">
+                        </div>
+                        
+                          <div class="info-group">
+                            <label for="f2">Tên:</label>
+                            <input type="text" name="first_name" id="f2" value="{{ user.first_name }}">
+                        </div>
+
+                
+                        <div class="info-group">
+                          <label for="f3">Email:</label>
+                          <input type="email" name="email" id="f3" value="{{ user.email }}">
+                      </div>  
+
+                      <div class="info-group">
+                        <label for="f4">Ảnh đại diện:</label>
+                        <input type="file" name="avatar">
+                    </div>
+
+                        <div class="update-profile">
+                          <button type="submit">Cập nhật</button>
+                      </div>
+                        </form>
+                
+                    </div>
+        
+                    <div class="password-section">
+                        <div class="change-password">
+                          <a  href="{% url 'password_change' %}">
+                            <span class="open-change-password-btn">Đổi mật khẩu</span>
+                          </a>
+                        </div>
+                    </div>
+        
+                  
+              </div>
+            </div>
+        </div>
+    </div>
       </div>
     </div>
 
-      <!---->
-      <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
-          <i class="cart-btn fa-solid fa-user"></i>
-          <div class="cart close">
-              <div class="account">
-                  <button class="open-login-btn">Đăng nhập</button>
-              </div>
-          </div>
-      </div>
-
-      <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
-          <div class="avatar-wrapper ">  
-              <div class="avatar">
-                 <img src="{{ user.avatar.url }}" alt="Logo" />
-              </div>
-          </div>
-          <div class="cart_user close">
-              <div class="account">
-                  <button class="show-info-btn">Thông tin cá nhân</button>
-                  <a href="{% url 'logout' %}">
-                    <button>Đăng xuất</button>
-                  </a>
-              </div>
-          </div>
-          <div class="account-wrapper hide">  
-              <span class="close-account close-button">&times;</span>
-              <div class="account_container">
-                  <div class="user-profile">
-                      <div class="user-info">
-                          <p>Hello, {{ user.first_name }}</p>
-                      </div>
-                  </div>
-                  
-                  <div class="your-detail">
-                      <label>CHI TIẾT</label>
-                      <!-- <div class="info-group">
-                          <p>Tên:</p>
-                          <input type="text" name="name" value="">
-                      </div>
-                      <div class="info-group">
-                          <p>Email:</p>
-                          <input type="email" name="email" value="" disabled>
-                      </div>
-                      <div class="info-group">
-                          <p>Điện thoại:</p>
-                          <input type="tel" name="tel" value="">
-                      </div>
-                      <div class="info-group">
-                          <p>Loại tài khoản: {{ user.role }}</p>
-                      </div> -->
-                      
-                      <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-              
-                        <div class="info-group">
-                          <label for="f1">Họ:</label>
-                          <input type="text" name="last_name" id="f1" placeholder="{{ user.last_name }}">
-                      </div>
-                      
-                        <div class="info-group">
-                          <label for="f2">Tên:</label>
-                          <input type="text" name="first_name" id="f2" placeholder="{{ user.first_name }}">
-                      </div>
-
-               
-                      <div class="info-group">
-                        <label for="f3">Email:</label>
-                        <input type="text" name="email" id="f3" placeholder="{{ user.email }}">
-                    </div>  
-
-                    <div class="info-group">
-                      <label for="f4">Ảnh đại diện:</label>
-                      <input type="file" name="avatar">
-                  </div>
-
-                      <div class="update-profile">
-                        <button type="submit">Cập nhật</button>
-                    </div>
-                      </form>
-              
-                  </div>
       
-                  <div class="password-section">
-                      <div class="change-password">
-                          <span class="open-change-password-btn">Đổi mật khẩu</span>
-                      </div>
-                  </div>
-      
-                
-            </div>
-          </div>
-      </div>
 
     <div class="page_account hide">
       <!--Login-->
@@ -144,7 +166,7 @@
                 required
               />
               {% if login_form.errors %}
-                  <p class="error">{{ login_form.non_field_errors.0 }}</p>
+                  <p style="color: red;" class="error">{{ login_form.non_field_errors.0 }}</p>
               {% endif %}
               
               <div class="remember-me">

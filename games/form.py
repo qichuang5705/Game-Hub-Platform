@@ -61,27 +61,19 @@ class UpGameForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data.get('image')
-        if image:
-            # Lấy phần mở rộng và tên file
-            image_name = os.path.basename(image.name)
-            image_extension = os.path.splitext(image_name)[1].lower()
+        if image == self.instance.image.name:
+            print("báo lỗi trùng tên")
+            forms.ValidationError("Đổi lại tên tệp image")
+        elif image:
+            # Lấy phần mở rộng của file (đuôi file)
+            _, image_extension = os.path.splitext(image.name)
 
-            # Đổi tên file ảnh
-            new_image_name = f"{slugify(self.cleaned_data.get('name'))}_image_{uuid.uuid4().hex}{image_extension}"
-            
-           # Di chuyển file ảnh tới tên mới trong MEDIA_ROOT
-            new_image_path = os.path.join(settings.MEDIA_ROOT, 'games', 'image', new_image_name)
+            # Tạo tên mới ngẫu nhiên
+            new_image_name = f"{uuid.uuid4().hex}{image_extension.lower()}"
 
-            os.makedirs(os.path.dirname(new_image_path), exist_ok=True) #Tạo thư mục nếu chưa tồn tại
+            # Cập nhật tên mới cho file image
+            image.name = os.path.join('image', new_image_name)
 
-            # Di chuyển ảnh tới tên mới
-            with open(new_image_path, 'wb') as f:
-                for chunk in image.chunks():
-                    f.write(chunk)
-
-            # Trả lại đường dẫn mới cho ảnh
-            return os.path.join('games', 'image', new_image_name)
-
-        return image
+        return image  # Django sẽ tự động lưu vào MEDIA_ROOT
 
     

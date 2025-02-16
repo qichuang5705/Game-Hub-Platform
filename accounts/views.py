@@ -7,7 +7,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 from .models import CustomUser
 from games.models import Game
 from django.core.mail import send_mail
-import random
+import random, os
 from django.conf import settings
 def redirect_base_on_role(user):
     if user.is_superuser:
@@ -88,10 +88,14 @@ def information(request):
     user = request.user
     if request.method == "POST":
         form = FormInfor(request.POST, request.FILES, instance=user)
+        name = os.path.basename(user.avatar.name)
+        parent = os.path.dirname(user.avatar.path)
         if form.is_valid():
+            if 'avatar' in request.FILES and name != 'gojo.jpg':
+                path = os.path.join(parent, name)
+                if os.path.exists(path):
+                    os.remove(path)
             form.save()
-    else:
-        form = FormInfor( instance=user)
     return redirect('home')
 
 def reset_password(request):
@@ -117,16 +121,13 @@ def home(request):
                 else:
                     messages.error(request, "Invalid username or password")
         elif 'register' in request.POST:
-            print("sss")
             register_form = RegistrationForm(request.POST)
             if register_form.is_valid():
-                print("oke")
                 user = register_form.save()
                 login(request, user)
                 messages.success(request, f"Welcome, {user.username}")
                 return redirect_base_on_role(user)
             else:
-                print("ko")
                 messages.error(request, "Invalid information")
     else:
         login_form=LoginForm()

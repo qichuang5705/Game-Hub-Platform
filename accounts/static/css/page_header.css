@@ -1,104 +1,122 @@
-header {
-    width: auto;
-    height: 100px;
-    background-color: #000000;
-    color: white;
-    position: relative;
-    z-index: 80;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-}
-
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Chia đều khoảng cách */
-    padding: 10px; /* Thêm padding cho navbar */
-    background-color: #f0f0f0; /* Màu nền navbar */
+    justify-content: space-between; 
+    padding: 10px;
+    background-color: #000000; 
+    width: 100%; 
 }
 
-.logo img {
+.navbar .logo img {
     height: 60px;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    margin-left: 30%;
 }
 
 .logo img:hover {
     transform: scale(1.03);
 }
 
-.header_function {
-    flex-grow: 1; /* Cho menu chiếm khoảng trống */
+.main-nav {
     display: flex;
-    justify-content: center; /* Căn giữa menu */
+    align-items: center; 
+    flex-basis: 90%; 
+    justify-content: space-between; 
+    font-size: 30px;
+    margin-left: 17%;
 }
 
-.header_function ul {
+.main-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
 }
 
-.header_function li {
-    margin: 0 15px; /* Khoảng cách giữa các mục menu */
+.main-nav li {
+    margin: 0 20px; 
 }
 
-.header_function a {
+.main-nav a {
     text-decoration: none;
-    color: #333; /* Màu chữ menu */
-    padding: 8px 15px;
+    color: #ffffff;
+    padding: 15px 50px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex; 
+    align-items: center; 
 }
 
-.header_function a:hover {
-    background-color: #333; /* Màu nền hover menu */
-    color: #fff; /* Màu chữ hover menu */
+.main-nav a i { 
+    margin: 0; 
 }
 
-.search-container {
+.main-nav a:hover, .main-nav .search-box:hover {
+    background-color: #333;
+}
+
+/**/
+.search-box {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s ease;
+    margin-left: auto;
+    display: flex; 
+    align-items: center; 
+    border-radius: 8px;
+}
+
+.search-box_btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 30px; 
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.search-box_input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: white;
+    padding: 0 30px 0 10px;
+    font-size: 20px; 
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+.search-box.open {
+    width: 280px;
+    background: #333;
+    border-radius: 10px;
+}
+
+/**/
+
+.user-actions {
     display: flex;
     align-items: center;
 }
 
-.search-box {
-    display: flex;
-    height: 35px;
-    border-radius: 5px; /* Bo tròn nút tìm kiếm */
-    overflow: hidden; /* Ẩn phần input khi chưa focus */
-    transition: width 0.3s ease; /* Hiệu ứng mở rộng */
-}
-
-.search-box input[type="text"] {
-    padding: 8px;
-    border: none;
-    outline: none;
-    width: 180px; /* Chiều rộng khi mở rộng */
-    background-color: #fff; /* Màu nền input */
-    color: #333; /* Màu chữ input */
-}
-
-.search-box input[type="text"]::placeholder {
-    color: #555; /* Màu placeholder input */
-}
-
-.search-box button {
-    padding: 8px 15px;
-    border: none;
-    background-color: #333; /* Màu nền nút tìm kiếm */
-    color: white; /* Màu chữ nút tìm kiếm */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.search-box button:hover {
-    background-color: #555; /* Màu nền hover nút tìm kiếm */
+.user-actions > * {
+    margin-left: 10px; 
 }
 
 /**/
@@ -128,7 +146,7 @@ header {
 .cart, .cart_user {
     position: absolute;
     top: 52px; 
-    right: -50px; 
+    right: -35px; 
     background-color: #2b2b2b;
     border-radius: 10px;
     width: 150px;
@@ -210,7 +228,7 @@ header {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 1);
     padding: 20px;
     z-index: 81;
-    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0;
 }
 
@@ -233,7 +251,7 @@ header {
 .avatar-wrapper {
     position: relative; 
     z-index: 85; 
-    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .avatar {
@@ -322,10 +340,6 @@ header {
     transition: color 0.3s ease;
 }
 
-.change-password span:hover, .change-type-account span:hover {
-    font-size: 19px;
-}
-
 .update-profile {
     text-align: center;
     margin-bottom: 20px;
@@ -397,7 +411,7 @@ input:disabled, select:disabled {
     margin-top: 70px;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 6px 15px rgb(192, 192, 192);
+    box-shadow: 0 6px 10px rgb(93, 93, 93);
     display: flex;
     flex-direction: column;
     min-height: 400px;

@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'games',
+<<<<<<< HEAD
     'payments',
     'assets',
+=======
+>>>>>>> eed7e226dd84c0e8613ee49efd6bb90d25488f4d
     'rest_framework',
 ]
 
