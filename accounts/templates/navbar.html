@@ -31,108 +31,106 @@
               </li>
           </ul>
       </nav>
-      <div class="search-container">
-          <div class="search-box">
-              <input type="text" placeholder="Tìm kiếm..." id="search-input">
-              <button type="button" id="search-button">
-                  <img src="{% static 'img/search_icon.png' %}" alt="Search" id="search-icon"> </button>
-          </div>
+      <div> 
+        <!---->
+        <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
+            <i class="cart-btn fa-solid fa-user"></i>
+            <div class="cart close">
+                <div class="account">
+                    <button class="open-login-btn">Đăng nhập</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
+            <div class="avatar-wrapper ">  
+                <div class="avatar">
+                  <img src="{{ user.avatar.url }}" alt="Logo" />
+                </div>
+            </div>
+            <div class="cart_user close">
+                <div class="account">
+                    <button class="show-info-btn">Thông tin cá nhân</button>
+                    <a href="{% url 'logout' %}">
+                      <button>Đăng xuất</button>
+                    </a>
+                </div>
+            </div>
+            <div class="account-wrapper hide">  
+                <span class="close-account close-button">&times;</span>
+                <div class="account_container">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <p>Hello, {{ user.first_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="your-detail">
+                        <label>CHI TIẾT</label>
+                        <!-- <div class="info-group">
+                            <p>Tên:</p>
+                            <input type="text" name="name" value="">
+                        </div>
+                        <div class="info-group">
+                            <p>Email:</p>
+                            <input type="email" name="email" value="" disabled>
+                        </div>
+                        <div class="info-group">
+                            <p>Điện thoại:</p>
+                            <input type="tel" name="tel" value="">
+                        </div>
+                        <div class="info-group">
+                            <p>Loại tài khoản: {{ user.role }}</p>
+                        </div> -->
+                        
+                        <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                
+                          <div class="info-group">
+                            <label for="f1">Họ:</label>
+                            <input type="text" name="last_name" id="f1" placeholder="{{ user.last_name }}">
+                        </div>
+                        
+                          <div class="info-group">
+                            <label for="f2">Tên:</label>
+                            <input type="text" name="first_name" id="f2" placeholder="{{ user.first_name }}">
+                        </div>
+
+                
+                        <div class="info-group">
+                          <label for="f3">Email:</label>
+                          <input type="text" name="email" id="f3" placeholder="{{ user.email }}">
+                      </div>  
+
+                      <div class="info-group">
+                        <label for="f4">Ảnh đại diện:</label>
+                        <input type="file" name="avatar">
+                    </div>
+
+                        <div class="update-profile">
+                          <button type="submit">Cập nhật</button>
+                      </div>
+                        </form>
+                
+                    </div>
+        
+                    <div class="password-section">
+                        <div class="change-password">
+                          <a >
+                            <span class="open-change-password-btn">Đổi mật khẩu</span>
+                          </a>
+                        </div>
+                    </div>
+        
+                  
+              </div>
+            </div>
+        </div>
+    </div>
       </div>
     </div>
 
-      <!---->
-      <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
-          <i class="cart-btn fa-solid fa-user"></i>
-          <div class="cart close">
-              <div class="account">
-                  <button class="open-login-btn">Đăng nhập</button>
-              </div>
-          </div>
-      </div>
-
-      <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
-          <div class="avatar-wrapper ">  
-              <div class="avatar">
-                 <img src="{{ user.avatar.url }}" alt="Logo" />
-              </div>
-          </div>
-          <div class="cart_user close">
-              <div class="account">
-                  <button class="show-info-btn">Thông tin cá nhân</button>
-                  <a href="{% url 'logout' %}">
-                    <button>Đăng xuất</button>
-                  </a>
-              </div>
-          </div>
-          <div class="account-wrapper hide">  
-              <span class="close-account close-button">&times;</span>
-              <div class="account_container">
-                  <div class="user-profile">
-                      <div class="user-info">
-                          <p>Hello, {{ user.first_name }}</p>
-                      </div>
-                  </div>
-                  
-                  <div class="your-detail">
-                      <label>CHI TIẾT</label>
-                      <!-- <div class="info-group">
-                          <p>Tên:</p>
-                          <input type="text" name="name" value="">
-                      </div>
-                      <div class="info-group">
-                          <p>Email:</p>
-                          <input type="email" name="email" value="" disabled>
-                      </div>
-                      <div class="info-group">
-                          <p>Điện thoại:</p>
-                          <input type="tel" name="tel" value="">
-                      </div>
-                      <div class="info-group">
-                          <p>Loại tài khoản: {{ user.role }}</p>
-                      </div> -->
-                      
-                      <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-              
-                        <div class="info-group">
-                          <label for="f1">Họ:</label>
-                          <input type="text" name="last_name" id="f1" placeholder="{{ user.last_name }}">
-                      </div>
-                      
-                        <div class="info-group">
-                          <label for="f2">Tên:</label>
-                          <input type="text" name="first_name" id="f2" placeholder="{{ user.first_name }}">
-                      </div>
-
-               
-                      <div class="info-group">
-                        <label for="f3">Email:</label>
-                        <input type="text" name="email" id="f3" placeholder="{{ user.email }}">
-                    </div>  
-
-                    <div class="info-group">
-                      <label for="f4">Ảnh đại diện:</label>
-                      <input type="file" name="avatar">
-                  </div>
-
-                      <div class="update-profile">
-                        <button type="submit">Cập nhật</button>
-                    </div>
-                      </form>
-              
-                  </div>
       
-                  <div class="password-section">
-                      <div class="change-password">
-                          <span class="open-change-password-btn">Đổi mật khẩu</span>
-                      </div>
-                  </div>
-      
-                
-            </div>
-          </div>
-      </div>
-  </div>
 
     <div class="page_account hide">
       <!--Login-->
