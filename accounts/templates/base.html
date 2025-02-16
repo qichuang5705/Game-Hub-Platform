@@ -7,20 +7,24 @@
     <title>GameHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    </style>
+
     <link rel="stylesheet" href="{% static 'css/page_footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/page_header.css' %}">
     <link rel="stylesheet" href="{% static 'css/game_home.css' %}">
 
     {% block head %}
-
+    <style>
+        .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .error-border {
+        border: 2px solid red;
+        background-color: #ffe6e6;
+    }
+    </style>
     {% endblock %}
 </head>
 <body>

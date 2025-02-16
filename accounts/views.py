@@ -6,6 +6,9 @@ from .forms import RegistrationForm, LoginForm, RoleUpgradeRequestForm, FormInfo
 from django.http import HttpResponseForbidden, HttpResponse 
 from .models import CustomUser
 from games.models import Game
+from django.core.mail import send_mail
+import random, os
+from django.conf import settings
 def redirect_base_on_role(user):
     if user.is_superuser:
     # Đăng nhập người dùng và chuyển hướng đến admin
@@ -34,11 +37,6 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-
-def home(request):
-    gamehay = Game.objects.all()
-    return render(request, 'home.html', {'games': gamehay,'user': request.user})
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -51,8 +49,9 @@ def register(request):
             messages.error(request, "Invalid information")
     else:
         form = RegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -84,23 +83,27 @@ def upgrade_role(request):
 
 
 
-def change_pass(request):
-    return render(request, 'password_change_for.html')
-
+@login_required
 def information(request):
     user = request.user
     if request.method == "POST":
-        form = FormInfor(request.POST,  instance=user)
+        form = FormInfor(request.POST, request.FILES, instance=user)
+        name = os.path.basename(user.avatar.name)
+        parent = os.path.dirname(user.avatar.path)
         if form.is_valid():
+            if 'avatar' in request.FILES and name != 'gojo.jpg':
+                path = os.path.join(parent, name)
+                if os.path.exists(path):
+                    os.remove(path)
             form.save()
-    else:
-        form = FormInfor( instance=user)
-    return render(request, "information.html", {'form': form})
+    return redirect('home')
 
 def reset_password(request):
     return render(request, 'password_reset.html')
 
-def login_register(request):
+
+def home(request):
+    game = Game.objects.all()
     login_form=LoginForm()
     register_form=RegistrationForm()
     if request.method == "POST":
@@ -130,7 +133,73 @@ def login_register(request):
         login_form=LoginForm()
         register_form=RegistrationForm()
 
-    return render(request, 'login_register.html', {
+    return render(request, 'home.html', {
         'login_form': login_form,
         'register_form': register_form,
+        'games': game
     })
+
+def send_otp_email(email, otp):
+    subject = "Your Password Reset OTP"
+    message = f"Your OTP code for password reset is: {otp}"
+    sender_email = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    
+    send_mail(subject, message, sender_email, recipient_list)
+
+def forgot_password_request(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        try:
+            user = CustomUser.objects.get(email=email)
+            otp = random.randint(100000, 999999) # tao otp 6 chu so
+            otp = random.randint(100000, 999999)  # Tạo OTP 6 số
+            request.session["reset_email"] = email
+            request.session["reset_otp"] = str(otp)  # Lưu OTP vào session
+            send_otp_email(email, otp)  # Gửi OTP qua email
+            messages.success(request, "OTP has been sent to your email.")
+            return redirect("verify_otp")  # Chuyển hướng sang trang nhập OTP
+
+        except CustomUser.DoesNotExist:
+             messages.error(request, "Email is not registered.")
+    return render(request, "forgot_password.html")
+
+def verify_otp(request):
+    if request.method == "POST":
+        entered_otp = request.POST.get("otp")
+        stored_otp = request.session.get("reset_otp")
+
+        if entered_otp == stored_otp:
+            request.session["otp_verified"] = True  # Đánh dấu OTP hợp lệ
+            messages.success(request, "OTP verified successfully. You can reset your password.")
+            return redirect("reset_password_form")  # Chuyển sang trang đặt mật khẩu mới
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+
+    return render(request, "verify_otp.html")
+
+def reset_password_form(request):
+    if not request.session.get("otp_verified"):
+        return redirect("forgot_password")  # Nếu chưa xác minh OTP, quay lại bước đầu
+
+    if request.method == "POST":
+        new_password = request.POST.get("password1")
+        confirm_password = request.POST.get("password2")
+
+        if new_password == confirm_password:
+            email = request.session.get("reset_email")
+            user = CustomUser.objects.get(email=email)
+            user.set_password(new_password)
+            user.save()
+
+            # Xóa session sau khi đặt lại mật khẩu thành công
+            del request.session["reset_email"]
+            del request.session["reset_otp"]
+            del request.session["otp_verified"]
+
+            messages.success(request, "Your password has been reset successfully.")
+            return redirect("login_register")  # Quay về trang đăng nhập
+        else:
+            messages.error(request, "Passwords do not match.")
+
+    return render(request, "reset_password.html")

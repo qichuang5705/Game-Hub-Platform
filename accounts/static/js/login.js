@@ -3,90 +3,66 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerSection = document.querySelector(".register");
     const forgotPasswordSection = document.querySelector(".forgot_password");
     const pageAccountSection = document.querySelector(".page_account");
-    const adminSection = document.querySelector(".admin");
     const resetPasswordSection = document.querySelector(".reset_password");
     const accountSection = document.querySelector(".account-wrapper");
     const avatar = document.querySelector(".avatar-wrapper");
     const userAccount = document.querySelector(".page_home_user");
-    const guestAccount = document.querySelector(".page_home");
     const cartShow = document.querySelector(".page_home .cart");
+    const cartUserShow = document.querySelector(".page_home_user .cart_user");
 
-    const createNewAccountButton = document.querySelector(".login_footer span:last-child");
-    const createButton = document.querySelector(".register_footer .create-account-btn");
-    const loginButtonFromRegister = document.querySelector(".register_footer .login-btn");
-    const loginButtonFromForgot = document.querySelector(".forgot_password_footer .login-btn");
-    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn");
-    const createButtonFromForgot = document.querySelector(".forgot_password_footer .create-account-btn");
-    const resetPasswordFromForgot = document.querySelector(".forgot_password_footer .send-code-btn");
-    const loginFromReset = document.querySelector(".reset_password_footer .reset_password-btn");
+    const btn_search = document.querySelector('.search-box_btn');
 
-    const openLoginPage = document.querySelector(".open-login-btn");
-    const openAdminPage = document.querySelector(".open-admin-btn");
-    const openChangePasswordPage = document.querySelector(".open-change-password-btn");
-    
-    const closeLogin = document.querySelector(".close-login");
-    const closeRegister = document.querySelector(".close-register");
-    const closeForgotPassword = document.querySelector(".close-forgot_password");
-    const closeAdmin = document.querySelector(".close-admin");
-    const closeResetPassword = document.querySelector(".close-reset_password");
+    btn_search.addEventListener('click', function() {
+        const searchBox = this.parentElement; 
+        const searchInput = this.previousElementSibling; 
 
-    const openAccount = document.querySelector(".avatar-wrapper");
-    const closeAccount = document.querySelector(".close-account");
-
-    const loginToUser = document.querySelector(".login_footer .btn-login");
-    const logoutToGuest = document.querySelector(".logout-account-btn");
-
-    const opencartShow = document.querySelector(".cart-btn");
-
-    //
-    opencartShow.addEventListener("click", () => {
-        if (cartShow.classList.contains("open")) {
-            cartShow.classList.remove("open");
-            cartShow.classList.add("close");
+        if (searchBox.classList.contains('open')) { 
+            if (searchInput.value.trim() !== '') { 
+                /*
+                const searchTerm = searchInput.value.trim();
+                const searchUrl = `/search/?q=${searchTerm}`;
+                window.location.href = searchUrl; 
+                */
+            } else {
+                searchBox.classList.remove('open'); 
+            }
         } else {
-            cartShow.classList.remove("close");
-            cartShow.classList.add("open");
+            searchBox.classList.add('open'); 
+            searchInput.focus(); 
         }
     });
 
-    //Login --> User Page
-    loginToUser.addEventListener("click", () => {
-        loginSection.classList.add("hide");
-        loginSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-
-        guestAccount.classList.remove("exist");
-        guestAccount.classList.add("alternative");
-
-        setTimeout(() => {
-            userAccount.classList.add("exist");
-            userAccount.classList.remove("alternative");
-        }, 100);
+    //open user choice
+    const opencartUserShow = document.querySelector(".avatar-wrapper");
+    opencartUserShow.addEventListener("click", () => {
+        if (cartUserShow.classList.contains("close"))
+        {
+            cartUserShow.classList.add("open");
+            cartUserShow.classList.remove("close");
+        } else {
+            cartUserShow.classList.remove("open");
+            cartUserShow.classList.add("close");
+        }
     });
 
-    //Usser Logout -> Guest
-    logoutToGuest.addEventListener("click", () => {
-        userAccount.classList.add("alternative");
-        userAccount.classList.remove("exist");
-
-        accountSection.classList.add("hide");
-        accountSection.classList.remove("show");
-
-        avatar.classList.add("close");
-        avatar.classList.remove("open");
-
-        setTimeout(() => {
-            guestAccount.classList.remove("hide");
-            guestAccount.classList.add("exist");
-            guestAccount.classList.remove("alternative");
-        }, 100);
+    //open guest choice
+    const opencartShow = document.querySelector(".cart-btn");
+    opencartShow.addEventListener("click", () => {
+        if (cartShow.classList.contains("close"))
+        {
+            cartShow.classList.add("open");
+            cartShow.classList.remove("close");
+        } else {
+            cartShow.classList.remove("open");
+            cartShow.classList.add("close");
+        }
     });
 
-
-    //Show Account
+    //Show Info
+    const openAccount = document.querySelector(".show-info-btn");
     openAccount.addEventListener("click", () => {
+        cartUserShow.classList.add("close");
+        cartUserShow.classList.remove("open");
 
         setTimeout(() => {
             avatar.classList.add("open");
@@ -96,18 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 150);
     });
 
-    //Close Account
+    //Close Info
+    const closeAccount = document.querySelector(".close-account");
     closeAccount.addEventListener("click", () => {
-
-        setTimeout(() => {
-            avatar.classList.add("close");
-            avatar.classList.remove("open");
-            accountSection.classList.add("hide");
-            accountSection.classList.remove("show");
-        }, 200);
+        avatar.classList.add("close");
+        avatar.classList.remove("open");
+        accountSection.classList.add("hide");
+        accountSection.classList.remove("show");
     });
 
     // Show Login
+    const openLoginPage = document.querySelector(".open-login-btn");
     openLoginPage.addEventListener("click", () => {
         pageAccountSection.classList.add("show");
         pageAccountSection.classList.remove("hide");
@@ -121,32 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Show Admin
-    openAdminPage.addEventListener("click", () => {
-        pageAccountSection.classList.add("show");
-        pageAccountSection.classList.remove("hide");
-
-        cartShow.classList.add("close");
-        cartShow.classList.remove("open");
-        
-        setTimeout(() => {
-            adminSection.classList.add("show");
-            adminSection.classList.remove("hide");
-        }, 100);
-    });
-
-    // Account --> Fogot Password
-    openChangePasswordPage.addEventListener("click", () => {
-        pageAccountSection.classList.add("show");
-        pageAccountSection.classList.remove("hide");
-
-        setTimeout(() => {
-            forgotPasswordSection.classList.add("show");
-            forgotPasswordSection.classList.remove("hide");
-        }, 100);
-    });
 
     // Close Login
+    const closeLogin = document.querySelector(".close-login");
     closeLogin.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -156,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close Register
+    const closeRegister = document.querySelector(".close-register");
     closeRegister.addEventListener("click", () => {
         registerSection.classList.add("hide");
         registerSection.classList.remove("show");
@@ -165,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Close Forgot Password
+    const closeForgotPassword = document.querySelector(".close-forgot_password");
     closeForgotPassword.addEventListener("click", () => {
         forgotPasswordSection.classList.add("hide");
         forgotPasswordSection.classList.remove("show");
@@ -172,26 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
         pageAccountSection.classList.add("hide");
         pageAccountSection.classList.remove("show");
     });
-
-    // Close Reset Password
-    closeResetPassword.addEventListener("click", () => {
-        resetPasswordSection.classList.add("hide");
-        resetPasswordSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-    });
-
-    // Close Admin
-    closeAdmin.addEventListener("click", () => {
-        adminSection.classList.add("hide");
-        adminSection.classList.remove("show");
-
-        pageAccountSection.classList.add("hide");
-        pageAccountSection.classList.remove("show");
-    });
     
     // Login -> Register
+    const createNewAccountButton = document.querySelector(".login_footer .create-account-btn"); 
     createNewAccountButton.addEventListener("click", () => {
         loginSection.classList.add("hide");
         loginSection.classList.remove("show");
@@ -201,19 +138,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Register -> Login
-    createButton.addEventListener("click", () => {
-        registerSection.classList.add("hide");
-        registerSection.classList.remove("show");
+    // Login -> Forgot Password
+    const forgotPasswordButton = document.querySelector(".login_footer .forgot-password-btn"); 
+    forgotPasswordButton.addEventListener("click", () => {
+        loginSection.classList.add("hide");
+        loginSection.classList.remove("show");
         setTimeout(() => {
-            loginSection.classList.add("show");
-            loginSection.classList.remove("hide");
+            forgotPasswordSection.classList.add("show");
+            forgotPasswordSection.classList.remove("hide");
         }, 100);
     });
-
+    
     // Forgot Password -> Login
+    const loginButtonFromForgot = document.querySelector(".forgot_password_footer .login-btn");
     loginButtonFromForgot.addEventListener("click", () => {
-        if (avatar.classList.contains("hide"))
+        if (userAccount.classList.contains("alternative"))
         {
             forgotPasswordSection.classList.add("hide");
             forgotPasswordSection.classList.remove("show");
@@ -224,19 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Login -> Forgot Password
-    forgotPasswordButton.addEventListener("click", () => {
-        loginSection.classList.add("hide");
-        loginSection.classList.remove("show");
-        setTimeout(() => {
-            forgotPasswordSection.classList.add("show");
-            forgotPasswordSection.classList.remove("hide");
-        }, 100);
-    });
-
     // Forgot Password -> Register
+    const createButtonFromForgot = document.querySelector(".forgot_password_footer .create-account-btn");
     createButtonFromForgot.addEventListener("click", () => {
-        if (avatar.classList.contains("hide"))
+        if (userAccount.classList.contains("alternative"))
         {
             forgotPasswordSection.classList.add("hide");
             forgotPasswordSection.classList.remove("show");
@@ -248,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Register -> Login
+    const loginButtonFromRegister = document.querySelector(".register_footer .login-btn");
     loginButtonFromRegister.addEventListener("click", () => {
         registerSection.classList.add("hide");
         registerSection.classList.remove("show");
@@ -258,36 +189,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     });
 
-    // Forgot Password -> Reset Password
-    resetPasswordFromForgot.addEventListener("click", () => {
-        forgotPasswordSection.classList.add("hide");
-        forgotPasswordSection.classList.remove("show");
-        setTimeout(() => {
-            resetPasswordSection.classList.add("show");
-            resetPasswordSection.classList.remove("hide");
-        }, 100);
-    });
-
-    // Reset Password -> Login
-    loginFromReset.addEventListener("click", () => {
-        if (avatar.classList.contains("open"))
-        {
-            resetPasswordSection.classList.add("hide");
-            resetPasswordSection.classList.remove("show");
-
-            pageAccountSection.classList.add("hide");
-            pageAccountSection.classList.remove("show");
-        } else
-        {
-            resetPasswordSection.classList.add("hide");
-            resetPasswordSection.classList.remove("show");
-            setTimeout(() => {
-                loginSection.classList.add("show");
-                loginSection.classList.remove("hide");
-            }, 100);
-        }
-    });
-
-
 });
-

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -33,13 +34,14 @@ history = [
     {'users': 2, 'score': 150},
     {'users': 1, 'score': 250},
 ]
+=======
+import os
+>>>>>>> lab
 
-user = {
-    1: 'CustomUser: Alice',
-    2: '<CustomUser: Bob',
-    3: 'CustomUser: Charlie'
-}
+a = "avatar\\ccc.pt"
+aa, image_extension = os.path.splitext(a)
 
+<<<<<<< HEAD
 print(history)
 print(user)
 
@@ -49,4 +51,8 @@ for entry in history:
 
 
 print(history)
+>>>>>>> lab
+=======
+print(aa)
+print(image_extension)
 >>>>>>> lab

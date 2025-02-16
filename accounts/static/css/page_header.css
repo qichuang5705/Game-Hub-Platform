@@ -1,102 +1,129 @@
-header {
-    width: auto;
-    height: 100px;
-    background-color: #000000;
-    color: white;
-    position: relative;
-    z-index: 80;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 0;
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between; 
-}
-
-.navbar {
-    display: flex;
-    align-items: center; 
-}
-
-.navbar .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 10px;
+    background-color: #000000; 
+    width: 100%; 
 }
 
 .navbar .logo img {
-    height: 90px;
-    margin-bottom: 5px;
+    height: 60px;
+    border-radius: 10px;
     cursor: pointer;
-    border-radius: 15px;
+    transition: transform 0.2s ease;
+    margin-left: 30%;
 }
 
-.header_function {
-    margin-left: 50px;
+.logo img:hover {
+    transform: scale(1.03);
 }
 
-.header_function ul {
+.main-nav {
+    display: flex;
+    align-items: center; 
+    flex-basis: 90%; 
+    justify-content: space-between; 
+    font-size: 30px;
+    margin-left: 17%;
+}
+
+.main-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
 }
 
-.header_function li {
-    margin-left: 20px;
+.main-nav li {
+    margin: 0 20px; 
 }
 
-.header_function a {
+.main-nav a {
     text-decoration: none;
+    color: #ffffff;
+    padding: 15px 50px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex; 
+    align-items: center; 
+}
+
+.main-nav a i { 
+    margin: 0; 
+}
+
+.main-nav a:hover, .main-nav .search-box:hover {
+    background-color: #333;
+}
+
+/**/
+.search-box {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s ease;
+    margin-left: auto;
+    display: flex; 
+    align-items: center; 
+    border-radius: 8px;
+}
+
+.search-box_btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 30px; 
+    border: none;
+    outline: none;
+    background: transparent;
     color: white;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
-}
-
-.header_function a:hover {
-    background-color: #555;
-    border-radius: 5px;
-}
-
-.search-container {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    
+    justify-content: center;
+    padding-top: 15px;
+    padding-right: 15px;
 }
 
-.search-box {
-    display: flex;
-    height: 30px;
-    margin-right: 10px; 
-}
-
-.search-box input[type="text"] {
-    padding: 8px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    width: 150px; 
-}
-
-.search-box button {
-    padding: 8px 12px;
-    border: none;
-    background-color: #555;
+.search-box_input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
     color: white;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 0 30px 0 10px;
+    font-size: 20px; 
+    outline: none;
+    border: none;
+    box-sizing: border-box;
 }
 
-.search-box button:hover {
-    background-color: #777;
+.search-box.open {
+    width: 280px;
+    background: #333;
+    border-radius: 10px;
+}
+
+/**/
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions > * {
+    margin-left: 10px; 
 }
 
 /**/
 .page_home {
     position: relative; 
-    top: 20px; 
-    right: 130px; 
+    top: 0px; 
+    right: 30px; 
     cursor: pointer; 
     z-index: 80;   
 }
@@ -109,16 +136,17 @@ header {
     border-radius: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease; 
+    z-index: 90;
 }
 
-.page_home:hover i{
-    transform: scale(1.1); 
+.page_home i:hover{
+    transform: scale(1.05); 
 }
 
-.cart {
+.cart, .cart_user {
     position: absolute;
     top: 52px; 
-    right: 20px; 
+    right: -35px; 
     background-color: #2b2b2b;
     border-radius: 10px;
     width: 150px;
@@ -129,41 +157,40 @@ header {
     z-index: 79; 
 }
 
-.page_home .cart.open {
+.page_home .cart.open , .page_home_user .cart_user.open{
     display: flex;
 }
 
-.page_home .cart.close {
+.page_home .cart.close, .page_home_user .cart_user.close {
     display: none;
+    pointer-events: none;
 }
 
-.cart label {
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.cart span:hover {
+.cart button:hover, .cart_user button:hover {
     transform: scale(1.05);
     background-color: #464646;
     color: #abf600;
 }
 
-.account span {
-    margin: 8px 0;
-    padding: 8px 12px;
+.account button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+
+    margin: 0 0 0 15px;
+    padding: 8px 20px;
     background-color: #3e3e3e;
     color: white;
     border-radius: 8px;
     text-align: center;
     display: block;
     font-size: 14px;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer; 
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 /**/
@@ -174,6 +201,8 @@ header {
     align-items: center;
     width: fit-content;
     transition: transform 0.3s ease;
+    top: 0px;
+    right: 30px;
 }
 
 .page_home_user p:hover{
@@ -189,8 +218,8 @@ header {
 
 .account-wrapper {
     position: absolute;
-    top: 5px;
-    right: 80px;
+    top: -10px;
+    right: 30px;
     transform: translateY(0);
     width: 430px;
     min-height: 400px;
@@ -199,7 +228,7 @@ header {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 1);
     padding: 20px;
     z-index: 81;
-    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0;
 }
 
@@ -212,7 +241,7 @@ header {
 }
 
 .account-wrapper.hide{
-    z-index: 81;
+    z-index: 0;
     opacity: 0;
     transform: translateY(-50%);
     visibility: hidden;
@@ -221,10 +250,8 @@ header {
 
 .avatar-wrapper {
     position: relative; 
-    top: 20px; 
-    right: 250%; 
     z-index: 85; 
-    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .avatar {
@@ -241,7 +268,7 @@ header {
 }
 
 .avatar-wrapper.open{
-    transform: translateX(-300px);
+    transform: translateX(-380px);
 }
 
 .avatar-wrapper.close{
@@ -258,6 +285,7 @@ header {
     align-items: center;
     margin-bottom: 20px;
     margin-left: 80px;
+    margin-top: -5px;
 }
 
 .user-info p {
@@ -312,10 +340,6 @@ header {
     transition: color 0.3s ease;
 }
 
-.change-password span:hover, .change-type-account span:hover {
-    font-size: 19px;
-}
-
 .update-profile {
     text-align: center;
     margin-bottom: 20px;
@@ -335,20 +359,6 @@ header {
 
 .update-profile button:hover {
     transform: scale(0.99);
-}
-
-.account_logout {
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    cursor: pointer;
-    color: #dc3545;
-    transition: color 0.3s ease;
-    font-weight: bolder;
-}
-
-.account_logout:hover {
-    font-size: 19px;
 }
 
 .account-wrapper .close-account {
@@ -374,23 +384,34 @@ input:disabled, select:disabled {
 
 .page_home.alternative, .page_home_user.alternative {
     display: none;
+    pointer-events: none;
 }
 
 .page_home.exist, .page_home_user.exist {
     display: auto;
 }
 
+.cart_user .show-info-btn {
+    margin: 8px 15px;
+}
+
+.cart_user .logout-account-btn {
+    margin: 8px 15px ;
+    padding-right: 21px;
+    padding-left: 21px;
+}
+
 /*aaaaaaaaaaaaaaaaaaaa*/
 
-.login, .register, .forgot_password, .admin, .reset_password {
+.login, .register, .forgot_password {
     background: linear-gradient(to top, #030303, #242424);
-    padding: 40px;
+    padding: 40px 20px 20px;
     border-radius: 10px;
     width: 420px;
     margin-top: 70px;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 6px 15px rgb(192, 192, 192);
+    box-shadow: 0 6px 10px rgb(93, 93, 93);
     display: flex;
     flex-direction: column;
     min-height: 400px;
@@ -404,7 +425,7 @@ input:disabled, select:disabled {
     max-height: 90vh;
 }
 
-.login.show, .register.show, .forgot_password.show, .admin.show, .reset_password.show {
+.login.show, .register.show, .forgot_password.show {
     z-index: 100;
     opacity: 1;
     transform: translateY(0);
@@ -412,7 +433,7 @@ input:disabled, select:disabled {
     pointer-events: auto;
 }
 
-.login.hide, .register.hide, .forgot_password.hide, .admin.hide, .reset_password.hide {
+.login.hide, .register.hide, .forgot_password.hide {
     z-index: 0;
     opacity: 0;
     transform: translateY(-50%);
@@ -578,60 +599,6 @@ input:disabled, select:disabled {
         0px 0px 50px #eee;
 }
 
-.send_code {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-    justify-content: flex-start;
-}
-
-.send_code label {
-    margin-right: 10px;
-    margin-bottom: 0px;
-    color: white;
-    font-size: 16px;
-}
-
-.send_code button {
-    display: flex;
-    justify-content: none;
-    width: auto;
-    font-size: 11px;
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-    margin: 0;
-    padding: 5px;
-    box-sizing: border-box;
-    white-space: nowrap;
-}
-
-.send_code button:hover {
-    background-color: white;
-}
-
-.box {
-    display: flex;
-    justify-content: flex-start;
-    gap: 5px;
-    margin: 10px 0;
-}
-
-.box input {
-    width: 30px;
-    height: 40px;
-    text-align: center;
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.2s ease-in-out;
-}
-
-.reset_password_body input[type="text"]:hover, .reset_password_body input[type="email"]:hover {
-    transform: none;
-}
-
 .with_another {
     width: 60%;
     border-top: 3px solid rgb(102, 102, 102);
@@ -688,7 +655,7 @@ input:disabled, select:disabled {
 }
 
 .password-container input[type="password"] {
-    width: calc(100% - 40px); /* Chừa chỗ cho icon */
+    width: calc(100% - 40px); 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -704,6 +671,6 @@ input:disabled, select:disabled {
     user-select: none;
 }
 
-.fa-eye, .fa-eye-slash { /* Gom selector */
+.fa-eye, .fa-eye-slash { 
     color: #777;
 }

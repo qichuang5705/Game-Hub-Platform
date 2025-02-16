@@ -1,5 +1,9 @@
-media/games/
+media/games/file/
+media/games/image/
+media/avatar/
 virtual/
 __pycache__/
 *.pyc
 *.pyo
+# Ignore compiled Python files
+**/__pycache__/

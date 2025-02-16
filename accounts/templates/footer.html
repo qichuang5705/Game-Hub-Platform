@@ -1,3 +1,4 @@
+{% load static %}
 <body>
 
     <div class="page_body">
@@ -6,33 +7,35 @@
     <footer class="page_footer">
         <div class="footer-column">
             <div class="logo">
-                {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+                </a>
             </div>
             <div class="info_web_page">
                 <p>
-                    GameHubPlatForm is designed to provide the smoothest and most enjoyable online gaming experience.
-                    Explore our huge collection of games and enjoy hours of great entertainment.
+                    GameHubPlatForm được thiết kế để cung cấp trải nghiệm chơi game trực tuyến mượt mà và thú vị nhất.
+                    Khám phá bộ sưu tập trò chơi khổng lồ của chúng tôi và tận hưởng hàng giờ giải trí tuyệt vời.
                 </p>
             </div>
         </div>
 
         <div class="footer-column">
             <div class="policy_privacy">
-                <label>POLICY OF PRIVACY</label>
-                <span>Terms of Use</span>
-                <span>Privacy Policy</span>
-                <span>Cookie Policy</span>
+                <label>CHÍNH SÁCH BẢO MẬT</label>
+                <span>Điều khoản sử dụng</span>
+                <span>Chính sách bảo mật</span>
+                <span>Chính sách Cookie</span>
             </div>
             <div class="contact_info">
-                <label>CONTACT US</label>
-                <span>Tel: 0123456789</span>
+                <label>LIÊN HỆ CHÚNG TÔI</label>
+                <span>Điện thoại: 0123456789</span>
                 <span>Email: GameHub@gmail.com</span>
             </div>
         </div>
 
         <div class="footer-column">
             <div class="card_social">
-                <label>FOLLOW US</label>
+                <label>THEO DÕI CHÚNG TÔI</label>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
@@ -42,13 +45,29 @@
                 </div>
             </div>
             <div class="donate">
-                <label>DONATE</label>
+                <label>DONATE❤️</label>
+                <p> 
+                    Chúng tôi xin kêu gọi các bạn, thay vì dành tiền để donate cho GameHubPlatForm, 
+                    hãy dành số tiền đó để ủng hộ cho Quỹ Hy Vọng. Quỹ Hy Vọng là một tổ chức từ thiện đáng tin cậy, 
+                    giúp đỡ hàng ngàn hoàn cảnh khó khăn và mang đến cơ hội đến trường cho trẻ em nghèo, 
+                    trẻ em có hoàn cảnh khó khăn.
+                    Hãy ủng hộ Quỹ Hy Vọng theo link sau: <a href="https://quyhyvong.com/ung-ho">https://quyhyvong.com/ung-ho</a>
+                </p>
+                <p>
+                    Một chút ủng hộ của các bạn tuy nhỏ nhưng sẽ tạo nên sự khác biệt lớn lao. 
+                    Cùng nhau, chúng ta có thể giúp đỡ những người thực sự cần sự hỗ trợ, 
+                    mang đến cho họ hy vọng và niềm tin vào tương lai.
+                    Chân thành cảm ơn các bạn!
+                </p>
+                <p>
+                    GameHubPlatForm
+                </p>
             </div>
         </div>
 
         <div class="footer-bottom">
             <div class="copyright">
-                <span>© 2025 GameHubPlatForm. All rights reserved.</span>
+                <span>© 2025 GameHubPlatForm. Đã đăng kí bản quyền.</span>
             </div>
             <div class="btn-back-top">
                 <a href=""></i>

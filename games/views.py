@@ -8,7 +8,7 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
-from .serializers import LBHSerializer, GameSerializer
+from .serializers import LBHSerializer
 import os, zipfile, shutil
 
 
@@ -23,37 +23,25 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         user = self.request.user  # Lấy user từ request
-        print("User submitting score:", user)  # Debug xem user có đúng không
-        serializer.save(users=user)  # Lưu user vào model
+        game_id = self.request.session.get("current_game_id")  # Lấy gameId từ session
+
+        if not game_id:
+            return Response({"error": "No game in session"}, status=400)
+
+        game = get_object_or_404(Game, id=game_id)  # Lấy game từ ID
+
+        print("User submitting score:", user)  # Debug
+        print("Game ID:", game.id)  # Debug
+
+        serializer.save(users=user, games=game)  # Lưu user vào model
     
-        
 
-class GameViewset(viewsets.ModelViewSet):
-    queryset = Game.objects.all()
-    serializer_class = GameSerializer
-
-    
-    @action(detail=True, methods=['post'], url_path='post_score')
-    def post_score(self, request, pk=None):
-        """
-        API POST điểm số cho một game cụ thể
-        URL: /API/gameapi/{game_id}/post_score/
-        """
-        game = Game.objects.get(pk=pk)
-        user = request.user  # Lấy user từ request (giả định authentication đã bật)
-        score = request.data.get('score')  # Lấy score từ request body
-
-        if score is None:
-            return Response({"error": "Score is required"}, status=status.HTTP_400_BAD_REQUEST)
-
-        # Tạo lịch sử điểm mới
-        lb_entry = LBHistory.objects.create(games=game, users=user, score=score)
-        serializer = LBHSerializer(lb_entry)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
     
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
+    request.session["current_game_id"] = gameId  # Lưu gameId vào session
+
+
     history = (
         LBHistory.objects.filter(games=game)  # Lọc lịch sử theo game
         .values('users')  # Chỉ nhóm theo user ID
@@ -125,12 +113,16 @@ def UpGame(request):
 @login_required
 def Edit_game(request, game_id):
     game = Game.objects.get(id=game_id)
+    name_image = os.path.basename(game.image.name)
+    parent_image = os.path.dirname(game.image.path)
     if request.method == "POST":
         form = UpGameForm(request.POST,  request.FILES, instance=game)
         if form.is_valid():
-            if 'image' in request.FILES and game.image:
-                game.delete()
-                
+            if 'image' in request.FILES:
+                path = os.path.join(parent_image, name_image)
+                if os.path.exists(path):
+                    os.remove(path)
+                    
             if 'file' in request.FILES:
                 print("file")
                 if game.file:
@@ -141,6 +133,4 @@ def Edit_game(request, game_id):
             return redirect('up_game')
     else:
         form = UpGameForm(instance=game)
-    return render(request, 'Edit_game.html',{'game': Game, 'form': form})   
-
-
+    return render(request, 'Edit_game.html',{'game': game, 'form': form})   
