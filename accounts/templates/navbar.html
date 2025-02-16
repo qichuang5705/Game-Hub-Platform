@@ -7,96 +7,105 @@
               <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
           </a>
       </div>
-      <nav class="header_function">
+      <nav class="main-nav">
           <ul>
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="#">Cửa hàng</a></li>  
-              <li><a href="{% url 'up_game'%}">Developer</a></li>
-              <li><a href="#">Designer</a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+              </a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-laptop-code"></i>
+              </a></li>
+              <li><a href="{% url 'home' %}">
+                <i class="fa-solid fa-pen-ruler"></i>
+              </a></li>
+              <li>
+                <div class="search-box ">
+                  <input class="search-box_input" type="text">
+                  <button class="search-box_btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </li>
           </ul>
       </nav>
-      <div class="search-container">
-          <div class="search-box">
-              <input type="text" placeholder="Tìm kiếm..." id="search-input">
-              <button type="button" id="search-button">
-                  <img src="{% static 'img/search_icon.png' %}" alt="Search" id="search-icon"> </button>
-          </div>
-      </div>
-    </div>
-
-      <!---->
-      <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
-          <i class="cart-btn fa-solid fa-user"></i>
-          <div class="cart close">
-              <div class="account">
-                  <button class="open-login-btn">Đăng nhập</button>
-              </div>
-          </div>
-      </div>
-
-      <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
-          <div class="avatar-wrapper ">  
-              <div class="avatar">
-                  {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
-              </div>
-          </div>
-          <div class="cart_user close">
-              <div class="account">
-                  <button class="show-info-btn">Thông tin cá nhân</button>
-                  <button onclick="window.location.href='{% url 'logout' %}'" class="logout-account-btn">
-                    Đăng xuất
-                  </button>
-              </div>
-          </div>
-          <div class="account-wrapper hide">  
-              <span class="close-account close-button">&times;</span>
-              <div class="account_container">
-                  <div class="user-profile">
-                      <div class="user-info">
-                          <p>Hello, NPT!</p>
-                      </div>
-                  </div>
-                  
-                  <div class="your-detail">
-                      <label>CHI TIẾT</label>
-                      <div class="info-group">
-                          <p>Tên:</p>
-                          <input type="text" name="name" value="">
-                      </div>
-                      <div class="info-group">
-                          <p>Email:</p>
-                          <input type="email" name="email" value="" disabled>
-                      </div>
-                      <div class="info-group">
-                          <p>Điện thoại:</p>
-                          <input type="tel" name="tel" value="">
-                      </div>
-                      <div class="info-group">
-                          <label for="account-type">Loại tài khoản:</label>
-                          <select id="account-type" name="account-type" disabled>
-                              <option value="player">Player Account</option>
-                              <option value="developer">Developer Account</option>
-                              <option value="designer">Designer Account</option>
-                          </select>
-                      </div>
-                      <div class="change-type-account">
-                          <span class="open-change-type-account-btn">Đổi tài khoản</span>
-                      </div>
-                  </div>
       
-                  <div class="password-section">
-                      <label>MẬT KHẨU</label>
-                      <div class="change-password">
-                          <span class="open-change-password-btn">Đổi mật khẩu</span>
+      <div class="user-actions">
+          <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
+              <i class="cart-btn fa-solid fa-user"></i>
+              <div class="cart close">
+                  <div class="account">
+                      <button class="open-login-btn">Đăng nhập</button>
+                  </div>
+              </div>
+          </div>
+          <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
+              <div class="avatar-wrapper ">
+                  <div class="avatar">
+                      {% load static %}<img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+                  </div>
+              </div>
+              <div class="cart_user close">
+                  <div class="account">
+                      <button class="show-info-btn">Thông tin cá nhân</button>
+                      <button onclick="window.location.href='{% url 'logout' %}'" class="logout-account-btn">
+                          Đăng xuất
+                      </button>
+                  </div>
+              </div>
+              <div class="account-wrapper hide">
+                  <span class="close-account close-button">&times;</span>
+                  <div class="account_container">
+                      <div class="user-profile">
+                          <div class="user-info">
+                              <p>Hello, NPT!</p>
+                          </div>
+                      </div>
+  
+                      <div class="your-detail">
+                          <label>Thông tin chi tiết:</label>
+                          <div class="info-group">
+                              <p>Tên:</p>
+                              <input type="text" name="name" value="">
+                          </div>
+                          <div class="info-group">
+                              <p>Email:</p>
+                              <input type="email" name="email" value="" disabled>
+                          </div>
+                          <div class="info-group">
+                              <p>Điện thoại:</p>
+                              <input type="tel" name="tel" value="">
+                          </div>
+                          <div class="info-group">
+                              <label for="account-type">Loại tài khoản:</label>
+                              <select id="account-type" name="account-type" disabled>
+                                  <option value="player">Player Account</option>
+                                  <option value="developer">Developer Account</option>
+                                  <option value="designer">Designer Account</option>
+                              </select>
+                          </div>
+                          <div class="change-type-account">
+                              <span class="open-change-type-account-btn">Đổi tài khoản</span>
+                          </div>
+                      </div>
+  
+                      <div class="password-section">
+                          <label>Mật khẩu:</label>
+                          <div class="change-password">
+                              <span class="open-change-password-btn">Đổi mật khẩu</span>
+                          </div>
+                      </div>
+  
+                      <div class="update-profile">
+                          <button>CẬP NHẬT</button>
                       </div>
                   </div>
-      
-                  <div class="update-profile">
-                      <button>CẬP NHẬT</button>
-                  </div>
-            </div>
+              </div>
           </div>
       </div>
+  </div>
 
     <div class="page_account hide">
       <!--Login-->
