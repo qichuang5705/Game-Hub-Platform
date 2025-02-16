@@ -3,15 +3,16 @@
     align-items: center;
     justify-content: space-between; 
     padding: 10px;
-    background-color: #616161; 
+    background-color: #000000; 
     width: 100%; 
 }
 
-.logo img {
+.navbar .logo img {
     height: 60px;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    margin-left: 50%;
 }
 
 .logo img:hover {
@@ -24,6 +25,7 @@
     flex-basis: 90%; 
     justify-content: space-between; 
     font-size: 30px;
+    margin-left: 17%;
 }
 
 .main-nav ul {
