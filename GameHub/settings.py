@@ -39,15 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'games',
-<<<<<<< HEAD
     'assets',
-=======
-<<<<<<< HEAD
     'payments',
-    'assets',
-=======
->>>>>>> eed7e226dd84c0e8613ee49efd6bb90d25488f4d
->>>>>>> 1128d3bf756f13dd18f5fc59c4c1c111bcc13aba
     'rest_framework',
 ]
 
@@ -92,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-        'PASSWORD': 'Duybang11.com',           # Mật khẩu MySQL
+        'PASSWORD': 'root',           # Mật khẩu MySQL
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
