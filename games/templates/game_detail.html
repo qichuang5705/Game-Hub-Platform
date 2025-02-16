@@ -3,62 +3,8 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/page_game.css' %}">
+    <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
     
-    <style>
-   .play_game_box {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 = 0.5625) */
-}
-
-.play_game_box iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-
-.comment-textarea{
-    width: 100%;
-}
-
-
-/* CSS */
-.button-32 {
-  background-color: #fff000;
-  border-radius: 12px;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px 15px;
-  text-align: center;
-  transition: 200ms;
-  width: 100%;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-32:not(:disabled):hover,
-.button-32:not(:disabled):focus {
-  outline: 0;
-  background: #f4e603;
-  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
-}
-
-.button-32:disabled {
-  filter: saturate(0.2) opacity(0.5);
-  -webkit-filter: saturate(0.2) opacity(0.5);
-  cursor: not-allowed;
-}
-    </style>
 {% endblock %}
 
 
@@ -94,7 +40,7 @@
             <div class="voting_box">
                 <div class="rating-summary">
                     <div class="average-rating">
-                        <label class="label">Average:</label>
+                        <label class="label">Đánh giá trung bình:</label>
                         <label class="value">4.5</label>
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -103,43 +49,15 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <label class="total-votes">365 Votes</label>
                     </div>
-                    <div class="rating-bars">
-                        <div class="rating-bar">
-                            <label class="rating-label">Excellent</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 51.5%;"></div>
-                            </div>
-                            <label class="vote-count">188 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Good</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 7.1%;"></div>
-                            </div>
-                            <label class="vote-count">26 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Average</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 4.4%;"></div>
-                            </div>
-                            <label class="vote-count">16 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Poor</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 6%;"></div>
-                            </div>
-                            <label class="vote-count">22 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <p class="rating-label">Terrible</p>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 31.2%;"></div>
-                            </div>
-                            <label class="vote-count">113 votes</label>
+                    <div class="your-rating">
+                        <label class="label">Đánh giá của bạn:</label>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -148,12 +66,12 @@
             <!--leaderboard-->
             {% if game.ApiLD %}
             <div class="leaderboard">
-                <h3>Leaderboard</h3>
+                <h3>Bảng xếp hạng</h3>
                 <table>
                     <tr class="header_leader">
-                        <th>Rank</th>
-                        <th>Player Name</th>
-                        <th>Score</th>
+                        <th>Xếp hạng</th>
+                        <th>Tên người chơi</th>
+                        <th>Điểm số</th>
                     </tr>
                     {% for entry in leader %}
                     <tr>
@@ -173,7 +91,7 @@
             <!--comment-->
             <div class="comment_container">
                 <div class="comment-section">
-                    <h3>Comments</h3>
+                    <h3>Bình luận</h3>
 
                     <div class="comment-form">
                         <!-- avatar -->
@@ -237,22 +155,6 @@
                     </div>
                       <!-- Hiển thị commet -->
                 </div>
-            </div>
-
-            <!--footer-->
-            <div class="game_box_footer">
-                <p>
-                    Simple and easy to play: Anyone can play, requiring no special skills.
-                    The gameplay challenges intellect and creativity, making players want to overcome each level.
-                    The cute image of the Doge and humorous situations create a relaxing feeling for players.
-                    Helps players train logical thinking, judgment, and dexterity.
-                    Often has hundreds of levels with increasing difficulty, providing many hours of entertainment.
-                </p>
-                <p>
-                    In summary: "Save the Doge" is a delightful puzzle game suitable for all ages.
-                    With simple yet challenging gameplay, this game offers relaxing moments of entertainment
-                    and helps train the brain. If you enjoy light and fun puzzle games, "Save the Doge" is worth a try.
-                </p>
             </div>
 
         </div>

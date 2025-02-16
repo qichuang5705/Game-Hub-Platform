@@ -2,209 +2,128 @@
 
 {% block head %}
 
-
-<style>
-    /* Lỗi của từng trường */
-    .text-danger {
-    color: #d9534f; /* Màu đỏ nổi bật */
-    font-size: 14px;
-    margin-top: 5px;
-    margin-left: 5px;
-    list-style-type: none; /* Bỏ dấu chấm đầu dòng */
-}
-
-    body {
-        flex:1;
-    }
-
-    .form1 {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    /* Styling for the form-group */
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group label {
-        font-size: 16px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    /* Styling for the input fields */
-    input[type="text"],
-    textarea,
-    input[type="file"],
-    input[type="image"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-
-    /* Styling for the genres checkboxes */
-    .genres-checkbox {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-top: 10px;
-    }
-
-    .genres-checkbox label {
-        font-size: 14px;
-        font-weight: normal;
-        color: #555;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-    .genres-checkbox input[type="checkbox"] {
-        margin-right: 10px;
-        accent-color: #007bff; /* Change the color of the checkbox */
-    }
-
-    /* Hover effect for labels */
-    .genres-checkbox label:hover {
-        color: #007bff;
-    }
-
-    /* Styling the submit button */
-    .button1[type="submit"] {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .button1[type="submit"]:hover {
-        background-color: #0056b3;
-    }
-
-    /* Styling for the form inputs */
-    input[type="checkbox"]:checked + label {
-        color: #007bff; /* Change color of label when checkbox is checked */
-    }
-
-    #editable-container {
-        margin: 20px;
-    }
-
-    #edit-input {
-    margin-left: 10px;
-    padding: 5px;
-    font-size: 14px;
-    }
-</style>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/uploadGame.css' %}">
+    
 
 {% endblock %}
 
 
 {% block body %}
-
-
-          <!-- enctype="multipart/form-data" để cho phép post file.zip-->
-        <!-- HTML form -->
-        <h1>Up games</h1>
-        <h2>Chỉ đăng tải file index.html hoặc file .zip</h2>
-        <h2>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</h2>
-        <form method="post" enctype="multipart/form-data" class="form1">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_name">Name:</label>
-                {{ form.name }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_genres">Genres:</label>
-                <div class="genres-checkbox">
-                    {{ form.genres }}
-                </div>
-                {% if form.genres.errors %}
-                <ul class="text-danger">
-                    {% for error in form.genres.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-            <div class="form-group">
-                <label for="id_genres">Bảng xếp hạng:</label> {{ form.ApiLD }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_description">Description:</label>
-                {{ form.description }}
-            </div>
-            
-            <div class="form-group">
-                <label for="id_image">Image:</label>
-                {{ form.image }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_file">File:</label>
-                {{ form.file }}
-                {% if form.file.errors %}
-                <ul class="text-danger">
-                    {% for error in form.file.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-
-            <button class="button1" type="submit" class="btn btn-primary">Upload Game</button>
-        </form>
-
+    <dev class="upload-game">
         
+        <!--FORM-->
+        <div class="upload-game-container hide">
+            <form method="post" enctype="multipart/form-data" class="upload-game-form">
+                {% csrf_token %}
+                <h3>ĐĂNG TẢI GAME</h3>
+                <i class="close-upload close-button">&times;</i>
+                <div class="upload-game-form-group">
+                    <label for="id_name">Tên game:</label>
+                    {{ form.name }}
+                </div>
+        
+                <div class="upload-game-form-group">
+                    <label for="id_genres">Thể loại:</label>
+                    <div class="upload-game-genres-checkbox">
+                        {{ form.genres }}
+                    </div>
+                    {% if form.genres.errors %}
+                    <ul class="upload-game-text-danger">
+                        {% for error in form.genres.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+        
+                <div class="upload-game-form-group">
+                    <label for="id_ApiLD">Hỗ trợ bảng xếp hạng:</label>
+                    <label class="yesno" for="id_ApiLD"> 
+                        {{ form.ApiLD }} có/không
+                    </label>
+                </div>
+                
+        
+                <div class="upload-game-form-group">
+                    <label for="id_description">Mô tả game:</label>
+                    {{ form.description }}
+                </div>
+        
+                <div class="upload-game-form-group">
+                    <label for="id_image">Hình ảnh:</label>
+                    {{ form.image }}
+                </div>
+        
+                <div class="upload-game-form-group">
+                    <label for="id_file">File game:</label>
+                    {{ form.file }}
+                    {% if form.file.errors %}
+                    <ul class="upload-game-text-danger">
+                        {% for error in form.file.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
 
-        <hr>
-        <div class="container">
+                <div class="note">
+                    <label>Lưu ý: </label>
+                    <span>Chỉ đăng tải file index.html hoặc file .zip</span>
+                    <span>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</span>
+                </div>
+                <button class="upload-game-button" type="submit">Đăng tải</button>
+            </form>
+        </div>
+
+        <!--GAME ĐÃ UPLOAD-->
+        <div class="container_game_posted ">
+            <div>
+                <button class="open-upload-btn">+</button>
+            </div>
+        
             {% for game in games %}
-            <div class="row" style="margin-top: 10px; background-color: antiquewhite;">
-                <div class="col" style="width: 200px; padding: 10px; ">
+            <div class="row game-card-posted ">
+                <!-- Cột chứa ảnh và nút -->
+                <div class="game-image-container">
                     <a href="games/game_detail/{{ game.id }}">
-                            {% if game.image %}
-                            <img width="120px" src="{{ game.image.url }}" alt="hình trò chơi">
-                            {% else %}
-                                <img width="120px" src="/media/empty.jpg" alt="hình trò chơi mặc định">
-                            {% endif %}
+                        {% if game.image %}
+                        <img class="game-image" src="{{ game.image.url }}" alt="hình trò chơi">
+                        {% else %}
+                        <img class="game-image" src="/media/empty.jpg" alt="hình trò chơi mặc định">
+                        {% endif %}
                     </a>
-                    <p>Tên trò chơi: {{game.name}}</p>
-                    <p>Thể loại:
+                    <div class="button-group">
+                        <a href="{% url 'Delete_Game' game.id %}">
+                            <button class="delete_game" type="button">Xóa</button>
+                        </a>
+                        <a class="edit_game" href="{% url 'edit_game' game.id %}">
+                            <button class="fixed_game" type="button">Chỉnh sửa</button>
+                        </a>
+                    </div>
+                </div>
+        
+                <!-- Cột chứa thông tin game -->
+                <div class=" game-info">
+                    <label>Tên trò chơi: {{ game.name }}</label>
+                    <label>Thể loại:
                         {% for genre in game.genres.all %}
                             {{ genre.name }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
-                    </p>
-                    <p>Ngày tạo: {{ game.datecreate }}</p>
-                    <p>Phiên bản: {{ game.version }}</p>
-                    <p>Mô tả: {{ game.description }}</p>
-                    <p>Bảng xếp hạng: {{ game.ApiLD }}</p>
-                    <a href="{% url 'Delete_Game' game.id %}">
-                        <button type="button">Xóa</button>
-                    </a>
-                    <a href="{% url 'edit_game' game.id %}">Chỉnh sửa</a>
+                    </label>
+                    <label>Ngày tạo: {{ game.datecreate }}</label>
+                    <label>Phiên bản: {{ game.version }}</label>
+                    <label>Bảng xếp hạng: {{ game.ApiLD }}</label>
+                    <label>Mô tả: </label>
+                    <p>{{ game.description }}</p>
                 </div>
             </div>
             {% endfor %}
         </div>
+        
+
+    </div>
+    
+    <script src="{% static 'js/uploadGame.js' %}"></script>
 
 {% endblock %}
