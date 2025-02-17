@@ -86,11 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Sử dụng MySQL
         'NAME': 'gamehubplatfrom',          # Tên cơ sở dữ liệu
         'USER': 'root',               # Tên người dùng MySQL
-<<<<<<< HEAD
         'PASSWORD': '100105',           # Mật khẩu MySQL
-=======
-        'PASSWORD': 'Duybang11.com',           # Mật khẩu MySQL
->>>>>>> bf1aa85c198bab0becd63a7d30de675b1a265c63
         'HOST': 'localhost',                   # Máy chủ (thường là localhost)
         'PORT': '3306',                        # Cổng MySQL mặc định
     }
