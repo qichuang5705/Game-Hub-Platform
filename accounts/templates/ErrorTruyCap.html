@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+
+    <head>
+        <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    </head>
+    <body>
+        <div class="error_page">
+            <div class="error-container"> 
+                <h1>Opps!</h1>
+                <i class="fa-solid fa-ghost"></i>
+                <h2>GAME OVER</h2>
+                <span>Bạn không có quyền truy cập</span>
+                <a href="{% url 'home' %}">
+                    <button>Quay lại trang chủ</button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
