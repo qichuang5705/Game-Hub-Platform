@@ -205,4 +205,4 @@ def reset_password_form(request):
     return render(request, "reset_password.html")
 
 def error(request):
-    return render(request, 'ErrorTruyCap.html')
+    return render(request, 'error.html')
