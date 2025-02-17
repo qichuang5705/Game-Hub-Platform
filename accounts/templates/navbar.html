@@ -90,18 +90,18 @@
                 
                           <div class="info-group">
                             <label for="f1">Họ:</label>
-                            <input type="text" name="last_name" id="f1" placeholder="{{ user.last_name }}">
+                            <input type="text" name="last_name" id="f1" value="{{ user.last_name }}">
                         </div>
                         
                           <div class="info-group">
                             <label for="f2">Tên:</label>
-                            <input type="text" name="first_name" id="f2" placeholder="{{ user.first_name }}">
+                            <input type="text" name="first_name" id="f2" value="{{ user.first_name }}">
                         </div>
 
                 
                         <div class="info-group">
                           <label for="f3">Email:</label>
-                          <input type="text" name="email" id="f3" placeholder="{{ user.email }}">
+                          <input type="email" name="email" id="f3" value="{{ user.email }}">
                       </div>  
 
                       <div class="info-group">
@@ -118,7 +118,7 @@
         
                     <div class="password-section">
                         <div class="change-password">
-                          <a >
+                          <a  href="{% url 'password_change' %}">
                             <span class="open-change-password-btn">Đổi mật khẩu</span>
                           </a>
                         </div>
@@ -161,7 +161,7 @@
                 required
               />
               {% if login_form.errors %}
-                  <p class="error">{{ login_form.non_field_errors.0 }}</p>
+                  <p style="color: red;" class="error">{{ login_form.non_field_errors.0 }}</p>
               {% endif %}
               
               <div class="remember-me">
