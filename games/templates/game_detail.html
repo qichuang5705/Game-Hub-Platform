@@ -10,63 +10,54 @@
 
 
 {% block body %}
-<main class="page_body">
+<main class="page_game_body">
     <div class="main-game-wrapper">
         <div class="main-game">
-
-            <!--box game-->
+            <!-- Game Box -->
             <div class="play_game_box">
                 <iframe src="{{ game.file.url }}" allowfullscreen></iframe>
-            </div>       
+            </div>
+            
+            <!-- Game Name -->
             <div class="name_game">
-                <h3>{{ game.name }}</h3>
+                <h1>{{ game.name }}</h1>
             </div>
-
-            <!--info game-->
+            
+            <!-- Game Description -->
             <div class="info_game">
-                <p>
-                    {{ game.description }}
-                </p>
+                <h3>Mô tả</h3>
+                <p>{{ game.description }}</p>
             </div>
-
-            <!--img-->
-            <!-- <div class="game_img"> 
-                <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
-            </div> -->
-            <!--instruct game-->
-          
-
-            <!--voting-->
+            
+            <!-- Voting Section -->
             <div class="voting_box">
+                <h3>Đánh giá</h3>
                 <div class="rating-summary">
                     <div class="average-rating">
-                        <label class="label">Đánh giá trung bình:</label>
-                        <label class="value">4.5</label>
-                        <div class="stars">
+                        <label class="label">Đánh giá trung bình: </label>
+                        <label class="value">5</label>
+                        <div class="stars_avr">
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
                         </div>
                     </div>
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="stars" id="rating-stars">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
                         </div>
                     </div>
+                    <input type="hidden" id="rating-value" name="rating" value="0">
                 </div>
             </div>
-
-            <!--leaderboard-->
-            {% if game.ApiLD %}
+            
+            <!-- Leaderboard -->
             <div class="leaderboard">
-                <h3>Bảng xếp hạng</h3>
+                <h3>{{ game.ApiLD|yesno:"Bảng xếp hạng, Không hỗ trợ bảng xếp hạng" }}</h3>
+                {% if game.ApiLD %}
                 <table>
                     <tr class="header_leader">
                         <th>Xếp hạng</th>
@@ -81,49 +72,33 @@
                     </tr>
                     {% endfor %}
                 </table>
+                {% endif %}
             </div>
-            {% else %}
-            <div class="leaderboard">
-                <h3>Trò chơi không hỗ trợ bảng xếp hạng</h3>
-            </div>
-            {% endif %}
-
-            <!--comment-->
+            
+            <!-- Comment Section -->
             <div class="comment_container">
                 <div class="comment-section">
                     <h3>Bình luận</h3>
-
+                    
+                    <!-- Comment Form -->
                     <div class="comment-form">
-                        <!-- avatar -->
                         <div class="user-avatar">
-                            <i class="fas fa-user-circle fa-3x">
-
-                            </i>
+                            <i class="fas fa-user-circle fa-3x"></i>
                         </div>
-                        <!-- avatar -->
-                        <!-- nhập comment -->
-                         <div class="comment-input">
+                        <div class="comment-input">
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
                                 </div>
-                            
                                 <div class="comment-actions">
-                                    <button class="button-32" type="submit">Gửi</button>
+                                    <button class="button-32" type="submit">Bình luận</button>
                                 </div>
                             </form>
                         </div>
-                        <!-- nhập comment -->
-                        <!-- <div class="comment-input">
-                            <textarea placeholder="Add a comment..."></textarea>
-                            <div class="comment-actions">
-                                <button>Comment</button>
-                            </div>
-                        </div> -->
                     </div>
-
-                    <!-- Hiển thị commet -->
+                    
+                    <!-- Comment List -->
                     <div class="comments">
                         {% for comment in game.comment_set.all %}
                         <div class="comment">
@@ -138,14 +113,11 @@
                                     </div>
                                     <p>{{ comment.words }}</p>
                                 </div>
-                                
                                 <div class="comment-footer">
                                     {% if user.id == comment.users.id %}
                                     <form action="{% url 'DeleteComment' comment.id %}" method="POST">
                                         {% csrf_token %}
-                                        <button class="button-32" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                                            Xóa
-                                        </button>
+                                        <button class="button-32" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
                                     </form>
                                     {% endif %}
                                 </div>
@@ -153,11 +125,14 @@
                         </div>
                         {% endfor %}
                     </div>
-                      <!-- Hiển thị commet -->
+
                 </div>
             </div>
-
         </div>
     </div>
+    
 </main>
+
+<script src="{% static 'js/game_detail.js' %}"></script>
+
 {% endblock %}

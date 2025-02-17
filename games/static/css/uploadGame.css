@@ -126,6 +126,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    min-height: 10vh;
 }
 
 .open-upload-btn {
