@@ -203,3 +203,6 @@ def reset_password_form(request):
             messages.error(request, "Passwords do not match.")
 
     return render(request, "reset_password.html")
+
+def error(request):
+    return render(request, 'ErrorTruyCap.html')
