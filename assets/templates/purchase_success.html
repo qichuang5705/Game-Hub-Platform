@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đã mua</title>
+</head>
+<body>
+    <h1>Danh sách tài nguyên đã mua</h1>
+    <ul>
+        {% for purchase in purchases %}
+            <li>
+                {{ purchase.asset.title }} - Đã mua ngày {{ purchase.purchase_date|date:"d/m/Y" }} (Thanh toán: {{ purchase.payment_method }})
+                {% if purchase.asset.file %}
+
+                    <a href="{% url 'download_asset' purchase.asset.id %}">📥 Tải xuống</a>
+                {% else %}
+                    <span>Không có tệp để tải</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'asset_list' %}">Quay lại danh sách</a>
+</body>
+</html>

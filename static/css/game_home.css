@@ -1,0 +1,101 @@
+main {
+    flex: 1;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #212121;
+    padding: 30px; 
+    display: flex;
+    justify-content: center; 
+}
+
+.game-container {
+    display: flex;
+    justify-content: flex-start; 
+    max-width: 1200px;
+    width: 90%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card_game {
+    background: #242628;
+    width: calc(25% - 15px);
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+    position: relative;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.cart_img {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.cart_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card_game:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.game_info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.card_game:hover .game_info {
+    transform: translateY(100%);
+}
+
+.name-container, .genre-container, .voting-container { 
+    display: flex; 
+    align-items: center; 
+    margin: 5px 0;
+}
+
+.name-container span, .genre-container span, .voting-container span {
+    font-weight: bold;
+    margin-right: 5px;
+    white-space: nowrap; 
+}
+
+.name-container h3, .genre-container h3 {
+    display: block;
+    margin: 0; 
+    font-size: 16px; 
+}
+
+.game_info .stars i {
+    color: gold;
+    font-size: 14px;
+    margin: 0 2px;
+}
