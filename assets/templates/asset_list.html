@@ -25,6 +25,11 @@ rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
 <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
 <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+<style>
+    .navbar{
+        flex-wrap: nowrap !important;
+    }
+</style>
 {% endblock%}
 
 {% block body %}
@@ -33,21 +38,7 @@ rel="stylesheet">
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="./asset_list.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <span>Asset Store</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
+    
 
     <!-- Product Section Begin -->
     <section class="product-page spad">
@@ -71,7 +62,8 @@ rel="stylesheet">
                             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" 
-                                        data-setbg="{% if asset.thumbnail %}{{ asset.thumbnail.url }}{% else %}/media/defaults/NoneImage.png{% endif %}">
+                                        data-setbg="{% if asset.thumnail %}{{ asset.thumnail.url }}{% else %}defaults/NoneImage.png{% endif %}">
+                                        
                                         <div class="view"><i class="fa fa-eye"></i> {{ asset.type }}</div>
                                     </div>
                                     <div class="product__item__text">
@@ -82,6 +74,7 @@ rel="stylesheet">
                                             <li>{{ asset.type }}</li>
                                         </ul>
                                         <a href="{% url 'asset_buy_view' asset.id %}" class="btn btn-primary">Mua ngay</a>
+                                        <a href="{% url 'asset_detail' asset.id %}" class="btn btn-primary">Xem Thêm</a>
                                     </div>
                                 </div>
                             </div>
