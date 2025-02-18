@@ -1,0 +1,231 @@
+/*upload gameeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+.upload-game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.upload-game-form {
+    position: relative;
+    width: 50vw; 
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px auto;
+}
+
+.upload-game-form-group {
+    margin-bottom: 15px;
+}
+
+.upload-game-form label, .upload-game-container span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.upload-game-form input[type="text"],
+.upload-game-form textarea,
+.upload-game-form input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #6c6c6c;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: auto 30px;
+}
+
+.upload-game-genres-checkbox label, .upload-game-form-group label {
+    display: inline-flex; 
+    align-items: center;  
+    gap: 5px;
+    cursor: pointer; 
+    width: fit-content;
+    padding: 2px 5px; 
+}
+
+.upload-game-genres-checkbox input, .upload-game-form-group label input  {
+    margin: auto 10px auto 30px;
+    height: 20px;
+    width: 20px;
+}
+
+.upload-game-text-danger {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.upload-game-button {
+    width: 100px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.upload-game-button:hover {
+    background-color: #45a049;
+}
+
+.upload-game-container .close-upload {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+    font-weight: bolder;
+}
+
+.upload-game-container .close-upload:hover {
+    color: black;
+    transform: scale(1);
+}
+
+.upload-game-container h3 {
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-game-container .note label {
+    color: red;
+    text-decoration: underline;
+}
+
+.upload-game-container .note span {
+    margin-left: 30px;
+}
+
+.upload-game-container .note span:hover{
+    transform: scale(1);
+}
+/*upload gameeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+
+/*game đã up loaddddddddddddddddddđ*/
+.container_game_posted {
+    width: 70%;
+    margin: 20px auto;
+    background-color: #212121;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 10vh;
+}
+
+.open-upload-btn {
+    height: 40px;
+    width: 80px;
+    font-size: 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: #00d40b;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.game-card-posted {
+    width: 90%;
+    display: flex;
+    background: #333;
+    padding: 20px;
+    margin: 60px 0 0;
+    border-radius: 10px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.game-card-posted .game-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    margin-right: 20px;
+}
+
+.game-card-posted .game-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid white;
+    margin-bottom: 10px;
+}
+
+.game-card-posted .game-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    border: 2px solid #555;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.game-card-posted .game-info label {
+    margin: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.game-card-posted .game-info p {
+    margin: 5px 0;
+    font-size: 20px;
+    word-break: break-word;
+}
+
+.game-card-posted .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-card-posted .delete_game, .fixed_game {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+}
+
+.game-card-posted .delete_game, .fixed_game {
+    background-color: blue;
+    color: white;
+}
+
+/*game đã up loaddddddddddddddddddđ*/
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+}

@@ -3,157 +3,66 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/page_game.css' %}">
+    <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
     
-    <style>
-   .play_game_box {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 = 0.5625) */
-}
-
-.play_game_box iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-
-.comment-textarea{
-    width: 100%;
-}
-
-
-/* CSS */
-.button-32 {
-  background-color: #fff000;
-  border-radius: 12px;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px 15px;
-  text-align: center;
-  transition: 200ms;
-  width: 100%;
-  box-sizing: border-box;
-  border: 0;
-  font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-32:not(:disabled):hover,
-.button-32:not(:disabled):focus {
-  outline: 0;
-  background: #f4e603;
-  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
-}
-
-.button-32:disabled {
-  filter: saturate(0.2) opacity(0.5);
-  -webkit-filter: saturate(0.2) opacity(0.5);
-  cursor: not-allowed;
-}
-    </style>
 {% endblock %}
 
 
 
 {% block body %}
-<main class="page_body">
+<main class="page_game_body">
     <div class="main-game-wrapper">
         <div class="main-game">
-
-            <!--box game-->
+            <!-- Game Box -->
             <div class="play_game_box">
                 <iframe src="{{ game.file.url }}" allowfullscreen></iframe>
-            </div>       
+            </div>
+            
+            <!-- Game Name -->
             <div class="name_game">
-                <h3>{{ game.name }}</h3>
+                <h1>{{ game.name }}</h1>
             </div>
-
-            <!--info game-->
+            
+            <!-- Game Description -->
             <div class="info_game">
-                <p>
-                    {{ game.description }}
-                </p>
+                <h3>Mô tả</h3>
+                <p>{{ game.description }}</p>
             </div>
-
-            <!--img-->
-            <!-- <div class="game_img"> 
-                <img src="{% static 'api/img/anh1.jpg' %}" alt="Game1" />
-            </div> -->
-            <!--instruct game-->
-          
-
-            <!--voting-->
+            
+            <!-- Voting Section -->
             <div class="voting_box">
+                <h3>Đánh giá</h3>
                 <div class="rating-summary">
                     <div class="average-rating">
-                        <label class="label">Average:</label>
-                        <label class="value">4.5</label>
-                        <div class="stars">
+                        <label class="label">Đánh giá trung bình: </label>
+                        <label class="value">5</label>
+                        <div class="stars_avr">
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <label class="total-votes">365 Votes</label>
-                    </div>
-                    <div class="rating-bars">
-                        <div class="rating-bar">
-                            <label class="rating-label">Excellent</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 51.5%;"></div>
-                            </div>
-                            <label class="vote-count">188 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Good</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 7.1%;"></div>
-                            </div>
-                            <label class="vote-count">26 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Average</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 4.4%;"></div>
-                            </div>
-                            <label class="vote-count">16 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <label class="rating-label">Poor</label>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 6%;"></div>
-                            </div>
-                            <label class="vote-count">22 votes</label>
-                        </div>
-                        <div class="rating-bar">
-                            <p class="rating-label">Terrible</p>
-                            <div class="bar-container">
-                                <div class="bar" style="width: 31.2%;"></div>
-                            </div>
-                            <label class="vote-count">113 votes</label>
                         </div>
                     </div>
+                    <div class="your-rating">
+                        <label class="label">Đánh giá của bạn:</label>
+                        <div class="stars" id="rating-stars">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                    </div>
+                    <input type="hidden" id="rating-value" name="rating" value="0">
                 </div>
             </div>
-
-            <!--leaderboard-->
-            {% if game.ApiLD %}
+            
+            <!-- Leaderboard -->
             <div class="leaderboard">
-                <h3>Leaderboard</h3>
+                <h3>{{ game.ApiLD|yesno:"Bảng xếp hạng, Không hỗ trợ bảng xếp hạng" }}</h3>
+                {% if game.ApiLD %}
                 <table>
                     <tr class="header_leader">
-                        <th>Rank</th>
-                        <th>Player Name</th>
-                        <th>Score</th>
+                        <th>Xếp hạng</th>
+                        <th>Tên người chơi</th>
+                        <th>Điểm số</th>
                     </tr>
                     {% for entry in leader %}
                     <tr>
@@ -163,49 +72,33 @@
                     </tr>
                     {% endfor %}
                 </table>
+                {% endif %}
             </div>
-            {% else %}
-            <div class="leaderboard">
-                <h3>Trò chơi không hỗ trợ bảng xếp hạng</h3>
-            </div>
-            {% endif %}
-
-            <!--comment-->
+            
+            <!-- Comment Section -->
             <div class="comment_container">
                 <div class="comment-section">
-                    <h3>Comments</h3>
-
+                    <h3>Bình luận</h3>
+                    
+                    <!-- Comment Form -->
                     <div class="comment-form">
-                        <!-- avatar -->
                         <div class="user-avatar">
-                            <i class="fas fa-user-circle fa-3x">
-
-                            </i>
+                            <i class="fas fa-user-circle fa-3x"></i>
                         </div>
-                        <!-- avatar -->
-                        <!-- nhập comment -->
-                         <div class="comment-input">
+                        <div class="comment-input">
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
                                 </div>
-                            
                                 <div class="comment-actions">
-                                    <button class="button-32" type="submit">Gửi</button>
+                                    <button class="button-32" type="submit">Bình luận</button>
                                 </div>
                             </form>
                         </div>
-                        <!-- nhập comment -->
-                        <!-- <div class="comment-input">
-                            <textarea placeholder="Add a comment..."></textarea>
-                            <div class="comment-actions">
-                                <button>Comment</button>
-                            </div>
-                        </div> -->
                     </div>
-
-                    <!-- Hiển thị commet -->
+                    
+                    <!-- Comment List -->
                     <div class="comments">
                         {% for comment in game.comment_set.all %}
                         <div class="comment">
@@ -220,14 +113,11 @@
                                     </div>
                                     <p>{{ comment.words }}</p>
                                 </div>
-                                
                                 <div class="comment-footer">
                                     {% if user.id == comment.users.id %}
                                     <form action="{% url 'DeleteComment' comment.id %}" method="POST">
                                         {% csrf_token %}
-                                        <button class="button-32" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                                            Xóa
-                                        </button>
+                                        <button class="button-32" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</button>
                                     </form>
                                     {% endif %}
                                 </div>
@@ -235,27 +125,14 @@
                         </div>
                         {% endfor %}
                     </div>
-                      <!-- Hiển thị commet -->
+
                 </div>
             </div>
-
-            <!--footer-->
-            <div class="game_box_footer">
-                <p>
-                    Simple and easy to play: Anyone can play, requiring no special skills.
-                    The gameplay challenges intellect and creativity, making players want to overcome each level.
-                    The cute image of the Doge and humorous situations create a relaxing feeling for players.
-                    Helps players train logical thinking, judgment, and dexterity.
-                    Often has hundreds of levels with increasing difficulty, providing many hours of entertainment.
-                </p>
-                <p>
-                    In summary: "Save the Doge" is a delightful puzzle game suitable for all ages.
-                    With simple yet challenging gameplay, this game offers relaxing moments of entertainment
-                    and helps train the brain. If you enjoy light and fun puzzle games, "Save the Doge" is worth a try.
-                </p>
-            </div>
-
         </div>
     </div>
+    
 </main>
+
+<script src="{% static 'js/game_detail.js' %}"></script>
+
 {% endblock %}

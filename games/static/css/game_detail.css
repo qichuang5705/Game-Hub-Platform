@@ -1,0 +1,276 @@
+.page_game_body {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.main-game-wrapper {
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 10px;
+    padding: 0; 
+}
+
+.play_game_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.play_game_box iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 8px;
+}
+
+.name_game, .info_game, .voting_box, .leaderboard, .comment_container { 
+    width: 100%;
+    padding: 20px; 
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 20px; 
+    background-color: #333; 
+    border-radius: 8px; 
+}
+
+.name_game h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+
+.info_game {
+    font-size: 25px;
+    text-align: justify;
+}
+
+.voting_box {
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.rating-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.average-rating, .your-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.average-rating .label, .your-rating .label {
+    font-weight: bold;
+    color: #fff;
+    min-width: 150px;
+}
+
+.stars, .stars_avr {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.stars i, .stars_avr i {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.stars_avr i {
+    color: gold;
+}
+
+.stars i.active, .stars i:hover {
+    color: gold;
+}
+
+.leaderboard {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.leaderboard table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.leaderboard th, .leaderboard td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+    color: #fff;
+}
+
+.leaderboard th {
+    background-color: #444;
+    font-weight: bold;
+}
+
+.leaderboard tr:last-child td {
+    border-bottom: none;
+}
+
+.leaderboard tr:hover {
+    background-color: #555;
+}
+
+.comment_container {
+    margin-top: 20px;
+    padding: 20px; 
+    border-radius: 8px;
+}
+
+.comment-section h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.user-avatar i {
+    color: #fff;
+}
+
+.comment-form i {
+    margin-top: -30px;
+}
+
+.comment-input {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    background-color: #444;
+    color: #fff;
+}
+
+.comment-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.comment-actions .button-32 {
+    padding: 8px 15px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-actions .button-32:hover {
+    background-color: #cc0000;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.comment-content {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    color: #bbb;
+    margin-bottom: 5px;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.comment-date {
+    margin-left: auto;
+    font-size: 15px;
+    color: #888;
+}
+
+.comment-content-box p {
+    color: #ddd;
+    font-size: 15px;
+    margin-right: 50px;
+}
+
+.comment .comment-date {
+    margin-left: auto;
+    font-size: 15px;
+    color: #888;
+    margin-right: 5px;
+}
+
+.comment-footer {
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+}
+
+.comment-footer .button-32 {
+    background-color: #ff4444;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-footer .button-32:hover {
+    background-color: #cc0000;
+}
+
+.main-game-wrapper h3  {
+    color: #fff;
+    font-size: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #444;
+    border-radius: 8px;
+    height: 50px;
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}

@@ -7,7 +7,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 from .models import CustomUser
 from games.models import Game
 from django.core.mail import send_mail
-import random
+import random, os
 from django.conf import settings
 def redirect_base_on_role(user):
     if user.is_superuser:
@@ -49,8 +49,9 @@ def register(request):
             messages.error(request, "Invalid information")
     else:
         form = RegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -82,21 +83,24 @@ def upgrade_role(request):
 
 
 
-def change_pass(request):
-    return render(request, 'password_change_for.html')
-
+@login_required
 def information(request):
     user = request.user
     if request.method == "POST":
-        form = FormInfor(request.POST,  instance=user)
+        form = FormInfor(request.POST, request.FILES, instance=user)
+        name = os.path.basename(user.avatar.name)
+        parent = os.path.dirname(user.avatar.path)
         if form.is_valid():
+            if 'avatar' in request.FILES and name != 'gojo.jpg':
+                path = os.path.join(parent, name)
+                if os.path.exists(path):
+                    os.remove(path)
             form.save()
-    else:
-        form = FormInfor( instance=user)
-    return render(request, "information.html", {'form': form})
+    return redirect('home')
 
 def reset_password(request):
     return render(request, 'password_reset.html')
+
 
 def home(request):
     game = Game.objects.all()
@@ -116,8 +120,6 @@ def home(request):
                     return redirect_base_on_role(user)
                 else:
                     messages.error(request, "Invalid username or password")
-            else:
-                messages.error(request, "Invalid username or password")
         elif 'register' in request.POST:
             register_form = RegistrationForm(request.POST)
             if register_form.is_valid():
@@ -201,3 +203,6 @@ def reset_password_form(request):
             messages.error(request, "Passwords do not match.")
 
     return render(request, "reset_password.html")
+
+def error(request):
+    return render(request, 'error.html')

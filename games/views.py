@@ -113,12 +113,16 @@ def UpGame(request):
 @login_required
 def Edit_game(request, game_id):
     game = Game.objects.get(id=game_id)
+    name_image = os.path.basename(game.image.name)
+    parent_image = os.path.dirname(game.image.path)
     if request.method == "POST":
         form = UpGameForm(request.POST,  request.FILES, instance=game)
         if form.is_valid():
-            if 'image' in request.FILES and game.image:
-                game.delete()
-                
+            if 'image' in request.FILES:
+                path = os.path.join(parent_image, name_image)
+                if os.path.exists(path):
+                    os.remove(path)
+                    
             if 'file' in request.FILES:
                 print("file")
                 if game.file:
