@@ -41,25 +41,6 @@ class Inventory(models.Model):
     avatar = models.ForeignKey(Avatar, on_delete=models.CASCADE)
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
 
-<<<<<<< HEAD
- 
-
-
-
-
-<<<<<<< HEAD
-=======
-
-# @receiver(post_save, sender=CustomUser)
-# def create_inventory_for_user(sender, instance, created, **kwargs):
-#     if created:
-#         inventory = Inventory.objects.create(user=instance)
-#         default_chat, _ = FrameChat.objects.get_or_create(CssClass="default-chat")
-#         default_ava, _ = FrameAva.objects.get_or_create(CssClass="default-ava")
-#         inventory.chat_frames.add(default_chat)  # Sử dụng .add() để thêm khung chat vào inventory
-#         inventory.ava_frames.add(default_ava)  # Sử dụng .add() để thêm khung avatar vào inventory
->>>>>>> lab
-=======
 @receiver(post_save, sender=CustomUser)
 def create_default_frames(sender, instance, created, **kwargs):
     if created:
@@ -69,4 +50,3 @@ def create_default_frames(sender, instance, created, **kwargs):
         chat = Chat.objects.create(user=instance, frame_chat=frame_chat)
         avatar = Avatar.objects.create(user=instance, frame_avatar=frame_avatar)
         Inventory.objects.create(user=instance,chat=chat, avatar=avatar)
->>>>>>> lab

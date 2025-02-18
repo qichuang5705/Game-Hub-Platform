@@ -11,22 +11,9 @@ from .models import Inventory, FrameAvatar, FrameChat, Avatar, Chat
 #         model = Inventory
 #         fields = ['avatar', 'chat']
 
-
 class InventForm(forms.ModelForm):
-<<<<<<< HEAD
-    chat = forms.ModelChoiceField(queryset=FrameChat.objects.all(), widget=forms.RadioSelect, label="Khung chat")
-    ava = forms.ModelChoiceField(queryset=FrameAva.objects.all(),widget=forms.RadioSelect, label="Khung avatar")
-
-    class Meta:
-        model = Shop
-        fields = ['chat', 'ava']
-=======
     class Meta:
         model = Inventory
-<<<<<<< HEAD
-        fields = ['user']
->>>>>>> lab
-=======
         fields = ['avatar', 'chat']
         widgets = {
             'avatar': forms.RadioSelect(),
@@ -39,7 +26,6 @@ class InventForm(forms.ModelForm):
             # Chỉ hiển thị Avatar và Chat mà user sở hữu
             self.fields['avatar'].queryset = Avatar.objects.filter(user=user)
             self.fields['chat'].queryset = Chat.objects.filter(user=user)
->>>>>>> lab
 
 
 # class ShopForm(forms.ModelForm):
