@@ -4,11 +4,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class Inventory(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)  # Một người dùng có một Inventory
+
+
 
 class Frame(models.Model):
-    CssClass = models.CharField(max_length=100)
+    CssClass = models.CharField(max_length=100, blank=True)
     price = models.IntegerField(default=100)
-    is_buy = models.BooleanField(default=False)
     def __str__(self):
         return self.CssClass
     
@@ -19,30 +22,30 @@ class FrameAva(Frame):
     CssClass = models.CharField(max_length=100, default="default-ava")
     
 
+
 class FrameChat(Frame):
     CssClass = models.CharField(max_length=100, default="default-chat")
 
+class FrameChatSohuu(Frame):
+    inventory = models.ForeignKey(Inventory,on_delete=models.CASCADE)
 
 
-class Shop(models.Model):
-    chat = models.ForeignKey(FrameChat, on_delete=models.CASCADE)
-    ava = models.ForeignKey(FrameAva, on_delete=models.CASCADE)
+class FrameAvaSohuu(Frame):
+    inventory = models.ForeignKey(Inventory,on_delete=models.CASCADE)
+
+
 
  
 
-class Inventory(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    chat = models.ForeignKey(FrameChat,blank=True, null=True, on_delete=models.CASCADE)
-    ava = models.ForeignKey(FrameAva,blank=True, null=True, on_delete=models.CASCADE)
 
 
 
 
-@receiver(post_save, sender=CustomUser)
-def create_inventory_for_user(sender, instance, created, **kwargs):
-    if created:
-        default_chat, _ = FrameChat.objects.get_or_create(CssClass="default-chat")
-
-        default_ava, _ = FrameAva.objects.get_or_create(CssClass="default-ava")
-
-        Inventory.objects.create(user=instance, chat=default_chat, ava=default_ava)
+# @receiver(post_save, sender=CustomUser)
+# def create_inventory_for_user(sender, instance, created, **kwargs):
+#     if created:
+#         inventory = Inventory.objects.create(user=instance)
+#         default_chat, _ = FrameChat.objects.get_or_create(CssClass="default-chat")
+#         default_ava, _ = FrameAva.objects.get_or_create(CssClass="default-ava")
+#         inventory.chat_frames.add(default_chat)  # Sử dụng .add() để thêm khung chat vào inventory
+#         inventory.ava_frames.add(default_ava)  # Sử dụng .add() để thêm khung avatar vào inventory
