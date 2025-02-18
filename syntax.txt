@@ -6,6 +6,9 @@ Nơi chứa các cú pháp cmd, powershell
     <name>\Scripts\activate
 virtual\Scripts\activate
 
+pip install -r requirements.txt
+
+
 @Django
 -tạo project django
     python -m django startproject <name>

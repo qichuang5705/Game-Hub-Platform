@@ -74,6 +74,12 @@
 
 </form>
 
-<a href="{% url 'test' %}">Xem khung </a>
+<!-- <form method="POST">
+    {% csrf_token %}  {# Bảo vệ form chống tấn công CSRF #}
+    {{ form.as_p }}  {# Hiển thị form với mỗi trường trên một dòng #}
+    <button type="submit">Lưu</button>
+</form> -->
+
+<a href="{% url 'shop' %}">Xem khung </a>
 
 {% endblock %}
