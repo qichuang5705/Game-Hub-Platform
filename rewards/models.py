@@ -41,8 +41,8 @@ class Inventory(models.Model):
 @receiver(post_save, sender=CustomUser)
 def create_inventory_for_user(sender, instance, created, **kwargs):
     if created:
-        default_chat, _ = FrameChat.objects.get_or_create(CssClass="default-chat")
+        default_chat, _ = FrameChat.objects.create(CssClass="default-chat", )
 
-        default_ava, _ = FrameAva.objects.get_or_create(CssClass="default-ava")
+        default_ava, _ = FrameAva.objects.create(CssClass="default-ava")
 
         Inventory.objects.create(user=instance, chat=default_chat, ava=default_ava)
