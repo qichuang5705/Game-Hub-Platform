@@ -15,9 +15,7 @@
     margin-left: 30%;
 }
 
-.logo img:hover {
-    transform: scale(1.03);
-}
+
 
 .main-nav {
     display: flex;
@@ -139,9 +137,6 @@
     z-index: 90;
 }
 
-.page_home i:hover{
-    transform: scale(1.05); 
-}
 
 .cart, .cart_user {
     position: absolute;
@@ -167,7 +162,6 @@
 }
 
 .cart button:hover, .cart_user button:hover {
-    transform: scale(1.05);
     background-color: #464646;
     color: #abf600;
 }
@@ -277,7 +271,6 @@
 
 .avatar-wrapper .avatar:hover{
     cursor: pointer;
-    transform: scale(1.05);
 }
 
 .user-profile {
@@ -323,9 +316,6 @@
     border-radius: 5px;
 }
 
-.info-group input:focus, .info-group select:focus {
-    transform: scale(1.02);
-}
 
 .change-password, .change-type-account {
     text-align: center;
@@ -357,9 +347,6 @@
     transition: background-color 0.3s ease;
 }
 
-.update-profile button:hover {
-    transform: scale(0.99);
-}
 
 .account-wrapper .close-account {
     font-size: 30px;
@@ -374,7 +361,6 @@
 
 .account-wrapper .close-account:hover {
     color: #dc3545;
-    transform: scale(1.01);
 }
 
 input:disabled, select:disabled {
@@ -502,25 +488,18 @@ input:disabled, select:disabled {
     cursor: text;
 }
 
-.page_account input[type="text"]:focus, .page_account input[type="password"]:focus, .page_account input[type="email"]:focus {
-    transform: scale(1.05);
-}
-
-.remember-me:hover, span:hover, .option:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-}
-
 .remember-me {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
     color: white;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .remember-me input[type="checkbox"] {
     margin-right: 8px;
+    cursor: pointer;;
 }
 
 .page_account button {
@@ -537,7 +516,6 @@ input:disabled, select:disabled {
 }
 
 .page_account button:hover {
-    transform: scale(1.05);
     background-color: #abf600;
     color: #000000;
 }
@@ -591,7 +569,6 @@ input:disabled, select:disabled {
 }
 
 .close-button:hover {
-    transform: scale(1.25);
     color: #abf600;
 }
 
@@ -638,7 +615,6 @@ input:disabled, select:disabled {
 .with_another a:hover {
     background-color: #abf600;
     color: #000000;
-    transform: scale(1.05);
 }
 
 .login_footer span:hover, .register_footer span:hover, .forgot_password_footer span:hover{

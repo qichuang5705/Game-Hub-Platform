@@ -82,7 +82,6 @@
 .page_footer .policy_privacy span:hover,
 .page_footer .donate span:hover {
     color: #abf600;
-    transform: scale(1.05);
 }
 
 .card_social {
@@ -115,7 +114,6 @@
 .card_social a:hover {
     background-color: #abf600;
     color: #000000;
-    transform: scale(1);
 }
 
 .footer-bottom {

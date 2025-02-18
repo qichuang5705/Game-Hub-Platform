@@ -91,7 +91,6 @@
 
 .upload-game-container .close-upload:hover {
     color: black;
-    transform: scale(1);
 }
 
 .upload-game-container h3 {
@@ -110,9 +109,6 @@
     margin-left: 30px;
 }
 
-.upload-game-container .note span:hover{
-    transform: scale(1);
-}
 /*upload gameeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
 
 /*game đã up loaddddddddddddddddddđ*/
