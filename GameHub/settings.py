@@ -148,3 +148,27 @@ LOGIN_URL = '/'
 PAYPAL_CLIENT_ID = "AT1JqbumrDzs0KuL18j2eWp3f1BPOCXm_71aTraIUM1F2mBRFB1n50poZMkVp7gy--pioTARfuSY7UQu"
 PAYPAL_CLIENT_SECRET = "EKKhCcUWu4sFITAhBrlicgw9M8OkOFibKsi7dk2fx6JGqeJdJ0S1uwDmVElGGqYHZmcrpi4svMJ5cvJh"
 PAYPAL_MODE = "sandbox"  
+
+# Sử dụng Redis làm backend session
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+# Cấu hình Redis cache
+# settings.py
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Đảm bảo Redis đang chạy ở cổng này
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+    }
+}
+
+# Cấu hình cookie session
+SESSION_COOKIE_AGE = 86400  # 24 giờ
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False  # Phải bật nếu dùng HTTPS
+SESSION_COOKIE_SAMESITE = None  # Cho phép gửi cookie khi redirect từ PayPal
