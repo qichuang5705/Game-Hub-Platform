@@ -206,3 +206,6 @@ def reset_password_form(request):
 
 def error(request):
     return render(request, 'error.html')
+
+def avatar(request):
+    return render(request, 'change_avatar_frame.html')

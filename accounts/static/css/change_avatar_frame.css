@@ -1,0 +1,44 @@
+/* Đổi avatar */
+.change_avatar_frame_avatar_container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    border: 2px solid black;
+    padding: 20px;
+    position: relative;
+}
+
+.tittle_choice {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+}
+
+.tittle_choice h3 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tittle_choice h3:first-child {
+    border-right: 2px solid black;
+}
+
+.close-change_avatar_frame_avatar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.change_avatar, .change_frame_avatar {
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
