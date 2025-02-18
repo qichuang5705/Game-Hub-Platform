@@ -52,6 +52,7 @@ class CustomUser(AbstractUser):
     requested_role = models.CharField(max_length=10, null=True, blank=True, default=None)
     request_status = models.CharField(max_length=10, choices=REQUEST_STATUS_CHOICES, default=STATUS_PENDING)
     avatar = models.ImageField(upload_to="avatar", default='default/gojo.jpg')
+    points = models.IntegerField(default=0)
 
     def clean(self):
         """Đảm bảo dữ liệu hợp lệ trước khi lưu"""

@@ -12,5 +12,3 @@ urlpatterns = [
     path('success/', purchase_success_view, name='purchase_success'),
     path('download/<int:asset_id>/', download_asset_view, name='download_asset'),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

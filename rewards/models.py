@@ -4,23 +4,45 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-class FrameChat(models.Model):
-    CssClass = models.CharField(max_length=100, default="default-chat")
-    code = models.TextField(null=True)
 
+class Frame(models.Model):
+    CssClass = models.CharField(max_length=100)
+    price = models.IntegerField(default=100)
+    is_buy = models.BooleanField(default=False)
     def __str__(self):
         return self.CssClass
+    
+    class Meta:
+        abstract = True  
 
-class TableRewards(models.Model):
-    userid = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    framechat = models.ForeignKey(FrameChat, on_delete=models.CASCADE)
+class FrameAva(Frame):
+    CssClass = models.CharField(max_length=100, default="default-ava")
+    
 
-#Tự động tạo tablereward khi custumusser được tạo
+class FrameChat(Frame):
+    CssClass = models.CharField(max_length=100, default="default-chat")
+
+
+
+class Shop(models.Model):
+    chat = models.ForeignKey(FrameChat, on_delete=models.CASCADE)
+    ava = models.ForeignKey(FrameAva, on_delete=models.CASCADE)
+
+ 
+
+class Inventory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    chat = models.ForeignKey(FrameChat,blank=True, null=True, on_delete=models.CASCADE)
+    ava = models.ForeignKey(FrameAva,blank=True, null=True, on_delete=models.CASCADE)
+
+
+
+
 @receiver(post_save, sender=CustomUser)
-def create_tabel_rewards(sender, instance, created, **kwargs):
-    if created:  # Chỉ tạo khi user mới được tạo
-        default_framechat, _ = FrameChat.objects.get_or_create(
-        
-            defaults={"code": "Default code"}
-        )
-        TableRewards.objects.create(userid=instance, framechat=default_framechat)
+def create_inventory_for_user(sender, instance, created, **kwargs):
+    if created:
+        default_chat, _ = FrameChat.objects.get_or_create(CssClass="default-chat")
+
+        default_ava, _ = FrameAva.objects.get_or_create(CssClass="default-ava")
+
+        Inventory.objects.create(user=instance, chat=default_chat, ava=default_ava)

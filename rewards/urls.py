@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import chat_view
+from .views import Bag, ShopReward
 urlpatterns = [
-    path('', chat_view, name="test"),
+    path('', Bag, name="test"),
+    path('shop/', ShopReward, name="shop"),
 ] 

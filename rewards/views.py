@@ -1,9 +1,10 @@
 # views.py
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, TableRewards
-from .forms import TableChat
+from .models import CustomUser, Shop, Inventory
+from .forms import InventForm, ShopForm
+from django.conf import settings
 @login_required
 def change_chat_frame(request):
     if request.method == "POST":
@@ -14,16 +15,26 @@ def change_chat_frame(request):
         return JsonResponse({"status": "success", "new_frame": new_frame})
     return JsonResponse({"status": "error"}, status=400)
 
+
 @login_required
-def chat_view(request):
-    user = request.user
-    table = TableRewards.objects.get(userid=user)
-
-    form = TableChat(instance=table)  
-
+def Bag(request):
     if request.method == "POST":
-        form = TableChat(request.POST, instance=table)  # Cập nhật dữ liệu
+        form = InventForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save()  # Lưu dữ liệu vào database
+            return redirect('bag')  # Điều hướng sau khi lưu thành công
+    else:
+        form = InventForm()
+    return render(request, "bag.html", {'form': form, 'MEDIA_URL': settings.MEDIA_URL})
 
-    return render(request, "comment.html", {'form': form,'table': table})
+
+@login_required
+def ShopReward(request):
+    if request.method == "POST":
+        form = ShopForm(request.POST)
+        if form.is_valid():
+            form.save()  # Lưu dữ liệu vào database
+            return redirect('shop')  # Điều hướng sau khi lưu thành công
+    else:
+        form = ShopForm()
+    return render(request, "shop.html", {'form': form, 'MEDIA_URL': settings.MEDIA_URL})

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'rewards/css/framechat.css' %}">
+    <link rel="stylesheet" href="{% static 'rewards/css/frameavatar.css' %}">
+    <style>
+     .frame-container {
+    margin-bottom: 20px;
+}
+
+.frame-options {
+    display: flex;
+    gap: 10px;
+}
+
+.frame-item {
+    border: 2px solid transparent;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.frame-item input {
+    display: none;
+}
+
+.frame-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.frame-item input:checked + img {
+    border: 2px solid blue;  /* Viền khi chọn */
+    transform: scale(1.1);    /* Tăng kích thước ảnh một chút */
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);  /* Tạo bóng cho ảnh */
+}
+
+    </style>
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    
+    <div class="frame-container">
+        <label>Chọn khung chat:</label>
+        <div class="frame-options">
+            {% for frame in form.chat.field.queryset %}
+                <label class="frame-item">
+                    <input type="radio" name="{{ form.chat.name }}" value="{{ frame.id }}" id="framechat_{{ frame.id }}" 
+                        {% if frame.id == form.chat.value %}checked{% endif %}>
+                    <img src="{{ MEDIA_URL }}default/gojo.jpg" class="frame-preview" alt="{{ frame.CssClass }}">
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="frame-container">
+        <label>Chọn avatar:</label>
+        <div class="frame-options">
+            {% for frame in form.ava.field.queryset %}
+                <label class="frame-item">
+                    <input type="radio" name="{{ form.ava.name }}" value="{{ frame.id }}" id="frameava_{{ frame.id }}"
+                        {% if frame.id == form.ava.value %}checked{% endif %}>
+                    <img src="{{ MEDIA_URL }}default/gojo.jpg" class="frame-preview" alt="{{ frame.CssClass }}">
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit">Lưu</button>
+
+</form>
+
+<a href="{% url 'test' %}">Xem khung </a>
+
+{% endblock %}
