@@ -94,7 +94,6 @@
 
 .edit-game-container .close-edit:hover {
     color: black;
-    transform: scale(1);
 }
 
 .edit-game-container h3 {
@@ -111,8 +110,4 @@
 
 .edit-game-container .note span {
     margin-left: 30px;
-}
-
-.edit-game-container .note span:hover {
-    transform: scale(1);
 }

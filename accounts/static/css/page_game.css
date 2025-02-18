@@ -239,15 +239,12 @@
 
 .comment-actions button:hover{
     cursor: pointer;
-    transform: scale(1.05); 
     color: black;
     background-color: #abf600;
     font-weight: bold;
 }
 
 .comment-footer p:hover{
-
-    transform: scale(1.05); 
     color: #abf600;
 }
 
@@ -304,7 +301,6 @@
 
 .user-avatar i:hover{
     cursor: pointer;
-    transform: scale(1.05);
 }
 
 .comment-content-box {

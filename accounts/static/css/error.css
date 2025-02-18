@@ -75,10 +75,8 @@
 
 .error-container button:hover {
     background-color: #cc0000;
-    transform: scale(1.1);
 }
 
 .error-container span:hover {
-    transform: scale(1);
     cursor: text;
 }
