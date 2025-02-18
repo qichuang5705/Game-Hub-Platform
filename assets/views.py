@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
-from .models import asset,Purchase
+from .models import * 
 from django.http import HttpResponse,HttpResponseForbidden,FileResponse
 def assetview(request):
     if request.method == 'POST':
@@ -15,14 +15,10 @@ def assetview(request):
     return render(request, 'asset_form.html', {'form': form})
 def asset_list_view(request):
     assets = asset.objects.all()
-    return render(request, 'asset_list.html', {'assets': assets})
+    return render(request, 'asset_list.html', {'assets': assets,'MEDIA_URL': settings.MEDIA_URL})
 def asset_detail(request, asset_id):
     selected_asset = get_object_or_404(asset, id=asset_id)
-    return render(request, 'asset_detail.html', {'asset': selected_asset})
-
-"""def buy_asset(request, asset_id):
-    return HttpResponse(f"You have bought asset with ID {asset_id}")
-"""
+    return render(request, 'asset_detail.html', {'asset': selected_asset,'MEDIA_URL': settings.MEDIA_URL})
 
 def asset_edit_view(request, asset_id):
     asset_obj = get_object_or_404(asset, id=asset_id)
@@ -49,7 +45,7 @@ def asset_buy_view(request, asset_id):
         Purchase.objects.create(user=None, asset=asset1, payment_method=payment_method)
         return redirect('purchase_success')
 
-    return render(request, 'buy_asset.html', {'asset': asset})
+    return render(request, 'buy_asset.html', {'asset': asset1,'MEDIA_URL': settings.MEDIA_URL})
 
 
 def purchase_success_view(request):

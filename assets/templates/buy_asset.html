@@ -1,22 +1,132 @@
-<!DOCTYPE html>
-<html>
+
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block buyasset %}
+
 <head>
-    <title>Mua tài nguyên</title>
+    <meta charset="utf-8">
+    <title>Hoá Đơn</title>
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- ** Plugins Needed for the Project ** -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.css' %}">
+
+    <!-- Main Stylesheet -->
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <style>
+        .navbar{
+            flex-wrap: nowrap !important;
+        }
+       
+    </style>
 </head>
 <body>
-    <h1>Mua {{ asset.title }}</h1>
-    <p>Giá: {{ asset.price }}</p>
+  
+    
+    <!-- START main-wrapper -->
+    <section class="d-flex">
+  
+<!-- start of sidenav -->
+<aside><div class="sidenav position-sticky d-flex flex-column justify-content-between">
+   
+    </div>
+    
+</div></aside>
+<!-- end of sidenav -->
+    <div class="main-content">
 
-    <form method="post">
-        {% csrf_token %}
-        <label>Chọn phương thức thanh toán:</label>
-        <select name="payment_method">
-            <option value="credit_card">Thẻ tín dụng</option>
-            <option value="paypal">PayPal</option>
-        </select>
-        <br>
-        <button type="submit">Thanh toán</button>
-        <a href="{% url 'asset_list' %}">Hủy</a>
-    </form>
+        <!-- start of mobile-nav -->
+<header class="mobile-nav pt-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-6">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="">
+                </a>
+            </div>
+            <div class="col-6 text-right">
+                <button class="nav-toggle bg-transparent border text-white">
+                    <span class="fas fa-bars"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="nav-toggle-overlay"></div>
+<!-- end of mobile-nav -->
+
+        <div class="container py-4 my-5">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="contact-form bg-dark">
+                        <h1 class="text-white add-letter-space mb-5">Hoá Đơn</h1>
+                        <form method="POST" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-5">
+                                        <label for="firstName" class="text-black-300">NAME ASSET</label>
+                                            <p id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="" >
+                                                {{asset.title}}
+                                            </p> 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-5">
+                                        <label for="email" class="text-black-300">TYPE</label>
+                                        <p type="text" id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="">{{asset.type}}</p> 
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-5">
+                                        <label for="message" class="text-black-300">PRICE</label>
+                                        <p type="text" id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="">{{asset.price}}</p> 
+                                    </div>
+                                </div>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-5">
+                                            <label for="message" class="text-black-300">PHƯƠNG THỨC THANH TOÁN :</label>
+                                            <select name="payment_method" >
+                                                <option value="credit_card">Thẻ tín dụng</option>
+                                                <option value="paypal">PayPal</option> 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-sm btn-primary">Mua Ngay<img src="images/arrow-right.png" alt=""></button>
+                                        <a href="{% url 'asset_create' %}" ;class="btn btn-sm btn-primary">Huỷ</a>
+                                    </div>
+                                </form>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- END main-wrapper -->
+
+    <!-- All JS Files -->
+    <script src="{% static 'plugins/jQuery/jquery.min.js'%}"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js'%}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static 'js/script.js'%}"></script>
 </body>
-</html>
+{% endblock %}
+
