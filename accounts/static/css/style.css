@@ -114,12 +114,10 @@
 
 .page_account input[type="text"]:hover, .page_account input[type="password"]:hover, .page_account input[type="email"]:hover{
     cursor: text;
-    transform: scale(1.05);
 }
 
 .remember-me:hover, span:hover, .option:hover {
     cursor: pointer;
-    transform: scale(1.05);
 }
 
 .remember-me {
@@ -148,7 +146,6 @@
 }
 
 .page_account button:hover {
-    transform: scale(1.05);
     background-color: #ff4500;
 }
 
@@ -201,7 +198,6 @@
 }
 
 .close-button:hover {
-    transform: scale(1.25); 
     color: #ff4500;
 }
 
@@ -264,7 +260,6 @@
 }
 
 .cart span:hover {
-    transform: scale(1.05);
     background-color: #464646;
     color: #ff4500;
 }
