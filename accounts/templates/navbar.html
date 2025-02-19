@@ -14,8 +14,12 @@
               <li><a href="{% url 'home' %}">
                 <i class="fa-solid fa-house"></i>
               </a></li>
+<<<<<<< HEAD
               {% if user.role in 'developer, designer' %}
               <li><a href="{% url 'asset_create' %}">
+=======
+              <li><a href="{% url 'asset_list' %}">
+>>>>>>> 98c68ad8cc1414747f3e619e659af26f1f498e3c
                 <i class="fa-solid fa-cart-shopping"></i>
               </a></li>
               {% endif %}
@@ -23,9 +27,13 @@
               <li><a href="{% url 'up_game' %}">
                 <i class="fa-solid fa-laptop-code"></i>
               </a></li>
+<<<<<<< HEAD
               {% endif %}
               {% if user.role == 'designer' %}
               <li><a href="{% url 'asset_list' %}">
+=======
+              <li><a href="{% url 'asset_upload' %}">
+>>>>>>> 98c68ad8cc1414747f3e619e659af26f1f498e3c
                 <i class="fa-solid fa-pen-ruler"></i>
               </a></li>
               {% endif %}

@@ -54,7 +54,7 @@ img {
   object-position: center;
 }
 
-.login__form {
+.login__form1 {
   position: relative;
   margin-inline: 1.5rem;
   background-color: hsla(0, 0%, 100%, .01);
@@ -152,17 +152,17 @@ img {
   cursor: pointer;
 }
 
-.login__register {
+.login__register1 {
   font-size: var(--small-font-size);
   text-align: center;
 }
 
-.login__register a {
+.login__register1 a {
   color: var(--white-color);
   font-weight: 500;
 }
 
-.login__register a:hover {
+.login__register1 a:hover {
   text-decoration: underline;
 }
 
@@ -172,7 +172,7 @@ img {
   .login {
     justify-content: center;
   }
-  .login__form {
+  .login__form1 {
     width: 420px;
     padding-inline: 2.5rem;
   }

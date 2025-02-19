@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-5">
-                                        <label for="firstName" class="text-black-300">NAME ASSET</label>
+                                        <label for="firstName" class="text-black-300">TÊN ASSET</label>
                                             <p id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="" >
                                                 {{asset.title}}
                                             </p> 
@@ -84,14 +84,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-5">
-                                        <label for="email" class="text-black-300">TYPE</label>
+                                        <label for="email" class="text-black-300">THỂ LOẠI </label>
                                         <p type="text" id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="">{{asset.type}}</p> 
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-5">
-                                        <label for="message" class="text-black-300">PRICE</label>
-                                        <p type="text" id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="">{{asset.price}}</p> 
+                                        <label for="message" class="text-black-300">GIÁ</label>
+                                        <p type="text" id="firstName" class="form-control bg-transparent rounded-0 border-bottom shadow-none pb-15 px-0"  required="">{{asset.price}} VNĐ</p> 
                                     </div>
                                 </div>
                                 <form method="post">
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-sm btn-primary">Mua Ngay<img src="images/arrow-right.png" alt=""></button>
-                                        <a href="{% url 'asset_create' %}" ;class="btn btn-sm btn-primary">Huỷ</a>
+                                        <a href="{% url 'asset_list' %}" ;class="btn btn-sm btn-primary">Huỷ</a>
                                     </div>
                                 </form>
                                
