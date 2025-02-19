@@ -211,13 +211,8 @@ def reset_password_form(request):
 def error(request):
     return render(request, 'error.html')
 
-<<<<<<< HEAD
-def avatar(request):
-    return render(request, 'change_avatar_frame.html')
-=======
 def ErrorLogin(request):
     return render(request, 'ErrorLogin.html')
 
 def ErrorTruyCap(request):
     return render(request, 'ErrorTruyCap.html')
->>>>>>> lab
