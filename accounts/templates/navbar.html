@@ -15,7 +15,7 @@
                 <i class="fa-solid fa-house"></i>
               </a></li>
               {% if user.role in 'developer, designer' %}
-              <li><a href="{% url 'asset_create' %}">
+              <li><a href="{% url 'asset_list' %}">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a></li>
               {% endif %}
@@ -25,16 +25,28 @@
               </a></li>
               {% endif %}
               {% if user.role == 'designer' %}
-              <li><a href="{% url 'asset_list' %}">
+              <li><a href="{% url 'asset_upload' %}">
                 <i class="fa-solid fa-pen-ruler"></i>
               </a></li>
               {% endif %}
               <li>
                 <div class="search-box ">
-                  <input class="search-box_input" type="text">
+                  <button class="search-box_btn"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                  <form action="{% url 'search' %}" method="get">
+                    {% csrf_token %}
+                    <input class="search-box_input" type="text" name="words" class="search-box_input">
+                    <input class="search-box_input" type="hidden" name="view" value="{{ request.resolver_match.view_name }}">
+                    <button type="submit"> 
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+
+                    <!-- <input class="search-box_input" type="text" name="search">
                   <button class="search-box_btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  </button> -->
+          
+  
                 </div>
               </li>
           </ul>
@@ -79,22 +91,7 @@
                     <div class="your-detail">
                         <label>CHI TIẾT</label>
                         <h2>Vai trò: {{ user.role }}</h2>
-                        <!-- <div class="info-group">
-                            <p>Tên:</p>
-                            <input type="text" name="name" value="">
-                        </div>
-                        <div class="info-group">
-                            <p>Email:</p>
-                            <input type="email" name="email" value="" disabled>
-                        </div>
-                        <div class="info-group">
-                            <p>Điện thoại:</p>
-                            <input type="tel" name="tel" value="">
-                        </div>
-                        <div class="info-group">
-                            <p>Loại tài khoản: {{ user.role }}</p>
-                        </div> -->
-                        
+            
                         <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                 

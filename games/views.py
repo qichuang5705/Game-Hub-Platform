@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Max
 from .models import Game, Comment, Genre, LBHistory, CustomUser
+from assets.models import asset
 from .form import CommentForm, UpGameForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -10,7 +11,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from .serializers import LBHSerializer
 import os, zipfile, shutil
-
+from django.db.models import Q
 
 class IsDeveloper(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -147,3 +148,33 @@ def Edit_game(request, game_id):
     else:
         form = UpGameForm(instance=game)
     return render(request, 'Edit_game.html',{'game': game, 'form': form})   
+
+
+
+def search(request):
+    query = request.GET.get('words')  # Lấy từ khóa tìm kiếm 
+    view_name = request.GET.get('view')  # Lấy tên view hiện tại game hay shop asset
+    print(view_name)
+    if not query:
+        print("K có words")
+        return redirect('home')  # Nếu không có từ khóa, chuyển hướng về view home
+
+    if view_name == 'home':
+        print("home")
+        # Tìm kiếm trên model Game
+        results = Game.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        template_name = 'home.html'  
+        variable = 'games'
+    elif view_name == 'asset_list':
+        print("shop")
+        # Tìm kiếm trên model Asset
+        results = asset.objects.filter(Q(type__icontains=query) | Q(description__icontains=query))
+        template_name = 'asset_list.html'  
+        variable = 'assets'
+    else:
+        results = []
+        variable = 'none'
+        template_name = 'home.html' 
+    print(template_name)
+    print(variable)
+    return render(request, template_name, {variable: results, 'query': query})

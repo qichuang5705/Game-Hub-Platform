@@ -216,6 +216,3 @@ def ErrorLogin(request):
 
 def ErrorTruyCap(request):
     return render(request, 'ErrorTruyCap.html')
-
-def search(request):
-    return redirect('home')
