@@ -56,6 +56,7 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def upgrade_role(request):
     if not request.user.is_authenticated:
         # Nếu người dùng chưa đăng nhập
@@ -97,6 +98,7 @@ def information(request):
                     os.remove(path)
             form.save()
     return redirect('home')
+
 
 def reset_password(request):
     return render(request, 'password_reset.html')
