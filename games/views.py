@@ -12,16 +12,21 @@ from .serializers import LBHSerializer
 import os, zipfile, shutil
 
 
+class IsDeveloper(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'developer'
+
 class LBHistoryViewset(viewsets.ModelViewSet):
     serializer_class = LBHSerializer
     # authentication_classes = [TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsDeveloper]
 
     def get_queryset(self):
         user = self.request.user  # Lấy user hiện tại
         return LBHistory.objects.filter(games__user=user).order_by('-score')
     
     def perform_create(self, serializer):
+        print(self.request)
         user = self.request.user  
         game_id = self.request.session.get("current_game_id")  
 
