@@ -1,0 +1,196 @@
+.change_frame_container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-size: 15px;
+}
+
+.title_choice {
+    background: #f4f4f4;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: 25px;
+}
+
+.title_choice a {
+    text-decoration: none;
+    color: inherit;
+    flex: 1; 
+    text-align: center; 
+}
+
+.title_choice h3 {
+    margin: 0; 
+    padding: 12px; 
+}
+
+.frame-selection-container .title_choice {
+    display: flex;
+    justify-content: right; 
+    align-items: center; 
+    background: none;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    padding: 5px 20px; 
+    margin: 0 auto; 
+}
+
+.frame-selection-container .title_choice h3 {
+    background-color: #f4f4f4;
+    margin: auto 10px;
+    border-radius: 8px;
+}
+
+.tt {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.title_choice a h3:hover, .frame-selection-container .title_choice h3:hover {
+    background: #ddd;
+}
+
+.change_frame_container .points {
+    text-align: right;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.frame-selection-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.frame-selection-container h3 {
+    font-size: 18px;
+}
+
+.current-frames, .select-frame {
+    width: 50%;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.frame-box_now{
+    background: #eaeaea;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: auto;
+    margin-bottom: 15px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.frame-box {
+    background: #eaeaea;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: auto;
+    margin-bottom: 15px;
+}
+
+.frame-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex;
+}
+
+.frame-item {
+    width: 120px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+
+.button-save {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.save-button {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background: #0056b3;
+}
+
+.frame-preview {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+    border-radius: 8px; 
+}
+
+.frame-item {
+    width: calc(33.3333% - 10px);
+    max-width: 120px; 
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.frame-item img {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.frame-item input {
+    width: 12px;
+}
+
+@media (max-width: 768px) {
+    .frame-item {
+        width: calc(50% - 10px); 
+    }
+}
+
+@media (max-width: 480px) {
+    .frame-item {
+        width: 100%; 
+    }
+}
+
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: auto;
+}

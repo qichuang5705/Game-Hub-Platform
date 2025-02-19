@@ -73,3 +73,4 @@ def buy_frame(request):
     else:
         messages.error(request, "Yêu cầu không hợp lệ.")
         return redirect("shop")
+    

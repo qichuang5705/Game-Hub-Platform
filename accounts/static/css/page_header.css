@@ -385,6 +385,10 @@ input:disabled, select:disabled {
     padding-left: 21px;
 }
 
+.cart_user .account .doithuong {
+    margin-bottom: 10px;
+}
+
 /*aaaaaaaaaaaaaaaaaaaa*/
 
 .login, .register, .forgot_password {
