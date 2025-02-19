@@ -58,13 +58,13 @@ def logout_view(request):
 
 def upgrade_role(request):
     if not request.user.is_authenticated:
-        # Nếu người dùng chưa đăng nhập, trả về lỗi 403
-        return HttpResponseForbidden("You must be logged in to request a role upgrade.")
+        # Nếu người dùng chưa đăng nhập
+        return render(request, 'ErrorLogin.html')
     
     user = request.user  # Lấy người dùng đã đăng nhập
     if user.role != 'player':
         # Nếu người dùng không phải là player, không thể yêu cầu nâng cấp
-        return HttpResponseForbidden("You do not have permission to upgrade your role.")
+        return render(request, 'ErrorTruyCap.html')
 
     # Nếu người dùng là player và đã đăng nhập, xử lý yêu cầu nâng cấp
     if request.method == 'POST':
@@ -208,3 +208,9 @@ def reset_password_form(request):
 
 def error(request):
     return render(request, 'error.html')
+
+def ErrorLogin(request):
+    return render(request, 'ErrorLogin.html')
+
+def ErrorTruyCap(request):
+    return render(request, 'ErrorTruyCap.html')
