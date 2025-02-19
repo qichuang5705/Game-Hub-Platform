@@ -46,8 +46,8 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
     request.session["current_game_id"] = gameId  # Lưu gameId vào session thực hiện cho API
-
-
+    game.views+=1
+    game.save()
     history = (
         LBHistory.objects.filter(games=game)  # Lọc lịch sử theo game
         .values('users')  # Chỉ nhóm theo user ID

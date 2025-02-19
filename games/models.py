@@ -19,7 +19,7 @@ class Game(models.Model):
     file = models.FileField(upload_to='games/file', null=True, blank=True)
     version = models.TextField(max_length=15, default=1.0)
     ApiLD = models.BooleanField(default=False) #API leaderboard
-
+    views = models.PositiveIntegerField(default=0)  # Trường lưu số lượt truy cập
 
     def extract(self):
         # file = "C:\\Users\\Huy Le\\Desktop\\Projects\\file\\catch_the_ball_709.z111ip"
