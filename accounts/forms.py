@@ -82,7 +82,6 @@ class FormInfor(forms.ModelForm):
 
 
     def clean_avatar(self):
-        print("clean")
         avatar = self.cleaned_data.get('avatar')
         if avatar == self.instance.avatar.name:
             print("báo lỗi trùng tên")
@@ -93,7 +92,7 @@ class FormInfor(forms.ModelForm):
 
             # Tạo tên mới ngẫu nhiên
             new_image_name = f"{uuid.uuid4().hex}{image_extension.lower()}"
-            print(new_image_name)
+
             # Cập nhật tên mới cho file avatar
             avatar.name = os.path.join('avatar', new_image_name)
 
