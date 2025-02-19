@@ -82,7 +82,9 @@
 
 .page_footer .contact_info span:hover,
 .page_footer .policy_privacy span:hover,
-.page_footer .donate span:hover {
+.page_footer .donate span:hover,
+.pay_footer .payment span:hover,
+.payment span:hover {
     color: #abf600;
 }
 
@@ -163,3 +165,29 @@
     font-size: 20px;
     color: blue;
 }
+
+.payment a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.payment a label{
+    cursor: pointer;
+}
+
+.payment span { 
+    font-size: 18px;
+    margin: 5px 0;
+    display: block;
+    color: #adb5bd;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.payment a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+

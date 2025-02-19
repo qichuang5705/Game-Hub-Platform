@@ -35,6 +35,15 @@
             </div>
             <div class="payment">
                 <label>THANH TOÁN</label>
+                <a href="{% url 'deposit_page' %}">
+                    <span>Nạp tiền</span>
+                </a>
+                <a href="{% url 'transaction_history' %}">
+                    <span>Lịch sử giao dịch</span>
+                </a>
+                <a href="{% url 'withdraw_to_paypal' %}">
+                    <span>Rút tiền về PalPay</span>
+                </a>
             </div>
         </div>
 

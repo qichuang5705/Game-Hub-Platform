@@ -1,53 +1,143 @@
-<div>
-  <h2>Lịch Sử Giao Dịch</h2>
+{% extends "base.html" %}
 
-  {% if page_obj %}
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Loại Giao Dịch</th>
-        <th>Số Tiền (USD)</th>
-        <th>Thời Gian</th>
-        <th>Trạng Thái</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for transaction in page_obj %}
-      <tr>
-        <td>{{ transaction.get_transaction_type_display }}</td>
-        <td>{{ transaction.amount }}</td>
-        <td>{{ transaction.timestamp }}</td>
-        <td>
-          {% if transaction.status == "success" %}
-          <span class="status-success">Thành công</span>
-          {% else %}
-          <span class="status-failed">Thất bại</span>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% block head %}
+<style>
+  .transaction-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+  }
 
-  <!-- Phân trang -->
-  <div class="pagination">
-    <span class="step-links">
-      {% if page_obj.has_previous %}
-      <a href="?page=1">&laquo; first</a>
-      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-      {% endif %}
+  .transaction-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #333;
+  }
 
-      <span class="current">
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+  .transaction-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+  }
+
+  .transaction-table th, .transaction-table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+  }
+
+  .transaction-table th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+  }
+
+  .status-success {
+      color: #28a745;
+      font-weight: bold;
+  }
+
+  .status-failed {
+      color: #dc3545;
+      font-weight: bold;
+  }
+
+  .pagination {
+      margin-top: 20px;
+      text-align: center;
+  }
+
+  .pagination a {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 0 5px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background 0.3s;
+  }
+
+  .pagination a:hover {
+      background: #0056b3;
+  }
+
+  .pagination .current {
+      font-weight: bold;
+      padding: 8px 12px;
+  }
+
+  @media (max-width: 480px) {
+      .transaction-container {
+          width: 95%;
+          padding: 15px;
+      }
+
+      .transaction-table th, .transaction-table td {
+          padding: 8px;
+          font-size: 14px;
+      }
+  }
+</style>
+{% endblock %}
+  
+{% block body %}
+  <div class="transaction-container">
+    <h2 class="transaction-title">Lịch Sử Giao Dịch</h2>
+
+    {% if page_obj %}
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Loại Giao Dịch</th>
+          <th>Số Tiền (USD)</th>
+          <th>Thời Gian</th>
+          <th>Trạng Thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in page_obj %}
+        <tr>
+          <td>{{ transaction.get_transaction_type_display }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.timestamp }}</td>
+          <td>
+            {% if transaction.status == "success" %}
+            <span class="status-success">Thành công</span>
+            {% else %}
+            <span class="status-failed">Thất bại</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Phân trang -->
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; Đầu</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Trước</a>
+        {% endif %}
+
+        <span class="current">
+          Trang {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Tiếp</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Cuối &raquo;</a>
+        {% endif %}
       </span>
-
-      {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}">next</a>
-      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-      {% endif %}
-    </span>
+    </div>
+    {% else %}
+    <p>Không có giao dịch nào.</p>
+    {% endif %}
   </div>
-  {% else %}
-  <p>Không có giao dịch nào.</p>
-  {% endif %}
-</div>
+{% endblock %}
