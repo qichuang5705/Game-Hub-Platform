@@ -12,9 +12,6 @@ from .serializers import LBHSerializer
 import os, zipfile, shutil
 
 
-
-
-
 class LBHistoryViewset(viewsets.ModelViewSet):
     queryset = LBHistory.objects.all().order_by('-score')
     serializer_class = LBHSerializer
@@ -94,6 +91,15 @@ def Delete_Game(request, game_id):
 
 @login_required
 def UpGame(request):
+    if not request.user.is_authenticated:
+        # Nếu người dùng chưa đăng nhập
+        return render(request, 'ErrorLogin.html')
+    
+    user = request.user  # Lấy người dùng đã đăng nhập
+    if user.role == 'player':
+        # Nếu người dùng không phải là player, không thể yêu cầu nâng cấp
+        return render(request, 'ErrorTruyCap.html')
+    
     user_games = Game.objects.filter(user=request.user)
     if request.method == "POST":
         form = UpGameForm(request.POST, request.FILES)

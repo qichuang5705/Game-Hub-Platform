@@ -1,6 +1,7 @@
 media/games/file/
 media/games/image/
 media/avatar/
+media/rewards/
 virtual/
 __pycache__/
 *.pyc

@@ -1,4 +1,6 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/page_header.css' %}">
+
 <body>
   <header>
     <div class="navbar">
@@ -12,15 +14,21 @@
               <li><a href="{% url 'home' %}">
                 <i class="fa-solid fa-house"></i>
               </a></li>
-              <li><a href="{% url 'home' %}">
+              {% if user.role in 'developer, designer' %}
+              <li><a href="{% url 'asset_create' %}">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a></li>
+              {% endif %}
+              {% if user.role == 'developer'%}
               <li><a href="{% url 'up_game' %}">
                 <i class="fa-solid fa-laptop-code"></i>
               </a></li>
-              <li><a href="{% url 'home' %}">
+              {% endif %}
+              {% if user.role == 'designer' %}
+              <li><a href="{% url 'asset_list' %}">
                 <i class="fa-solid fa-pen-ruler"></i>
               </a></li>
+              {% endif %}
               <li>
                 <div class="search-box ">
                   <input class="search-box_input" type="text">
@@ -67,6 +75,7 @@
                     
                     <div class="your-detail">
                         <label>CHI TIẾT</label>
+                        <h2>Vai trò: {{ user.role }}</h2>
                         <!-- <div class="info-group">
                             <p>Tên:</p>
                             <input type="text" name="name" value="">
@@ -195,27 +204,27 @@
             <form method="post" action="{% url 'home' %}">
               {% csrf_token %}
           
-                <label for="id_register_username">Username</label>
-                <input type="text" id="id_register_username" name="username">
+                <label for="id_register_username">Tên đăng nhập</label>
+                <input type="text" id="id_register_username" name="username" placeholder="Tên đăng nhập">
 
         
  
                 <label for="id_register_email">Email</label>
-                <input type="email" id="id_register_email" name="email" >
+                <input type="email" id="id_register_email" name="email" placeholder="Email">
     
         
          
-                <label for="id_register_password1">Password</label>
-                <input type="password" id="id_register_password1" name="password1">
+                <label for="id_register_password1">Mật khẩu</label>
+                <input type="password" id="id_register_password1" name="password1" placeholder="Nhập mật khẩu">
   
         
     
-                <label for="id_register_password2">Confirm Password</label>
-                <input type="password" id="id_register_password2" name="password2" >
+                <label for="id_register_password2">Nhập lại mật khẩu</label>
+                <input type="password" id="id_register_password2" name="password2" placeholder="Nhập lại mật khẩu">
     
           
               <div class="form-group">
-                <label for="day">Type Account:</label>
+                <label for="day">Loại tài khoản:</label>
                 <select class="option" name="requested_role" id="day">
                   <option class="option" value="player">Player Account</option>
                   <option class="option" value="developer">
@@ -267,7 +276,7 @@
           
           
                   <label for="f1">Mật khẩu cũ:</label>
-                  <input type="text" id="id_reset_username" name="username" class="form-input {% if form.username.errors %}error-field{% endif %}" value="{{ form.username.value|default:'' }}">
+                  <input type="text" id="id_reset_username" name="username" class="form-input {% if form.username.errors %}error-field{% endif %}" value="{{ form.username.value|default:'' }}" placeholder="Mật khẩu cũ">
                   <span class="error-message">
                       {% for error in form.username.errors %}
                           {{ error }}
@@ -277,7 +286,7 @@
           
 
                   <label for="id_reset_email">Email:</label>
-                  <input type="email" id="id_reset_email" name="email" class="form-input {% if form.email.errors %}error-field{% endif %}" value="{{ form.email.value|default:'' }}">
+                  <input type="email" id="id_reset_email" name="email" class="form-input {% if form.email.errors %}error-field{% endif %}" value="{{ form.email.value|default:'' }}" placeholder="Mật khẩu mới">
                   <span  class="error-message">
                       {% for error in form.email.errors %}
                           {{ error }}
@@ -296,6 +305,20 @@
           </div>
           
           </div>
+        </div>
+      </div>
+
+      <div class="change_avatar_frame_avatar_container">
+        <div class="tittle_choice"> 
+          <span class="close-change_avatar_frame_avatar close-button">&times;</span>
+          <h3>Avatar</h3>
+          <h3>Khung avatar</h3>
+        </div>
+        <div class="change_avatar"> 
+
+        </div>
+        <div class="change_frame_avatar"> 
+          
         </div>
       </div>
 

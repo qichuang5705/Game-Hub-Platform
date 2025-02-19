@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+
+        <meta charset="UTF-8">
+        <meta name="description" content="Asset Details">
+        <meta name="keywords" content="Anime, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Asset Details</title>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    
+            <!-- Css Styles -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/plyr.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+        <style>
+            .navbar{
+                flex-wrap: nowrap !important;
+            }
+        </style>
+        {% endblock %}
+        {% block details %}
+        <section class="anime-details spad">
+            <div class="container">
+                <div class="anime__details__content">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="anime__details__pic set-bg"  
+                            data-setbg="{% if asset.thumnail %}{{ asset.thumnail.url }}{% else %}{{ MEDIA_URL }}default/NoneImage.png{% endif %}">
+                      
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="anime__details__text">
+                                <div class="anime__details__title">
+                                    <h3> {{ asset.title }}</h3>
+                                    <br>
+                                </div>
+                               
+                                <p>{{asset.description}}</p>
+                                <div class="anime__details__widget">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <ul>
+                                                <li><span>Type:</span> {{asset.type}}</li>
+                                                <li><span>Author:</span> asset.user.name</li>
+                                                <li><span>Date aired:</span> {{asset.create_date}}</li>
+                                                <li><span>Status:</span> Airing</li>
+                                                <li><span>Genre:</span> </li>
+                                            </ul>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class="anime__details__btn">
+                                    <a href="{% url 'asset_buy_view' asset.id %}" class="watch-btn"><span>Mua Ngay</span> <i
+                                        class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </section>
+            <!-- Anime Section End -->
+    
+          
+    
+            <!-- Js Plugins -->
+            <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+            <script src="{% static 'js/player.js' %}"></script>
+            <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+            <script src="{% static 'js/mixitup.min.js' %}"></script>
+            <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+            <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+            <script src="{% static 'js/main.js' %}"></script>
+    
+        
+            {% endblock %}

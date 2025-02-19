@@ -1,0 +1,82 @@
+/* Reset mặc định */
+
+.error_page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: center;
+    min-height: 90vh;
+}
+
+/* Container chính */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Mã lỗi 404 */
+.error-container h1 {
+    font-size: 200px;
+    font-weight: bold;
+    margin: 0;
+    padding-top: -50px;
+    color: #ff4444;
+}
+
+/* Icon ma */
+.error-container i {
+    font-size: 200px;
+    color: #fff;
+    animation: floatGhost 3s infinite ease-in-out;
+}
+
+/* Hiệu ứng ma trôi */
+@keyframes floatGhost {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Dòng chữ "Game Over" */
+.error-container h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+}
+
+/* Mô tả */
+.error-container span {
+    font-size: 20px;
+    color: #ccc;
+}
+
+/* Nút quay lại */
+.error-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff4444;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.error-container button:hover {
+    background-color: #cc0000;
+}
+
+.error-container span:hover {
+    cursor: text;
+}

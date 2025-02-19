@@ -1,6 +1,6 @@
 main {
     flex: 1;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -55,7 +55,6 @@ main {
 }
 
 .card_game:hover {
-    transform: scale(1.05);
     cursor: pointer;
 }
 

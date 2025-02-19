@@ -1,13 +1,4 @@
 
-body {
-    font-family: serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #212121;
-    color: #333;
-}
-
 .page_body {
     flex: 1;
 }
@@ -91,7 +82,6 @@ body {
 .page_footer .policy_privacy span:hover,
 .page_footer .donate span:hover {
     color: #abf600;
-    transform: scale(1.05);
 }
 
 .card_social {
@@ -124,7 +114,6 @@ body {
 .card_social a:hover {
     background-color: #abf600;
     color: #000000;
-    transform: scale(1);
 }
 
 .footer-bottom {

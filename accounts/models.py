@@ -21,8 +21,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.exceptions import ValidationError
-
- 
+import datetime
 
 class CustomUser(AbstractUser):
     ROLE_PLAYER = 'player'
@@ -52,6 +51,8 @@ class CustomUser(AbstractUser):
     requested_role = models.CharField(max_length=10, null=True, blank=True, default=None)
     request_status = models.CharField(max_length=10, choices=REQUEST_STATUS_CHOICES, default=STATUS_PENDING)
     avatar = models.ImageField(upload_to="avatar", default='default/gojo.jpg')
+    points = models.IntegerField(default=0)
+    total_online_time = models.DurationField(default=datetime.timedelta())
 
     def clean(self):
         """Đảm bảo dữ liệu hợp lệ trước khi lưu"""
@@ -111,3 +112,4 @@ class CustomUser(AbstractUser):
         self.request_status = self.STATUS_PENDING
         self.requested_role = None
         self.save()
+

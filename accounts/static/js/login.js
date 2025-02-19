@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerSection = document.querySelector(".register");
     const forgotPasswordSection = document.querySelector(".forgot_password");
     const pageAccountSection = document.querySelector(".page_account");
-    const resetPasswordSection = document.querySelector(".reset_password");
     const accountSection = document.querySelector(".account-wrapper");
     const avatar = document.querySelector(".avatar-wrapper");
     const userAccount = document.querySelector(".page_home_user");
@@ -35,13 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
     //open user choice
     const opencartUserShow = document.querySelector(".avatar-wrapper");
     opencartUserShow.addEventListener("click", () => {
-        if (cartUserShow.classList.contains("close"))
+        if (accountSection.classList.contains("hide"))
         {
-            cartUserShow.classList.add("open");
-            cartUserShow.classList.remove("close");
+            if (cartUserShow.classList.contains("close"))
+            {
+                cartUserShow.classList.add("open");
+                cartUserShow.classList.remove("close");
+            } else {
+                cartUserShow.classList.remove("open");
+                cartUserShow.classList.add("close");
+            }
         } else {
-            cartUserShow.classList.remove("open");
-            cartUserShow.classList.add("close");
+            
         }
     });
 
