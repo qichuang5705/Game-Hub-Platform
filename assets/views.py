@@ -2,11 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
 from .models import * 
 from django.http import HttpResponse,HttpResponseForbidden,FileResponse
-<<<<<<< HEAD
 from django.core.files.storage import default_storage
-=======
-
->>>>>>> 31e47d73b7f2b19a82600966750bb9fc2e592487
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
