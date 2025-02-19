@@ -55,7 +55,6 @@ main {
 }
 
 .card_game:hover {
-    transform: scale(1.05);
     cursor: pointer;
 }
 
