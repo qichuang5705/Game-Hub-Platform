@@ -649,3 +649,16 @@ input:disabled, select:disabled {
     color: #777;
 }
 
+.main-nav ul li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.main-nav ul li a.active {
+    background-color: #2dd760; /* Màu xanh dương */
+    color: white;
+    font-weight: bold;
+}
