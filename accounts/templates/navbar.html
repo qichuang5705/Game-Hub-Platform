@@ -53,6 +53,9 @@
             <div class="cart_user close">
                 <div class="account">
                     <button class="show-info-btn">Thông tin cá nhân</button>
+                    <a href="{% url 'upgrade' %}">
+                      <button class="doithuong">Nâng cấp vai trò</button>
+                    </a>
                     <a href="{% url 'bag' %}">
                       <button class="doithuong">Đổi thưởng</button>
                     </a>
@@ -110,11 +113,11 @@
                       <div class="info-group">
                         <label for="f4">Ảnh đại diện:</label>
                         <input type="file" name="avatar">
-                    </div>
+                      </div>
 
                         <div class="update-profile">
                           <button type="submit">Cập nhật</button>
-                      </div>
+                        </div>
                         </form>
                 
                     </div>
@@ -303,7 +306,6 @@
           </div>
         </div>
       </div>
-
   </header>
   
 </body>

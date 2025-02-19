@@ -10,10 +10,10 @@
 {% block body %}
     <div class="change_frame_container">
         <div class="title_choice">
-            <a href="{% url 'bag' %}">
-                <h3 class="tab active" data-tab="owned">Túi đồ </h3> 
+            <a href="{% url 'bag' %}" onclick="setActiveTab(event, 'bag')">
+                <h3 class="tab" data-tab="owned">Túi đồ</h3> 
             </a>
-            <a href="{% url 'shop' %}">
+            <a href="{% url 'shop' %}" onclick="setActiveTab(event, 'shop')">
                 <h3 class="tab" data-tab="exchange">Shop</h3>
             </a>
         </div>
@@ -25,8 +25,8 @@
             <div class="frame-selection-container">
                 <h3 class="tt">Khung avatar</h3>
                 <div class="title_choice avatar_tab">
-                    <h3 data-tab="owned">Avatar </h3>
-                    <h3 class="tab_chat" data-tab="exchange">Chat</h3>
+                    <h3 class="avt " data-tab="owned">Avatar </h3>
+                    <h3 class="tab_chat " data-tab="exchange">Chat</h3>
                 </div>
             </div>
             <div class="frame-selection-container ">
@@ -66,7 +66,7 @@
                 <h3 class="tt">Khung chat</h3>
                 <div class="title_choice chat_tab">
                     <h3 class="tab_avatar" data-tab="owned">Avatar </h3>
-                    <h3 data-tab="exchange">Chat</h3>
+                    <h3 class="cht " data-tab="exchange">Chat</h3>
                 </div>
             </div>
             <div class="frame-selection-container chat">   

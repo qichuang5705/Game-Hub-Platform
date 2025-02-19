@@ -1,0 +1,81 @@
+.transaction-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.transaction-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.transaction-table th, .transaction-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.transaction-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.status-success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-failed {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.pagination a:hover {
+    background: #0056b3;
+}
+
+.pagination .current {
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+@media (max-width: 480px) {
+    .transaction-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .transaction-table th, .transaction-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}

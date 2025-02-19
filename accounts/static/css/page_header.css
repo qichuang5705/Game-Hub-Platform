@@ -649,3 +649,19 @@ input:disabled, select:disabled {
     color: #777;
 }
 
+.cart_user {
+    width: 170px;
+}
+
+.account button {
+    width: 120px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.main-nav ul li a.active {
+    background-color: #007bff; 
+    color: white;
+    font-weight: bold;
+}
