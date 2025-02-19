@@ -14,15 +14,21 @@
               <li><a href="{% url 'home' %}">
                 <i class="fa-solid fa-house"></i>
               </a></li>
+              {% if user.role in 'developer, designer' %}
               <li><a href="{% url 'asset_create' %}">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a></li>
+              {% endif %}
+              {% if user.role == 'developer'%}
               <li><a href="{% url 'up_game' %}">
                 <i class="fa-solid fa-laptop-code"></i>
               </a></li>
-              <li><a href="{% url 'home' %}">
+              {% endif %}
+              {% if user.role == 'designer' %}
+              <li><a href="{% url 'asset_list' %}">
                 <i class="fa-solid fa-pen-ruler"></i>
               </a></li>
+              {% endif %}
               <li>
                 <div class="search-box ">
                   <input class="search-box_input" type="text">
@@ -72,6 +78,7 @@
                     
                     <div class="your-detail">
                         <label>CHI TIẾT</label>
+                        <h2>Vai trò: {{ user.role }}</h2>
                         <!-- <div class="info-group">
                             <p>Tên:</p>
                             <input type="text" name="name" value="">
