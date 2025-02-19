@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
 from .models import * 
 from django.http import HttpResponse,HttpResponseForbidden,FileResponse
+
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
@@ -13,7 +14,16 @@ def assetview(request):
     else:
         form = AssetForm()
     return render(request, 'asset_form.html', {'form': form})
+
 def asset_list_view(request):
+    if not request.user.is_authenticated:
+        # Nếu người dùng chưa đăng nhập
+        return render(request, 'ErrorLogin.html')
+    
+    user = request.user  # Lấy người dùng đã đăng nhập
+    if user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     assets = asset.objects.all()
     return render(request, 'asset_list.html', {'assets': assets,'MEDIA_URL': settings.MEDIA_URL})
 def asset_detail(request, asset_id):
