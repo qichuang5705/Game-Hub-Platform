@@ -45,7 +45,7 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
-    request.session["current_game_id"] = gameId  # Lưu gameId vào session
+    request.session["current_game_id"] = gameId  # Lưu gameId vào session thực hiện cho API
 
 
     history = (
@@ -117,7 +117,10 @@ def UpGame(request):
             if game.file:
                 if zipfile.is_zipfile(game.file.path): #Check file zip
                     game.extract()
+            messages.success(request, "Game đã được tải lên thành công!")
             return redirect('home')
+        else:
+            messages.error(request, "Có lỗi xảy ra. Vui lòng kiểm tra lại.")
     else:
         form = UpGameForm()
     return render(request,'Uploadgame.html', {'form': form, 'games': user_games})

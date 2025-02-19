@@ -56,8 +56,11 @@
                 <div class="upload-game-form-group">
                     <label for="id_image">Hình ảnh:</label>
                     {{ form.image }}
+                    {% if form.image.errors %}
+                    <p style="color: red;">{{ form.image.errors }}</p>
+                {% endif %}
                 </div>
-        
+                
                 <div class="upload-game-form-group">
                     <label for="id_file">File game:</label>
                     {{ form.file }}
@@ -83,7 +86,7 @@
                     <span>Chỉ đăng tải file index.html hoặc file .zip</span>
                     <span>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</span>
                     <span>
-                        <a href="{% static 'postapi.js' %}" download="example.zip">
+                        <a href="{% static 'postapi.js' %}" download="">
                             Mẫu POST API js
                         </a>
                     </span>
@@ -102,7 +105,7 @@
             <div class="row game-card-posted ">
                 <!-- Cột chứa ảnh và nút -->
                 <div class="game-image-container">
-                    <a href="games/game_detail/{{ game.id }}">
+                    <a href="{% url 'game_detail' game.id %}">
                         {% if game.image %}
                         <img class="game-image" src="{{ game.image.url }}" alt="hình trò chơi">
                         {% else %}

@@ -4,7 +4,7 @@ import os, zipfile
 from django.conf import settings
 from django.utils.text import slugify
 import uuid
-
+from django.contrib import messages
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -23,7 +23,8 @@ class UpGameForm(forms.ModelForm):
         required=True,
         error_messages={'required': 'Bạn cần chọn ít nhất một thể loại.'},
     )
-
+    image = forms.ImageField(required=True)
+    file = forms.FileField(required=True)
     class Meta:
         model = Game
         fields = ('name', 'genres', 'ApiLD', 'description', 'image', 'file')
@@ -32,6 +33,7 @@ class UpGameForm(forms.ModelForm):
         genres = self.cleaned_data.get('genres')
         if not genres or genres.count() == 0:
             raise forms.ValidationError("Bạn cần chọn ít nhất một thể loại.")
+            messages.error(request,"Bạn cần chọn ít nhất một thể loại.")
         return genres
 
 
@@ -41,11 +43,11 @@ class UpGameForm(forms.ModelForm):
             file_name = os.path.basename(file.name)
             file_extension = os.path.splitext(file_name)[1].lower()
 
-            # Kiểm tra phần mở rộng
             if file_extension not in ['.html', '.zip']:
                 raise forms.ValidationError("File upload phải là 'index.html' hoặc file '.zip'")
+                
             
-            # Kiểm tra tên nếu là file HTML
+    
             if file_extension == '.html' and file_name.lower() != 'index.html':
                 raise forms.ValidationError("File HTML phải có tên là 'index.html'")
             
@@ -65,15 +67,13 @@ class UpGameForm(forms.ModelForm):
             print("báo lỗi trùng tên")
             forms.ValidationError("Đổi lại tên tệp image")
         elif image:
-            # Lấy phần mở rộng của file (đuôi file)
+      
             _, image_extension = os.path.splitext(image.name)
 
-            # Tạo tên mới ngẫu nhiên
             new_image_name = f"{uuid.uuid4().hex}{image_extension.lower()}"
-
-            # Cập nhật tên mới cho file image
+        
             image.name = os.path.join('image', new_image_name)
 
-        return image  # Django sẽ tự động lưu vào MEDIA_ROOT
+        return image 
 
     

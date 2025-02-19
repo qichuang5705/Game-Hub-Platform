@@ -15,7 +15,7 @@ class Game(models.Model):
     description = models.TextField()
     datecreate = models.DateField(auto_now_add=True)
     reward = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='games/image', null=True, blank=True)
+    image = models.ImageField(upload_to='games/image', null=False, blank=False)
     file = models.FileField(upload_to='games/file', null=True, blank=True)
     version = models.TextField(max_length=15, default=1.0)
     ApiLD = models.BooleanField(default=False) #API leaderboard
