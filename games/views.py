@@ -41,7 +41,7 @@ class LBHistoryViewset(viewsets.ModelViewSet):
         serializer.save(users=user, games=game)  
     
 
-    
+
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
     request.session["current_game_id"] = gameId  # Lưu gameId vào session
@@ -82,7 +82,10 @@ def DeleteComment(request, comment_id):
         comment.delete()
     return redirect ('game_detail', comment.games.id)
 
+@login_required
 def Delete_Game(request, game_id):
+    if request.user.role != 'developer':
+        return redirect('errortruycap')
     game = Game.objects.get(id=game_id)
     if game.user == request.user:
         if game.image:
@@ -99,14 +102,8 @@ def Delete_Game(request, game_id):
 
 @login_required
 def UpGame(request):
-    if not request.user.is_authenticated:
-        # Nếu người dùng chưa đăng nhập
-        return render(request, 'ErrorLogin.html')
-    
-    user = request.user  # Lấy người dùng đã đăng nhập
-    if user.role == 'player':
-        # Nếu người dùng không phải là player, không thể yêu cầu nâng cấp
-        return render(request, 'ErrorTruyCap.html')
+    if request.user.role != 'developer':
+        return redirect('errortruycap')
     
     user_games = Game.objects.filter(user=request.user)
     if request.method == "POST":
@@ -126,6 +123,8 @@ def UpGame(request):
 
 @login_required
 def Edit_game(request, game_id):
+    if request.user.role != 'developer':
+        return redirect('errortruycap')
     game = Game.objects.get(id=game_id)
     name_image = os.path.basename(game.image.name)
     parent_image = os.path.dirname(game.image.path)

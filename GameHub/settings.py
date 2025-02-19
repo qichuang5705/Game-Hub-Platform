@@ -150,7 +150,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'antran08112005@gmail.com'  # Thay bằng email của bạn
 EMAIL_HOST_PASSWORD = 'evrb bxti ehpv rhrc'  # Thay bằng mật khẩu ứng dụng
 
-LOGIN_URL = '/'
+LOGIN_URL = 'errorlogin'
 
 PAYPAL_CLIENT_ID = "AT1JqbumrDzs0KuL18j2eWp3f1BPOCXm_71aTraIUM1F2mBRFB1n50poZMkVp7gy--pioTARfuSY7UQu"
 PAYPAL_CLIENT_SECRET = "EKKhCcUWu4sFITAhBrlicgw9M8OkOFibKsi7dk2fx6JGqeJdJ0S1uwDmVElGGqYHZmcrpi4svMJ5cvJh"
