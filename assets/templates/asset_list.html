@@ -29,6 +29,9 @@ rel="stylesheet">
     .navbar{
         flex-wrap: nowrap !important;
     }
+    .body{
+        font-family: noserif !important;
+    }
 </style>
 {% endblock%}
 
@@ -62,7 +65,7 @@ rel="stylesheet">
                             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" 
-                                        data-setbg="{% if asset.thumnail %}{{ asset.thumnail.url }}{% else %}defaults/NoneImage.png{% endif %}">
+                                        data-setbg="{% if asset.thumnail %}{{ asset.thumnail.url }}{% else %}{{ MEDIA_URL }}default/NoneImage.png{% endif %}">
                                         
                                         <div class="view"><i class="fa fa-eye"></i> {{ asset.type }}</div>
                                     </div>

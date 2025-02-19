@@ -1,16 +1,16 @@
-.default-ava{
+.default-avatar{
     width: 100px;
     height: 100px;
     background-color: black;
 }
 
-.red-ava{
+.red-avatar{
     width: 100px;
     height: 100px;
     background-color: red;
 }
 
-.pink-ava{
+.pink-avatar{
     width: 100px;
     height: 100px;
     background-color: blue;
