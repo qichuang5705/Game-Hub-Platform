@@ -78,7 +78,7 @@ h6 {
 p {
 	font-size: 15px;
 	font-family: "Mulish", sans-serif;
-	color: #3d3d3d;
+	color: #e9e9e9;
 	font-weight: 400;
 	line-height: 25px;
 	margin: 0 0 15px 0;
@@ -1005,7 +1005,7 @@ ol {
 
 .anime__details__title span {
 	font-size: 15px;
-	color: #b7b7b7;
+	color: #ffffff;
 	display: block;
 }
 
@@ -1220,7 +1220,7 @@ ol {
 }
 
 .anime__video__player .plyr__controls .plyr__controls__item.plyr__progress__container {
-	position: absolute;
+	position: relative;
 	left: 26px;
 	bottom: 45px;
 	width: calc(100% - 60px);
@@ -1721,12 +1721,12 @@ ol {
 	padding-bottom: 120px;
 }
 
-.login__form {
+.login__form1 {
 	position: relative;
 	padding-left: 145px;
 }
 
-.login__form:after {
+.login__form1:after {
 	position: absolute;
 	right: -14px;
 	top: -40px;
@@ -1736,20 +1736,20 @@ ol {
 	content: "";
 }
 
-.login__form h3 {
+.login__form1 h3 {
 	color: #ffffff;
 	font-weight: 700;
 	font-family: "Oswald", sans-serif;
 	margin-bottom: 30px;
 }
 
-.login__form form .input__item {
+.login__form1 form .input__item {
 	position: relative;
 	width: 370px;
 	margin-bottom: 20px;
 }
 
-.login__form form .input__item:before {
+.login__form1 form .input__item:before {
 	position: absolute;
 	left: 50px;
 	top: 10px;
@@ -1759,7 +1759,7 @@ ol {
 	content: "";
 }
 
-.login__form form .input__item input {
+.login__form1 form .input__item input {
 	height: 50px;
 	width: 100%;
 	font-size: 15px;
@@ -1769,27 +1769,27 @@ ol {
 	padding-left: 76px;
 }
 
-.login__form form .input__item input::-webkit-input-placeholder {
+.login__form1 form .input__item input::-webkit-input-placeholder {
 	color: #b7b7b7;
 }
 
-.login__form form .input__item input::-moz-placeholder {
+.login__form1 form .input__item input::-moz-placeholder {
 	color: #b7b7b7;
 }
 
-.login__form form .input__item input:-ms-input-placeholder {
+.login__form1 form .input__item input:-ms-input-placeholder {
 	color: #b7b7b7;
 }
 
-.login__form form .input__item input::-ms-input-placeholder {
+.login__form1 form .input__item input::-ms-input-placeholder {
 	color: #b7b7b7;
 }
 
-.login__form form .input__item input::placeholder {
+.login__form1 form .input__item input::placeholder {
 	color: #b7b7b7;
 }
 
-.login__form form .input__item span {
+.login__form1 form .input__item span {
 	color: #b7b7b7;
 	font-size: 20px;
 	position: absolute;
@@ -1797,12 +1797,12 @@ ol {
 	top: 13px;
 }
 
-.login__form form button {
+.login__form1 form button {
 	border-radius: 0;
 	margin-top: 10px;
 }
 
-.login__form .forget_pass {
+.login__form1 .forget_pass {
 	font-size: 15px;
 	color: #ffffff;
 	display: inline-block;
@@ -1811,18 +1811,18 @@ ol {
 	bottom: 12px;
 }
 
-.login__register {
+.login__register1 {
 	padding-left: 30px;
 }
 
-.login__register h3 {
+.login__register1 h3 {
 	color: #ffffff;
 	font-weight: 700;
 	font-family: "Oswald", sans-serif;
 	margin-bottom: 30px;
 }
 
-.login__register .primary-btn {
+.login__register1 .primary-btn {
 	background: #e53637;
 	padding: 12px 42px;
 }
@@ -1895,17 +1895,17 @@ ol {
 	padding-bottom: 150px;
 }
 
-.signup .login__form:after {
+.signup .login__form1:after {
 	height: 450px;
 }
 
-.signup .login__form h5 {
+.signup .login__form1 h5 {
 	font-size: 15px;
 	color: #ffffff;
 	margin-top: 36px;
 }
 
-.signup .login__form h5 a {
+.signup .login__form1 h5 a {
 	color: #e53637;
 	font-weight: 700;
 }
@@ -2015,7 +2015,7 @@ ol {
 	.hero {
 		overflow: hidden;
 	}
-	.login__form {
+	.login__form1 {
 		position: relative;
 		padding-left: 32px;
 	}
@@ -2114,17 +2114,17 @@ ol {
 	.anime__details__sidebar {
 		padding-top: 50px;
 	}
-	.login__form {
+	.login__form1 {
 		padding-left: 0;
 		margin-bottom: 40px;
 	}
-	.login__form:after {
+	.login__form1:after {
 		display: none;
 	}
-	.login__form form .input__item {
+	.login__form1 form .input__item {
 		width: auto;
 	}
-	.login__register {
+	.login__register1 {
 		padding-left: 0;
 	}
 	.signup .login__social__links {
@@ -2243,14 +2243,14 @@ ol {
 		width: calc(50% - 10px);
 		float: left;
 	}
-	.login__form {
+	.login__form1 {
 		padding-left: 0;
 		margin-bottom: 40px;
 	}
-	.login__form:after {
+	.login__form1:after {
 		display: none;
 	}
-	.login__form form .input__item {
+	.login__form1 form .input__item {
 		width: auto;
 	}
 	.signup .login__social__links {
@@ -2262,7 +2262,7 @@ ol {
 	.blog__item__text {
 		padding: 0 30px;
 	}
-	.login__register {
+	.login__register1 {
 		padding-left: 0;
 	}
 	.product__sidebar__view .filter__controls li {
@@ -2275,7 +2275,7 @@ ol {
 
 /* Small Device = 320px */
 
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 479px) {s
 	.hero__slider.owl-carousel .owl-nav {
 		display: none;
 	}
@@ -2324,7 +2324,7 @@ ol {
 	.login__social__links ul li a i {
 		left: 20px;
 	}
-	.login__form .forget_pass {
+	.login__form1 .forget_pass {
 		position: relative;
 		left: 0;
 		bottom: 0;
