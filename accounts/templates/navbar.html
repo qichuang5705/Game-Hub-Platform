@@ -31,12 +31,11 @@
               {% endif %}
               <li>
                 <div class="search-box ">
-                  <button class="search-box_btn"> <i class="fa-solid fa-magnifying-glass"></i></button>
                   <form action="{% url 'search' %}" method="get">
                     {% csrf_token %}
                     <input class="search-box_input" type="text" name="words" class="search-box_input">
                     <input class="search-box_input" type="hidden" name="view" value="{{ request.resolver_match.view_name }}">
-                    <button type="submit"> 
+                    <button class="search-box_btn" type="submit"> 
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>

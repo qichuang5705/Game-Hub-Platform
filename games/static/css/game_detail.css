@@ -75,6 +75,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .average-rating .label, .your-rating .label {
@@ -283,4 +284,38 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+#rating-form p {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    margin: 5px 0;
+}
+
+#rating-form label {
+    white-space: nowrap;
+    font-weight: bold;
+    color: #D0E7DD;
+}
+
+#rating-form input,
+#rating-form select {
+    flex-grow: 1; 
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #161D35;
+    color: #D0E7DD;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
+.comment-form .user-avatar .avatar{
+    margin-top: -50px;
 }
