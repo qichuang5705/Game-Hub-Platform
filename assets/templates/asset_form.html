@@ -1,10 +1,9 @@
+
+{% extends "base.html" %}
 {% load static %}
 
 
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
+{% block head %}
     <meta charset="UTF-8">
     <meta name="description" content="Asset Store">
     <meta name="keywords" content="Anime, unica, creative, html">
@@ -18,56 +17,25 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/plyr.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-</head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font1-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant1-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/plyr1.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice1-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl1.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" type="text/css">
+    <style>
+        .navbar{
+            flex-wrap: nowrap !important;
+        }
+       
+    </style>
+    
+{% endblock %}
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html">
-                            <img src="img/logo.png" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="./list/">Homepage</a></li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
-    <!-- Header End -->
-
+{% block content %}
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="defaults/images.jpg">
         <div class="container">
@@ -84,12 +52,12 @@
     <!-- Normal Breadcrumb End -->
 
     <!-- Upload Section Begin -->
-    <form method="POST" enctype="multipart/form-data" >
+     <form method="POST" enctype="multipart/form-data" >
         <section class="login spad">
-            <div class="container">
+            <div class="1">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="login__form">
+                        <div class="login__form1">
                             <h3>Upload</h3>
                                     {% csrf_token %}
                                     <div class="container">
@@ -104,7 +72,7 @@
                                             <div class="col-sm-10">
                                                 {{ form.price }}
                                             </div>
-                                        </div>
+                                        </div>  
                                         <div class="row mb-3">
                                             <label class="col-sm-6 col-md-3 col-form-label text-white">Thể Loại:</label>
                                             <div class="col-sm-10">
@@ -112,13 +80,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                
-                      
                         </div>
                     </div>
                 
                     <div class="col-lg-6" >
-                        <div class="login__register">
+                        <div class="login__register1">
                             <div class="container" style="position: absolute; top: 66px; left: 70px ">
                                 <div class="row mb-3" >
                                     <label class="col-sm-6 col-md-3 col-form-label text-white">Mô Tả:</label>
@@ -150,14 +116,17 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
         <div  style="display: flex; justify-content: center; align-items: center; height: 20vh;">
             <button type="submit" class="site-btn">Upload</button>
         </div>
-    </form>
-    
+    </form> 
+    <!-- <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form> -->
     <!-- Login Section End -->
 
     <!-- Footer Section Begin -->
@@ -183,8 +152,5 @@
 <script src="{% static 'js/jquery.slicknav.js' %}"></script>
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
 
-
-</body>
-
-</html>

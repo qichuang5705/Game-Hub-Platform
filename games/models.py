@@ -15,12 +15,12 @@ class Game(models.Model):
     description = models.TextField()
     datecreate = models.DateField(auto_now_add=True)
     reward = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='games/image', null=True, blank=True)
+    image = models.ImageField(upload_to='games/image', null=False, blank=False)
     file = models.FileField(upload_to='games/file', null=True, blank=True)
     version = models.TextField(max_length=15, default=1.0)
     ApiLD = models.BooleanField(default=False) #API leaderboard
-
-
+    views = models.PositiveIntegerField(default=0)  # Trường lưu số lượt truy cập
+    ratting = models.FloatField(default=5)
     def extract(self):
         # file = "C:\\Users\\Huy Le\\Desktop\\Projects\\file\\catch_the_ball_709.z111ip"
         file_zip_path = self.file.path 
@@ -68,3 +68,14 @@ class LBHistory(models.Model):  #Leader board history:Lịch sử điểm của 
     date = models.DateTimeField(auto_now=True)
 
 
+class Ratting(models.Model):
+    VALUE_CHOICES =[
+        (1,1),
+        (2,2),
+        (3,3),
+        (4,4),
+        (5,5),
+    ]
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="user_rating")
+    game = models.OneToOneField(Game, on_delete=models.CASCADE, related_name="game_rating")
+    ratting = models.IntegerField(default=0)

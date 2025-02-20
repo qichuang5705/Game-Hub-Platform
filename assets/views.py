@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .forms import AssetForm
 from .models import * 
 from django.http import HttpResponse,HttpResponseForbidden,FileResponse
-
+from django.core.files.storage import default_storage
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()  
-            return redirect('asset_list')  
+            return redirect('asset_upload')  
         else:
             print(form.errors) 
     else:
@@ -31,7 +31,7 @@ def asset_detail(request, asset_id):
     return render(request, 'asset_detail.html', {'asset': selected_asset,'MEDIA_URL': settings.MEDIA_URL})
 
 def asset_edit_view(request, asset_id):
-    asset_obj = get_object_or_404(asset, id=asset_id)
+    asset_obj = get_object_or_404(asset, id=asset_id)  
 
     if request.method == 'POST':
         asset_obj.title = request.POST.get('title', asset_obj.title)
@@ -39,8 +39,17 @@ def asset_edit_view(request, asset_id):
         asset_obj.type = request.POST.get('type', asset_obj.type)
         asset_obj.description = request.POST.get('description', asset_obj.description)
 
+      
         if 'thumnail' in request.FILES:
+            if asset_obj.thumnail:
+                default_storage.delete(asset_obj.thumnail.path)  
             asset_obj.thumnail = request.FILES['thumnail']
+
+      
+        if 'file' in request.FILES:
+            if asset_obj.file:
+                default_storage.delete(asset_obj.file.path)  
+            asset_obj.file = request.FILES['file']
 
         asset_obj.save()
         return redirect('asset_list')  
