@@ -11,13 +11,12 @@ from .models import Inventory, FrameAvatar, FrameChat, Avatar, Chat
 #         model = Inventory
 #         fields = ['avatar', 'chat']
 
-class InventForm(forms.ModelForm):
+class AvatarForm(forms.ModelForm):
     class Meta:
         model = Inventory
-        fields = ['avatar', 'chat']
+        fields = ['avatar']
         widgets = {
             'avatar': forms.RadioSelect(),
-            'chat': forms.RadioSelect(),
         }
 
     def __init__(self, *args, user=None, **kwargs):
@@ -25,8 +24,20 @@ class InventForm(forms.ModelForm):
         if user:
             # Chỉ hiển thị Avatar và Chat mà user sở hữu
             self.fields['avatar'].queryset = Avatar.objects.filter(user=user)
-            self.fields['chat'].queryset = Chat.objects.filter(user=user)
 
+
+class ChatForm(forms.ModelForm):
+    class Meta:
+        model = Inventory
+        fields = ['chat']
+        widgets = {
+            'chat': forms.RadioSelect(),
+        }
+
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['chat'].queryset = Chat.objects.filter(user=user)
 
 # class ShopForm(forms.ModelForm):
 #     chat = forms.ModelChoiceField(queryset=FrameChat.objects.all(), widget=forms.RadioSelect, label="Khung chat")

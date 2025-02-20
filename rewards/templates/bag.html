@@ -37,11 +37,12 @@
                 </div>
         
                 <div class="select-frame">
-                    <form method="POST">
+                    <form method="POST" action="{% url 'bag' %}">
                         {% csrf_token %}
+                        <input type="hidden" name="form_type" value="avatar_form">  <!-- Trường ẩn để xác định form -->
                         <div class="frame-box">
                             <div class="frame-list">
-                                {% for avatar in form.avatar.field.queryset %}
+                                {% for avatar in form_avatar.avatar.field.queryset %}
                                 <div class="frame-item">
                                     <label>
                                         <img src="{{ avatar.frame_avatar.image.url }}" class="frame-preview">
@@ -52,11 +53,11 @@
                                 {% endfor %}
                             </div>
                         </div>
+                        <div class="button-save">
+                            <button type="submit" class="save-button">Lưu Thay Đổi</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="button-save">
-                <button type="submit" class="save-button">Lưu Thay Đổi</button>
             </div>
         </div>
 
@@ -77,26 +78,27 @@
                 </div>
         
                 <div class="select-frame">
-                    <form method="POST">
+                    <form method="POST" action="{% url 'bag' %}" >
                         {% csrf_token %}
+                        <input type="hidden" name="form_type" value="chat_form">  <!-- Trường ẩn để xác định form -->
                         <div class="frame-box">
                             <div class="frame-list">
-                                {% for chat in form.chat.field.queryset %}
+                                {% for chat in form_chat.chat.field.queryset %}
                                 <div class="frame-item">
                                     <label>
                                         <img src="{{ chat.frame_chat.image.url }}" class="frame-preview">
-                                        <input type="radio" name="chat" value="{{ chat.id }}" {% if user.invent.chat.id == chat.id %} checked {% endif %}>
+                                        <input type="radio" name="chat" value="{{ chat.id }}"  {% if user.invent.chat.id == chat.id %} checked {% endif %}>
                                         <span>{{ chat.frame_chat.CssClass }}</span>
                                     </label>
                                 </div>
                                 {% endfor %}
                             </div>
                         </div>
+                        <div class="button-save">
+                            <button type="submit" class="save-button">Lưu Thay Đổi</button>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="button-save">
-                <button type="submit" class="save-button">Lưu Thay Đổi</button>
             </div>
         </div>
         

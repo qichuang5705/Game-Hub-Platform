@@ -30,7 +30,7 @@
     border-radius: 8px;
 }
 
-.name_game, .info_game, .voting_box, .leaderboard, .comment_container {
+.name_game, .info_game, .voting_box, .leaderboard, .comment_container, .view_game { 
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
