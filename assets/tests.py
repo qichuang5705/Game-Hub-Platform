@@ -84,6 +84,7 @@ class PurchaseModelTest(TestCase):
         with self.assertRaises(ValidationError):
             invalid_purchase=Purchase(
                 user=self.user,
-                asset=self.asset,payment_method='bitcoin'   
+                asset=self.asset,
+                payment_method='bitcoin'   
             )
             invalid_purchase.full_clean()
