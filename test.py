@@ -1,7 +1,4 @@
-import os
+import time
 
-a = "avatar\\ccc.pt"
-aa, image_extension = os.path.splitext(a)
+start = time.time()
 
-print(aa)
-print(image_extension)

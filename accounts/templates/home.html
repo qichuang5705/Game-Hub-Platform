@@ -20,7 +20,7 @@
                     {% endif %}
                 </a>
             </div>
-            <div class="game_info" data-rating="4.5"> 
+            <div class="game_info" data-rating="{{ game.ratting }}"> 
                 <div class="name-container"> 
                     <span>Game: </span>  <h3>{{ game.name }}</h3>
                 </div>
@@ -31,11 +31,10 @@
                     {% endfor %}
                 </div>
                 <div class="voting-container">
-                    <span>Đánh giá: <p>{{ game.ratting }}</p></span>
+                    <span>Đánh giá: </span>
                     <div class="stars">
                         {% for _ in ""|rjust:game.ratting|floatformat:0|add:"0" %}
-                        <p>1</p>
-                        <i class="fa-solid fa-star"></i>
+    
                     {% endfor %}
                     
 

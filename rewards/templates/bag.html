@@ -10,13 +10,13 @@
 {% block body %}
     <div class="change_frame_container">
         <div class="title_choice">
-            <a href="{% url 'bag' %}" onclick="setActiveTab(event, 'bag')">
-                <h3 class="tab" data-tab="owned">Túi đồ</h3> 
+            <a href="{% url 'bag' %}" class="tab-link" data-tab="owned" >
+                <h3 class="tab">Túi đồ</h3> 
             </a>
-            <a href="{% url 'shop' %}" onclick="setActiveTab(event, 'shop')">
-                <h3 class="tab" data-tab="exchange">Shop</h3>
+            <a href="{% url 'shop' %}" class="tab-link" data-tab="exchange" >
+                <h3 class="tab">Shop</h3>
             </a>
-        </div>
+        </div>        
         
         <h3 class="points">Điểm thưởng của bạn: {{ user.points }}</h3>
 
@@ -25,21 +25,24 @@
             <div class="frame-selection-container">
                 <h3 class="tt">Khung avatar</h3>
                 <div class="title_choice avatar_tab">
-                    <h3 class="avt " data-tab="owned">Avatar </h3>
+                    <h3 class="avt active" data-tab="owned">Avatar </h3>
                     <h3 class="tab_chat " data-tab="exchange">Chat</h3>
                 </div>
             </div>
             <div class="frame-selection-container ">
                 <div class="current-frames ">
                     <div class="frame-box_now">
-                        <div class="{{ user.invent.avatar }}"></div>
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.avatar.frame_avatar.image.url }}" alt="">
+                            <span>{{ user.invent.avatar.frame_avatar.CssClass }}</span>
+                        </div>
                     </div>
                 </div>
         
                 <div class="select-frame">
                     <form method="POST" action="{% url 'bag' %}">
                         {% csrf_token %}
-                        <input type="hidden" name="form_type" value="avatar_form">  <!-- Trường ẩn để xác định form -->
+                        <input type="hidden" name="form_type" value="avatar_form">  
                         <div class="frame-box">
                             <div class="frame-list">
                                 {% for avatar in form_avatar.avatar.field.queryset %}
@@ -73,14 +76,17 @@
             <div class="frame-selection-container chat">   
                 <div class="current-frames ">
                     <div class="frame-box_now">
-                        <div class="{{ user.invent.chat }}"></div>
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.chat.frame_chat.image.url }}" alt="">
+                            <span>{{ user.invent.chat.frame_chat.CssClass }}</span>
+                        </div>
                     </div>
                 </div>
         
                 <div class="select-frame">
                     <form method="POST" action="{% url 'bag' %}" >
                         {% csrf_token %}
-                        <input type="hidden" name="form_type" value="chat_form">  <!-- Trường ẩn để xác định form -->
+                        <input type="hidden" name="form_type" value="chat_form"> 
                         <div class="frame-box">
                             <div class="frame-list">
                                 {% for chat in form_chat.chat.field.queryset %}

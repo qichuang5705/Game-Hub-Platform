@@ -9,27 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartShow = document.querySelector(".page_home .cart");
     const cartUserShow = document.querySelector(".page_home_user .cart_user");
 
-    const btn_search = document.querySelector('.search-box_btn');
-
-    btn_search.addEventListener('click', function() {
-        const searchBox = this.parentElement; 
-        const searchInput = this.previousElementSibling; 
-
-        if (searchBox.classList.contains('open')) { 
-            if (searchInput.value.trim() !== '') { 
-                /*
-                const searchTerm = searchInput.value.trim();
-                const searchUrl = `/search/?q=${searchTerm}`;
-                window.location.href = searchUrl; 
-                */
-            } else {
-                searchBox.classList.remove('open'); 
-            }
-        } else {
-            searchBox.classList.add('open'); 
-            searchInput.focus(); 
-        }
-    });
 
     //open user choice
     const opencartUserShow = document.querySelector(".avatar-wrapper");

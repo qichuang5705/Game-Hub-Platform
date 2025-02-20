@@ -12,6 +12,8 @@ from rest_framework.decorators import action
 from .serializers import LBHSerializer
 import os, zipfile, shutil
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 
 class IsDeveloper(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -46,6 +48,11 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
     request.session["current_game_id"] = gameId  # Lưu gameId vào session thực hiện cho API
+    comments = game.comment_set.all().order_by('-datecreate')
+    paginator = Paginator(comments, 5)  # Hiển thị 5 bình luận mỗi trang
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     game.views+=1
     game.save()
     history = (
@@ -91,7 +98,7 @@ def game_detail(request, gameId):
     else:
         form = CommentForm()
         form_ratting = RattingForm()
-    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user, 'form_ratting': form_ratting})
+    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user, 'form_ratting': form_ratting, 'phantrang': page_obj})
 
 def TrungBinhRating(game):
     rating = Ratting.objects.filter(game=game)

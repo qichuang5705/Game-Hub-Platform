@@ -1,7 +1,8 @@
 from django.contrib.auth.signals import user_logged_out
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.timezone import now
-from .models import CustomUser
+from .models import CustomUser, FrameAvatar, FrameChat
 import datetime
 from django.contrib import messages
 
@@ -24,3 +25,17 @@ def update_online_time(sender, request, user, **kwargs):
 
         user.points = diem
         user.save()
+
+
+@receiver(post_delete, sender=FrameChat)
+def delete_image_file(sender, instance, **kwargs):
+    """Tự động xóa ảnh khi object bị xóa"""
+    if instance.image:
+        instance.image.delete(save=False)  # Xóa file ảnh của khung chat
+
+
+@receiver(post_delete, sender=FrameAvatar)
+def delete_image_file(sender, instance, **kwargs):
+    """Tự động xóa ảnh khi object bị xóa"""
+    if instance.image:
+        instance.image.delete(save=False)  # Xóa file ảnh của khung avatar

@@ -9,6 +9,7 @@ from games.models import Game
 from django.core.mail import send_mail
 import random, os
 from django.conf import settings
+
 def redirect_base_on_role(user):
     if user.is_superuser:
     # Đăng nhập người dùng và chuyển hướng đến admin

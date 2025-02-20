@@ -62,7 +62,7 @@
 }
 
 .edit-game-text-danger {
-    color: #ABF600;
+    color: #12182B;
     font-size: 20px;
     margin-top: 5px;
 }
@@ -70,7 +70,7 @@
 .edit-game-button {
     width: 120px;
     padding: 10px;
-    background-color: #ABF600;
+    background-color: #12182B;
     color: #0C5776;
     border: none;
     border-radius: 5px;
@@ -92,7 +92,7 @@
     cursor: pointer;
     background: none;
     border: none;
-    color: #ABF600;
+    color: #12182B;
     font-weight: bolder;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .edit-game-container .note label {
-    color: #ABF600;
+    color: #12182B;
     text-decoration: underline;
 }
 
