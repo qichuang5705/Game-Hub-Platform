@@ -1,29 +1,59 @@
 .default-avatar{
-    width: 100px;
-    height: 100px;
     border: none;
 }
 
 .red-avatar{
-    border: 2px solid red;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px red,
+        0px 0px 20px red,
+        0px 0px 30px red;
 }
 
 .pink-avatar{
-    border: 2px solid pink;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px pink,
+        0px 0px 20px pink,
+        0px 0px 30px pink;
 }
 
 .yellow-avatar {
-    border: 2px solid yellow;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px yellow,
+        0px 0px 20px yellow,
+        0px 0px 30px yellow;
 }
 
 .green-avatar {
-    border: 2px solid green;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px green,
+        0px 0px 20px green,
+        0px 0px 30px green;
 }
 
 .gray-avatar {
-    border: 2px solid gray;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px gray,
+        0px 0px 20px gray,
+        0px 0px 30px gray;
 }
 
 .blue-avatar {
-    border: 2px solid blue;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px blue,
+        0px 0px 20px blue,
+        0px 0px 30px blue;
+}
+
+.light-avatar {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0px 0px 10px white,
+        0px 0px 20px white,
+        0px 0px 30px white;
 }
