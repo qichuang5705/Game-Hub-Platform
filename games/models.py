@@ -49,9 +49,9 @@ class Game(models.Model):
 
 class Comment(models.Model):
     games = models.ForeignKey(Game, on_delete=models.CASCADE)
-    users = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    users = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='lolcomment')
     words = models.TextField()
-    datecreate = models.DateField(auto_now_add=True)
+    datecreate = models.DateTimeField(auto_now_add=True)  # Sử dụng DateTimeField
 
 class Genre(models.Model):
     name = models.CharField(max_length=100) 

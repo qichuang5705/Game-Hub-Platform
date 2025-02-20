@@ -32,7 +32,10 @@
             <div class="frame-selection-container ">
                 <div class="current-frames ">
                     <div class="frame-box_now">
-                        <div class="{{ user.invent.avatar }}"></div>
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.avatar.frame_avatar.image.url }}" alt="">
+                            <span>{{ user.invent.avatar.frame_avatar.CssClass }}</span>
+                        </div>
                     </div>
                 </div>
         
@@ -73,7 +76,10 @@
             <div class="frame-selection-container chat">   
                 <div class="current-frames ">
                     <div class="frame-box_now">
-                        <div class="{{ user.invent.chat }}"></div>
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.chat.frame_chat.image.url }}" alt="">
+                            <span>{{ user.invent.chat.frame_chat.CssClass }}</span>
+                        </div>
                     </div>
                 </div>
         

@@ -59,7 +59,7 @@
 
         <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
             <div class="avatar-wrapper ">  
-                <div class="avatar red-avatar">
+                <div class="avatar {{ user.invent.avatar }}">
                   <img src="{{ user.avatar.url }}" alt="Logo" />
                 </div>
             </div>
