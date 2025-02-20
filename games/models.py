@@ -76,6 +76,6 @@ class Ratting(models.Model):
         (4,4),
         (5,5),
     ]
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="user_rating")
-    game = models.OneToOneField(Game, on_delete=models.CASCADE, related_name="game_rating")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="ratings")
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="ratings")
     ratting = models.IntegerField(default=0)
