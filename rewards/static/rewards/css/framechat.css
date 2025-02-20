@@ -1,17 +1,27 @@
 .default-chat{
-    width: 100px;
-    height: 100px;
-    background-color: black;
+    border: none;
 }
 
 .red-chat{
-    width: 100px;
-    height: 100px;
-    background-color: red;
+    border: 2px solid red;
 }
 
 .pink-chat{
-    width: 100px;
-    height: 100px;
-    background-color: blue;
+    border: 2px solid pink;
+}
+
+.yellow-chat {
+    border: 2px solid yellow;
+}
+
+.green-chat {
+    border: 2px solid green;
+}
+
+.gray-chat {
+    border: 2px solid gray;
+}
+
+.blue-chat {
+    border: 2px solid blue;
 }

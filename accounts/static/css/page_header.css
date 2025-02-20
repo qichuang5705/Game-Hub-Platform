@@ -707,11 +707,9 @@ input:disabled, select:disabled {
 }
 
 .main-nav ul li a.active {
-    background-color: #50D8D7; 
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 8px 12px;
+    transform: translateY(-5px);
+    background-color: #50D8D7;
+    color: #12182B;
 }
 
 .account a {

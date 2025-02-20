@@ -50,10 +50,10 @@
 }
 
 .frame-selection-container .title_choice h3 {
-    background-color: #394F6B;
     margin: auto 10px;
     border-radius: 8px;
-    color: #6DFFE7;
+    background-color: #50D8D7;
+    color: #12182B;
 }
 
 .tt {
@@ -119,6 +119,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    max-height: 350px;
     justify-content: flex;
 }
 
@@ -161,6 +162,15 @@
     border-radius: 8px; 
 }
 
+.frame-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: calc((120px + 16px) * 3); 
+    overflow-y: auto; 
+    justify-content: flex-start;
+}
+
 .frame-item {
     width: calc(33.3333% - 10px);
     max-width: 120px; 
@@ -175,9 +185,10 @@
 }
 
 .frame-item img {
-    width: 150px;
+    width: 100px;
     height: 100px;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .frame-item input {
@@ -195,6 +206,7 @@
         width: 100%; 
     }
 }
+
 
 .hide {
     display: none;
