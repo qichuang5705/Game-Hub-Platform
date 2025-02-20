@@ -2,17 +2,18 @@
     width: 90%;
     max-width: 500px;
     margin: 50px auto;
-    background: #fff;
+    background: #394F6B;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    color: #6DFFE7;
 }
 
 .withdraw-title {
     font-size: 22px;
     margin-bottom: 15px;
-    color: #333;
+    color: #6DFFE7;
 }
 
 .withdraw-form {
@@ -24,21 +25,24 @@
 .withdraw-form label {
     font-weight: bold;
     text-align: left;
+    color: #6DFFE7;
 }
 
 .withdraw-form input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #1C2341;
     border-radius: 5px;
     font-size: 16px;
+    background: #12182B;
+    color: #6DFFE7;
 }
 
 .withdraw-form button {
     padding: 12px;
     font-size: 16px;
-    background: #007bff;
-    color: white;
+    background: #55BEC0;
+    color: #12182B;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -46,7 +50,7 @@
 }
 
 .withdraw-form button:hover {
-    background: #0056b3;
+    background: #6DFFE7;
 }
 
 @media (max-width: 480px) {

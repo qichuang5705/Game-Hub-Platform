@@ -4,10 +4,11 @@ main {
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #212121;
+    background-color: #18202B;
     padding: 30px; 
     display: flex;
     justify-content: center; 
+    border-radius: 10px;
 }
 
 .game-container {
@@ -20,7 +21,7 @@ main {
 }
 
 .card_game {
-    background: #242628;
+    background: #25313F;
     width: calc(25% - 15px);
     height: 300px;
     border-radius: 10px;
@@ -30,7 +31,13 @@ main {
     position: relative;
     margin-bottom: 20px;
     box-sizing: border-box;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card_game:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 255, 204, 0.3);
 }
 
 .cart_img {
@@ -54,16 +61,12 @@ main {
     object-position: center;
 }
 
-.card_game:hover {
-    cursor: pointer;
-}
-
 .game_info {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 0 0 10px 10px;
     padding: 10px;
     box-sizing: border-box;
@@ -85,16 +88,18 @@ main {
     font-weight: bold;
     margin-right: 5px;
     white-space: nowrap; 
+    color: #6DFFE7;
 }
 
 .name-container h3, .genre-container h3 {
     display: block;
     margin: 0; 
     font-size: 16px; 
+    color: #E0E0E0;
 }
 
 .game_info .stars i {
-    color: gold;
+    color: #FFD700;
     font-size: 14px;
     margin: 0 2px;
 }

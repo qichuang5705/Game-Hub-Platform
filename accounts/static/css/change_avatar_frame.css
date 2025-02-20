@@ -1,17 +1,19 @@
-/* Đổi avatar */
 .change_avatar_frame_avatar_container {
     width: 80%;
     max-width: 1000px;
     margin: 50px auto;
-    border: 2px solid black;
+    border: 2px solid #6DFFE7;
     padding: 20px;
     position: relative;
+    background-color: #1C2341;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(93, 93, 93, 0.5);
 }
 
 .tittle_choice {
     display: flex;
     justify-content: center;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #6DFFE7;
     padding-bottom: 5px;
 }
 
@@ -21,10 +23,11 @@
     margin: 0;
     font-size: 16px;
     font-weight: bold;
+    color: #E0E0E0;
 }
 
 .tittle_choice h3:first-child {
-    border-right: 2px solid black;
+    border-right: 2px solid #6DFFE7;
 }
 
 .close-change_avatar_frame_avatar {
@@ -34,11 +37,19 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    color: #6DFFE7;
+    transition: color 0.3s ease;
+}
+
+.close-change_avatar_frame_avatar:hover {
+    color: #50D8D7;
 }
 
 .change_avatar, .change_frame_avatar {
     width: 100%;
     min-height: 300px;
-    border: 1px solid black;
+    border: 1px solid #6DFFE7;
     margin-top: 10px;
+    background-color: #0D1A2D;
+    border-radius: 8px;
 }
