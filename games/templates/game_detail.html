@@ -35,6 +35,7 @@
                 <p>{{ game.description }}</p>
             </div>
             <!-- Voting Section -->
+            {% if user.is_authenticated %}
             <div class="voting_box">
                 <h3>Đánh giá</h3>
                 <div class="rating-summary">
@@ -80,7 +81,7 @@
                     <input type="hidden" id="rating-value" name="rating" value="0">
                 </div>
             </div>
-            
+            {% endif %}
             <!-- Leaderboard -->
             <div class="leaderboard">
                 <h3>{{ game.ApiLD|yesno:"Bảng xếp hạng, Không hỗ trợ bảng xếp hạng" }}</h3>
@@ -108,6 +109,7 @@
                     <h3>Bình luận</h3>
                     
                     <!-- Comment Form -->
+                    {% if user.is_authenticated %}
                     <div class="comment-form">
                         <div class="user-avatar">
                             <div class="avatar">
@@ -127,7 +129,7 @@
                             </form>
                         </div>
                     </div>
-                    
+                    {% endif %}    
                     <!-- Comment List -->
                     <div class="comments">
                         {% for comment in game.comment_set.all %}
