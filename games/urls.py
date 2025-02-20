@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import DeleteComment, UpGame, game_detail, Delete_Game, Edit_game, LBHistoryViewset
+from .views import DeleteComment, UpGame, game_detail, Delete_Game, Edit_game, LBHistoryViewset, search
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -12,4 +12,5 @@ urlpatterns = [
     path("Delete_Game/<int:game_id>", Delete_Game , name="Delete_Game"),
     path("game_detail/edit_game/<int:game_id>", Edit_game, name="edit_game"),
     path("API/", include(router.urls)),
+    path("search/", search, name="search"),
 ]   

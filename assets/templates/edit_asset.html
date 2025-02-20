@@ -1,10 +1,174 @@
-<!DOCTYPE html>
+
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="Asset Store">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sửa Thông Tin</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font1-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant1-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/plyr1.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice1-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl1.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" type="text/css">
+    <style>
+        .navbar{
+            flex-wrap: nowrap !important;
+        }
+       
+    </style>
+    
+{% endblock %}
+
+
+{% block content %}
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="defaults/images.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="normal__breadcrumb__text">
+                        <h2>Sửa Thông Tin</h2>
+                        <p>Sửa Thông Tin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- Upload Section Begin -->
+     <!-- <form method="POST" enctype="multipart/form-data" >
+        <section class="login spad">
+            <div class="1">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="login__form1">
+                            <h3>Sửa Thông Tin</h3>
+                                    {% csrf_token %}
+                                    <div class="container">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-6 col-md-3 col-form-label text-white">Tiêu đề:</label>
+                                            <div class="col-sm-10">
+                                                {{ form.title }}
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-6 col-md-3 col-form-label text-white">Giá:</label>
+                                            <div class="col-sm-10">
+                                                {{ form.price }}
+                                            </div>
+                                        </div>  
+                                        <div class="row mb-3">
+                                            <label class="col-sm-6 col-md-3 col-form-label text-white">Thể Loại:</label>
+                                            <div class="col-sm-10">
+                                                {{ form.type }}
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-lg-6" >
+                        <div class="login__register1">
+                            <div class="container" style="position: absolute; top: 66px; left: 70px ">
+                                <div class="row mb-3" >
+                                    <label class="col-sm-6 col-md-3 col-form-label text-white">Mô Tả:</label>
+                                    <div class="col-sm-10">
+                                        {{ form.description }}
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-6 col-md-3 col-form-label text-white">Số Lượng:</label>
+                                    <div class="col-sm-10">
+                                        {{ form.quantifier }}
+                                    </div>
+                                </div>
+                        
+                                <div class="row md-3">
+                                    <label class="col-auto col-form-label text-white">Ảnh nền:</label>
+                                    <div class="col-sm-10">
+                                        {{ form.thumnail }}
+                                    </div>
+                                </div>
+                        
+                                <div class="row mb-3">
+                                    <label class="col-auto col-form-label text-white">Tệp Tin:</label>
+                                    <div class="col-sm-10">
+                                        {{ form.file }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div  style="display: flex; justify-content: center; align-items: center; height: 20vh;">
+            <button type="submit" class="site-btn">Upload</button>
+        </div>
+    </form>  -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Tiêu đề:</label>
+        <input type="text" name="title" value="{{ asset.title }}" required>
+        <br>
+
+        <label>Giá:</label>
+        <input type="number" name="price" value="{{ asset.price }}" required>
+        <br>
+
+        <label>Loại:</label>
+        <input type="text" name="type" value="{{ asset.type }}" required>
+        <br>
+
+        <label>Mô tả:</label>
+        <textarea name="description">{{ asset.description }}</textarea>
+        <br>
+
+        <label>Hình ảnh:</label>
+        <input type="file" name="thumnail">
+        <br>
+        <label>file:</label>
+        <input type="file" name="file">
+        <br>
+        <button type="submit">Lưu thay đổi</button>
+        <a href="{% url 'asset_list' %}">Hủy</a>
+    </form>
+
+ <!-- Js Plugins -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/player.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
-    <title>Chỉnh sửa tài nguyên</title>
+    <title>Chỉnh sửa Asset</title>
 </head>
 <body>
-    <h1>Chỉnh sửa tài nguyên</h1>
+    <h1>Chỉnh sửa Asset</h1>
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -27,9 +191,11 @@
         <label>Hình ảnh:</label>
         <input type="file" name="thumnail">
         <br>
-
+        <label>file:</label>
+        <input type="file" name="file">
+        <br>
         <button type="submit">Lưu thay đổi</button>
         <a href="{% url 'asset_list' %}">Hủy</a>
     </form>
 </body>
-</html>
+</html> -->

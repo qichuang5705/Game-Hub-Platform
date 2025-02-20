@@ -5,6 +5,7 @@
 {% load static %}
     <link rel="stylesheet" href="{% static 'css/editGame.css' %}">
     <link rel="stylesheet" href="{% static 'css/game_home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
 {% endblock%}
 
@@ -52,12 +53,12 @@
 
         <div class="edit-game-form-group">
             <label for="id_image">Hình ảnh:</label>
-            {{ form.image }}
+            <input type="file" name="image" id="id_image">
         </div>
 
         <div class="edit-game-form-group">
-            <label for="id_file">File game:</label>
-            {{ form.file }}
+            <label for="f4">Ảnh đại diện:</label>
+            <input type="file" name="file" id="f4">
             {% if form.file.errors %}
             <ul class="edit-game-text-danger">
                 {% for error in form.file.errors %}
@@ -67,10 +68,24 @@
             {% endif %}
         </div>
 
+      
         <div class="note">
+
             <label>Lưu ý: </label>
+            <span><a href="{% url 'leaderboard-list' %}">API Page</a></span>
+            <span>GET	/API/leaderboard/	Lấy danh sách lịch sử điểm số</span>
+            <span>POST	/API/leaderboard/	Thêm điểm số mới</span>
+            <span>     GET	/API/leaderboard/{id}/	Lấy chi tiết điểm số của một user (theo ID)</span>
+            <span> PUT	/API/leaderboard/{id}/	Cập nhật điểm số của một user</span>
+            <span> DELETE	/API/leaderboard/{id}/	Xóa điểm số</span>
+            <span></span>
             <span>Chỉ đăng tải file index.html hoặc file .zip</span>
             <span>Vui lòng sửa tên file đúng định chuẩn ACSII để tránh lỗi đăng tải</span>
+            <span>
+                <a href="{% static 'postapi.js' %}" download="">
+                    Mẫu POST API js
+                </a>
+            </span>
         </div>
 
         <button class="edit-game-button" type="submit">Lưu</button>

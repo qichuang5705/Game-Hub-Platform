@@ -1,22 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Role Upgrade</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
-    <div class="container">
-        <h1>Request Role Upgrade</h1>
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/role_upgrade.css' %}">
+{% endblock %}
+  
+{% block body %}
+    <div class="role-upgrade-container">
+        <h1>Yêu cầu nâng cấp vai trò</h1>
 
         {% if user.role == 'player' %}
-        <form method="POST">
+        <form method="POST" class="role-upgrade-form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="requested_role">Choose Role to Upgrade</label>
+                <label for="requested_role">Chọn vai trò để nâng cấp: </label>
                 {{ form.requested_role }}
                 {% if form.requested_role.errors %}
                     <ul class="errors">
@@ -31,25 +28,22 @@
         </form>
 
         {% else %}
-            <p>You are already a Developer or Designer. You cannot upgrade your role.</p>
+            <p>Bạn đã là Nhà phát triển hoặc Nhà thiết kế. Bạn không thể nâng cấp vai trò của mình.</p>
         {% endif %}
 
-        <div class="status">
-            <h2>Status of Your Request:</h2>
+        <div class="role-upgrade-status">
+            <h2>Trạng thái yêu cầu của bạn:</h2>
             {% if user.request_status == 'pending' %}
-                <p>Your request is currently pending.</p>
+                <p>Yêu cầu của bạn hiện đang chờ xử lý.</p>
             {% elif user.request_status == 'approved' %}
-                <p>Your request has been approved. You are now a {{ user.role }}.</p>
+                <p>Yêu cầu của bạn đã được chấp thuận. Bây giờ bạn là: {{ user.role }}.</p>
             {% elif user.request_status == 'rejected' %}
-                <p>Your request has been rejected.</p>
+                <p>Yêu cầu của bạn đã bị từ chối.</p>
             {% else %}
-                <p>No request has been made yet.</p>
+                <p>Chưa có yêu cầu nào được đưa ra.</p>
             {% endif %}
         </div>
 
-        <a href="{% url 'home' %}">Go back to Home</a>
+        <a href="{% url 'home' %}" class="back-home">Quay lại Trang chủ</a>
     </div>
-</body>
-</html>
-
-{% include 'footer.html' %}
+{% endblock %}

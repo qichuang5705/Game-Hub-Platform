@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const avatar = document.querySelector(".avatar-content ");
     const chat = document.querySelector(".chat-content");
+    const avt = document.querySelector(".avt");
+    const cht = document.querySelector(".cht");
 
     const chatShow = document.querySelector(".avatar_tab .tab_chat");
     chatShow.addEventListener("click", () => {
@@ -17,4 +19,5 @@ document.addEventListener("DOMContentLoaded", function () {
         avatar.classList.add("show");
         avatar.classList.remove("hide");
     });
+
 });

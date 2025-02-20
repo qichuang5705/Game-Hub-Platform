@@ -1,0 +1,89 @@
+.role-upgrade-container {
+    width: 40%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #0C5776;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 20px;
+    color: #E1F2E8;
+}
+
+.role-upgrade-container h1 {
+    color: #ABF600;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.role-upgrade-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.role-upgrade-form .form-group {
+    text-align: left;
+    width: 100%;
+}
+
+.role-upgrade-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #E1F2E8;
+}
+
+.role-upgrade-form button {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ABF600;
+    color: #0C5776;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.role-upgrade-form button:hover {
+    background-color: #E1F2E8;
+}
+
+.role-upgrade-status {
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #2D99AE;
+    text-align: center;
+}
+
+.role-upgrade-status h2 {
+    color: #ABF600;
+    margin-bottom: 10px;
+}
+
+.role-upgrade-status p {
+    color: #E1F2E8;
+}
+
+.role-upgrade-container .back-home {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ABF600;
+    text-decoration: none;
+}
+
+.role-upgrade-container .back-home:hover {
+    text-decoration: underline;
+}
+
+.role-upgrade-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E1F2E8;
+    text-align: center;
+    background-color: #0C5776;
+    color: #E1F2E8;
+}

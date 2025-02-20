@@ -3,8 +3,9 @@
     align-items: center;
     justify-content: space-between; 
     padding: 10px;
-    background-color: #000000; 
+    background-color: #1C2341; 
     width: 100%; 
+    border: 2px solid #000000;
 }
 
 .navbar .logo img {
@@ -38,12 +39,13 @@
 
 .main-nav a {
     text-decoration: none;
-    color: #ffffff;
+    color: #6DFFE7;
     padding: 15px 50px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: flex; 
     align-items: center; 
+    background-color: #394F6B; 
 }
 
 .main-nav a i { 
@@ -51,8 +53,10 @@
 }
 
 .main-nav a:hover, .main-nav .search-box:hover {
-    background-color: #333;
+    background-color: #55BEC0; 
+    color: #12182B; 
 }
+
 
 /**/
 .search-box {
@@ -65,6 +69,7 @@
     display: flex; 
     align-items: center; 
     border-radius: 8px;
+    background-color: #1C2341; 
 }
 
 .search-box_btn {
@@ -77,20 +82,21 @@
     border: none;
     outline: none;
     background: transparent;
-    color: white;
+    color: #6DFFE7; 
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 15px;
     padding-right: 15px;
+    transition: color 0.3s ease;
 }
 
 .search-box_input {
     width: 100%;
     height: 100%;
     background: transparent;
-    color: white;
+    color: #6DFFE7; 
     padding: 0 30px 0 10px;
     font-size: 20px; 
     outline: none;
@@ -100,11 +106,13 @@
 
 .search-box.open {
     width: 280px;
-    background: #333;
+    background: #394F6B; 
     border-radius: 10px;
 }
 
-/**/
+.search-box_btn:hover {
+    color: #55BEC0; 
+}
 
 .user-actions {
     display: flex;
@@ -113,9 +121,14 @@
 
 .user-actions > * {
     margin-left: 10px; 
+    color: #6DFFE7; 
+    transition: color 0.3s ease;
 }
 
-/**/
+.user-actions > *:hover {
+    color: #55BEC0;
+}
+
 .page_home {
     position: relative; 
     top: 0px; 
@@ -124,10 +137,10 @@
     z-index: 80;   
 }
 
-.page_home i{
-    color: #ffffff;
+.page_home i {
+    color: #6DFFE7;
     font-size: 30px;
-    background-color: #3e3e3e;
+    background-color: #394F6B;
     padding: 10px;
     border-radius: 50%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -135,12 +148,11 @@
     z-index: 90;
 }
 
-
 .cart, .cart_user {
     position: absolute;
     top: 52px; 
     right: -35px; 
-    background-color: #2b2b2b;
+    background-color: #1C2341;
     border-radius: 10px;
     width: 150px;
     padding: 10px;
@@ -148,9 +160,10 @@
     flex-direction: column;
     gap: 10px;
     z-index: 79; 
+    border: 1px solid #000000;
 }
 
-.page_home .cart.open , .page_home_user .cart_user.open{
+.page_home .cart.open , .page_home_user .cart_user.open {
     display: flex;
 }
 
@@ -160,22 +173,21 @@
 }
 
 .cart button:hover, .cart_user button:hover {
-    background-color: #464646;
-    color: #abf600;
+    background-color: #6DFFE7;
+    color: #12182B;
 }
 
 .account button {
     background: none;
-    border: none;
+    border: 1px solid #000000;
     padding: 0;
     cursor: pointer;
     font-size: inherit;
     font-family: inherit;
     color: inherit;
-
     margin: 0 0 0 15px;
     padding: 8px 20px;
-    background-color: #3e3e3e;
+    background-color: #55BEC0;
     color: white;
     border-radius: 8px;
     text-align: center;
@@ -185,7 +197,6 @@
     cursor: pointer;
 }
 
-/**/
 .page_home_user {
     position: relative;
     display: flex;
@@ -197,7 +208,7 @@
     right: 30px;
 }
 
-.page_home_user p:hover{
+.page_home_user p:hover {
     cursor: default;
 }
 
@@ -215,7 +226,7 @@
     transform: translateY(0);
     width: 430px;
     min-height: 400px;
-    background-color: #f8d7da;
+    background-color: #394F6B;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 1);
     padding: 20px;
@@ -232,7 +243,7 @@
     pointer-events: auto;
 }
 
-.account-wrapper.hide{
+.account-wrapper.hide {
     z-index: 0;
     opacity: 0;
     transform: translateY(-50%);
@@ -251,6 +262,7 @@
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
+    border: 2px solid #6DFFE7;
 }
 
 .avatar img {
@@ -259,15 +271,15 @@
     object-fit: cover;
 }
 
-.avatar-wrapper.open{
+.avatar-wrapper.open {
     transform: translateX(-380px);
 }
 
-.avatar-wrapper.close{
+.avatar-wrapper.close {
     transform: translateX(0);
 }
 
-.avatar-wrapper .avatar:hover{
+.avatar-wrapper .avatar:hover {
     cursor: pointer;
 }
 
@@ -281,13 +293,13 @@
 
 .user-info p {
     font-size: 25px;
-    color: #000000;
+    color: #6DFFE7;
 }
 
 .your-detail label,
 .password-section label {
     font-size: 20px; 
-    color: #000000;
+    color: #55BEC0;
     margin-bottom: 10px;
     display: block;
     font-weight: bolder;
@@ -299,7 +311,7 @@
 
 .info-group p {
     font-size: 18px; 
-    color: #000000;
+    color: #6DFFE7;
     margin-bottom: 5px;
 }
 
@@ -309,22 +321,21 @@
     padding: 10px; 
     font-size: 16px; 
     border: none;
-    background-color: #eee;
-    color: #000000;
+    background-color: #12182B;
+    color: white;
     border-radius: 5px;
 }
-
 
 .change-password, .change-type-account {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.change-password span, .change-type-account span{
+.change-password span, .change-type-account span {
     font-weight: bold;
     text-decoration: underline;
     cursor: pointer;
-    color: #dc3545;
+    color: #6DFFE7;
     transition: color 0.3s ease;
 }
 
@@ -334,8 +345,8 @@
 }
 
 .update-profile button {
-    background-color: #ffffff;
-    color: #dc3545;
+    background-color: #1C2341;
+    color: #6DFFE7;
     border: none;
     padding: 18px 28px;
     border-radius: 15px;
@@ -345,10 +356,14 @@
     transition: background-color 0.3s ease;
 }
 
+.update-profile button:hover {
+    background-color: #6DFFE7;
+    color: #12182B;
+}
 
 .account-wrapper .close-account {
     font-size: 30px;
-    color: #dc3545;
+    color: #6DFFE7;
     position: absolute;
     top: 0px; 
     right: 10px; 
@@ -358,7 +373,7 @@
 }
 
 .account-wrapper .close-account:hover {
-    color: #dc3545;
+    color: #55BEC0;
 }
 
 input:disabled, select:disabled {
@@ -392,7 +407,7 @@ input:disabled, select:disabled {
 /*aaaaaaaaaaaaaaaaaaaa*/
 
 .login, .register, .forgot_password {
-    background: linear-gradient(to top, #030303, #242424);
+    background: #1C2341;
     padding: 40px 20px 20px;
     border-radius: 10px;
     width: 420px;
@@ -411,6 +426,7 @@ input:disabled, select:disabled {
     transform: translateY(50%);
     overflow-y: auto;
     max-height: 90vh;
+    border: 1px #394F6B;
 }
 
 .login.show, .register.show, .forgot_password.show {
@@ -451,7 +467,7 @@ input:disabled, select:disabled {
   
 .page_account.show {
     display: flex;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     transform: translateY(0);
     visibility: visible;
     left: 0;
@@ -475,18 +491,23 @@ input:disabled, select:disabled {
     display: block;
     font-size: 16px;
     margin-bottom: 8px;
-    color: white;
+    color: #6DFFE7;
     text-align: left;
 }
 
-.page_account input[type="text"], .page_account input[type="password"], .page_account input[type="email"] {
+.page_account input[type="text"], 
+.page_account input[type="password"], 
+.page_account input[type="email"] {
     width: 100%;
+    height: 40px;
     padding: 8px;
     margin-bottom: 16px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     box-sizing: border-box;
+    background-color: #0D1A2D;
+    color: #E0E0E0;
     cursor: text;
 }
 
@@ -494,20 +515,20 @@ input:disabled, select:disabled {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
-    color: white;
+    color: #E0E0E0;
     font-size: 14px;
     cursor: pointer;
 }
 
 .remember-me input[type="checkbox"] {
     margin-right: 8px;
-    cursor: pointer;;
+    cursor: pointer;
 }
 
 .page_account button {
     padding: 11px 32px;
-    background-color: #3b3b3b;
-    color: white;
+    background-color: #50D8D7;
+    color: #000000;
     border: none;
     border-radius: 15px;
     cursor: pointer;
@@ -518,13 +539,13 @@ input:disabled, select:disabled {
 }
 
 .page_account button:hover {
-    background-color: #abf600;
+    background-color: #6DFFE7;
     color: #000000;
 }
 
 .page_account span {
     font-size: 15px;
-    color: white;
+    color: #50D8D7;
     cursor: pointer;
     display: block;
     margin-bottom: 10px;
@@ -543,13 +564,16 @@ input:disabled, select:disabled {
     width: 150px;
     margin-right: 10px;
     text-align: right;
+    color: #E0E0E0;
 }
 
 .form-group select {
     flex-grow: 1;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #1E3A5F;
     border-radius: 5px;
+    background-color: #0D1A2D;
+    color: #E0E0E0;
 }
 
 .page_account_header span {
@@ -559,7 +583,7 @@ input:disabled, select:disabled {
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: #E0E0E0;
     background: none;
     border: none;
     width: 24px;
@@ -570,13 +594,13 @@ input:disabled, select:disabled {
     border-radius: 50%;
 }
 
-.close-button:hover {
-    color: #abf600;
+.page_account_header span:hover {
+    color: #6DFFE7;
 }
 
 .with_another {
     width: 60%;
-    border-top: 3px solid rgb(102, 102, 102);
+    border-top: 3px solid #666;
     padding-top: 10px;
     margin-top: 20px;
     border-radius: 2px;
@@ -585,6 +609,7 @@ input:disabled, select:disabled {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    color: #E0E0E0;
 }
 
 .with_another_inner {
@@ -592,7 +617,7 @@ input:disabled, select:disabled {
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-right: 10x;
+    margin-right: 10px;
 }
 
 .with_another .with_another_icons {
@@ -615,12 +640,14 @@ input:disabled, select:disabled {
 }
 
 .with_another a:hover {
-    background-color: #abf600;
+    background-color: #6DFFE7;
     color: #000000;
 }
 
-.login_footer span:hover, .register_footer span:hover, .forgot_password_footer span:hover{
-    color: #abf600;
+.login_footer span:hover, 
+.register_footer span:hover, 
+.forgot_password_footer span:hover {
+    color: #6DFFE7;
 }
 
 .password-container {
@@ -631,9 +658,11 @@ input:disabled, select:disabled {
 .password-container input[type="password"] {
     width: calc(100% - 40px); 
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #1E3A5F;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: #0D1A2D;
+    color: #E0E0E0;
 }
 
 .password-toggle {
@@ -646,19 +675,44 @@ input:disabled, select:disabled {
 }
 
 .fa-eye, .fa-eye-slash { 
-    color: #777;
+    color: #50D8D7;
 }
 
-.main-nav ul li a {
-    color: #333;
-    text-decoration: none;
+.cart_user {
+    width: 170px;
+}
+
+.cart {
+    width: 170px;
+}
+
+.account button {
+    width: 120px;
     padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s;
+    align-items: center;
+    text-align: center;
+    background-color: #50D8D7;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.account button:hover {
+    background-color: #6DFFE7;
+    color: #000000;
 }
 
 .main-nav ul li a.active {
-    background-color: #2dd760; /* Màu xanh dương */
+    background-color: #50D8D7; 
     color: white;
     font-weight: bold;
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.account a {
+    text-decoration: none;
 }

@@ -3,15 +3,15 @@
     justify-content: center;
     align-items: center;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #0C5776;
 }
 
 .edit-game-form {
     position: relative;
     width: 50vw;
     padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #E1F2E8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin: 20px auto;
 }
@@ -26,6 +26,7 @@
     display: block;
     margin-bottom: 5px;
     font-size: 20px;
+    color: #0C5776;
 }
 
 .edit-game-form input[type="text"],
@@ -34,10 +35,12 @@
 .edit-game-form select {
     width: 90%;
     padding: 10px;
-    border: 1px solid #6c6c6c;
+    border: 1px solid #2D99AE ;
     border-radius: 5px;
     font-size: 20px;
     margin: auto 30px;
+    background-color: #2D99AE;
+    color: #E1F2E8;
 }
 
 .edit-game-genres-checkbox label,
@@ -48,6 +51,7 @@
     cursor: pointer;
     width: fit-content;
     padding: 2px 5px;
+    color: #0C5776;
 }
 
 .edit-game-genres-checkbox input,
@@ -58,7 +62,7 @@
 }
 
 .edit-game-text-danger {
-    color: red;
+    color: #ABF600;
     font-size: 20px;
     margin-top: 5px;
 }
@@ -66,8 +70,8 @@
 .edit-game-button {
     width: 120px;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ABF600;
+    color: #0C5776;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -77,7 +81,7 @@
 }
 
 .edit-game-button:hover {
-    background-color: #45a049;
+    background-color: #2D99AE;
 }
 
 .edit-game-container .close-edit {
@@ -88,12 +92,12 @@
     cursor: pointer;
     background: none;
     border: none;
-    color: #333;
+    color: #ABF600;
     font-weight: bolder;
 }
 
 .edit-game-container .close-edit:hover {
-    color: black;
+    color: #2D99AE;
 }
 
 .edit-game-container h3 {
@@ -101,13 +105,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #0C5776;
 }
 
 .edit-game-container .note label {
-    color: red;
+    color: #ABF600;
     text-decoration: underline;
 }
 
 .edit-game-container .note span {
     margin-left: 30px;
+    color: #0C5776;
 }

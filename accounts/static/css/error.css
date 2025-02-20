@@ -3,7 +3,7 @@
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #1a1a1a;
+    background-color: #0D1A2D;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,13 +24,12 @@
     font-size: 200px;
     font-weight: bold;
     margin: 0;
-    padding-top: -50px;
-    color: #ff4444;
+    color: #FF6B6B;
 }
 
 .error-container i {
     font-size: 200px;
-    color: #fff;
+    color: #6DFFE7;
     animation: floatGhost 3s infinite ease-in-out;
 }
 
@@ -43,12 +42,12 @@
     font-size: 40px;
     font-weight: bold;
     margin: 0;
-    color: #fff;
+    color: #E0E0E0;
 }
 
 .error-container span {
     font-size: 20px;
-    color: #ccc;
+    color: #B0BEC5;
 }
 
 .error-container button {
@@ -57,7 +56,7 @@
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background-color: #ff4444;
+    background-color: #FF6B6B;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -65,7 +64,8 @@
 }
 
 .error-container button:hover {
-    background-color: #cc0000;
+    background-color: #D43F3F;
+    transform: translateY(-3px);
 }
 
 .error-container span:hover {
