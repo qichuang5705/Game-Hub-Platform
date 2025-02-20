@@ -1,17 +1,29 @@
 .default-avatar{
     width: 100px;
     height: 100px;
-    background-color: black;
+    border: none;
 }
 
 .red-avatar{
-    width: 100px;
-    height: 100px;
-    background-color: red;
+    border: 2px solid red;
 }
 
 .pink-avatar{
-    width: 100px;
-    height: 100px;
-    background-color: blue;
+    border: 2px solid pink;
+}
+
+.yellow-avatar {
+    border: 2px solid yellow;
+}
+
+.green-avatar {
+    border: 2px solid green;
+}
+
+.gray-avatar {
+    border: 2px solid gray;
+}
+
+.blue-avatar {
+    border: 2px solid blue;
 }

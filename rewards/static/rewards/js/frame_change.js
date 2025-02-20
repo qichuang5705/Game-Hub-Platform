@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     chatShow.addEventListener("click", () => {
         avatar.classList.add("hide");
         avatar.classList.remove("show");
+        avt.classList.remove("active");
         chat.classList.add("show");
+        cht.classList.add("active");
         chat.classList.remove("hide");
     });
 
@@ -16,8 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
     avatarShow.addEventListener("click", () => {
         chat.classList.add("hide");
         chat.classList.remove("show");
+        cht.classList.remove("active");
         avatar.classList.add("show");
+        avt.classList.add("active");
         avatar.classList.remove("hide");
     });
 
 });
+
+
+

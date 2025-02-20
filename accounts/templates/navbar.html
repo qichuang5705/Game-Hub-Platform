@@ -1,5 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/page_header.css' %}">
+<link rel="stylesheet" href="{% static 'rewards/css/frameavatar.css' %}">
 
 <body>
   <header>
@@ -39,11 +40,6 @@
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-
-                    <!-- <input class="search-box_input" type="text" name="search">
-                  <button class="search-box_btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button> -->
           
   
                 </div>
@@ -63,7 +59,7 @@
 
         <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
             <div class="avatar-wrapper ">  
-                <div class="avatar">
+                <div class="avatar red-avatar">
                   <img src="{{ user.avatar.url }}" alt="Logo" />
                 </div>
             </div>
@@ -172,11 +168,6 @@
               {% if login_form.errors %}
                   <p style="color: red;" class="error">{{ login_form.non_field_errors.0 }}</p>
               {% endif %}
-              
-              <div class="remember-me">
-                <input type="checkbox" id="saveLogin" name="saveLogin" />
-                <label for="saveLogin">Ghi nhớ đăng nhập !</label>
-              </div>
               <div class="login_footer">
                 <button type="submit" name="login" class="btn-login">Đăng nhập</button>
                 <span class="create-account-btn">Chưa có tài khoản?</span>

@@ -4,6 +4,7 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'rewards/css/framechat.css' %}">
     <style>
 
     </style>
@@ -49,9 +50,6 @@
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
                         <label class="value">{{  user.user_rating.ratting  }}</label>
-                        <div class="stars_avr">
-                            <i class="fas fa-star"></i>
-                        </div>
 
                         <div class="stars" id="rating-stars"></div>
                         </div>
@@ -59,14 +57,6 @@
                             {% csrf_token %}
                             
                             <input type="hidden" name="form_type" value="form_rating">
-                            <!-- Hiển thị các sao -->
-                            <!-- <div class="stars" id="rating-stars">
-                                {% for value, label in form_ratting.fields.ratting.choices  %}
-                                    <i class="fa fa-star" data-value="{{ value }} {% if user.user_rating.ratting == value|add:0 %} active {% endif %}"></i>
-                                {% endfor %}
-                            </div> -->
-                            <!-- {% if user.user_rating.ratting == value|add:0  %}fa fa-star active{%else%}fa fa-star{% endif %} -->
-                            <!-- Input ẩn để lưu giá trị rating -->
                             {{ form_ratting.as_p }}
                         
                             <div style="display: flexd;" class="comment-actions">
@@ -133,7 +123,7 @@
                     <!-- Comment List -->
                     <div class="comments">
                         {% for comment in game.comment_set.all %}
-                        <div class="comment">
+                        <div class="comment ">
                             <div class="user-avatar">
                                 <div class="avatar">
                                     <img class="fas fa-user-circle fa-3x" src="{{ comment.users.avatar.url }}" alt="{{ user.fisrt_name }}">

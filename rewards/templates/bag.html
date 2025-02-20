@@ -10,13 +10,13 @@
 {% block body %}
     <div class="change_frame_container">
         <div class="title_choice">
-            <a href="{% url 'bag' %}" onclick="setActiveTab(event, 'bag')">
-                <h3 class="tab" data-tab="owned">Túi đồ</h3> 
+            <a href="{% url 'bag' %}" class="tab-link" data-tab="owned" >
+                <h3 class="tab">Túi đồ</h3> 
             </a>
-            <a href="{% url 'shop' %}" onclick="setActiveTab(event, 'shop')">
-                <h3 class="tab" data-tab="exchange">Shop</h3>
+            <a href="{% url 'shop' %}" class="tab-link" data-tab="exchange" >
+                <h3 class="tab">Shop</h3>
             </a>
-        </div>
+        </div>        
         
         <h3 class="points">Điểm thưởng của bạn: {{ user.points }}</h3>
 
@@ -25,7 +25,7 @@
             <div class="frame-selection-container">
                 <h3 class="tt">Khung avatar</h3>
                 <div class="title_choice avatar_tab">
-                    <h3 class="avt " data-tab="owned">Avatar </h3>
+                    <h3 class="avt active" data-tab="owned">Avatar </h3>
                     <h3 class="tab_chat " data-tab="exchange">Chat</h3>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="select-frame">
                     <form method="POST" action="{% url 'bag' %}">
                         {% csrf_token %}
-                        <input type="hidden" name="form_type" value="avatar_form">  <!-- Trường ẩn để xác định form -->
+                        <input type="hidden" name="form_type" value="avatar_form">  
                         <div class="frame-box">
                             <div class="frame-list">
                                 {% for avatar in form_avatar.avatar.field.queryset %}
@@ -80,7 +80,7 @@
                 <div class="select-frame">
                     <form method="POST" action="{% url 'bag' %}" >
                         {% csrf_token %}
-                        <input type="hidden" name="form_type" value="chat_form">  <!-- Trường ẩn để xác định form -->
+                        <input type="hidden" name="form_type" value="chat_form"> 
                         <div class="frame-box">
                             <div class="frame-list">
                                 {% for chat in form_chat.chat.field.queryset %}
