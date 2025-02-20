@@ -4,7 +4,9 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
-    
+    <style>
+
+    </style>
 {% endblock %}
 
 
@@ -32,27 +34,48 @@
                 <h3>Mô tả</h3>
                 <p>{{ game.description }}</p>
             </div>
-            
             <!-- Voting Section -->
             <div class="voting_box">
                 <h3>Đánh giá</h3>
                 <div class="rating-summary">
                     <div class="average-rating">
                         <label class="label">Đánh giá trung bình: </label>
-                        <label class="value">5</label>
+                        <label class="value">{{ game.ratting }}</label>
                         <div class="stars_avr">
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
-                        <div class="stars" id="rating-stars">
-                            <i class="fas fa-star" data-value="1"></i>
-                            <i class="fas fa-star" data-value="2"></i>
-                            <i class="fas fa-star" data-value="3"></i>
-                            <i class="fas fa-star" data-value="4"></i>
-                            <i class="fas fa-star" data-value="5"></i>
+                        <label class="value">{{  user.user_rating.ratting  }}</label>
+                        <div class="stars_avr">
+                            <i class="fas fa-star"></i>
                         </div>
+
+                        <div class="stars" id="rating-stars"></div>
+                        </div>
+                        <form method="POST" id="rating-form">
+                            {% csrf_token %}
+                            
+                            <input type="hidden" name="form_type" value="form_rating">
+                            <!-- Hiển thị các sao -->
+                            <!-- <div class="stars" id="rating-stars">
+                                {% for value, label in form_ratting.fields.ratting.choices  %}
+                                    <i class="fa fa-star" data-value="{{ value }} {% if user.user_rating.ratting == value|add:0 %} active {% endif %}"></i>
+                                {% endfor %}
+                            </div> -->
+                            <!-- {% if user.user_rating.ratting == value|add:0  %}fa fa-star active{%else%}fa fa-star{% endif %} -->
+                            <!-- Input ẩn để lưu giá trị rating -->
+                            {{ form_ratting.as_p }}
+                        
+                            <div style="display: flex;" class="comment-actions">
+                                <button class="button-32" type="submit">Đánh giá</button>
+                            </div>
+                        </form>
+                        
+
+
+                     
                     </div>
                     <input type="hidden" id="rating-value" name="rating" value="0">
                 </div>
@@ -87,11 +110,14 @@
                     <!-- Comment Form -->
                     <div class="comment-form">
                         <div class="user-avatar">
-                            <i class="fas fa-user-circle fa-3x"></i>
+                            <div class="avatar">
+                                <img class="fas fa-user-circle fa-3x" src="{{ user.avatar.url }}" alt="{{ user.fisrt_name }}">
+                            </div>
                         </div>
                         <div class="comment-input">
                             <form method="post">
                                 {% csrf_token %}
+                                <input type="hidden" name="form_type" value="form_comment">
                                 <div class="form-group">
                                     <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
                                 </div>
@@ -107,7 +133,9 @@
                         {% for comment in game.comment_set.all %}
                         <div class="comment">
                             <div class="user-avatar">
-                                <i class="fas fa-user-circle fa-2x"></i>
+                                <div class="avatar">
+                                    <img class="fas fa-user-circle fa-3x" src="{{ comment.users.avatar.url }}" alt="{{ user.fisrt_name }}">
+                                </div>
                             </div>
                             <div class="comment-content">
                                 <div class="comment-content-box"> 

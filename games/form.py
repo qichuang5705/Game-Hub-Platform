@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment, Game, Genre
+from .models import Comment, Game, Genre, Ratting
 import os, zipfile
 from django.conf import settings
 from django.utils.text import slugify
@@ -33,7 +33,6 @@ class UpGameForm(forms.ModelForm):
         genres = self.cleaned_data.get('genres')
         if not genres or genres.count() == 0:
             raise forms.ValidationError("Bạn cần chọn ít nhất một thể loại.")
-            messages.error(request,"Bạn cần chọn ít nhất một thể loại.")
         return genres
 
 
@@ -77,3 +76,12 @@ class UpGameForm(forms.ModelForm):
         return image 
 
     
+
+class RattingForm(forms.ModelForm):
+    ratting = forms.ChoiceField(
+        choices=Ratting.VALUE_CHOICES,  # Lấy giá trị từ model
+        widget=forms.RadioSelect  # Hiển thị dưới dạng radio button
+    )
+    class Meta:
+        model = Ratting
+        fields = ['ratting']

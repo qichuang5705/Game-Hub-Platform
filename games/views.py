@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Max
-from .models import Game, Comment, Genre, LBHistory, CustomUser
+from .models import Game, Comment, LBHistory, CustomUser, Ratting
 from assets.models import asset
-from .form import CommentForm, UpGameForm
+from .form import CommentForm, UpGameForm, RattingForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from rest_framework import viewsets, permissions, status
@@ -63,17 +63,47 @@ def game_detail(request, gameId):
         entry['user'] = user_dict[entry['users']]
 
     if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.games = game
-            comment.users = request.user
-            comment.save()
-            return redirect('game_detail', gameId=game.id)
+        form_type = request.POST.get('form_type')
+        print(form_type)
+        if form_type == 'form_rating':
+            print('form_ratting')
+            form_ratting = RattingForm(request.POST)
+            if form_ratting.is_valid():
+                rating_value = form_ratting.cleaned_data['ratting']
+                print(rating_value)
+                rating, _ = Ratting.objects.get_or_create(user=request.user, game=game)
+                rating.ratting = rating_value
+                rating.save()
+                TrungBinhRating(game)
+                return redirect('game_detail', gameId=game.id)
+            else:
+                print(form_ratting.errors)
+        elif form_type == 'form_comment':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.games = game
+                comment.users = request.user
+                comment.save()
+                return redirect('game_detail', gameId=game.id)
+            else:
+                print(form.errors)
     else:
         form = CommentForm()
-    
-    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user})
+        form_ratting = RattingForm()
+    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user, 'form_ratting': form_ratting})
+
+def TrungBinhRating(game):
+    rating = Ratting.objects.filter(game=game)
+    number = rating.count()
+    if number > 0:
+        tb = 0
+        for rate in rating:
+            print(rate.ratting)
+            tb+= rate.ratting
+        tb/=number
+        game.ratting = tb
+        game.save()
 
 @login_required
 def DeleteComment(request, comment_id):
@@ -181,3 +211,4 @@ def search(request):
     print(template_name)
     print(variable)
     return render(request, template_name, {variable: results, 'query': query})
+

@@ -32,7 +32,12 @@
                 </div>
                 <div class="voting-container">
                     <span>Đánh giá: </span>
-                    <div class="stars"> </div>
+                    <div class="stars">
+                        {% for _ in ""|rjust:user.user_rating.ratting %}
+                            <i class="fa-solid fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    
                 </div>
             </div>
         </div>
