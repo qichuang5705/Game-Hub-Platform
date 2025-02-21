@@ -3,6 +3,11 @@ from .forms import AssetForm
 from .models import * 
 from django.http import HttpResponse,HttpResponseForbidden,FileResponse
 from django.core.files.storage import default_storage
+from payments.models import Wallet
+from django.contrib import messages
+from django.db import transaction
+from payments.models import *
+from accounts.models import CustomUser
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
@@ -57,21 +62,51 @@ def asset_edit_view(request, asset_id):
     return render(request, 'edit_asset.html', {'asset': asset_obj})
 
 def asset_buy_view(request, asset_id):
+    if not request.user.is_authenticated:
+        messages.error(request, "Bạn cần đăng nhập để mua asset.")
+        return redirect("login")
+
     asset1 = get_object_or_404(asset, id=asset_id)
+    wallet, _ = Wallet.objects.get_or_create(user=request.user)
 
-    if request.method == 'POST':
-        payment_method = request.POST.get('payment_method')
-        Purchase.objects.create(user=None, asset=asset1, payment_method=payment_method)
-        return redirect('purchase_success')
+    if Purchase.objects.filter(user=request.user, asset=asset1).exists():
+        messages.warning(request, "Bạn đã mua asset này trước đó!")
+        return redirect("purchase_success")
 
-    return render(request, 'buy_asset.html', {'asset': asset1,'MEDIA_URL': settings.MEDIA_URL})
+    if wallet.balance < asset1.price:
+        messages.error(request, "Số dư không đủ để mua sản phẩm này!")
+        return redirect("asset_list")
 
+    try:
+        with transaction.atomic():
+            # Trừ tiền từ ví
+            wallet.balance -= asset1.price
+            wallet.save()
+
+            # Ghi lại lịch sử giao dịch
+            TransactionHistory.objects.create(
+                user=request.user,
+                transaction_type="purchase",
+                amount=asset1.price,
+                status="success",
+                balance_after_transaction=wallet.balance
+            )
+
+            # Tạo giao dịch mua hàng
+            Purchase.objects.create(user=request.user, asset=asset1, payment_method="wallet")
+
+        messages.success(request, f"Mua {asset1.title} thành công! Số dư còn lại: {wallet.balance} USD")
+    except Exception as e:
+        messages.error(request, f"Có lỗi xảy ra: {str(e)}")
+
+    return redirect("purchase_success")
 
 def purchase_success_view(request):
-    user = request.user if request.user.is_authenticated else None 
-    
-    #purchases = Purchase.objects.filter(user=user) if user else []  
-    purchases = Purchase.objects.all()
+    if not request.user.is_authenticated:
+        messages.error(request, "Bạn cần đăng nhập để xem lịch sử mua hàng.")
+        return redirect("login")
+
+    purchases = Purchase.objects.filter(user=request.user)
     return render(request, 'purchase_success.html', {'purchases': purchases})
 
 def download_asset_view(request, asset_id):
@@ -82,3 +117,42 @@ def download_asset_view(request, asset_id):
         return response
 
     return HttpResponse("File không tồn tại", status=404)
+
+def purchase_asset(request, asset_id):
+    asset = get_object_or_404(asset, id=asset_id)
+    
+    wallet, _ = Wallet.objects.get_or_create(user=request.user)
+
+
+    if Purchase.objects.filter(user=request.user, asset=asset).exists():
+        messages.warning(request, "Bạn đã mua asset này trước đó!")
+        return redirect("store")
+
+
+    if wallet.balance < asset.price:
+        messages.error(request, "Số dư không đủ để mua sản phẩm này!")
+        return redirect("store")
+
+    try:
+        with transaction.atomic():
+
+            wallet.balance -= asset.price
+            wallet.save()
+
+
+            TransactionHistory.objects.create(
+                user=request.user,
+                transaction_type="purchase",
+                amount=asset.price,
+                status="success",
+                balance_after_transaction=wallet.balance
+            )
+
+            # Lưu giao dịch mua asset
+            Purchase.objects.create(user=request.user, asset=asset, payment_method="wallet")
+
+        messages.success(request, f"Mua {asset.title} thành công! Số dư còn lại: {wallet.balance} USD")
+    except Exception as e:
+        messages.error(request, f"Có lỗi xảy ra: {str(e)}")
+
+    return redirect("store")
