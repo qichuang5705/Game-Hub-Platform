@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yêu cầu của tôi - Games Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Hỗ trợ Games Hub</div>
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="index.html">Gửi yêu cầu hỗ trợ</a></li>
+          <li><a href="requests.html">Yêu cầu của tôi</a></li>
+          <li><a href="#">Tình trạng dịch vụ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Yêu cầu Hỗ Trợ Của Tôi</h1>
+
+      <!-- Ô tìm kiếm và bộ lọc trạng thái trên cùng một hàng -->
+      <div class="search-filter-container">
+        <input
+          type="text"
+          id="searchBox"
+          placeholder="Tìm kiếm yêu cầu..."
+          onkeyup="searchRequests()"
+        />
+        <select id="statusFilter" onchange="filterRequests()">
+          <option value="all">BẤT KỲ</option>
+          <option value="open">MỞ</option>
+          <option value="pending">ĐANG ĐỢI CÂU TRẢ LỜI CỦA BẠN</option>
+          <option value="resolved">ĐÃ GIẢI QUYẾT</option>
+        </select>
+      </div>
+
+      <!-- Danh sách yêu cầu -->
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Loại Yêu Cầu</th>
+            <th>Mô Tả</th>
+            <th>Thời Gian</th>
+            <th>Trạng Thái</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="requestList">
+          <!-- Danh sách yêu cầu sẽ được hiển thị ở đây -->
+        </tbody>
+      </table>
+
+      <!-- Thông báo khi không có yêu cầu -->
+      <div id="noRequestMessage" class="hidden">
+        <h2>Không tìm thấy yêu cầu nào.</h2>
+        <p>Cần hỗ trợ thêm? Liên hệ với chúng tôi.</p>
+        <p>Trang này chưa phải là giải pháp cuối cùng của bạn đâu.</p>
+        <p>
+          Hãy liên hệ trực tiếp với chúng tôi để tìm hiểu về những thắc mắc khó
+          giải đáp.
+        </p>
+        <a href="index.html" class="support-button">Gửi yêu cầu hỗ trợ</a>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

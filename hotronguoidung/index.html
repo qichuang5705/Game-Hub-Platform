@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hỗ trợ Người dùng - Games Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Hỗ trợ Games Hub</div>
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="index.html">Gửi yêu cầu hỗ trợ</a></li>
+          <li><a href="requests.html">Yêu cầu của tôi</a></li>
+          <li><a href="#">Tình trạng dịch vụ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Gửi yêu cầu hỗ trợ</h1>
+      <p>Chúng tôi luôn sẵn sàng trợ giúp cho mọi vấn đề bạn gặp phải!</p>
+
+      <div class="form-container">
+        <form id="supportForm">
+          <label for="supportType">Chọn loại yêu cầu hỗ trợ:</label>
+          <select id="supportType" required>
+            <option value="">-- Chọn một loại --</option>
+            <option value="account_recovery">Khôi phục tài khoản</option>
+            <option value="technical_issue">Sự cố kỹ thuật</option>
+            <option value="payment_issue">Vấn đề thanh toán</option>
+            <option value="game_bug">Lỗi game</option>
+          </select>
+
+          <label for="description">Mô tả chi tiết:</label>
+          <textarea
+            id="description"
+            required
+            placeholder="Hãy mô tả vấn đề của bạn..."
+          ></textarea>
+
+          <button type="submit">Gửi yêu cầu</button>
+        </form>
+      </div>
+
+      <div id="responseMessage"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
