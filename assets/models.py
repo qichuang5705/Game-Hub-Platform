@@ -10,7 +10,7 @@ class asset (models.Model):
     title = models.CharField(max_length= 300,null=False)
     create_date = models.DateTimeField(auto_now_add= True)
     thumnail = models.ImageField(upload_to='thumnail/%Y/%m', default='defaults/NoneImage.png', blank=True, null=True)
-    User = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL , null= True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="assets" )
     file = models.FileField(upload_to='uploads/', blank=True, null=True)
 
 class Purchase(models.Model):

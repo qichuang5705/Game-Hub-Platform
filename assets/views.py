@@ -8,10 +8,13 @@ from django.contrib import messages
 from django.db import transaction
 from payments.models import *
 from accounts.models import CustomUser
+from django.contrib.auth.decorators import login_required
 def assetview(request):
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
         if form.is_valid():
+            asset = form.save(commit=False) 
+            asset.User = request.user  
             form.save()  
             return redirect('asset_upload')  
         else:
@@ -155,4 +158,20 @@ def purchase_asset(request, asset_id):
     except Exception as e:
         messages.error(request, f"Có lỗi xảy ra: {str(e)}")
 
+    return redirect("store")
+
+@login_required
+def delete_asset(request, asset_id):
+    asset_obj = get_object_or_404(asset, id=asset_id)
+
+    # Debug xem user hiện tại và owner của asset
+    print(f"Current User: {request.user.id}, Asset Owner: {asset_obj.owner.id if asset_obj.owner else None}")
+
+    # Kiểm tra quyền sở hữu
+    if asset_obj.owner != request.user:
+        messages.error(request, "Bạn không có quyền xóa asset này!")
+        return redirect("asset_detail", asset_id=asset_obj.id)
+
+    asset_obj.delete()
+    messages.success(request, "Asset đã được xóa thành công!")
     return redirect("store")
