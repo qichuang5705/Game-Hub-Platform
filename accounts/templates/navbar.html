@@ -89,7 +89,7 @@
             
     
                   {% if user.role in 'developer, designer' %}
-                  <a href="{% url 'bag' %}">
+                  <a href="{% url 'purchase_success' %}">
                     <button style="margin-top: 10px;" >Lịch sử mua asset</button>
                   </a>
                   <a href="{% url 'withdraw_to_paypal' %}">
