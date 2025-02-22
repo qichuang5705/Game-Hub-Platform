@@ -73,9 +73,7 @@
                     <a href="{% url 'bag' %}">
                       <button class="doithuong">Đổi thưởng</button>
                     </a>
-                    <a href="{% url 'logout' %}">
-                      <button>Đăng xuất</button>
-                    </a>
+      
                 
                     <a href="{% url 'deposit_page' %}">
                       <button style="margin-top: 10px;">Nạp tiền</button>
@@ -88,6 +86,10 @@
                       <button style="margin-top: 10px;">Rút tiền về PalPay</button>
                   </a>
                   {% endif %}
+
+                  <a href="{% url 'logout' %}">
+                    <button style="margin-top: 10px;"">Đăng xuất</button>
+                  </a>
                 </div>
             </div>
             <div class="account-wrapper hide">  

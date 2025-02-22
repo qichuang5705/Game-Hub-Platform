@@ -49,12 +49,13 @@
                                     <h3> {{ asset.title }}</h3>
                                     <br>
                                 </div>
+            
                                 <div class="anime__details__widget">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <ul>
                                                 <li><span>Thể Loại :</span> {{asset.type}}</li>
-                                                <li><span>Tác Giả :</span> {{asset.user.name}}</li>
+                                                <li><span>Tác Giả :</span> {{ asset.owner.first_name }}</li>
                                                 <li><span>Ngày :</span> {{asset.create_date}}</li>
                                                 <li><span>Giá :</span> {{asset.price}}$ </li>
                                                 <li><span>Mô Tả :</span> {{asset.description}}</li>
@@ -69,15 +70,18 @@
                                     </div>
                                 </div>
                                 <br>
+                                {% if user.role == 'designer' %}
                                 <div class="anime__details__btn">
                                     <a href="{% url 'edit_asset' asset.id %}" class="watch-btn"><span>Chỉnh Sửa</span> <i
                                         class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
+                          
                                 <form action="{% url 'delete_asset' asset.id %}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa asset này?');">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger">Xóa Asset</button>
                                 </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

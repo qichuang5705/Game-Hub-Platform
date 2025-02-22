@@ -9,12 +9,16 @@ from django.db import transaction
 from payments.models import *
 from accounts.models import CustomUser
 from django.contrib.auth.decorators import login_required
+
+@login_required
 def assetview(request):
+    if request.user.role != 'designer':
+        return redirect('errortruycap')
     if request.method == 'POST':
         form = AssetForm(request.POST, request.FILES)
         if form.is_valid():
             asset = form.save(commit=False) 
-            asset.User = request.user  
+            asset.owner = request.user  
             form.save()  
             return redirect('asset_upload')  
         else:
@@ -23,22 +27,30 @@ def assetview(request):
         form = AssetForm()
     return render(request, 'asset_form.html', {'form': form})
 
+
+@login_required
 def asset_list_view(request):
-    if not request.user.is_authenticated:
-        # Nếu người dùng chưa đăng nhập
-        return render(request, 'ErrorLogin.html')
-    
-    user = request.user  # Lấy người dùng đã đăng nhập
-    if user.role == 'player':
+    if request.user.role == 'player':
         # Nếu người dùng  là player, không thể truy cap
         return render(request, 'ErrorTruyCap.html')
+    user = request.user  # Lấy người dùng đã đăng nhập
     assets = asset.objects.all()
     return render(request, 'asset_list.html', {'assets': assets,'MEDIA_URL': settings.MEDIA_URL})
+
+@login_required
 def asset_detail(request, asset_id):
+    if request.user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     selected_asset = get_object_or_404(asset, id=asset_id)
     return render(request, 'asset_detail.html', {'asset': selected_asset,'MEDIA_URL': settings.MEDIA_URL})
 
+
+@login_required
 def asset_edit_view(request, asset_id):
+    if request.user.role != 'designer':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     asset_obj = get_object_or_404(asset, id=asset_id)  
 
     if request.method == 'POST':
@@ -64,10 +76,12 @@ def asset_edit_view(request, asset_id):
 
     return render(request, 'edit_asset.html', {'asset': asset_obj})
 
+@login_required
 def asset_buy_view(request, asset_id):
-    if not request.user.is_authenticated:
-        messages.error(request, "Bạn cần đăng nhập để mua asset.")
-        return redirect("login")
+    if request.user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
+
 
     asset1 = get_object_or_404(asset, id=asset_id)
     wallet, _ = Wallet.objects.get_or_create(user=request.user)
@@ -104,15 +118,21 @@ def asset_buy_view(request, asset_id):
 
     return redirect("purchase_success")
 
+@login_required
 def purchase_success_view(request):
-    if not request.user.is_authenticated:
-        messages.error(request, "Bạn cần đăng nhập để xem lịch sử mua hàng.")
-        return redirect("login")
+    if request.user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
+
 
     purchases = Purchase.objects.filter(user=request.user)
     return render(request, 'purchase_success.html', {'purchases': purchases})
 
+@login_required
 def download_asset_view(request, asset_id):
+    if request.user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     asset1 = get_object_or_404(asset, id=asset_id) 
 
     if asset.file:  
@@ -121,7 +141,11 @@ def download_asset_view(request, asset_id):
 
     return HttpResponse("File không tồn tại", status=404)
 
+@login_required
 def purchase_asset(request, asset_id):
+    if request.user.role == 'player':
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     asset = get_object_or_404(asset, id=asset_id)
     
     wallet, _ = Wallet.objects.get_or_create(user=request.user)
@@ -162,11 +186,14 @@ def purchase_asset(request, asset_id):
 
 @login_required
 def delete_asset(request, asset_id):
+    if request.user.role != 'designer' :
+        # Nếu người dùng  là player, không thể truy cap
+        return render(request, 'ErrorTruyCap.html')
     asset_obj = get_object_or_404(asset, id=asset_id)
 
     # Debug xem user hiện tại và owner của asset
     print(f"Current User: {request.user.id}, Asset Owner: {asset_obj.owner.id if asset_obj.owner else None}")
-
+    print(request.user)
     # Kiểm tra quyền sở hữu
     if asset_obj.owner != request.user:
         messages.error(request, "Bạn không có quyền xóa asset này!")
@@ -174,4 +201,4 @@ def delete_asset(request, asset_id):
 
     asset_obj.delete()
     messages.success(request, "Asset đã được xóa thành công!")
-    return redirect("store")
+    return redirect("asset_list")
