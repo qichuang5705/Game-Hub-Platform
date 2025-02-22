@@ -56,12 +56,12 @@
         <section class="login1 spad1">
             <div class="1">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" , >
                         <div class="login__form1">
-                            <h3>Upload</h3>
+                            <h3></h3>
                                     {% csrf_token %}
-                                    <div class="container">
-                                        <div class="row mb-3">
+                                    <div class="container" style="position: relative; top: -31px;right: -400px;"">
+                                        <div class="row mb-3", style="display: block ;">
                                             <label class="col-sm-6 col-md-3 col-form-label text-white">Tiêu đề:</label>
                                             <div class="col-sm-10">
                                                 {{ form.title }}
@@ -85,7 +85,7 @@
                 
                     <div class="col-lg-6" >
                         <div class="login__register1">
-                            <div class="container" style="position: absolute; top: 66px; left: 70px ">
+                            <div class="container" style="position: absolute; top: 0px; left: 70px ">
                                 <div class="row mb-3" >
                                     <label class="col-sm-6 col-md-3 col-form-label text-white">Mô Tả:</label>
                                     <div class="col-sm-10">
@@ -122,16 +122,6 @@
             <button type="submit" class="site-btn">Upload</button>
         </div>
     </form> 
-    <!-- <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Upload</button>
-    </form> -->
-    <!-- Login Section End -->
-
-    <!-- Footer Section Begin -->
-   
-
       <!-- Search model Begin -->
       <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">

@@ -165,7 +165,7 @@ os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import os
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'assets',"static"),
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Thư mục lưu tệp media
 # MEDIA_ROOT = BASE_DIR / 'media'
