@@ -15,14 +15,14 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
-class IsDeveloper(permissions.BasePermission):
-    def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == 'developer'
+# class IsDeveloper(permissions.BasePermission):
+#     def has_permission(self, request, view):
+#         return request.user.is_authenticated and request.user.role == 'developer'
 
 class LBHistoryViewset(viewsets.ModelViewSet):
     serializer_class = LBHSerializer
     # authentication_classes = [TokenAuthentication]
-    permission_classes = [IsDeveloper]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user  # Lấy user hiện tại
