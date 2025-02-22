@@ -296,7 +296,7 @@
               {% csrf_token %}
           
           
-                  <label for="f1">Mật khẩu cũ:</label>
+                  <label for="f1">Tài khoản:</label>
                   <input type="text" id="id_reset_username" name="username" class="form-input {% if form.username.errors %}error-field{% endif %}" value="{{ form.username.value|default:'' }}" placeholder="Mật khẩu cũ">
                   <span class="error-message">
                       {% for error in form.username.errors %}

@@ -47,7 +47,10 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
-    rating_user = Ratting.objects.filter(game=game, user=request.user).first()
+    if request.user.is_authenticated:
+        rating_user = Ratting.objects.filter(game=game, user=request.user).first()
+    else:
+        rating_user = None
     request.session["current_game_id"] = gameId  # Lưu gameId vào session thực hiện cho API
     comments = game.comment_set.all().order_by('-datecreate')
     paginator = Paginator(comments, 5)  # Hiển thị 5 bình luận mỗi trang
