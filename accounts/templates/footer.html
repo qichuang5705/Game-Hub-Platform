@@ -24,9 +24,12 @@
         <div class="footer-column">
             <div class="policy_privacy">
                 <label>CHÍNH SÁCH BẢO MẬT</label>
-                <span>Điều khoản sử dụng</span>
-                <span>Chính sách bảo mật</span>
-                <span>Chính sách Cookie</span>
+                <a href="{% url 'chinhsach' %}">
+                    <span>Điều khoản sử dụng</span>
+                </a>
+                <a href="{% url 'data_deletion' %}">
+                    <span>Chính sách bảo mật</span>
+                </a>
             </div>
             <div class="contact_info">
                 <label>LIÊN HỆ CHÚNG TÔI</label>

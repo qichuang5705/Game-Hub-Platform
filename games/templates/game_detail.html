@@ -122,7 +122,14 @@
                     </div>
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
-                        <label class="value">{{  rating_user.ratting }}</label>
+                        <label class="value">
+                         
+                        {% if rating_user %}
+                            {{  rating_user.ratting }}
+                        {% else %}
+                            <p>Chưa có đánh giá</p>
+                        {% endif %}
+                        </label>
                         <p>{{user.ratings_1.}}</p>
                         <div class="stars_avr">
                             <i class="fas fa-star"></i>
