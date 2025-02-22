@@ -42,41 +42,24 @@ INSTALLED_APPS = [
     'assets',
     'payments',
     'rewards',
+    'security',
     'rest_framework',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook', 
+    'allauth.socialaccount.providers.google',  
 ]
 
 SITE_ID = 2
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # Backend mặc định
-    'allauth.account.auth_backends.AuthenticationBackend',  # Backend của allauth
+    'django.contrib.auth.backends.ModelBackend',  
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-        ],
-        'EXCHANGE_TOKEN': True,
-        'VERIFIED_EMAIL': True,
-        'VERSION': 'v12.0',
-    },
-}
 
 
 MIDDLEWARE = [
@@ -162,7 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-import os
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -185,7 +168,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'antran08112005@gmail.com'  # Thay bằng email của bạn
 EMAIL_HOST_PASSWORD = 'evrb bxti ehpv rhrc'  # Thay bằng mật khẩu ứng dụng
 
-LOGIN_URL = '/'
+
 
 PAYPAL_CLIENT_ID = "AT1JqbumrDzs0KuL18j2eWp3f1BPOCXm_71aTraIUM1F2mBRFB1n50poZMkVp7gy--pioTARfuSY7UQu"
 PAYPAL_CLIENT_SECRET = "EKKhCcUWu4sFITAhBrlicgw9M8OkOFibKsi7dk2fx6JGqeJdJ0S1uwDmVElGGqYHZmcrpi4svMJ5cvJh"
@@ -214,3 +197,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Phải bật nếu dùng HTTPS
 SESSION_COOKIE_SAMESITE = None  # Cho phép gửi cookie khi redirect từ PayPal
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/errorlogin/' 

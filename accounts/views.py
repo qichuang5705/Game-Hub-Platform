@@ -11,7 +11,7 @@ import random, os
 from django.conf import settings
 
 def redirect_base_on_role(user):
-    if user.is_superuser:
+    if user.is_superuser or user.role == 'admin':
     # Đăng nhập người dùng và chuyển hướng đến admin
         user.role = 'admin'
         user.save()
