@@ -47,6 +47,7 @@ class LBHistoryViewset(viewsets.ModelViewSet):
 
 def game_detail(request, gameId):
     game = get_object_or_404(Game,id=gameId)
+    rating_user = Ratting.objects.get(game=game,user=request.user)
     request.session["current_game_id"] = gameId  # Lưu gameId vào session thực hiện cho API
     comments = game.comment_set.all().order_by('-datecreate')
     paginator = Paginator(comments, 5)  # Hiển thị 5 bình luận mỗi trang
@@ -98,7 +99,8 @@ def game_detail(request, gameId):
     else:
         form = CommentForm()
         form_ratting = RattingForm()
-    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user, 'form_ratting': form_ratting, 'phantrang': page_obj})
+    return render(request,"game_detail.html", {'game':game, 'leader':history, 'form':form, 'user':request.user, 'form_ratting': form_ratting, 'phantrang': page_obj, 
+                                               'rating_user': rating_user})
 
 def TrungBinhRating(game):
     rating = Ratting.objects.filter(game=game)
@@ -208,7 +210,7 @@ def search(request):
     elif view_name == 'asset_list':
         print("shop")
         # Tìm kiếm trên model Asset
-        results = asset.objects.filter(Q(type__icontains=query) | Q(description__icontains=query))
+        results = asset.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
         template_name = 'asset_list.html'  
         variable = 'assets'
     else:
