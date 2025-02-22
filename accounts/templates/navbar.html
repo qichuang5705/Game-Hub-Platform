@@ -76,6 +76,18 @@
                     <a href="{% url 'logout' %}">
                       <button>Đăng xuất</button>
                     </a>
+                
+                    <a href="{% url 'deposit_page' %}">
+                      <button style="margin-top: 10px;">Nạp tiền</button>
+                  </a>
+                  <a href="{% url 'transaction_history' %}">
+                      <button style="margin-top: 10px;">Lịch sử giao dịch</button>
+                  </a>
+                  {% if user.role in 'developer, designer' %}
+                  <a href="{% url 'withdraw_to_paypal' %}">
+                      <button style="margin-top: 10px;">Rút tiền về PalPay</button>
+                  </a>
+                  {% endif %}
                 </div>
             </div>
             <div class="account-wrapper hide">  
@@ -90,7 +102,7 @@
                     <div class="your-detail">
                         <label>CHI TIẾT</label>
                         <h2>Vai trò: {{ user.role }}</h2>
-            
+                        <h2>Số dư: {{ user.wallet.balance }}</h2>
                         <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                 
