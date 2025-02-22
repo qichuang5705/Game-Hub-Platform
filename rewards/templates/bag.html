@@ -2,104 +2,114 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'rewards/css/framechat.css' %}">
+    <link rel="stylesheet" href="{% static 'rewards/css/bag.css' %}">
     <link rel="stylesheet" href="{% static 'rewards/css/frameavatar.css' %}">
-    <style>
-.frame-container {
-    margin-bottom: 20px;
-}
-
-.frame-list {
-    display: flex;
-    gap: 10px;
-}
-
-.frame-item {
-    border: 2px solid transparent;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.frame-item input {
-    display: none;
-}
-
-.frame-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-/* Hiệu ứng viền xanh và phóng to khi chọn */
-.frame-item input:checked + img {
-    border: 2px solid blue;
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 0, 255, 0.6);
-}
-
-p{
-    color:floralwhite;
-}
-h1{
-    color: wheat;
-}
-h3{
-    color: aliceblue;
-}
-    </style>
+    <link rel="stylesheet" href="{% static 'rewards/css/framechat.css' %}">
 {% endblock %}
 
 {% block body %}
-<h1>Điểm thưởng: {{ user.points }}</h1>
-<form method="POST">
-    {% csrf_token %}
-    <h3>Chọn Khung Avatar</h3>
-    <div class="frame-list">
-        {% for avatar in form.avatar.field.queryset %}
-        <div class="frame-item">
-            <label>
-                <input type="radio" name="avatar" value="{{ avatar.id }}"
-                    {% if  user.invent.avatar.id  == avatar.id %} checked {% endif %}>
-                <img src="{{ avatar.frame_avatar.image.url}}" class="frame-preview">
-                <span>{{ chat.frame_chat.CssClass }}</span>
-            </label>
+    <div class="change_frame_container">
+        <div class="title_choice">
+            <a href="{% url 'bag' %}" class="tab-link" data-tab="owned" >
+                <h3 class="tab">Túi đồ</h3> 
+            </a>
+            <a href="{% url 'shop' %}" class="tab-link" data-tab="exchange" >
+                <h3 class="tab">Shop</h3>
+            </a>
+        </div>        
+        
+        <h3 class="points">Điểm thưởng của bạn: {{ user.points }}</h3>
+
+        <div class="tab-content avatar-content show">
+                <!--avatar-->
+            <div class="frame-selection-container">
+                <h3 class="tt">Khung avatar</h3>
+                <div class="title_choice avatar_tab">
+                    <h3 class="avt active" data-tab="owned">Avatar </h3>
+                    <h3 class="tab_chat " data-tab="exchange">Chat</h3>
+                </div>
+            </div>
+            <div class="frame-selection-container ">
+                <div class="current-frames ">
+                    <div class="frame-box_now">
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.avatar.frame_avatar.image.url }}" alt="">
+                            <span>{{ user.invent.avatar.frame_avatar.CssClass }}</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="select-frame">
+                    <form method="POST" action="{% url 'bag' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="avatar_form">  
+                        <div class="frame-box">
+                            <div class="frame-list">
+                                {% for avatar in form_avatar.avatar.field.queryset %}
+                                <div class="frame-item">
+                                    <label>
+                                        <img src="{{ avatar.frame_avatar.image.url }}" class="frame-preview">
+                                        <input type="radio" name="avatar" value="{{ avatar.id }}" {% if user.invent.avatar.id == avatar.id %} checked {% endif %}>
+                                        <span>{{ avatar.frame_avatar.CssClass }}</span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="button-save">
+                            <button type="submit" class="save-button">Lưu Thay Đổi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+
+        <!--chat-->
+        <div class="tab-content chat-content hide">
+            <div class="frame-selection-container">
+                <h3 class="tt">Khung chat</h3>
+                <div class="title_choice chat_tab">
+                    <h3 class="tab_avatar" data-tab="owned">Avatar </h3>
+                    <h3 class="cht " data-tab="exchange">Chat</h3>
+                </div>
+            </div>
+            <div class="frame-selection-container chat">   
+                <div class="current-frames ">
+                    <div class="frame-box_now">
+                        <div class="frame-item">
+                            <img width="100px" src="{{ user.invent.chat.frame_chat.image.url }}" alt="">
+                            <span>{{ user.invent.chat.frame_chat.CssClass }}</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="select-frame">
+                    <form method="POST" action="{% url 'bag' %}" >
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="chat_form"> 
+                        <div class="frame-box">
+                            <div class="frame-list">
+                                {% for chat in form_chat.chat.field.queryset %}
+                                <div class="frame-item">
+                                    <label>
+                                        <img src="{{ chat.frame_chat.image.url }}" class="frame-preview">
+                                        <input type="radio" name="chat" value="{{ chat.id }}"  {% if user.invent.chat.id == chat.id %} checked {% endif %}>
+                                        <span>{{ chat.frame_chat.CssClass }}</span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="button-save">
+                            <button type="submit" class="save-button">Lưu Thay Đổi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
-    <h3>Chọn Khung Chat</h3>
-    <div class="frame-list">
-        {% for chat in form.chat.field.queryset %}
-        <div class="frame-item">
-            <label>
-                <input type="radio" name="chat" value="{{ chat.id }}"
-                {% if  user.invent.chat.id  == chat.id %} checked {% endif %}>
-                <img src="{{ chat.frame_chat.image.url}}" class="frame-preview">
-                <span>{{ avatar.frame_avatar.CssClass }}</span>
-            </label>
-        </div>
-        {% endfor %}
-    </div>
-
-    <button type="submit">Lưu Thay Đổi</button>
-</form>
-
-
-
-<!-- <form method="POST">
-    {% csrf_token %}  {# Bảo vệ form chống tấn công CSRF #}
-    {{ form.as_p }}  {# Hiển thị form với mỗi trường trên một dòng #}
-    <button type="submit">Lưu</button>
-</form> -->
-<p>Avatar</p>
-<div class="{{  user.invent.avatar }}">
-
-</div>
-<p>Chat</p>
-<div class="{{ user.invent.chat }}">
+    <script src="{% static 'rewards/js/frame_change.js' %}"></script>
     
-</div>
-<a href="{% url 'shop' %}">Xem khung </a>
-
 {% endblock %}

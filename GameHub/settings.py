@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-!lat55qv-1sobjvb56n%wj$(24#fy_y)-$g#b2ms&b*q@(*#dn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # X_FRAME_OPTIONS = 'SAMEORIGIN'
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # Hoặc thêm chính xác domain của ngrok nếu cần
+
 
 
 # Application definition
@@ -42,8 +43,25 @@ INSTALLED_APPS = [
     'assets',
     'payments',
     'rewards',
+    'security',
     'rest_framework',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook', 
+    'allauth.socialaccount.providers.google',  
 ]
+
+SITE_ID = 2
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'GameHub.urls'
@@ -127,16 +146,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-import os
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'assets',"static"),
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Thư mục lưu tệp media
 # MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -150,7 +169,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'antran08112005@gmail.com'  # Thay bằng email của bạn
 EMAIL_HOST_PASSWORD = 'evrb bxti ehpv rhrc'  # Thay bằng mật khẩu ứng dụng
 
-LOGIN_URL = '/'
+
 
 PAYPAL_CLIENT_ID = "AT1JqbumrDzs0KuL18j2eWp3f1BPOCXm_71aTraIUM1F2mBRFB1n50poZMkVp7gy--pioTARfuSY7UQu"
 PAYPAL_CLIENT_SECRET = "EKKhCcUWu4sFITAhBrlicgw9M8OkOFibKsi7dk2fx6JGqeJdJ0S1uwDmVElGGqYHZmcrpi4svMJ5cvJh"
@@ -179,3 +198,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Phải bật nếu dùng HTTPS
 SESSION_COOKIE_SAMESITE = None  # Cho phép gửi cookie khi redirect từ PayPal
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/errorlogin/' 

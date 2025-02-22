@@ -2,6 +2,9 @@
 
 {% block body %}
 
+{% if query %}
+<p style="color: aliceblue;">Search results for "{{ query }}":</p>
+{% endif %}
 <main class="page_body">
     <div class="game-container">
     {% for game in games %}
@@ -17,7 +20,7 @@
                     {% endif %}
                 </a>
             </div>
-            <div class="game_info" data-rating="4.5"> 
+            <div class="game_info" data-rating="{{ game.ratting }}"> 
                 <div class="name-container"> 
                     <span>Game: </span>  <h3>{{ game.name }}</h3>
                 </div>
@@ -29,7 +32,18 @@
                 </div>
                 <div class="voting-container">
                     <span>Đánh giá: </span>
-                    <div class="stars"> </div>
+                    <div class="stars">
+                        {% for _ in ""|rjust:game.ratting|floatformat:0|add:"0" %}
+    
+                    {% endfor %}
+                    
+
+                    </div>
+                    
+                    
+                    
+                    
+                    
                 </div>
             </div>
         </div>

@@ -1,17 +1,17 @@
-
 .page_body {
     flex: 1;
 }
 
 .page_footer {
-    background-color: #000000;
-    color: #f8f9fa;
+    background-color: #0D1A2D;
+    color: #E0E0E0;
     padding: 20px 20px 0 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     align-items: start;
     border-radius: 5px;
+    border-top: 2px solid#000000;
 }
 
 .footer-column {
@@ -34,10 +34,11 @@
     border-radius: 15px;
 }
 
-.page_footer .info_web_page, .page_footer .donate p {
+.page_footer .info_web_page, 
+.page_footer .donate p {
     font-size: 17px;
     line-height: 2;
-    color: #ced4da;
+    color: #B0C4DE;
     text-align: justify;
     margin-top: 20px;
 }
@@ -47,6 +48,7 @@
 }
 
 .page_footer .contact_info,
+.page_footer .payment,
 .page_footer .policy_privacy,
 .page_footer .donate {
     display: flex;
@@ -55,13 +57,14 @@
 }
 
 .page_footer .contact_info label,
+.page_footer .payment label,
 .page_footer .policy_privacy label,
 .page_footer .donate label,
 .page_footer .card_social label {
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 10px;
-    color: #f8f9fa;
+    color: #E0E0E0;
     text-align: center;
     width: 100%;
 }
@@ -72,7 +75,7 @@
     font-size: 18px;
     margin: 5px 0;
     display: block;
-    color: #adb5bd;
+    color: #A9A9A9;
     cursor: pointer;
     transition: color 0.3s ease;
     text-align: center;
@@ -80,8 +83,9 @@
 
 .page_footer .contact_info span:hover,
 .page_footer .policy_privacy span:hover,
-.page_footer .donate span:hover {
-    color: #abf600;
+.page_footer .donate span:hover,
+.page_footer .payment span:hover {
+    color: #50D8D7;
 }
 
 .card_social {
@@ -112,7 +116,7 @@
 }
 
 .card_social a:hover {
-    background-color: #abf600;
+    background-color: #50D8D7;
     color: #000000;
 }
 
@@ -122,7 +126,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 13px;
-    color: #adb5bd;
+    color: #A9A9A9;
 }
 
 .copyright {
@@ -144,15 +148,45 @@
 }
 
 .btn-back-top button:hover {
-    background-color: #abf600;
+    background-color: #50D8D7;
     color: #000000;
     transform: translateY(-17px);
 }
 
-.donate label, .contact_info label{
+.donate label, .contact_info label {
     margin-top: 20px;
 }
 
-.footer_bottom .copyright:hover{
+.footer_bottom .copyright:hover {
     cursor: default;
+}
+
+.donate a {
+    font-size: 20px;
+    color: #50D8D7;
+    text-decoration: none;
+}
+
+.payment a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #50D8D7;
+}
+
+.payment a label {
+    cursor: pointer;
+}
+
+.payment span { 
+    font-size: 18px;
+    margin: 5px 0;
+    display: block;
+    color: #A9A9A9;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+.payment span:hover {
+    color: #50D8D7;
 }

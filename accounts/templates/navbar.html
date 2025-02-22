@@ -1,12 +1,14 @@
 {% load static %}
+
 <link rel="stylesheet" href="{% static 'css/page_header.css' %}">
+<link rel="stylesheet" href="{% static 'rewards/css/frameavatar.css' %}">
 
 <body>
   <header>
     <div class="navbar">
       <div class="logo">
           <a href="{% url 'home' %}">
-              <img src="{% static 'img/logo.jpg' %}" alt="Logo" />
+              <img src="{% static 'img/logo-nav.jpg' %}" alt="Logo" />
           </a>
       </div>
       <nav class="main-nav">
@@ -14,21 +16,33 @@
               <li><a href="{% url 'home' %}">
                 <i class="fa-solid fa-house"></i>
               </a></li>
-              <li><a href="{% url 'asset_create' %}">
+              {% if user.role in 'developer, designer' %}
+              <li><a href="{% url 'asset_list' %}">
                 <i class="fa-solid fa-cart-shopping"></i>
               </a></li>
+              {% endif %}
+              {% if user.role == 'developer'%}
               <li><a href="{% url 'up_game' %}">
                 <i class="fa-solid fa-laptop-code"></i>
               </a></li>
-              <li><a href="{% url 'home' %}">
+              {% endif %}
+              {% if user.role == 'designer' %}
+              <li><a href="{% url 'asset_upload' %}">
                 <i class="fa-solid fa-pen-ruler"></i>
               </a></li>
+              {% endif %}
               <li>
                 <div class="search-box ">
-                  <input class="search-box_input" type="text">
-                  <button class="search-box_btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  <form action="{% url 'search' %}" method="get">
+                    {% csrf_token %}
+                    <input class="search-box_input" type="text" name="words" class="search-box_input">
+                    <input class="search-box_input" type="hidden" name="view" value="{{ request.resolver_match.view_name }}">
+                    <button class="search-box_btn" type="submit"> 
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+          
+  
                 </div>
               </li>
           </ul>
@@ -46,16 +60,36 @@
 
         <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
             <div class="avatar-wrapper ">  
-                <div class="avatar">
+                <div class="avatar {{ user.invent.avatar }}">
                   <img src="{{ user.avatar.url }}" alt="Logo" />
                 </div>
             </div>
             <div class="cart_user close">
                 <div class="account">
                     <button class="show-info-btn">Thông tin cá nhân</button>
-                    <a href="{% url 'logout' %}">
-                      <button>Đăng xuất</button>
+                    <a href="{% url 'upgrade' %}">
+                      <button class="doithuong">Nâng cấp vai trò</button>
                     </a>
+                    <a href="{% url 'bag' %}">
+                      <button class="doithuong">Đổi thưởng</button>
+                    </a>
+      
+                
+                    <a href="{% url 'deposit_page' %}">
+                      <button style="margin-top: 10px;">Nạp tiền</button>
+                  </a>
+                  <a href="{% url 'transaction_history' %}">
+                      <button style="margin-top: 10px;">Lịch sử giao dịch</button>
+                  </a>
+                  {% if user.role in 'developer, designer' %}
+                  <a href="{% url 'withdraw_to_paypal' %}">
+                      <button style="margin-top: 10px;">Rút tiền về PalPay</button>
+                  </a>
+                  {% endif %}
+
+                  <a href="{% url 'logout' %}">
+                    <button style="margin-top: 10px;"">Đăng xuất</button>
+                  </a>
                 </div>
             </div>
             <div class="account-wrapper hide">  
@@ -69,22 +103,8 @@
                     
                     <div class="your-detail">
                         <label>CHI TIẾT</label>
-                        <!-- <div class="info-group">
-                            <p>Tên:</p>
-                            <input type="text" name="name" value="">
-                        </div>
-                        <div class="info-group">
-                            <p>Email:</p>
-                            <input type="email" name="email" value="" disabled>
-                        </div>
-                        <div class="info-group">
-                            <p>Điện thoại:</p>
-                            <input type="tel" name="tel" value="">
-                        </div>
-                        <div class="info-group">
-                            <p>Loại tài khoản: {{ user.role }}</p>
-                        </div> -->
-                        
+                        <h2>Vai trò: {{ user.role }}</h2>
+                        <h2>Số dư: {{ user.wallet.balance }}</h2>
                         <form action="{% url 'information' %}" method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                 
@@ -107,11 +127,11 @@
                       <div class="info-group">
                         <label for="f4">Ảnh đại diện:</label>
                         <input type="file" name="avatar">
-                    </div>
+                      </div>
 
                         <div class="update-profile">
                           <button type="submit">Cập nhật</button>
-                      </div>
+                        </div>
                         </form>
                 
                     </div>
@@ -163,11 +183,6 @@
               {% if login_form.errors %}
                   <p style="color: red;" class="error">{{ login_form.non_field_errors.0 }}</p>
               {% endif %}
-              
-              <div class="remember-me">
-                <input type="checkbox" id="saveLogin" name="saveLogin" />
-                <label for="saveLogin">Ghi nhớ đăng nhập !</label>
-              </div>
               <div class="login_footer">
                 <button type="submit" name="login" class="btn-login">Đăng nhập</button>
                 <span class="create-account-btn">Chưa có tài khoản?</span>
@@ -178,8 +193,9 @@
           <div class="with_another">
             <div class="with_another_inner">
               <div class="with_another_icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-google"></i></a>
+                {% load socialaccount %}
+                <a href="{% provider_login_url 'facebook' %}"><i class="fab fa-facebook-f"></i></a>
+                <a href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i></a>
               </div>
             </div>
           </div>
@@ -231,7 +247,7 @@
               {% if register_form.errors %}
               <ul>
                   {% for field, errors in register_form.errors.items %}
-                      <li>{{ field }}: {{ errors }}</li>
+                  <div style="color: aliceblue;"> <li>{{ field }}: {{ errors }}</li></div>
                   {% endfor %}
               </ul>
           {% endif %}
@@ -300,21 +316,6 @@
           </div>
         </div>
       </div>
-
-      <div class="change_avatar_frame_avatar_container">
-        <div class="tittle_choice"> 
-          <span class="close-change_avatar_frame_avatar close-button">&times;</span>
-          <h3>Avatar</h3>
-          <h3>Khung avatar</h3>
-        </div>
-        <div class="change_avatar"> 
-
-        </div>
-        <div class="change_frame_avatar"> 
-          
-        </div>
-      </div>
-
   </header>
   
 </body>

@@ -1,7 +1,9 @@
-import os
+import requests
 
-a = "avatar\\ccc.pt"
-aa, image_extension = os.path.splitext(a)
+url = "https://b991-123-21-18-22.ngrok-free.app/"
+headers = {
+    "User-Agent": "MyCustomAgent"  # Dùng một User-Agent tùy chỉnh
+}
 
-print(aa)
-print(image_extension)
+response = requests.get(url, headers=headers)
+print(response.text)

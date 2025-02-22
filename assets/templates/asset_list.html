@@ -17,14 +17,14 @@
 rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/plyr.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font1-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant1-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/plyr1.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice1-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl1.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" type="text/css">
 <style>
     .navbar{
         flex-wrap: nowrap !important;
@@ -67,14 +67,13 @@ rel="stylesheet">
                                     <div class="product__item__pic set-bg" 
                                         data-setbg="{% if asset.thumnail %}{{ asset.thumnail.url }}{% else %}{{ MEDIA_URL }}default/NoneImage.png{% endif %}">
                                         
-                                        <div class="view"><i class="fa fa-eye"></i> {{ asset.type }}</div>
+                                        <div class="view"><i ></i> {{ asset.price }} $</div>
                                     </div>
                                     <div class="product__item__text">
                                         <p>{{ asset.title }}</p>
                                         <ul>
-                                            <li>{{ asset.description }}</li>
-                                            <li>{{ asset.price }}</li>
-                                            <li>{{ asset.type }}</li>
+                                            <li>Type : {{ asset.type }}</li>
+
                                         </ul>
                                         <a href="{% url 'asset_buy_view' asset.id %}" class="btn btn-primary">Mua ngay</a>
                                         <a href="{% url 'asset_detail' asset.id %}" class="btn btn-primary">Xem Thêm</a>

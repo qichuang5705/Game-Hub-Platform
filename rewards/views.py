@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Chat, Avatar, FrameAvatar, FrameChat, Inventory
-from .forms import InventForm
+from .forms import ChatForm, AvatarForm
 from django.conf import settings
 from django.contrib import messages
 
@@ -23,16 +23,29 @@ def change_chat_frame(request):
 def Bag(request):
     user = request.user
     invent = Inventory.objects.get(user=user)  # Lấy Inventory của use
+
     if request.method == "POST":
-        form_chat = InventForm(request.POST, user=request.user, instance=invent)
-        if form_chat.is_valid():
-            form_chat.save()
-            return redirect('bag')  # Điều hướng sau khi lưu thành công
-        else:
-            print(form_chat.errors)
+        print(request)
+        form_type = request.POST.get('form_type')
+        print(form_type)
+        if form_type == 'avatar_form':
+            form_avatar = AvatarForm(request.POST, user=request.user, instance=invent)
+            if form_avatar.is_valid():
+                form_avatar.save()
+                return redirect('bag') 
+            else:
+                print(form_avatar.errors)
+        elif form_type == 'chat_form':
+            form_chat = ChatForm(request.POST, user=request.user, instance=invent)
+            if form_chat.is_valid():
+                form_chat.save()
+                return redirect('bag')
+            else:
+                print(form_chat.errors)
     else:
-        form_chat = InventForm( user=request.user, instance=invent)
-    return render(request, "bag.html", {'form': form_chat, 'MEDIA_URL': settings.MEDIA_URL})
+        form_avatar = AvatarForm(user=request.user, instance=invent)
+        form_chat = ChatForm(user=request.user, instance=invent)
+    return render(request, "bag.html", {'form_chat': form_chat, 'form_avatar': form_avatar})
 
 
 @login_required
@@ -73,3 +86,4 @@ def buy_frame(request):
     else:
         messages.error(request, "Yêu cầu không hợp lệ.")
         return redirect("shop")
+    

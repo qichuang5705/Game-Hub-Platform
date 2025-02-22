@@ -18,14 +18,14 @@
         rel="stylesheet">
     
             <!-- Css Styles -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/plyr.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/bootstrap1.min.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/font1-awesome.min.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/elegant1-icons.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/plyr1.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/nice1-select.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/owl1.carousel.min.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/slicknav1.min.css' %}" type="text/css">
+            <link rel="stylesheet" href="{% static 'css/style2.css' %}" type="text/css">
         <style>
             .navbar{
                 flex-wrap: nowrap !important;
@@ -49,17 +49,16 @@
                                     <h3> {{ asset.title }}</h3>
                                     <br>
                                 </div>
-                               
-                                <p>{{asset.description}}</p>
+            
                                 <div class="anime__details__widget">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <ul>
-                                                <li><span>Type:</span> {{asset.type}}</li>
-                                                <li><span>Author:</span> asset.user.name</li>
-                                                <li><span>Date aired:</span> {{asset.create_date}}</li>
-                                                <li><span>Status:</span> Airing</li>
-                                                <li><span>Genre:</span> </li>
+                                                <li><span>Thể Loại :</span> {{asset.type}}</li>
+                                                <li><span>Tác Giả :</span> {{ asset.owner.first_name }}</li>
+                                                <li><span>Ngày :</span> {{asset.create_date}}</li>
+                                                <li><span>Giá :</span> {{asset.price}}$ </li>
+                                                <li><span>Mô Tả :</span> {{asset.description}}</li>
                                             </ul>
                                         </div>
                                        
@@ -70,6 +69,19 @@
                                         class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
+                                <br>
+                                {% if user.role == 'designer' %}
+                                <div class="anime__details__btn">
+                                    <a href="{% url 'edit_asset' asset.id %}" class="watch-btn"><span>Chỉnh Sửa</span> <i
+                                        class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                          
+                                <form action="{% url 'delete_asset' asset.id %}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa asset này?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Xóa Asset</button>
+                                </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -77,8 +89,8 @@
                 </div>
             </section>
             <!-- Anime Section End -->
-    
           
+           
     
             <!-- Js Plugins -->
             <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

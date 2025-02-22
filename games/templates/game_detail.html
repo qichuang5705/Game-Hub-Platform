@@ -4,7 +4,79 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/game_detail.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'rewards/css/framechat.css' %}">
+    <style>
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+}
+
+.pagination span {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+
+
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: black;
+}
+
+.fullscreen iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+#fullscreenBtn {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#fullscreenBtn:hover {
+    background-color: #0056b3; /* Đổi màu khi hover */
+    transform: scale(1.05); /* Hiệu ứng phóng to */
+}
+
+#fullscreenBtn:active {
+    background-color: #00408a;
+    transform: scale(0.95); /* Nhấn xuống thì nhỏ lại */
+}
+
+    </style>
+ 
+ 
 {% endblock %}
 
 
@@ -15,45 +87,60 @@
         <div class="main-game">
             <!-- Game Box -->
             <div class="play_game_box">
-                <iframe src="{{ game.file.url }}" allowfullscreen></iframe>
+                <iframe id="gameIframe"src="{{ game.file.url }}" sandbox="allow-scripts allow-same-origin" ></iframe>
             </div>
-            
+            <button id="fullscreenBtn">Bật Fullscreen</button>
             <!-- Game Name -->
             <div class="name_game">
                 <h1>{{ game.name }}</h1>
             </div>
             
+            <div class="view_game">
+                <h1>Lượt chơi: {{ game.views }}</h1>
+            </div>
+
             <!-- Game Description -->
             <div class="info_game">
                 <h3>Mô tả</h3>
                 <p>{{ game.description }}</p>
             </div>
-            
             <!-- Voting Section -->
+            {% if user.is_authenticated %}
             <div class="voting_box">
                 <h3>Đánh giá</h3>
                 <div class="rating-summary">
                     <div class="average-rating">
                         <label class="label">Đánh giá trung bình: </label>
-                        <label class="value">5</label>
+                        <label class="value">{{ game.ratting }}</label>
                         <div class="stars_avr">
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
-                        <div class="stars" id="rating-stars">
-                            <i class="fas fa-star" data-value="1"></i>
-                            <i class="fas fa-star" data-value="2"></i>
-                            <i class="fas fa-star" data-value="3"></i>
-                            <i class="fas fa-star" data-value="4"></i>
-                            <i class="fas fa-star" data-value="5"></i>
+                        <label class="value">{{  user.user_rating.ratting  }}</label>
+
+                        <div class="stars" id="rating-stars"></div>
                         </div>
+                        <form method="POST" id="rating-form">
+                            {% csrf_token %}
+                            
+                            <input type="hidden" name="form_type" value="form_rating">
+                            {{ form_ratting.as_p }}
+                        
+                            <div style="display: flexd;" class="comment-actions">
+                                <button class="button-32" type="submit">Đánh giá</button>
+                            </div>
+                        </form>
+                        
+
+
+                     
                     </div>
                     <input type="hidden" id="rating-value" name="rating" value="0">
                 </div>
             </div>
-            
+            {% endif %}
             <!-- Leaderboard -->
             <div class="leaderboard">
                 <h3>{{ game.ApiLD|yesno:"Bảng xếp hạng, Không hỗ trợ bảng xếp hạng" }}</h3>
@@ -66,9 +153,9 @@
                     </tr>
                     {% for entry in leader %}
                     <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ entry.user.username }}</td>
-                        <td>{{ entry.max_score }}</td>
+                        <td style="color: black;">{{ forloop.counter }}</td>
+                        <td style="color: black;">{{ entry.user.first_name }}</td>
+                        <td style="color: black;">{{ entry.max_score }}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -81,13 +168,17 @@
                     <h3>Bình luận</h3>
                     
                     <!-- Comment Form -->
+                    {% if user.is_authenticated %}
                     <div class="comment-form">
                         <div class="user-avatar">
-                            <i class="fas fa-user-circle fa-3x"></i>
+                            <div class="avatar">
+                                <img class="fas fa-user-circle fa-3x" src="{{ user.avatar.url }}" alt="{{ user.fisrt_name }}">
+                            </div>
                         </div>
                         <div class="comment-input">
                             <form method="post">
                                 {% csrf_token %}
+                                <input type="hidden" name="form_type" value="form_comment">
                                 <div class="form-group">
                                     <textarea name="words" class="comment-textarea" placeholder="Nhập bình luận của bạn..." required></textarea>
                                 </div>
@@ -97,13 +188,16 @@
                             </form>
                         </div>
                     </div>
-                    
+                    {% endif %}    
                     <!-- Comment List -->
                     <div class="comments">
-                        {% for comment in game.comment_set.all %}
-                        <div class="comment">
+                        {% for comment in phantrang %}
+    
+                        <div class="comment {{ comment.users.invent.chat.frame_chat.CssClass }}">
                             <div class="user-avatar">
-                                <i class="fas fa-user-circle fa-2x"></i>
+                                <div class="avatar {{ comment.users.invent.avatar.frame_avatar.CssClass }}">
+                                    <img class="fas fa-user-circle fa-3x" src="{{ comment.users.avatar.url }}" alt="{{ user.fisrt_name }}">
+                                </div>
                             </div>
                             <div class="comment-content">
                                 <div class="comment-content-box"> 
@@ -126,12 +220,44 @@
                         {% endfor %}
                     </div>
 
+
+                    <!-- Thanh phân trang -->
+                    <div class="pagination" style="margin-top: 20px;">
+                        {% if phantrang.has_previous %}
+                            <a href="?page=1">Trang đầu</a>
+                            <a href="?page={{ phantrang.previous_page_number }}">Trước</a>
+                        {% endif %}
+
+                        <span>Trang {{ phantrang.number }} / {{ phantrang.paginator.num_pages }}</span>
+
+                        {% if phantrang.has_next %}
+                            <a href="?page={{ phantrang.next_page_number }}">Tiếp</a>
+                            <a href="?page={{ phantrang.paginator.num_pages }}">Trang cuối</a>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
     
 </main>
+<script>
+    document.getElementById("fullscreenBtn").addEventListener("click", function() {
+        let iframe = document.getElementById("gameIframe");
+        
+        // Kiểm tra nếu trình duyệt hỗ trợ API Fullscreen
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { // Firefox
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari và Opera
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { // IE/Edge
+            iframe.msRequestFullscreen();
+        }
+    });
+    </script>
 
 <script src="{% static 'js/game_detail.js' %}"></script>
 
