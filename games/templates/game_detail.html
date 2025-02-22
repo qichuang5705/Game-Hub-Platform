@@ -95,10 +95,14 @@
                 <h1>{{ game.name }}</h1>
             </div>
             
-            <div class="view_game">
-                <h1>Lượt chơi: {{ game.views }}</h1>
-            </div>
 
+            <div class="info_game">
+                <h3>Thông tin trò chơi</h3>
+                <p>Tác giá: {{ game.user.first_name}}</p>
+                <p>Ngày tạo: {{ game.datecreate }}</p>
+                <p>Phiên bản: {{ game.version}} </p>
+                <p>Lượt truy cập: {{ game.views}}</p>
+            </div>
             <!-- Game Description -->
             <div class="info_game">
                 <h3>Mô tả</h3>
@@ -118,9 +122,11 @@
                     </div>
                     <div class="your-rating">
                         <label class="label">Đánh giá của bạn:</label>
-                        <label class="value">{{  user.user_rating.ratting  }}</label>
-
-                        <div class="stars" id="rating-stars"></div>
+                        <label class="value">{{  rating_user.ratting }}</label>
+                        <p>{{user.ratings_1.}}</p>
+                        <div class="stars_avr">
+                            <i class="fas fa-star"></i>
+                        </div>
                         </div>
                         <form method="POST" id="rating-form">
                             {% csrf_token %}
@@ -202,7 +208,7 @@
                             <div class="comment-content">
                                 <div class="comment-content-box"> 
                                     <div class="comment-header">
-                                        <p class="user-name">{{ comment.users.username }}</p>
+                                        <p class="user-name">{{ comment.users.first_name }}</p>
                                         <p class="comment-date">{{ comment.datecreate }}</p>
                                     </div>
                                     <p>{{ comment.words }}</p>

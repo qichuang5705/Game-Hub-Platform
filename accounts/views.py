@@ -124,7 +124,8 @@ def home(request):
             register_form = RegistrationForm(request.POST)
             if register_form.is_valid():
                 user = register_form.save()
-                login(request, user)
+                backend = 'django.contrib.auth.backends.ModelBackend'
+                login(request, user, backend=backend)
                 messages.success(request, f"Welcome, {user.username}")
                 return redirect_base_on_role(user)
             else:

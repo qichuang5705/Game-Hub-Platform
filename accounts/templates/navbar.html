@@ -11,6 +11,11 @@
               <img src="{% static 'img/logo-nav.jpg' %}" alt="Logo" />
           </a>
       </div>
+      {% if user.is_authenticated %}
+
+      <p id="ncanscn"></p>
+
+      {% endif %}
       <nav class="main-nav">
           <ul>
               <li><a href="{% url 'home' %}">
@@ -50,10 +55,10 @@
       <div> 
         <!---->
         <div class="page_home {% if user.is_authenticated %}alternative{% else %}exist{% endif %}">
-            <i class="cart-btn fa-solid fa-user"></i>
+            <i id="open1" class="cart-btn fa-solid fa-user"></i>
             <div class="cart close">
                 <div class="account">
-                    <button class="open-login-btn">Đăng nhập</button>
+                    <button id="open2222" class="open-login-btn">Đăng nhập</button>
                 </div>
             </div>
         </div>
@@ -61,17 +66,17 @@
         <div class="page_home_user {% if user.is_authenticated %}exist{% else %}alternative{% endif %}">
             <div class="avatar-wrapper ">  
                 <div class="avatar {{ user.invent.avatar }}">
-                  <img src="{{ user.avatar.url }}" alt="Logo" />
+                  <img id="open2" src="{{ user.avatar.url }}" alt="Logo" />
                 </div>
             </div>
             <div class="cart_user close">
                 <div class="account">
                     <button class="show-info-btn">Thông tin cá nhân</button>
                     <a href="{% url 'upgrade' %}">
-                      <button class="doithuong">Nâng cấp vai trò</button>
+                      <button>Nâng cấp vai trò</button>
                     </a>
                     <a href="{% url 'bag' %}">
-                      <button class="doithuong">Đổi thưởng</button>
+                      <button style="margin-top: 10px;" class="doithuong">Đổi thưởng</button>
                     </a>
       
                 
@@ -81,7 +86,12 @@
                   <a href="{% url 'transaction_history' %}">
                       <button style="margin-top: 10px;">Lịch sử giao dịch</button>
                   </a>
+            
+    
                   {% if user.role in 'developer, designer' %}
+                  <a href="{% url 'bag' %}">
+                    <button style="margin-top: 10px;" >Lịch sử mua asset</button>
+                  </a>
                   <a href="{% url 'withdraw_to_paypal' %}">
                       <button style="margin-top: 10px;">Rút tiền về PalPay</button>
                   </a>
@@ -166,25 +176,27 @@
             <form action="{% url 'home' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="login" value="true" />
-              <label>Tên đăng nhập</label>
+              <label for="login1">Tên đăng nhập</label>
               <input
                 type="text"
                 name="username"
                 placeholder="Tên đăng nhập"
+                id="login1"
               />
               <p class="error-message"></p>
-              <label>Mật khẩu</label>
+              <label for="pass1">Mật khẩu</label>
               <input
                 type="password"
                 name="password"
                 placeholder="Mật khẩu"
                 required
+                id="pass1"
               />
               {% if login_form.errors %}
                   <p style="color: red;" class="error">{{ login_form.non_field_errors.0 }}</p>
               {% endif %}
               <div class="login_footer">
-                <button type="submit" name="login" class="btn-login">Đăng nhập</button>
+                <button type="submit" name="login" class="btn-login" id="but1">Đăng nhập</button>
                 <span class="create-account-btn">Chưa có tài khoản?</span>
                 <span class="forgot-password-btn">Quên mật khẩu?</span>
               </div>

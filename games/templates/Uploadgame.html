@@ -34,7 +34,7 @@
                     {% if form.genres.errors %}
                     <ul class="upload-game-text-danger">
                         {% for error in form.genres.errors %}
-                        <li>{{ error }}</li>
+                        <li style="color: red;">{{ error }}</li>
                         {% endfor %}
                     </ul>
                     {% endif %}
@@ -67,7 +67,7 @@
                     {% if form.file.errors %}
                     <ul class="upload-game-text-danger">
                         {% for error in form.file.errors %}
-                        <li>{{ error }}</li>
+                        <li style="color: red;">{{ error }}</li>
                         {% endfor %}
                     </ul>
                     {% endif %}
