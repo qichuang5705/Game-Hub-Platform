@@ -1,4 +1,117 @@
-<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="Asset Store">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asset Store</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font1-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant1-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/plyr1.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice1-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl1.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav1.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" type="text/css">
+    <style>
+        .navbar{
+            flex-wrap: nowrap !important;
+        }
+       
+    </style>
+    
+{% endblock %}
+
+
+{% block content %}
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="defaults/images.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="normal__breadcrumb__text">
+                        <h2>Danh Sách Asset Đã Mua</h2>
+                        <p>Tải Xuống Ở Đây</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- Upload Section Begin -->
+     <form method="POST" enctype="multipart/form-data" >
+        <section class="login1 spad1">
+            <div class="1">
+                <div class="row">
+                    <div class="col-lg-6" , >
+                        <div class="login__register1">
+                            <h3></h3>
+                                    {% csrf_token %}
+                                    <div class="container" style="position: relative; top: -31px;right: -400px;">
+                                        <div class="row mb-3", style="display: block ;">
+                                            <ul>
+                                                {% for purchase in purchases %}
+                                                    <li>
+                                                        {{ purchase.asset.title }} - Đã mua ngày {{ purchase.purchase_date|date:"d/m/Y" }} (Thanh toán: {{ purchase.payment_method }})
+                                                        {% if purchase.asset.file %}
+                                        
+                                                            <a href="{% url 'download_asset' purchase.asset.id %}">📥 Tải xuống</a>
+                                                        {% else %}
+                                                            <span>Không có tệp để tải</span>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                        </div>
+                    </div>
+                
+                   
+                   
+                </div>
+            </div>
+        </section>
+       
+    </form> 
+      <!-- Search model Begin -->
+      <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+ <!-- Js Plugins -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/player.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Đã mua</title>
@@ -20,4 +133,4 @@
     </ul>
     <a href="{% url 'asset_list' %}">Quay lại danh sách</a>
 </body>
-</html>
+</html> -->
