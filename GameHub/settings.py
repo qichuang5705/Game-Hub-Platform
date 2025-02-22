@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-!lat55qv-1sobjvb56n%wj$(24#fy_y)-$g#b2ms&b*q@(*#dn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # X_FRAME_OPTIONS = 'SAMEORIGIN'
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']  # Hoặc thêm chính xác domain của ngrok nếu cần
+
 
 
 # Application definition

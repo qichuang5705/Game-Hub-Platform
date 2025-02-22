@@ -8,7 +8,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('games/', include('games.urls')),
     path('payments/',include('payments.urls')),
-   path('security/', include('security.urls')),
+    path('security/', include('security.urls')),
     path('store/', include('assets.urls')),
     path('rewards/', include('rewards.urls')),
     path('accounts/', include('allauth.urls')),  # URL của allauth
